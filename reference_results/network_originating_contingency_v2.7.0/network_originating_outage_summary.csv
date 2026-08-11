@@ -1,0 +1,3 @@
+state,outaged_line,line_from_bus,line_to_bus,target_bus,target_source_reachable,deenergized_bus_count,pump_bus_voltage_pu,pump_energized,interface_pump_power_kw,native_calculated_pump_power_kw,minimum_pressure_m,delivered_water_percent,minimum_energized_bus_voltage_pu,maximum_line_loading_percent
+accepted_base,,,,PB046,True,0,1.0380946881833968,True,202.83931976281698,202.84499143455648,42.12127685546875,100.0,0.9234969489014245,80.51545169321224
+PL044_outage,PL044,PB030,PB033,PB046,False,304,,False,0.33233194149939954,0.0,-60.44741439819336,0.009185683920274424,0.9234969489008458,80.51545169320721

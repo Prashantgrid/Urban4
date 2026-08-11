@@ -1,0 +1,52 @@
+{
+  "status": "accepted",
+  "release_gate_passed": true,
+  "method": "815 evidence-conditioned sanitary subcatchments aggregated to 13 wet-well/active-pump/force-main hydraulic systems with duty/standby equipment inventory",
+  "native_solver": "EPA SWMM through swmm-toolkit",
+  "native_solver_executed": true,
+  "subcatchment_terminals": 815,
+  "station_wet_wells": 13,
+  "active_swmm_pump_objects": 13,
+  "installed_pump_units": 26,
+  "standby_pump_units": 13,
+  "force_mains": 13,
+  "gravity_equivalent_length_km": 235.19111298231218,
+  "force_main_length_km": 13.102332402191186,
+  "sanitary_inflow_m3_year": 3362000.0,
+  "continuity_error_percent": -0.044,
+  "nonconverging_steps_percent": 0.0,
+  "flooding_loss_percent": 0.0,
+  "simulation_duration_hours": 24,
+  "routing_step_seconds": 60,
+  "wet_well_area_m2": 25.0,
+  "repair_actions": 0,
+  "thresholds_relaxed": false,
+  "structural_layer": {
+    "manhole_graph": "outputs/water_sewer_principle_candidate/wastewater_nodes.csv",
+    "collector_graph": "outputs/water_sewer_principle_candidate/wastewater_links.csv",
+    "relationship": "station-scale SWMM hydraulic equivalent of the retained manhole-first spatial design"
+  },
+  "configuration": {
+    "gravity_main_length_km": 235.19111298231218,
+    "force_main_length_km": 13.102332402191186,
+    "pump_station_count": 13,
+    "minimum_equivalent_gravity_grade": 0.00265,
+    "minimum_cover_m": 1.5,
+    "maximum_cover_m": 8.0,
+    "maximum_wet_well_depth_m": 15.0,
+    "wet_well_area_m2": 25.0,
+    "maximum_continuity_error_percent": 1.0,
+    "maximum_nonconverging_steps_percent": 0.1,
+    "maximum_flooding_loss_percent": 0.001,
+    "initial_duration_hours": 24,
+    "maximum_duration_hours": 48,
+    "initial_routing_step_seconds": 60,
+    "minimum_routing_step_seconds": 15,
+    "maximum_repairs": 8
+  },
+  "elevation_evidence": {
+    "source": "deterministic Main-valley terrain prior",
+    "class": "C",
+    "method": "analytic fallback"
+  }
+}

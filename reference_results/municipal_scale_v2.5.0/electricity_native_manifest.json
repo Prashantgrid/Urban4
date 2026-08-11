@@ -1,0 +1,24 @@
+{
+  "status": "accepted",
+  "release_gate_passed": true,
+  "method": "municipal transformer portfolio, pandapower AC solve, bounded conductor/parallel-circuit repair",
+  "native_solver": "pandapower",
+  "native_solver_executed": true,
+  "converged": true,
+  "minimum_voltage_pu": 0.9495439475449406,
+  "maximum_voltage_pu": 1.03,
+  "maximum_line_loading_percent": 82.17650221596566,
+  "maximum_transformer_loading_percent": 33.534278471498254,
+  "maximum_lv_path_drop_pu": 0.05353741787788313,
+  "repair_actions": 0,
+  "thresholds_relaxed": false,
+  "release_limits": {
+    "minimum_voltage_pu": 0.9,
+    "maximum_voltage_pu": 1.1,
+    "maximum_lv_path_drop_pu": 0.055,
+    "maximum_loading_percent": 100.0,
+    "maximum_parallel_feeder_circuits": 8,
+    "maximum_repair_rounds": 8,
+    "maximum_line_repairs": 500
+  }
+}

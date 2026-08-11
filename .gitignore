@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and packaging
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Generated Urban4 artifacts
+/outputs/
+/figures/
+/manuscript/
+/output/
+/temp.bin
+/temp.inp
+/temp.rpt
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

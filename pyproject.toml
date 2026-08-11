@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urban4"
+version = "2.7.0"
+description = "Shared-ledger generation and coupled simulation of electricity, water, wastewater, and district-heating networks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Prashant Pant"}, {name = "Thomas Hamacher"}]
+dependencies = [
+  "numpy>=1.26,<3",
+  "pandas>=2.1,<3",
+  "networkx>=3.2,<4",
+  "scipy>=1.11,<2",
+  "shapely>=2.0,<3",
+  "matplotlib>=3.8,<4",
+  "folium>=0.15,<1",
+  "pandapower>=3.2,<4",
+  "pandapipes>=0.13,<1",
+  "wntr>=1.3,<2",
+  "swmm-toolkit>=0.17,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.urls]
+Homepage = "https://github.com/Prashantgrid/Urban4"
+Repository = "https://github.com/Prashantgrid/Urban4"
+Documentation = "https://github.com/Prashantgrid/Urban4/tree/main/docs"
+
+[tool.setuptools]
+packages = ["urban4"]

@@ -1,0 +1,35 @@
+iteration,sector,failed_metric,diagnosis,repair_action,asset_id,before_value,after_value,threshold_unchanged
+1,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [27.934, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000873,125.0,150.0,True
+2,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [33.290, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002792,80.0,100.0,True
+3,drinking_water,infeasible zone pressure span,"WZ3: required head shift interval [61.761, 19.637] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P003061,100.0,125.0,True
+4,drinking_water,zone pressure window,WZ4: peak minimum 49.389 m; average maximum 50.159 m,adjust head-controlled zone boundary setpoint,WZ4_BOUNDARY,317.21,302.8214921569824,True
+5,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [25.898, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000871,125.0,150.0,True
+6,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [29.233, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002356,200.0,250.0,True
+7,drinking_water,infeasible zone pressure span,"WZ3: required head shift interval [42.680, 19.637] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P003060,100.0,125.0,True
+8,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [24.805, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000690,125.0,150.0,True
+9,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [26.878, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002190,80.0,100.0,True
+10,drinking_water,infeasible zone pressure span,"WZ3: required head shift interval [27.208, 19.637] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P003061,125.0,150.0,True
+11,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [23.720, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000297,100.0,125.0,True
+12,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [25.324, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002343,200.0,250.0,True
+13,drinking_water,infeasible zone pressure span,"WZ3: required head shift interval [21.493, 19.637] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P003060,125.0,150.0,True
+14,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [22.644, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000873,150.0,200.0,True
+15,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [24.229, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002942,80.0,100.0,True
+16,drinking_water,zone pressure window,WZ3: peak minimum 10.641 m; average maximum 50.363 m,adjust head-controlled zone boundary setpoint,WZ3_BOUNDARY,297.02,316.6567416381836,True
+17,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [22.047, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000799,80.0,100.0,True
+18,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [23.894, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002258,150.0,200.0,True
+19,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [21.571, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000822,125.0,150.0,True
+20,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [22.457, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002176,80.0,100.0,True
+21,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [20.747, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000226,80.0,100.0,True
+22,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [21.242, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002355,200.0,250.0,True
+23,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [19.872, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P001073,200.0,250.0,True
+24,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [20.644, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002381,80.0,100.0,True
+25,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [19.514, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P001019,100.0,125.0,True
+26,drinking_water,infeasible zone pressure span,"WZ2: required head shift interval [20.045, 19.405] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P002208,80.0,100.0,True
+27,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [19.004, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000335,100.0,125.0,True
+28,drinking_water,zone pressure window,WZ2: peak minimum 8.566 m; average maximum 50.595 m,adjust head-controlled zone boundary setpoint,WZ2_BOUNDARY,276.97,296.3751208496094,True
+29,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [18.981, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000800,80.0,100.0,True
+30,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [18.287, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000934,100.0,125.0,True
+31,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [18.151, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000661,125.0,150.0,True
+32,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [17.428, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000082,80.0,100.0,True
+33,drinking_water,infeasible zone pressure span,"WZ1: required head shift interval [17.384, 17.112] m is empty",upsize highest-loss pipe on critical path by one catalogue class,W_P000967,100.0,125.0,True
+34,drinking_water,zone pressure window,WZ1: peak minimum 10.515 m; average maximum 52.888 m,adjust head-controlled zone boundary setpoint,WZ1_BOUNDARY,260.32,277.43158752441406,True

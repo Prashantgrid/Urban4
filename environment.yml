@@ -1,0 +1,9 @@
+name: urban4-2.7.0
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - -r requirements-verified.txt
+

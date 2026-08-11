@@ -1,0 +1,4 @@
+case_id,place_name,common_ledger_exact_zone_interfaces_percent,independent_sector_clustering_exact_coincidence_percent,independent_sector_clustering_mean_interface_offset_km,independent_sector_clustering_p95_interface_offset_km
+dense_urban,Schweinfurt Innenstadt,100.0,32.91139240506329,0.05195685395131825,0.1454345815000211
+semi_urban,Bergl/Gartenstadt,100.0,20.481927710843372,0.060746383323040984,0.1413353992567441
+rural_peripheral,Dittelbrunn,100.0,35.714285714285715,0.061478366286148466,0.26339563040321134

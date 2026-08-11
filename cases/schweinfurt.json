@@ -1,0 +1,944 @@
+{
+  "case_id": "schweinfurt_urban4_2026",
+  "name": "Schweinfurt four-sector open-data benchmark",
+  "crs": "EPSG:4326",
+  "projected_crs": "LOCAL_EQUIRECTANGULAR_AT_50N",
+  "service_mask": {
+    "type": "union_of_circles",
+    "evidence_class": "C",
+    "purpose": "Declared case-adapter mask retaining the urban core and two northern settlement components inside the extraction bbox; it is not a municipal or utility boundary.",
+    "components": [
+      {
+        "center": [
+          10.2340647,
+          50.0451485
+        ],
+        "radius_km": 4.6
+      },
+      {
+        "center": [
+          10.1821081,
+          50.0610864
+        ],
+        "radius_km": 1.9
+      },
+      {
+        "center": [
+          10.2206431,
+          50.0777845
+        ],
+        "radius_km": 2.0
+      }
+    ]
+  },
+  "bbox": [
+    10.14,
+    49.985,
+    10.31,
+    50.095
+  ],
+  "evidence_date": "2026-07-27",
+  "seed": 20260802,
+  "evidence_backend": {
+    "preferred": "infdb",
+    "infdb_export_dir": "data/infdb/schweinfurt_09662000",
+    "fallback": "retained_osm_snapshot",
+    "strict": false,
+    "infdb_commit": "5f6784257cbc0c8a0ecf0454c75abfa3db5d9d4d",
+    "pylovo_commit": "fb9938dada80fcdb4172ecd0577c7ce812b39c37"
+  },
+  "morphologies": [
+    {
+      "id": "dense",
+      "label": "Dense urban - Innenstadt",
+      "center": [
+        10.232,
+        50.047
+      ],
+      "map_bbox": [
+        10.215,
+        50.037,
+        10.249,
+        50.06
+      ]
+    },
+    {
+      "id": "suburban",
+      "label": "Semi-urban - Bergl/Gartenstadt",
+      "center": [
+        10.198,
+        50.058
+      ],
+      "map_bbox": [
+        10.176,
+        50.041,
+        10.219,
+        50.073
+      ]
+    },
+    {
+      "id": "peripheral",
+      "label": "Rural/peripheral - Dittelbrunn",
+      "center": [
+        10.22,
+        50.083
+      ],
+      "map_bbox": [
+        10.196,
+        50.068,
+        10.246,
+        50.096
+      ]
+    },
+    {
+      "id": "industrial",
+      "label": "Industrial/mixed - Hafen/Oberndorf",
+      "center": [
+        10.218,
+        50.027
+      ],
+      "map_bbox": [
+        10.184,
+        50.008,
+        10.248,
+        50.043
+      ]
+    }
+  ],
+  "benchmark_cases": [
+    {
+      "id": "dense_urban",
+      "label": "Schweinfurt Innenstadt - dense-urban topology case",
+      "place_name": "Schweinfurt Innenstadt",
+      "morphology_label": "dense urban",
+      "study_role": "independently initialized named settlement-context topology-generation case",
+      "morphology": "dense",
+      "bbox": [
+        10.215,
+        50.037,
+        10.249,
+        50.06
+      ],
+      "demand_zone_target": 90,
+      "district_heat_zone_selection_fraction": 0.55
+    },
+    {
+      "id": "semi_urban",
+      "label": "Bergl/Gartenstadt - semi-urban topology case",
+      "place_name": "Bergl/Gartenstadt",
+      "morphology_label": "semi-urban",
+      "study_role": "independently initialized named settlement-context topology-generation case",
+      "morphology": "suburban",
+      "bbox": [
+        10.176,
+        50.041,
+        10.219,
+        50.073
+      ],
+      "demand_zone_target": 80,
+      "district_heat_zone_selection_fraction": 0.28
+    },
+    {
+      "id": "rural_peripheral",
+      "label": "Dittelbrunn - rural/peripheral topology case",
+      "place_name": "Dittelbrunn",
+      "morphology_label": "rural/peripheral",
+      "study_role": "independently initialized named settlement-context topology-generation case",
+      "morphology": "peripheral",
+      "bbox": [
+        10.196,
+        50.068,
+        10.246,
+        50.096
+      ],
+      "demand_zone_target": 45,
+      "district_heat_zone_selection_fraction": 0.08
+    }
+  ],
+  "official_anchors": {
+    "served_population": 68799,
+    "electricity_lv_network_population": 68799,
+    "electricity_lv_network_area_km2": 57.53,
+    "electricity_lv_annual_mwh": 156851.144,
+    "electricity_lv_peak_mw": 40.962,
+    "electricity_mv_cable_km": 319.4,
+    "electricity_lv_cable_km": 809.12,
+    "electricity_mv_withdrawal_points": 110,
+    "electricity_mv_lv_withdrawal_locations": 105,
+    "electricity_mv_lv_installed_capacity_mva": 216.71,
+    "electricity_lv_withdrawal_points": 43178,
+    "drinking_water_annual_m3": 4100000,
+    "drinking_water_total_delivery_m3": 5600000,
+    "drinking_water_wholesale_delivery_m3": 1500000,
+    "drinking_water_route_km": 341.0,
+    "drinking_water_wells_vertical": 37,
+    "drinking_water_wells_deep": 9,
+    "drinking_water_wells_horizontal": 4,
+    "wastewater_combined_km": 191,
+    "wastewater_sanitary_km": 21,
+    "wastewater_storm_km": 24,
+    "wastewater_force_main_km": 13,
+    "wastewater_pump_stations": 13,
+    "wastewater_overflow_basins": 23,
+    "wastewater_house_connections": 14400,
+    "wastewater_manhole_count": 6200,
+    "wastewater_dry_weather_m3_day": 19000,
+    "district_heat_route_km": 52.0,
+    "district_heat_sales_contracts": 841,
+    "district_heat_sales_mwh_year": 87500,
+    "district_heat_temperature_evidence": "published_area_operating_envelopes"
+  },
+  "wastewater": {
+    "terrain_rise_penalty_alpha_independent": 0.5,
+    "terrain_rise_penalty_alpha_integrated": 0.45,
+    "minimum_cover_m": 1.5,
+    "maximum_cover_m": 8.0,
+    "minimum_gravity_grade": 0.0002,
+    "manning_n": 0.013,
+    "terrain_grade_sensitivity": {
+      "method": "hold the generated directed sewer topology fixed; scale node relief about the outfall and repeat the cover-bounded invert design",
+      "relief_scale_factors": [
+        0.5,
+        0.75,
+        1.0,
+        1.25,
+        1.5
+      ],
+      "minimum_gravity_grades": [
+        0.0001,
+        0.0002,
+        0.0003,
+        0.0005
+      ],
+      "interpretation": "Local structural sensitivity of lift-edge and force-main requirements to the Class-C terrain prior and one non-clustering design parameter; it is not a surveyed-terrain uncertainty distribution."
+    }
+  },
+  "district_heating": {
+    "plant": {
+      "name": "GKS main CHP/waste-to-energy complex",
+      "coordinate": [
+        10.22442,
+        50.02996
+      ],
+      "role": "legacy Experiment-A verification root; municipality-scale design uses documented_supply_boundaries"
+    },
+    "nominal_supply_temperature_c": 90.0,
+    "nominal_return_temperature_c": 55.0,
+    "legacy_nominal_temperature_note": "Generic 90/55 C state retained only for the reduced Experiment-A framework-verification benchmark; the municipality-scale design uses the published HT120, MT110 and LT85 envelopes below.",
+    "design_pressure_bar": 10.0,
+    "target_pressure_gradient_pa_m": 100.0,
+    "target_velocity_m_s": 1.5,
+    "pump_efficiency": 0.78,
+    "motor_efficiency": 0.94,
+    "sales_contract_count": 841,
+    "aggregate_consumer_nodes": 48,
+    "heat_sales_mwh_year": 87500,
+    "equivalent_full_load_hours": 1500.0,
+    "design_peak_mw_assumption": 58.333333333333336,
+    "minimum_heat_density_mwh_ha": 800.0,
+    "heat_density_cell_size_km": 0.25,
+    "heat_suitability_sensitivity_mwh_ha": [
+      600.0,
+      800.0,
+      1000.0
+    ],
+    "route_length_target_km": 52.0,
+    "pipe_dn_mm": [
+      25,
+      32,
+      40,
+      50,
+      65,
+      80,
+      100,
+      125,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      800
+    ],
+    "customer_selection_policy": "demand_ranked",
+    "route_aware_demand_exponent": 1.0,
+    "route_aware_spatial_quota_level": "cell",
+    "heat_suitability_extended_sensitivity_mwh_ha": [
+      200.0,
+      400.0,
+      600.0,
+      800.0,
+      1000.0
+    ],
+    "route_length_tolerance_fraction": 0.1,
+    "route_length_comparison_scope": "route_plus_service_one_way",
+    "inventory_calibration_thresholds_mwh_ha": [
+      600.0,
+      800.0
+    ],
+    "inventory_calibration_policies": [
+      "demand_ranked",
+      "route_aware"
+    ],
+    "accepted_coupled_baseline_threshold_mwh_ha": 800.0,
+    "closest_native_inventory_candidate_threshold_mwh_ha": 600.0,
+    "documented_supply_boundaries": [
+      {
+        "id": "H1",
+        "name": "GKS main CHP/waste-to-energy complex",
+        "coordinate": [
+          10.22442,
+          50.02996
+        ],
+        "address": "Hafenstrasse 30, 97424 Schweinfurt",
+        "role": "primary/base district-heat supply interface",
+        "plant_side_steam_bar": 5.0,
+        "plant_side_steam_c": 190.0,
+        "documented_fuel_input_mw": [
+          63.0,
+          63.0,
+          20.8,
+          20.8,
+          20.8
+        ],
+        "capacity_note": "fuel-input inventory only; district-heat export nameplate not inferred"
+      },
+      {
+        "id": "H2",
+        "name": "GKS Spitzenheizwerk Nord",
+        "coordinate": [
+          10.21669,
+          50.0387
+        ],
+        "address": "Georg-Schaefer-Strasse 30, 97421 Schweinfurt",
+        "role": "documented peak/backup district-heat injection interface",
+        "plant_side_steam_bar": 5.0,
+        "plant_side_steam_c": 190.0,
+        "documented_fuel_input_mw": [
+          21.2,
+          49.5
+        ],
+        "capacity_note": "two boilers used only for district-heat production; fuel-input ratings, not delivered-water heat output"
+      }
+    ],
+    "documented_transfer_boundaries": [
+      {
+        "id": "T1",
+        "name": "SHW Sued",
+        "role": "customer/redistributor transfer station; not a heat generator",
+        "coordinate": null
+      }
+    ],
+    "published_temperature_classes": {
+      "HT120": {
+        "basis": "Stadtwerke F1-Sued sheet (120/70/50 C; PN25); B1/B2 independently confirms the same temperature bounds with PN10",
+        "max_supply_c": 120.0,
+        "min_supply_c": 70.0,
+        "max_return_c": 50.0,
+        "dhw_return_short_c": [
+          60.0,
+          65.0
+        ],
+        "min_handover_dp_bar": [
+          0.3,
+          0.5
+        ],
+        "max_handover_dp_bar": 9.0,
+        "pressure_class": "PN25"
+      },
+      "MT110": {
+        "basis": "Stadtwerke Maintal sheet",
+        "max_supply_c": 110.0,
+        "min_supply_c": 70.0,
+        "max_return_c": 50.0,
+        "dhw_return_short_c": [
+          60.0,
+          65.0
+        ],
+        "min_handover_dp_bar": [
+          0.3,
+          0.5
+        ],
+        "max_handover_dp_bar": 4.0,
+        "pressure_class": "PN16"
+      },
+      "LT85": {
+        "basis": "Stadtwerke V6 sheet",
+        "max_supply_c": 85.0,
+        "min_supply_c": 65.0,
+        "max_return_c": 50.0,
+        "dhw_return_short_c": [
+          60.0,
+          65.0
+        ],
+        "min_handover_dp_bar": [
+          0.3,
+          0.5
+        ],
+        "max_handover_dp_bar": 2.0,
+        "pressure_class": "PN16"
+      }
+    },
+    "temperature_assignment_rule": "Because public supply-area polygons are not released in machine-readable form, synthetic service areas are assigned one of the observed Schweinfurt operating envelopes by heat-density band: >=1200 MWh/ha/a -> HT120, 900-1199 -> MT110, <900 -> LT85. This imports real municipal temperature/pressure levels without claiming reconstruction of named B1/B2, F1-Sued, Maintal, or V6 boundaries.",
+    "source_topology_rule": "H1 is primary. H2 is assigned only where it provides a road-distance advantage and its hydraulic proxy peak is capped by the documented H2/(H1+H2) fuel-input share. A road-constrained H1-H2 intertie is mandatory so every active district-heating component is reachable from a documented supply boundary. The fuel-input ratio is used only as a routing-allocation ceiling, not as heat dispatch or delivered thermal capacity.",
+    "source_reachability_required_fraction": 1.0,
+    "temperature_return_design_c": 50.0,
+    "heat_inventory_search_thresholds_mwh_ha": [
+      760,
+      780,
+      800,
+      820,
+      840,
+      860,
+      880,
+      900
+    ],
+    "heat_inventory_search_score_exponents": [
+      0.5,
+      0.6,
+      0.7,
+      0.75,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "published_operating_sheet_urls": {
+      "network_page": "https://www.stadtwerke-sw.de/netze/fernwaermenetz",
+      "B1/B2": "https://www.stadtwerke-sw.de/_Resources/Persistent/1/e/c/1/1ec110389032649ab439dbef9a1b07b80c8f3074/2_Datenblatt%20und%20Kennlinien_B1%20und%20B2_2021-05-01.pdf",
+      "F1-Sued": "https://www.stadtwerke-sw.de/_Resources/Persistent/2/f/0/a/2f0a23954483cec4a7526fb6f79d603ca90d3ada/2_Datenblatt%20und%20Kennlinien_F1-S%C3%BCd_2023-10-01.pdf",
+      "Maintal": "https://www.stadtwerke-sw.de/_Resources/Persistent/6/a/d/0/6ad0cd0d21ed95f5e44bfb9e366795e0bb375745/2_Datenblatt%20und%20Kennlinien_Maintal_2025-02-06.pdf",
+      "V6": "https://www.stadtwerke-sw.de/_Resources/Persistent/7/4/f/6/74f631e8be8d6938a71c41b287c1f7ee6f48ad08/2_Datenblatt%20und%20Kennlinien_V6_2021-05-01.pdf"
+    },
+    "h2_proxy_peak_share_cap": 0.3,
+    "h2_proxy_peak_share_cap_note": "Coarse source-scale routing prior informed by H2 peak/backup role and smaller documented fuel-input scale; topology regularizer only, not delivered-heat capacity, efficiency, or dispatch share.",
+    "context_only_candidate_energy_centres": [
+      {
+        "id": "DH_EC_BERGL",
+        "name": "Bergl candidate energy centre",
+        "coordinate": [
+          10.196,
+          50.057
+        ]
+      },
+      {
+        "id": "DH_EC_INNENSTADT",
+        "name": "Innenstadt candidate energy centre",
+        "coordinate": [
+          10.231,
+          50.047
+        ]
+      }
+    ]
+  },
+  "equipment_libraries": {
+    "electricity_cable_mm2": [
+      95,
+      150,
+      185,
+      240,
+      300,
+      400
+    ],
+    "water_dn_mm": [
+      80,
+      100,
+      125,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      500,
+      600
+    ],
+    "wastewater_dn_mm": [
+      200,
+      250,
+      300,
+      400,
+      500,
+      600,
+      800,
+      1000,
+      1200,
+      1400,
+      1600,
+      1800,
+      2000
+    ],
+    "district_heat_dn_mm": [
+      25,
+      32,
+      40,
+      50,
+      65,
+      80,
+      100,
+      125,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      800
+    ],
+    "electricity_lv_cable_mm2": [
+      16,
+      25,
+      35,
+      70,
+      95,
+      150,
+      240
+    ],
+    "electricity_mv_cable_mm2": [
+      95,
+      150,
+      185,
+      240,
+      300,
+      400
+    ],
+    "practical_motor_kw": [
+      0.75,
+      0.9,
+      1.1,
+      1.3,
+      1.5,
+      2.2,
+      3.0,
+      4.0,
+      5.5,
+      7.5,
+      11,
+      15,
+      18.5,
+      22,
+      30,
+      37,
+      45,
+      55,
+      75,
+      90,
+      110,
+      132,
+      160,
+      200,
+      250,
+      315,
+      355,
+      400,
+      500
+    ],
+    "practical_transformer_mva": [
+      0.25,
+      0.4,
+      0.63,
+      0.8,
+      1.0,
+      1.25,
+      1.6,
+      2.0,
+      2.5,
+      3.15,
+      4.0
+    ],
+    "thermal_source_capacity_mw_th": [
+      1,
+      1.5,
+      2,
+      2.5,
+      3,
+      4,
+      5,
+      7.5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ]
+  },
+  "acceptance_screening": {
+    "electricity": {
+      "minimum_voltage_pu": 0.9,
+      "maximum_voltage_pu": 1.1,
+      "maximum_line_loading_percent": 100.0,
+      "maximum_transformer_loading_percent": 100.0
+    },
+    "drinking_water": {
+      "minimum_pressure_m": 20.0,
+      "maximum_pressure_m": 110.0,
+      "maximum_velocity_m_s": 2.0,
+      "peak_minimum_pressure_m": 20.0
+    },
+    "wastewater": {
+      "maximum_absolute_flow_routing_continuity_error_percent": 1.0,
+      "maximum_nonconverging_steps_percent": 0.1,
+      "maximum_dry_weather_flooding_loss_million_liter": 0.001
+    },
+    "district_heating": {
+      "minimum_pressure_bar": 10.0,
+      "minimum_differential_pressure_bar": 0.5,
+      "maximum_velocity_m_s": 2.0,
+      "maximum_annual_heat_loss_fraction": 0.15,
+      "maximum_inventory_length_relative_error": 0.1
+    },
+    "aggregate_comparison": {
+      "route_length_tolerance_percent": 10.0,
+      "force_main_length_tolerance_percent": 10.0,
+      "pump_station_tolerance_count": 2,
+      "interpretation": "Study-level plausibility bands fixed before comparison; they are not statutory utility tolerances. Overflow-basin count is an input constraint and is excluded from held-out comparisons."
+    }
+  },
+  "bidirectional_coupling": {
+    "method": "Gauss-Seidel fixed-point co-simulation with under-relaxed interface powers",
+    "maximum_iterations": 15,
+    "minimum_iterations": 3,
+    "relaxation_factor": 0.6,
+    "repair_policy": {
+      "policy_id": "Urban4-PhaseIII-RP1",
+      "priority_order": [
+        "interface_contract",
+        "numerical_damping",
+        "bounded_operating_setpoint",
+        "next_catalogue_component",
+        "phase_ii_topology_regeneration",
+        "failed_no_feasible_repair"
+      ],
+      "relaxation_schedule": [
+        {
+          "factor": 0.6,
+          "last_global_iteration": 8
+        },
+        {
+          "factor": 0.3,
+          "last_global_iteration": 12
+        },
+        {
+          "factor": 0.15,
+          "last_global_iteration": 15
+        }
+      ],
+      "water_speed_command": {
+        "minimum_pu": 0.9,
+        "maximum_pu": 1.05,
+        "step_pu": 0.01
+      },
+      "heat_speed_command": {
+        "minimum_pu": 0.95,
+        "maximum_pu": 1.05,
+        "step_pu": 0.01
+      },
+      "heat_lift_factor": {
+        "minimum": 1.0,
+        "maximum": 1.25,
+        "step": 0.05
+      },
+      "sector_tie_break_order": [
+        "electricity",
+        "drinking_water",
+        "wastewater",
+        "district_heating"
+      ],
+      "maximum_component_upgrades_per_sector": 5,
+      "maximum_total_repairs": 12,
+      "terminal_status": "failed_no_feasible_repair",
+      "disturbance_policy": "record_screen_violation_without_design_repair",
+      "interpretation": "One action is applied at a time and logged. The affected native model and complete fixed-point calculation are repeated after every action. Thresholds are never relaxed. If all bounded actions and the declared Phase-II return are exhausted, no accepted export is created."
+    },
+    "voltage_tolerance_pu": 0.0001,
+    "interface_power_absolute_tolerance_mw": 0.001,
+    "interface_power_l1_relative_tolerance": 0.005,
+    "delivered_water_tolerance": 0.0001,
+    "return_temperature_tolerance_c": 0.05,
+    "minimum_delivered_water_fraction": 0.995,
+    "water_design_head_rise_m": 105.21012163162229,
+    "water_pump_hydraulic_efficiency": 0.72,
+    "motor_efficiency": 0.94,
+    "wastewater_iteration_hours": 6,
+    "heat_return_pressure_bar": 10.01,
+    "heat_return_pressure_note": "Numerical reference set 0.01 bar above the 10.0-bar acceptance floor so supported pandapipes versions cannot fail solely from sub-millibar solver drift.",
+    "heat_design_pump_lift_bar": 15.0,
+    "heat_fluid_density_kg_m3": 985.0,
+    "heat_return_temperature_min_c": 50.0,
+    "heat_return_temperature_max_c": 65.0,
+    "heat_balance_tolerance_mw": 0.001,
+    "drive_model": {
+      "trip_voltage_pu": 0.85,
+      "recovery_voltage_pu": 0.9,
+      "minimum_running_speed_pu": 0.95,
+      "maximum_speed_pu": 1.05,
+      "voltage_speed_droop": 0.5,
+      "affinity_laws": "Q proportional to speed; H proportional to speed squared; pump duty returned by each native sector solver"
+    }
+  },
+  "hydraulic_leak_demonstration": {
+    "name": "pump-station discharge-pipe hydraulic leak",
+    "network": "drinking_water",
+    "location_rule": "junction immediately downstream of the explicit WNTR head pump",
+    "equivalent_orifice_diameter_mm": 30.0,
+    "discharge_coefficient": 0.75,
+    "leak_start_minute": 30,
+    "simulation_end_minute": 120,
+    "time_step_minutes": 5,
+    "pressure_controller_time_constant_minutes": 15.0,
+    "initial_speed_command_pu": 0.99,
+    "minimum_speed_command_pu": 0.9,
+    "maximum_speed_command_pu": 1.03,
+    "minimum_inner_iterations": 3,
+    "maximum_inner_iterations": 10,
+    "interpretation": "Deterministic sequential quasi-steady coupling-response demonstration; not a probability, reliability, water-hammer, motor-transient, or restoration model."
+  },
+  "electrical_supply_disturbance_demonstration": {
+    "name": "post-protection waterworks service-voltage depression",
+    "affected_interface": "WAT-WW-01",
+    "representation": "local service-voltage factor applied between the pandapower connection bus and the water-pump drive terminal",
+    "normal_service_voltage_factor": 1.0,
+    "fault_service_voltage_factor": 0.855,
+    "fault_start_minute": 30,
+    "fault_clear_start_minute": 55,
+    "voltage_recovery_complete_minute": 65,
+    "simulation_end_minute": 120,
+    "time_step_minutes": 5,
+    "speed_command_pu": 0.99,
+    "minimum_inner_iterations": 3,
+    "maximum_inner_iterations": 10,
+    "interpretation": "Deterministic post-protection sequential quasi-steady interface-response demonstration. The service-voltage factor is a declared electrical-side scenario input; short-circuit current, relay action, electromagnetic transients, probability, reliability, and restoration optimisation are outside scope."
+  },
+  "practical_design_envelopes": {
+    "interpretation": "Preferred bands guide optimization and component selection. Hard bounds trigger repair or rejection. They supplement, and do not silently relax, the reproduced native-solver acceptance screens.",
+    "electricity": {
+      "nominal_low_voltage_kv": 0.4,
+      "nominal_medium_voltage_kv": 20.0,
+      "preferred_voltage_pu": [
+        0.95,
+        1.05
+      ],
+      "hard_voltage_pu": [
+        0.9,
+        1.1
+      ],
+      "preferred_loading_fraction": [
+        0.2,
+        0.8
+      ],
+      "hard_maximum_loading_fraction": 1.0,
+      "maximum_cumulative_lv_voltage_drop_fraction": 0.05,
+      "maximum_parallel_lv_circuits": 4,
+      "maximum_parallel_mv_circuits": 3,
+      "planning_power_factor": 0.96,
+      "planning_utilization_fraction": 0.8,
+      "grid_connection_catalogue_mva": [
+        40,
+        50,
+        63,
+        80,
+        100
+      ],
+      "transformer_catalogue_mva": [
+        0.25,
+        0.4,
+        0.63,
+        0.8,
+        1.0,
+        1.25,
+        1.6,
+        2.0,
+        2.5,
+        3.15,
+        4.0
+      ],
+      "reference_basis": [
+        "DIN EN 50160 / VDE supply-voltage range",
+        "manufacturer cable data",
+        "Urban4 planning margins"
+      ]
+    },
+    "drinking_water": {
+      "preferred_normal_pressure_m": [
+        35.0,
+        48.0
+      ],
+      "hard_normal_pressure_m": [
+        27.5,
+        70.0
+      ],
+      "minimum_emergency_pressure_m": 14.0,
+      "preferred_main_velocity_m_s": [
+        0.3,
+        1.5
+      ],
+      "hard_maximum_velocity_m_s": 2.0,
+      "water_main_dn_mm": [
+        80,
+        100,
+        125,
+        150,
+        200,
+        250,
+        300,
+        400,
+        500,
+        600
+      ],
+      "service_dn_mm": [
+        25,
+        32,
+        40,
+        50,
+        63,
+        80
+      ],
+      "station_configuration": "three identical pumps: one duty at normal flow, two duty at two-times-peak flow, one standby",
+      "nameplate_margin_fraction": 0.1,
+      "reference_basis": [
+        "public drinking-water system design guidance",
+        "Urban4 velocity screen"
+      ]
+    },
+    "wastewater": {
+      "minimum_force_main_velocity_m_s": 0.6,
+      "preferred_force_main_velocity_m_s": [
+        0.6,
+        1.1
+      ],
+      "target_force_main_velocity_m_s": 0.8,
+      "hard_maximum_force_main_velocity_m_s": 3.0,
+      "minimum_raw_sewage_force_main_dn_mm": 100,
+      "minimum_gravity_main_dn_mm": 200,
+      "minimum_cover_m": 1.5,
+      "maximum_cover_m": 8.0,
+      "minimum_gravity_grade": 0.0002,
+      "network_lift_configuration": "one duty plus one standby pump; size at peak instantaneous flow and cleansing velocity",
+      "minimum_raw_sewage_motor_kw": 1.3,
+      "reference_basis": [
+        "public sewage-pumping and force-main design guidance",
+        "manufacturer raw-sewage pump range"
+      ]
+    },
+    "district_heating": {
+      "preferred_velocity_m_s": [
+        0.5,
+        1.5
+      ],
+      "hard_maximum_velocity_m_s": 2.0,
+      "preferred_pressure_gradient_pa_m": [
+        45.0,
+        100.0
+      ],
+      "hard_maximum_pressure_gradient_pa_m": 150.0,
+      "terminal_differential_pressure_bar": [
+        0.3,
+        0.5
+      ],
+      "maximum_circulation_pump_lift_bar": 10.0,
+      "preferred_pressure_class_bar": 16.0,
+      "hard_pressure_class_bar": 25.0,
+      "local_loss_factor": 1.3,
+      "motor_nameplate_margin_fraction": 0.15,
+      "thermal_source_planning_utilization_fraction": 0.8,
+      "motor_catalogue_kw": [
+        0.75,
+        0.9,
+        1.1,
+        1.3,
+        1.5,
+        2.2,
+        3.0,
+        4.0,
+        5.5,
+        7.5,
+        11,
+        15,
+        18.5,
+        22,
+        30,
+        37,
+        45,
+        55,
+        75,
+        90,
+        110,
+        132,
+        160,
+        200,
+        250,
+        315,
+        355,
+        400,
+        500
+      ],
+      "thermal_capacity_catalogue_mw_th": [
+        1,
+        1.5,
+        2,
+        2.5,
+        3,
+        4,
+        5,
+        7.5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "reference_basis": [
+        "district-heating pressure-gradient optimization literature",
+        "Urban4 hard hydraulic screens"
+      ],
+      "source_pump_screening_pressure_gradient_pa_m": 50.0,
+      "source_pump_screening_note": "Use the lower end of the declared 45-100 Pa/m preferred design band for source-station screening; apply the declared local-loss factor and maximum handover differential. This is an engineering screen, not an observed utility pump setting."
+    }
+  },
+  "evidence_conditioned_synthesis": {
+    "observed_fixed": [
+      "H1 GKS main supply boundary",
+      "H2 Spitzenheizwerk Nord peak/backup injection boundary",
+      "52.0 km network scale",
+      "87.5 GWh/a heat sales",
+      "841 contract equivalents",
+      "published district-heating temperature/pressure envelopes"
+    ],
+    "observed_constraints": [
+      "105 MV/LV locations and 216.71 MVA transformation",
+      "5.6 million m3/a physical drinking-water delivery and 341 km mains",
+      "13 wastewater pumpworks and 249 km total sewer scale"
+    ],
+    "synthesized": [
+      "unknown distribution edges",
+      "building/customer assignment within frozen totals",
+      "equipment selection where nameplates are not public",
+      "source hydraulic allocation/operating scenario"
+    ],
+    "claim_boundary": "Observed evidence is frozen as an input or calibration constraint; missing topology is synthesized. Synthetic allocations are not presented as installed geometry or utility dispatch."
+  },
+  "network_originating_contingency_validation": {
+    "status": "implemented_runner_topology_prescreen_executed_native_power_water_event_not_reexecuted_in_this_archive_build",
+    "target_interface": "WAT-WW-01",
+    "target_bus": "PB046",
+    "scenario_selection": {
+      "single_line_outage_prescreen": "outputs/network_contingency_prescreen_v2.2.0/single_line_outages_isolating_PB046.csv",
+      "preferred_future_events": [
+        "PL035",
+        "PL044"
+      ]
+    },
+    "network_originating_event_types": [
+      "single_line_outage",
+      "external_grid_voltage_setpoint"
+    ],
+    "important_boundary": "The native runner uses the pandapower-solved pump-bus state directly; it does not apply the archived local service-voltage multiplier. Prescreened line outages are topology candidates only until pandapower/WNTR execution."
+  }
+}

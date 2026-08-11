@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: >-
+  If you use Urban4 or its generated benchmark models, please cite the
+  accompanying manuscript and this software release.
+title: "Urban4: Reproducible Generation and Coupling of Urban Infrastructure Networks"
+type: software
+version: 2.7.0
+date-released: 2026-08-11
+authors:
+  - family-names: Pant
+    given-names: Prashant
+    affiliation: Technical University of Munich
+  - family-names: Hamacher
+    given-names: Thomas
+    affiliation: Technical University of Munich
+license: MIT
+repository-code: "https://github.com/Prashantgrid/Urban4"
+url: "https://github.com/Prashantgrid/Urban4"
+abstract: >-
+  Urban4 generates aligned electricity, drinking-water, wastewater, and
+  optional district-heating networks from a common geospatial evidence model.
+  It retains sector-specific topology and native-solver execution while
+  storing explicit powered-facility and building-level cross-sector
+  interfaces.
+

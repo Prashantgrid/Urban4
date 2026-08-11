@@ -1,0 +1,448 @@
+{
+  "status": "accepted",
+  "accepted": true,
+  "method": "Gauss--Seidel fixed-point co-simulation with under-relaxed interface powers",
+  "coupling_direction": "sector hydraulic/thermal states -> electrical duties -> pandapower voltages/energization -> motor speed/head/flow -> sector states",
+  "native_screening": {
+    "electricity": {
+      "thresholds": {
+        "minimum_voltage_pu": 0.9,
+        "maximum_voltage_pu": 1.1,
+        "maximum_line_loading_percent": 100.0,
+        "maximum_transformer_loading_percent": 100.0
+      },
+      "checks": {
+        "solver_converged": true,
+        "minimum_voltage": true,
+        "maximum_voltage": true,
+        "line_loading": true,
+        "transformer_loading": true
+      },
+      "passed": true
+    },
+    "drinking_water": {
+      "thresholds": {
+        "minimum_pressure_m": 20.0,
+        "maximum_pressure_m": 110.0,
+        "maximum_velocity_m_s": 2.0,
+        "peak_minimum_pressure_m": 20.0
+      },
+      "checks": {
+        "solver_converged": true,
+        "minimum_pressure": true,
+        "maximum_pressure": true,
+        "maximum_velocity": true,
+        "peak_minimum_pressure": true
+      },
+      "passed": true
+    },
+    "wastewater": {
+      "thresholds": {
+        "maximum_absolute_flow_routing_continuity_error_percent": 1.0,
+        "maximum_nonconverging_steps_percent": 0.1,
+        "maximum_dry_weather_flooding_loss_million_liter": 0.001
+      },
+      "checks": {
+        "engine_run": true,
+        "mass_continuity": true,
+        "nonconverging_steps": true,
+        "no_dry_weather_flooding": true,
+        "time_step_sensitivity": true
+      },
+      "passed": true
+    },
+    "district_heating": {
+      "thresholds": {
+        "minimum_pressure_bar": 10.0,
+        "minimum_differential_pressure_bar": 0.5,
+        "maximum_velocity_m_s": 2.0,
+        "maximum_annual_heat_loss_fraction": 0.15,
+        "maximum_inventory_length_relative_error": 0.1
+      },
+      "checks": {
+        "solver_converged": true,
+        "minimum_pressure": true,
+        "minimum_differential_pressure": true,
+        "maximum_velocity": true,
+        "heat_loss_deferred_to_paired_gate": true,
+        "published_network_length": true
+      },
+      "passed": true
+    }
+  },
+  "settings": {
+    "method": "Gauss-Seidel fixed-point co-simulation with under-relaxed interface powers",
+    "maximum_iterations": 15,
+    "minimum_iterations": 3,
+    "relaxation_factor": 0.6,
+    "repair_policy": {
+      "policy_id": "Urban4-PhaseIII-RP1",
+      "priority_order": [
+        "interface_contract",
+        "numerical_damping",
+        "bounded_operating_setpoint",
+        "next_catalogue_component",
+        "phase_ii_topology_regeneration",
+        "failed_no_feasible_repair"
+      ],
+      "relaxation_schedule": [
+        {
+          "factor": 0.6,
+          "last_global_iteration": 8
+        },
+        {
+          "factor": 0.3,
+          "last_global_iteration": 12
+        },
+        {
+          "factor": 0.15,
+          "last_global_iteration": 15
+        }
+      ],
+      "water_speed_command": {
+        "minimum_pu": 0.9,
+        "maximum_pu": 1.05,
+        "step_pu": 0.01
+      },
+      "heat_speed_command": {
+        "minimum_pu": 0.95,
+        "maximum_pu": 1.05,
+        "step_pu": 0.01
+      },
+      "heat_lift_factor": {
+        "minimum": 1.0,
+        "maximum": 1.25,
+        "step": 0.05
+      },
+      "sector_tie_break_order": [
+        "electricity",
+        "drinking_water",
+        "wastewater",
+        "district_heating"
+      ],
+      "maximum_component_upgrades_per_sector": 5,
+      "maximum_total_repairs": 12,
+      "terminal_status": "failed_no_feasible_repair",
+      "disturbance_policy": "record_screen_violation_without_design_repair",
+      "interpretation": "One action is applied at a time and logged. The affected native model and complete fixed-point calculation are repeated after every action. Thresholds are never relaxed. If all bounded actions and the declared Phase-II return are exhausted, no accepted export is created."
+    },
+    "voltage_tolerance_pu": 0.0001,
+    "interface_power_absolute_tolerance_mw": 0.001,
+    "interface_power_l1_relative_tolerance": 0.005,
+    "delivered_water_tolerance": 0.0001,
+    "return_temperature_tolerance_c": 0.05,
+    "minimum_delivered_water_fraction": 0.995,
+    "water_design_head_rise_m": 105.21012163162229,
+    "water_pump_hydraulic_efficiency": 0.72,
+    "motor_efficiency": 0.94,
+    "wastewater_iteration_hours": 6,
+    "heat_return_pressure_bar": 10.01,
+    "heat_return_pressure_note": "Numerical reference set 0.01 bar above the 10.0-bar acceptance floor so supported pandapipes versions cannot fail solely from sub-millibar solver drift.",
+    "heat_design_pump_lift_bar": 15.0,
+    "heat_fluid_density_kg_m3": 985.0,
+    "heat_return_temperature_min_c": 50.0,
+    "heat_return_temperature_max_c": 65.0,
+    "heat_balance_tolerance_mw": 0.001,
+    "drive_model": {
+      "trip_voltage_pu": 0.85,
+      "recovery_voltage_pu": 0.9,
+      "minimum_running_speed_pu": 0.95,
+      "maximum_speed_pu": 1.05,
+      "voltage_speed_droop": 0.5,
+      "affinity_laws": "Q proportional to speed; H proportional to speed squared; pump duty returned by each native sector solver"
+    }
+  },
+  "repair_policy": {
+    "policy_id": "Urban4-PhaseIII-RP1",
+    "priority_order": [
+      "interface_contract",
+      "numerical_damping",
+      "bounded_operating_setpoint",
+      "next_catalogue_component",
+      "phase_ii_topology_regeneration",
+      "failed_no_feasible_repair"
+    ],
+    "relaxation_schedule": [
+      {
+        "factor": 0.6,
+        "last_global_iteration": 8
+      },
+      {
+        "factor": 0.3,
+        "last_global_iteration": 12
+      },
+      {
+        "factor": 0.15,
+        "last_global_iteration": 15
+      }
+    ],
+    "water_speed_command": {
+      "minimum_pu": 0.9,
+      "maximum_pu": 1.05,
+      "step_pu": 0.01
+    },
+    "heat_speed_command": {
+      "minimum_pu": 0.95,
+      "maximum_pu": 1.05,
+      "step_pu": 0.01
+    },
+    "heat_lift_factor": {
+      "minimum": 1.0,
+      "maximum": 1.25,
+      "step": 0.05
+    },
+    "sector_tie_break_order": [
+      "electricity",
+      "drinking_water",
+      "wastewater",
+      "district_heating"
+    ],
+    "maximum_component_upgrades_per_sector": 5,
+    "maximum_total_repairs": 12,
+    "terminal_status": "failed_no_feasible_repair",
+    "disturbance_policy": "record_screen_violation_without_design_repair",
+    "interpretation": "One action is applied at a time and logged. The affected native model and complete fixed-point calculation are repeated after every action. Thresholds are never relaxed. If all bounded actions and the declared Phase-II return are exhausted, no accepted export is created."
+  },
+  "iterations": 7,
+  "converged": true,
+  "repairs_applied": [
+    {
+      "attempt": 1,
+      "priority": 4,
+      "action": "upsize_limiting_heat_pipe_next_dn",
+      "sector": "district_heating",
+      "asset_id": "DH_R0082",
+      "old_value": 80.0,
+      "new_value": 100.0,
+      "reason": "minimum consumer differential-pressure screen failed; upsize the largest-loss corridor on the limiting path",
+      "phase": "Phase II-D",
+      "outcome": "applied"
+    },
+    {
+      "attempt": 2,
+      "priority": 3,
+      "action": "reduce_water_pump_speed_command",
+      "sector": "drinking_water",
+      "asset_id": "WAT-WW-01",
+      "old_value": 1.0,
+      "new_value": 0.99,
+      "reason": "maximum pressure exceeded the declared screen",
+      "phase": "Phase III-B",
+      "outcome": "applied"
+    },
+    {
+      "attempt": 3,
+      "priority": 4,
+      "action": "upsize_limiting_heat_pipe_next_dn",
+      "sector": "district_heating",
+      "asset_id": "DH_R0090",
+      "old_value": 25.0,
+      "new_value": 32.0,
+      "reason": "minimum consumer differential-pressure screen failed; upsize the largest-loss corridor on the limiting path",
+      "phase": "Phase II-D",
+      "outcome": "applied"
+    }
+  ],
+  "component_overrides": {
+    "electric_lines": {},
+    "transformers": {},
+    "water_pipes_dn_mm": {},
+    "heat_pipes_dn_mm": {
+      "DH_R0082": 100.0,
+      "DH_R0090": 32.0
+    },
+    "wastewater_duration_hours": 6,
+    "heat_lift_factor": 1.0,
+    "operating_commands": {
+      "WAT-WW-01": 0.99,
+      "WAT-WF-01": 1.0,
+      "WAT-WF-02": 1.0,
+      "WAT-WF-03": 1.0,
+      "WAT-WF-04": 1.0,
+      "WAT-WF-05": 1.0,
+      "WAT-ST-01": 1.0,
+      "WAT-ST-02": 1.0,
+      "WAT-ST-03": 1.0,
+      "WAT-ST-04": 1.0,
+      "WAT-ST-05": 1.0,
+      "WAT-ST-06": 1.0,
+      "WAT-ST-07": 1.0,
+      "WAT-ST-08": 1.0,
+      "WAT-ST-09": 1.0,
+      "SEW-WWTP-01": 1.0,
+      "PU001": 1.0,
+      "PU002": 1.0,
+      "PU003": 1.0,
+      "PU004": 1.0,
+      "PU005": 1.0,
+      "PU006": 1.0,
+      "PU007": 1.0,
+      "PU008": 1.0,
+      "PU009": 1.0,
+      "PU010": 1.0,
+      "PU011": 1.0,
+      "PU012": 1.0,
+      "PU013": 1.0,
+      "PU014": 1.0,
+      "PU015": 1.0,
+      "PU016": 1.0,
+      "PU017": 1.0,
+      "PU018": 1.0,
+      "PU019": 1.0,
+      "PU020": 1.0,
+      "PU021": 1.0,
+      "PU022": 1.0,
+      "PU023": 1.0,
+      "PU024": 1.0,
+      "PU025": 1.0,
+      "DH_PUMP_GKS": 1.0
+    }
+  },
+  "phase_return_request": null,
+  "terminal_failure": null,
+  "final_sector_states": {
+    "electricity": {
+      "created": true,
+      "converged": true,
+      "algorithm": "iwamoto_nr",
+      "attached_interface_loads": 42,
+      "coupling_active_power_mw": 1.6118564459627893,
+      "minimum_voltage_pu": 0.9234969489014245,
+      "maximum_voltage_pu": 1.05,
+      "maximum_line_loading_percent": 80.51545169321224,
+      "maximum_transformer_loading_percent": 86.11283940413811,
+      "limiting_line_id": "LVF00399",
+      "limiting_line_voltage_kv": 0.4,
+      "limiting_line_max_i_ka": 0.216,
+      "limiting_line_r_ohm_per_km": 0.32,
+      "limiting_line_parallel": 1,
+      "limiting_transformer_id": "TR041",
+      "limiting_transformer_sn_mva": 2.659999999999997,
+      "limiting_transformer_parallel": 1,
+      "outaged_lines": [],
+      "external_grid_voltage_override": null,
+      "export": "outputs/cosimulation/iterations/iter_07/power_pandapower_bidirectional.json",
+      "checks": {
+        "converged": true,
+        "minimum_voltage": true,
+        "maximum_voltage": true,
+        "line_loading": true,
+        "transformer_loading": true
+      },
+      "passed": true
+    },
+    "drinking_water": {
+      "created": true,
+      "converged": true,
+      "checks": {
+        "converged": true,
+        "minimum_pressure": true,
+        "maximum_pressure": true,
+        "maximum_velocity": true,
+        "delivered_demand": true
+      },
+      "passed": true,
+      "pump_speed_pu": 1.0088568861368499,
+      "pump_flow_m3_s": 0.1300576627254486,
+      "pump_head_m": 107.60183715820312,
+      "pump_electrical_power_mw": 0.20284499143455648,
+      "delivered_water_fraction": 1.0,
+      "minimum_pressure_m": 42.12127685546875,
+      "maximum_pressure_m": 109.06004333496094,
+      "maximum_velocity_m_s": 0.49975845217704773,
+      "limiting_velocity_pipe_id": "WP1192",
+      "limiting_velocity_pipe_dn_mm": 125.0,
+      "limiting_headloss_pipe_id": "WP0957",
+      "limiting_headloss_pipe_dn_mm": 80.0,
+      "export": "outputs/cosimulation/iterations/iter_07/water_epanet_bidirectional.inp"
+    },
+    "wastewater": {
+      "flow_routing_continuity_error_percent": -0.25,
+      "flooding_loss_million_liter": 0.0,
+      "steps_not_converging_percent": 0.0,
+      "pump_power_mw": {
+        "PU001": 6.6666666666666675e-06,
+        "PU002": 0.0,
+        "PU003": 0.0006583333333333334,
+        "PU004": 1.6666666666666669e-06,
+        "PU005": 3.6666666666666666e-05,
+        "PU006": 0.0003016666666666667,
+        "PU007": 9.499999999999999e-05,
+        "PU008": 0.00012833333333333333,
+        "PU009": 0.0,
+        "PU010": 0.0,
+        "PU011": 0.0,
+        "PU012": 0.0,
+        "PU013": 0.0,
+        "PU014": 0.0,
+        "PU015": 0.0,
+        "PU016": 0.0,
+        "PU017": 0.0003833333333333333,
+        "PU018": 0.0,
+        "PU019": 2.4999999999999998e-05,
+        "PU020": 0.0,
+        "PU021": 0.0,
+        "PU022": 0.000255,
+        "PU023": 0.0,
+        "PU024": 0.0,
+        "PU025": 0.0
+      },
+      "total_pump_power_mw": 0.0018916666666666667,
+      "engine_run_passed": true,
+      "created": true,
+      "converged": true,
+      "checks": {
+        "engine_run": true,
+        "mass_continuity": true,
+        "nonconverging_steps": true,
+        "no_flooding": true
+      },
+      "passed": true,
+      "sanitary_inflow_factor": 1.0,
+      "duration_hours": 6,
+      "export": "outputs/cosimulation/iterations/iter_07/wastewater_swmm_bidirectional.inp",
+      "report": "outputs/cosimulation/iterations/iter_07/wastewater_swmm_bidirectional.rpt"
+    },
+    "district_heating": {
+      "created": true,
+      "converged": true,
+      "checks": {
+        "converged": true,
+        "minimum_pressure": true,
+        "minimum_differential_pressure": true,
+        "maximum_velocity": true,
+        "return_temperature": true,
+        "heat_loss": true,
+        "heat_delivery": true
+      },
+      "passed": true,
+      "pump_speed_pu": 1.0248275100295665,
+      "pump_lift_bar": 15.75407137970102,
+      "pump_mass_flow_kg_s": 398.7240829346082,
+      "pump_electrical_power_mw": 0.8697743378386721,
+      "delivered_heat_mw": 58.333333333333336,
+      "source_heat_mw": 61.36983544155844,
+      "distribution_heat_loss_mw": 3.0365021082251076,
+      "heat_loss_fraction": 0.04947873961820742,
+      "return_temperature_c": 55.120257061355744,
+      "minimum_pressure_bar": 10.008593352517963,
+      "minimum_differential_pressure_bar": 0.7674296689337368,
+      "limiting_differential_node_id": "DH_N0074",
+      "limiting_differential_corridor_id": "DH_R0088",
+      "limiting_differential_corridor_dn_mm": 40.0,
+      "maximum_velocity_m_s": 1.5307320933052004,
+      "lift_factor": 1.0,
+      "limiting_velocity_corridor_id": "DH_R0009",
+      "limiting_velocity_corridor_dn_mm": 300.0,
+      "export": "outputs/cosimulation/iterations/iter_07/heat_pandapipes_bidirectional.json"
+    }
+  },
+  "interface_consistency": {
+    "all_active_interfaces_have_bus": true,
+    "all_active_interfaces_energized": true,
+    "finite_nonnegative_interface_power": true,
+    "water_to_wastewater_factor_exact": true
+  },
+  "final_export_created": true,
+  "final_export_directory": "outputs/final_accepted"
+}
