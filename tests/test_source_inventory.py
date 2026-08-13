@@ -18,10 +18,10 @@ def test_heat_source_assignments_close_public_portfolio() -> None:
     data = pd.read_csv(OUT / "heat_source_ratings.csv")
     assert list(data["map_id"]) == [f"H{i}" for i in range(1, 15)]
     assert (data["planning_capacity_mw_th"] == 30.0).all()
-    assert data["assigned_peak_mw_th"].sum() == pytest.approx(58.333333, abs=1e-5)
+    assert data["assigned_peak_mw_th"].sum() == pytest.approx(54.6875, abs=1e-5)
     assert data["assigned_annual_heat_mwh"].sum() == pytest.approx(87500.0, abs=1e-3)
     assert int(data["customer_count"].sum()) == 841
-    assert data["closed_pump_power_kw"].sum() == pytest.approx(98.626, abs=1e-3)
+    assert data["closed_pump_power_kw"].sum() == pytest.approx(81.795, abs=1e-3)
 
 
 def test_full_city_scale_export_has_all_sectors() -> None:

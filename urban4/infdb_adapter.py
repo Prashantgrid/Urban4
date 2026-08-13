@@ -244,7 +244,8 @@ def build_infdb_building_ledger(export_dir: Path, config: dict[str, Any]) -> pd.
             households = max(1, int(math.ceil(floor_area / 90.0)))
         peak_prior = _safe_positive(pylovo_peak.get(objectid), 0.0)
         if peak_prior <= 0 and eligible:
-            peak_prior = (14.5 * max(households, 1) * (0.10 + 0.90 / math.sqrt(max(households, 1)))) if service_class == "residential" else floor_area * {"commercial": 0.085, "public": 0.095, "industrial": 0.080}.get(service_class, 0.06)
+            n_households = max(households, 1)
+            peak_prior = (14.5 * n_households * (0.07 + 0.93 * n_households ** (-0.75))) if service_class == "residential" else floor_area * {"commercial": 0.085, "public": 0.095, "industrial": 0.080}.get(service_class, 0.06)
         heat_prior = _safe_positive(ro_heat_lookup.get(objectid), 0.0)
         if heat_prior <= 0 and eligible:
             heat_prior = floor_area * {"residential": 115.0, "commercial": 85.0, "public": 105.0, "industrial": 55.0}.get(service_class, 80.0)
@@ -273,12 +274,14 @@ def build_infdb_building_ledger(export_dir: Path, config: dict[str, Any]) -> pd.
     _reconcile(frame, "electricity_prior", "electricity_mwh_year", anchors["electricity_lv_annual_mwh"])
     _reconcile(frame, "electricity_prior", "electricity_peak_kw", anchors["electricity_lv_peak_mw"] * 1000.0)
     _reconcile(frame, "water_prior", "water_m3_year", anchors["drinking_water_annual_m3"])
-    frame["wastewater_sanitary_m3_year"] = 0.82 * frame.water_m3_year
+    demand_model = config["demand_model"]
+    frame["wastewater_sanitary_m3_year"] = float(demand_model["wastewater_sanitary_return_fraction"]) * frame.water_m3_year
     frame["heat_candidate_mwh_year"] = frame.heat_prior / 1000.0
     frame["electricity_service_peak_kw"] = frame.electricity_prior
-    frame["water_service_peak_lps"] = frame.water_m3_year / (365.0 * 86400.0) * 2.0 * 1000.0
-    frame["wastewater_service_peak_lps"] = frame.wastewater_sanitary_m3_year / (365.0 * 86400.0) * 3.6 * 1000.0
-    frame["heat_service_design_kw"] = frame.heat_candidate_mwh_year / 1.5
+    frame["water_service_peak_lps"] = frame.water_m3_year / (365.0 * 86400.0) * float(demand_model["drinking_water_peak_factor"]) * 1000.0
+    harmon_factor = max(2.0, 1.0 + 14.0 / (4.0 + math.sqrt(float(anchors["served_population"]) / 1000.0)))
+    frame["wastewater_service_peak_lps"] = frame.wastewater_sanitary_m3_year / (365.0 * 86400.0) * harmon_factor * 1000.0
+    frame["heat_service_design_kw"] = frame.heat_candidate_mwh_year / (float(demand_model["district_heat_full_load_hours"]) / 1000.0)
     frame["electricity_connected"] = frame.service_eligible
     frame["electricity_connection_level"] = np.where(frame.electricity_service_peak_kw > 250.0, "MV", "LV")
     frame.loc[~frame.service_eligible, "electricity_connection_level"] = "NONE"
@@ -287,4 +290,3 @@ def build_infdb_building_ledger(export_dir: Path, config: dict[str, Any]) -> pd.
     frame["heat_eligible"] = frame.service_eligible & ~frame.service_class.eq("industrial")
     frame.drop(columns=["occupant_prior", "water_prior", "electricity_prior", "heat_prior"], inplace=True)
     return frame
-

@@ -479,7 +479,7 @@ def figure_topology_logic() -> None:
         ),
         (
             "wastewater", "WASTEWATER",
-            "Mapped treatment outfall; 0.21 km\nterrain-aware subcatchments; 249 km,\n6,200 manholes, 13 km force main, and\n13 station compounds registered.",
+            "Mapped treatment outfall; 0.21 km\nterrain-aware subcatchments; 236 km gravity,\n6,200 manholes, 13 km pressure mains, and\n13 station compounds registered.",
             "Build an outfall-directed network over\nmanholes, not buildings; place interval,\ndirection, and junction manholes; attach\nproperties through short laterals.",
             "Apply hard cover and grade tests;\nclassify gravity and pressure-transition\nsegments; size with Manning n=0.013 and\nDN200–2000 catalogues.",
             "Directed acyclic graph; every node\nreaches the outfall; inventory and cover\nscreens pass structurally. Measured DEM,\nstation consolidation, and SWMM rerun pending.",

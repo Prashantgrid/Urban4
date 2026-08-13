@@ -6,11 +6,11 @@ OUT=ROOT/'outputs'/'municipal_scale_v2.5.0'
 
 def test_waterworks_is_municipal_scale():
     w=pd.read_csv(OUT/'drinking_water_station_municipal.csv').iloc[0]
-    assert int(w.installed_units)==3
+    assert int(w.installed_units)==4
     assert float(w.selected_motor_kw)==315.0
-    assert float(w.firm_nameplate_kw_with_one_unavailable)==630.0
+    assert float(w.firm_nameplate_kw_with_one_unavailable)==945.0
     assert 170 <= float(w.average_total_flow_lps) <= 185
-    assert 350 <= float(w.two_times_peak_flow_lps) <= 360
+    assert 460 <= float(w.design_peak_flow_lps) <= 470
 
 def test_wastewater_uses_13_duty_standby_pumpworks():
     s=pd.read_csv(OUT/'wastewater_pump_stations_municipal.csv')
@@ -60,7 +60,7 @@ def test_heat_uses_documented_gks_and_shw_nord_sources_with_real_temperature_cla
     assert float(a.source_reachability_fraction)==1.0
     assert int(a.active_network_components)==1
     assert abs(float(a.comparable_network_km)-52.0)/52.0 < 0.10
-    assert abs(float(h.assigned_peak_mw_th.sum())-58.333333) < 1e-3
+    assert abs(float(h.assigned_peak_mw_th.sum())-54.6875) < 1e-3
     assert set(p.temperature_class)=={'HT120','MT110','LT85'}
     assert set(p.max_supply_c)=={120.0,110.0,85.0}
     assert (p.max_return_c==50.0).all()

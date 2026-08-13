@@ -32,7 +32,8 @@ class GeneratedOutputTests(unittest.TestCase):
         anchors = CASE["official_anchors"]
         self.assertAlmostEqual(buildings["electricity_mwh_year"].sum(), anchors["electricity_lv_annual_mwh"], places=1)
         self.assertAlmostEqual(buildings["water_m3_year"].sum(), anchors["drinking_water_annual_m3"], places=0)
-        self.assertAlmostEqual(buildings["wastewater_sanitary_m3_year"].sum(), 0.82 * anchors["drinking_water_annual_m3"], places=0)
+        self.assertAlmostEqual(buildings["wastewater_sanitary_m3_year"].sum(), anchors["drinking_water_annual_m3"], places=0)
+        self.assertEqual(int(buildings["household_count"].sum()), 34400)
         wholesale = pd.read_csv(OUT / "water_wholesale_boundary_ledger.csv")
         self.assertAlmostEqual(wholesale["annual_m3"].sum(), anchors["drinking_water_wholesale_delivery_m3"], places=0)
         self.assertFalse(wholesale["physical_network_allocation"].any())
@@ -226,8 +227,21 @@ class GeneratedOutputTests(unittest.TestCase):
             settings["interface_power_l1_relative_tolerance"],
         )
         repairs = pd.read_csv(OUT / "cosimulation" / "bidirectional_repairs.csv")
-        self.assertIn("reduce_water_pump_speed_command", set(repairs["action"]))
-        self.assertIn("WAT-WW-01", set(repairs["asset_id"]))
+        allowed_actions = {
+            "extend_unchanged_swmm_initialization_run",
+            "reduce_water_pump_speed_command",
+            "upsize_limiting_heat_pipe_next_dn",
+        }
+        self.assertTrue(set(repairs["action"]).issubset(allowed_actions))
+        self.assertEqual(repairs["attempt"].tolist(), list(range(1, len(repairs) + 1)))
+        self.assertTrue(set(repairs["priority"]).issubset({2, 3, 4}))
+        self.assertEqual(set(repairs["outcome"]), {"applied"})
+        water_repairs = repairs[
+            repairs["action"] == "reduce_water_pump_speed_command"
+        ]
+        if not water_repairs.empty:
+            self.assertTrue((water_repairs["asset_id"] == "WAT-WW-01").all())
+            self.assertTrue((water_repairs["new_value"] < water_repairs["old_value"]).all())
         heat_repairs = repairs[
             repairs["action"] == "upsize_limiting_heat_pipe_next_dn"
         ]
@@ -239,8 +253,6 @@ class GeneratedOutputTests(unittest.TestCase):
         ]["district_heating"]
         self.assertTrue(final_heat["checks"]["minimum_differential_pressure"])
         self.assertTrue(final_heat["checks"]["heat_loss"])
-        self.assertEqual(set(repairs["priority"]), {3, 4})
-        self.assertEqual(set(repairs["outcome"]), {"applied"})
         coupled = json.loads(
             (OUT / "cosimulation" / "bidirectional_coupling_manifest.json").read_text(
                 encoding="utf-8"

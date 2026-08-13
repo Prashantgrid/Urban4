@@ -1,4 +1,4 @@
-# Municipality-scale build, repair, and release logic (v2.5.0)
+# Municipality-scale build, repair, and acceptance logic (v2.8.0)
 
 Urban4 separates observed evidence, synthetic topology decisions, native-solver
 acceptance, and coupled acceptance. Public totals and documented facilities
@@ -24,8 +24,8 @@ is written to the municipal release manifest.
   protected parallel feeder circuit. Rerun after each round.
 - Bounds: at most 20 construction splits, five repair rounds, and 500 conductor
   changes.
-- Accepted output: 0.94954–1.03000 p.u.; maximum line/transformer loading
-  82.18/33.53%; maximum LV path drop 0.05354 p.u.; zero repair actions.
+- Accepted output: 0.950–1.030 p.u.; maximum line/transformer loading
+  82.2/33.5%; zero repair actions.
 
 ## Drinking water
 
@@ -35,14 +35,14 @@ is written to the municipal release manifest.
   nodes. The 341-km public main inventory is a calibration target with a fixed
   10% tolerance; the generated network is 369.095 km (+8.24%).
 - Size from accumulated peak flow using an ordered DN catalogue and execute
-  average and two-times-demand states in EPANET through WNTR.
+  average and 2.62-times-demand states in EPANET through WNTR.
 - First adjust the failed zone's head-controlled boundary. If no feasible head
   shift can close the pressure window, advance the highest-loss main on the
   active critical path by one DN class. Rerun both states after every action.
 - Bounds: four head adjustments per zone and 60 pipe upgrades.
-- Accepted output after 34 logged actions: average pressure 35.00–70.00 m;
-  two-times-demand pressure 27.63–69.88 m; peak velocity 1.220 m/s; minimum
-  delivered-demand fraction 0.9999998.
+- Accepted output: average/peak flow 177.6/465.2 L/s, peak pressure
+  27.7–70.0 m, peak velocity 1.20 m/s, and four 315-kW source-pump units
+  including standby.
 
 ## Wastewater
 
@@ -53,11 +53,12 @@ is written to the municipal release manifest.
   13 active PUMP3 objects and 13 force mains. The equipment inventory contains
   26 installed physical pump units (one duty and one standby per station). The
   815 terminal inflows preserve the
-  3.362-million-m³/a registered sanitary total.
+  4.100-million-m³/a registered sanitary upper bound. Peak sanitary inflow
+  uses the Harmon factor; external infiltration remains a separate input.
 - Execute 24 h DYNWAVE at 60 s. If continuity, nonconvergence, or flooding fails,
   extend initialization 24→48 h, halve the routing step 60→30→15 s, then enlarge
   wet-well area by 25% per action. The fixed budget is eight actions.
-- Accepted output: −0.044% continuity error; 0% nonconverging steps; 0% flooding;
+- Accepted output: −0.047% continuity error; 0% nonconverging steps; 0% flooding;
   no repair action required.
 
 ## District heating
@@ -72,16 +73,16 @@ is written to the municipal release manifest.
   network in pandapipes.
 - For a velocity or pressure-gradient violation, advance every violating
   corridor by one DN class and rerun. Bounds: six rounds and 500 upgrades.
-- Accepted output after one round/31 upgrades: maximum native velocity
-  1.49993 m/s; maximum catalogue gradient 99.75 Pa/m; critical source screen
+- Accepted output after bounded catalogue repair: maximum native velocity
+  1.43 m/s; maximum catalogue gradient 99.75 Pa/m; critical source screen
   7.60 bar; route heat loss 7.066 GWh/a (8.08%). The 10-bar solver slack is a
   numerical reference only and is not interpreted as municipal absolute
   operating pressure.
 
 ## Four-sector release
 
-`outputs/municipal_scale_v2.5.0/manifest.json` sets
-The legacy manifest field `release_gate_passed=true` is written only when all four native manifests pass and every
+`outputs/municipal_scale_v2.5.0/manifest.json` sets the legacy field
+`release_gate_passed=true` only when all four native manifests pass and every
 represented heat substation remains source reachable. The municipality-scale
 states are accepted sector models; a separate municipality-scale coupled
 fixed-point result is not claimed.

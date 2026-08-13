@@ -27,7 +27,8 @@ def test_water_candidate_closes_registered_scale_and_structural_screens(manifest
     assert water["inventory_gate_passed"]
     assert water["main_length_km"] == pytest.approx(341.0, rel=0.01)
     assert water["maximum_design_velocity_m_s"] <= 2.0
-    assert water["proxy_pressure_screen_passed"]
+    assert not water["proxy_pressure_screen_passed"]
+    assert water["pressure_repair"] == "explicit pressure-zone control required before native acceptance"
     assert water["native_model_created"]
     assert not water["native_solver_executed"]
 

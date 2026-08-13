@@ -1,6 +1,6 @@
 # Reference results
 
-This directory contains compact records from the Urban4 v2.7.0 publication
+This directory contains compact records from the Urban4 v2.8.0 verification
 run. They allow reported claims to be checked without storing the complete
 553 MB generated-output tree in routine Git history.
 
@@ -11,12 +11,14 @@ Included records cover:
 - accepted bidirectional native models and interface states;
 - municipality-scale native manifests and repair logs;
 - the hydraulic-originating response;
-- the executed PL044 electrical-network contingency.
+- the executed main-waterworks feeder contingency;
+- the fixed-input Topotherm routing comparison.
 
 The municipality-scale model directory retains the internal name
 `municipal_scale_v2.5.0` because that accepted numerical state was generated in
-v2.5.0 and carried unchanged into the overall v2.7.0 publication release.
-Version 2.7.0 adds the executed PL044 contingency and its explicit scope.
+v2.5.0 because that path is part of the output schema. Version 2.8.0 updates
+the equations, demand settings, catalogue choices, and rerun records while
+leaving that internal directory name unchanged.
 
 The full generated tree can be recreated with:
 
@@ -28,4 +30,3 @@ The complete frozen archive will also accompany the tagged publication release
 and archival DOI. Reference files preserve the original schema keys, including
 older fields named `release_gate_passed`; in the manuscript and current
 documentation these are described as engineering acceptance criteria.
-

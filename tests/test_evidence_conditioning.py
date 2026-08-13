@@ -44,4 +44,4 @@ def test_dh_source_station_screening_uses_declared_design_envelope():
     assert (h.screening_local_loss_factor==1.3).all()
     assert (h.terminal_dp_bar==0.5).all()
     assert h.pump_lift_screen_pass.all()
-    assert dict(zip(h.map_id,h.selected_motor_kw_each))=={"H1":110.0,"H2":45.0}
+    assert dict(zip(h.map_id,h.selected_motor_kw_each))=={"H1":90.0,"H2":45.0}

@@ -42,12 +42,17 @@ MODEL_BBOX = (49.985, 10.14, 50.095, 10.31)  # south, west, north, east
 CONTEXT_BBOX = (49.97, 10.10, 50.13, 10.40)
 WATER_ANNUAL_M3 = float(CASE_CONFIG["official_anchors"]["drinking_water_annual_m3"])
 WATER_Q_AVG = WATER_ANNUAL_M3 / (365.0 * 86400.0)
-WATER_PEAK_FACTOR = 2.0
+DEMAND_MODEL = CASE_CONFIG["demand_model"]
+WATER_PEAK_FACTOR = float(DEMAND_MODEL["drinking_water_peak_factor"])
 # Local sanitary inflow follows the common retail-water ledger.  The public
 # 19,000 m3/d treatment-plant quantity has a different system boundary and is
 # retained only as external comparison evidence.
-SEWER_DRY_M3_DAY = 0.82 * WATER_ANNUAL_M3 / 365.0
-SEWER_WET_M3_DAY = 3.6 * SEWER_DRY_M3_DAY
+SEWER_DRY_M3_DAY = float(DEMAND_MODEL["wastewater_sanitary_return_fraction"]) * WATER_ANNUAL_M3 / 365.0
+SEWER_PEAK_FACTOR = max(
+    2.0,
+    1.0 + 14.0 / (4.0 + math.sqrt(float(CASE_CONFIG["official_anchors"]["served_population"]) / 1000.0)),
+)
+SEWER_WET_M3_DAY = SEWER_PEAK_FACTOR * SEWER_DRY_M3_DAY
 SEWER_Q_DRY = SEWER_DRY_M3_DAY / 86400.0
 SEWER_Q_WET = SEWER_WET_M3_DAY / 86400.0
 WWTP_LOAD_MW = 10_500.0 / 24.0 / 1000.0

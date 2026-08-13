@@ -1,0 +1,37 @@
+{
+  "purpose": "cross-tool topology comparison; not installed-network validation",
+  "urban4_case": "municipal_scale_v2.5.0",
+  "territories": [
+    "H1",
+    "H2"
+  ],
+  "comparison_controls": {
+    "same_sources": true,
+    "same_selected_customers": true,
+    "same_customer_peak_demands": true,
+    "same_osm_road_data": true,
+    "candidate_graph_reduced_without_removing_the_urban4_route": true,
+    "urban4_source_assignment_retained": true,
+    "topotherm_mode": "single timestep, forced connection",
+    "intertie_excluded": true,
+    "building_services_excluded_from_route_overlap": true,
+    "candidate_padding_km": 0.25
+  },
+  "software": {
+    "python": "3.12.13",
+    "topotherm": "0.6.0",
+    "topotherm_commit": "ec108e94b2e3f823a154afc47531156b1c85539f",
+    "pyomo": "6.10.1",
+    "highspy": "1.15.1"
+  },
+  "solver": {
+    "name": "HiGHS",
+    "time_limit_s_by_territory": {
+      "H1": 1800,
+      "H2": 600
+    },
+    "published_reproduction_command_common_time_limit_s": 1800,
+    "mip_relative_gap": 0.01
+  },
+  "interpretation": "Topotherm is an optimization reference for the district-heating topology only. It is not ground truth and does not validate Urban4's electricity, water, wastewater, coupling, customer selection, or installed Schweinfurt routes."
+}

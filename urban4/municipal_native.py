@@ -62,7 +62,7 @@ class MunicipalWaterConfig:
     target_peak_minimum_pressure_m: float = 35.0
     required_pressure_m: float = 20.0
     average_demand_multiplier: float = 1.0
-    peak_demand_multiplier: float = 2.0
+    peak_demand_multiplier: float = 2.62
     maximum_head_repairs: int = 4
     maximum_pipe_repairs: int = 60
     maximum_second_feeds: int = 6
@@ -517,14 +517,21 @@ def generate_accepted_municipal_water_network(
 
     pipe_repairs = 0
     head_repairs = 0
+    pressure_design_margin_m = 0.01
     for head_attempt in range(config.maximum_head_repairs + config.maximum_pipe_repairs + 1):
         average_service, average_links, average_metrics, peak_service, peak_links, peak_metrics = solve_pair(head_attempt)
         changed = False
         for zone_id in sorted(boundary_heads):
             a_zone = average_service[average_service.pressure_zone_id.eq(zone_id)]
             p_zone = peak_service[peak_service.pressure_zone_id.eq(zone_id)]
-            lower = config.minimum_release_pressure_m - float(p_zone.pressure_m.min())
-            upper = config.maximum_release_pressure_m - float(a_zone.pressure_m.max())
+            lower = (
+                config.minimum_release_pressure_m + pressure_design_margin_m
+                - float(p_zone.pressure_m.min())
+            )
+            upper = (
+                config.maximum_release_pressure_m - pressure_design_margin_m
+                - float(a_zone.pressure_m.max())
+            )
             target = config.target_peak_minimum_pressure_m - float(p_zone.pressure_m.min())
             if lower <= upper + 1e-8:
                 delta = min(max(target, lower), upper)
@@ -632,7 +639,7 @@ def generate_accepted_municipal_water_network(
             "selected_boundary_pressure_m": boundary_heads[zone_id] - base.proxy_elevation_m(zone_roots[zone]),
             "registered_buildings": int(len(subset)),
             "average_boundary_flow_lps": average_flow_lps,
-            "two_times_flow_lps": 2.0 * average_flow_lps,
+            "design_peak_flow_lps": config.peak_demand_multiplier * average_flow_lps,
             "average_minimum_service_pressure_m": float(average_service.loc[average_service.pressure_zone_id.eq(zone_id), "pressure_m"].min()),
             "average_maximum_service_pressure_m": float(average_service.loc[average_service.pressure_zone_id.eq(zone_id), "pressure_m"].max()),
             "peak_minimum_service_pressure_m": float(peak_service.loc[peak_service.pressure_zone_id.eq(zone_id), "pressure_m"].min()),
