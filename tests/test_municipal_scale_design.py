@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import pandas as pd
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -6,11 +7,14 @@ OUT=ROOT/'outputs'/'municipal_scale_v2.5.0'
 
 def test_waterworks_is_municipal_scale():
     w=pd.read_csv(OUT/'drinking_water_station_municipal.csv').iloc[0]
+    case=json.loads((ROOT/'cases'/'schweinfurt.json').read_text(encoding='utf-8'))
+    peak_factor=float(case['demand_model']['drinking_water_peak_factor'])
+    expected_peak=float(w.average_total_flow_lps)*peak_factor
     assert int(w.installed_units)==4
     assert float(w.selected_motor_kw)==315.0
     assert float(w.firm_nameplate_kw_with_one_unavailable)==945.0
     assert 170 <= float(w.average_total_flow_lps) <= 185
-    assert 460 <= float(w.design_peak_flow_lps) <= 470
+    assert abs(float(w.design_peak_flow_lps)-expected_peak) / expected_peak < 1e-3
 
 def test_wastewater_uses_13_duty_standby_pumpworks():
     s=pd.read_csv(OUT/'wastewater_pump_stations_municipal.csv')
@@ -26,7 +30,6 @@ def test_wastewater_uses_13_duty_standby_pumpworks():
     assert (s.installed_nameplate_kw == 2*s.selected_motor_kw).all()
 
 def test_municipal_water_is_natively_accepted_after_logged_bounded_repair():
-    import json
     m=json.loads((OUT/'drinking_water_native_manifest.json').read_text(encoding='utf-8'))
     repairs=pd.read_csv(OUT/'drinking_water_repair_log.csv')
     assert m['status']=='accepted' and m['release_gate_passed']
@@ -39,7 +42,6 @@ def test_municipal_water_is_natively_accepted_after_logged_bounded_repair():
     assert repairs.threshold_unchanged.astype(bool).all()
 
 def test_municipal_wastewater_has_exactly_13_executed_station_systems():
-    import json
     m=json.loads((OUT/'wastewater_station_native_manifest.json').read_text(encoding='utf-8'))
     assert m['status']=='accepted' and m['release_gate_passed']
     assert m['native_solver_executed']
@@ -66,7 +68,6 @@ def test_heat_uses_documented_gks_and_shw_nord_sources_with_real_temperature_cla
     assert (p.max_return_c==50.0).all()
 
 def test_municipal_heat_is_natively_accepted_without_absolute_slack_claim():
-    import json
     m=json.loads((OUT/'district_heating_native_manifest.json').read_text(encoding='utf-8'))
     assert m['status']=='accepted' and m['release_gate_passed'] and m['converged']
     assert m['native_solver_executed']
@@ -76,7 +77,6 @@ def test_municipal_heat_is_natively_accepted_without_absolute_slack_claim():
     assert 'slack_pressure_bar_not_interpreted_as_municipal_absolute_pressure' in m
 
 def test_municipal_manifest_uses_the_frozen_phase_i_ledger():
-    import json
     manifest=json.loads((OUT/'manifest.json').read_text(encoding='utf-8'))
     b=pd.read_csv(ROOT/'outputs'/'building_sector_demands.csv')
     assert manifest['input_building_ledger']=='outputs/building_sector_demands.csv'
@@ -92,7 +92,6 @@ def test_transformer_portfolio_closes_public_scale():
     assert e.municipal_selected_capacity_mva.max() <= 4.0
 
 def test_municipal_electricity_is_natively_accepted_after_ac_power_flow():
-    import json
     m=json.loads((OUT/'electricity_native_manifest.json').read_text(encoding='utf-8'))
     assert m['status']=='accepted' and m['release_gate_passed'] and m['converged']
     assert m['native_solver_executed']
