@@ -1071,7 +1071,7 @@ def generate_water(
         peak_pressure = pd.Series(dtype=float)
         peak_velocity = pd.Series(dtype=float)
         for _ in range(5):
-            peak_wn = create_network(2.0, head_rise)
+            peak_wn = create_network(base.WATER_PEAK_FACTOR, head_rise)
             peak_result = wntr.sim.EpanetSimulator(peak_wn).run_sim()
             peak_pressure = peak_result.node["pressure"].iloc[-1].reindex(service_ids).dropna()
             peak_velocity = peak_result.link["velocity"].iloc[-1].drop(labels=["W_MAIN_PUMP"], errors="ignore").abs()
@@ -1239,7 +1239,7 @@ def generate_wastewater(
             "link_type": "force_main" if force else "gravity_main", "building_id": "",
             "length_km": float(data["length_km"]), "diameter_mm": dn,
             "slope": slope, "manning_n": 0.013, "design_flow_m3s": q,
-            "pump_design_flow_m3s": max(q / 3.6 * 1.3, 0.0002) if force else 0.0,
+            "pump_design_flow_m3s": max(q / base.SEWER_PEAK_FACTOR * 1.3, 0.0002) if force else 0.0,
             "pump_head_m": max(2.0, inverts[v] - inverts[u] + 3.0) if force else 0.0,
             "geometry_json": json.dumps(geometry(data, u, v), separators=(",", ":")),
         })
@@ -1784,15 +1784,61 @@ def generate_district_heat(
     }
     try:
         import pandapipes as ppipe
-        net = ppipe.create_empty_network(fluid="water")
-        mapping = {row.node_id: ppipe.create_junction(net, pn_bar=25.0, tfluid_k=363.15, height_m=row.elevation_m, name=row.node_id, geodata=(row.lon,row.lat)) for row in nodes.itertuples()}
-        for plant in nodes[nodes.node_type.eq("plant")].itertuples():
-            ppipe.create_ext_grid(net, mapping[plant.node_id], p_bar=25.0, t_k=363.15, type="pt")
-        for row in corridors.itertuples():
-            ppipe.create_pipe_from_parameters(net, mapping[row.from_node], mapping[row.to_node], max(row.length_km,0.001), inner_diameter_mm=row.diameter_mm, k_mm=0.1)
-        for row in nodes[nodes.node_type.eq("consumer_substation")].itertuples():
-            ppipe.create_sink(net, mapping[row.node_id], max(row.peak_heat_mw*1e6/(4180.0*35.0),1e-5))
-        ppipe.pipeflow(net, mode="hydraulics", max_iter_hyd=100)
+        def solve_native_heat(candidate: pd.DataFrame):
+            network = ppipe.create_empty_network(fluid="water")
+            mapping = {
+                row.node_id: ppipe.create_junction(
+                    network, pn_bar=25.0, tfluid_k=363.15,
+                    height_m=row.elevation_m, name=row.node_id,
+                    geodata=(row.lon, row.lat),
+                )
+                for row in nodes.itertuples()
+            }
+            for plant in nodes[nodes.node_type.eq("plant")].itertuples():
+                ppipe.create_ext_grid(
+                    network, mapping[plant.node_id], p_bar=25.0,
+                    t_k=363.15, type="pt",
+                )
+            for row in candidate.itertuples():
+                ppipe.create_pipe_from_parameters(
+                    network, mapping[row.from_node], mapping[row.to_node],
+                    max(row.length_km, 0.001),
+                    inner_diameter_mm=row.diameter_mm, k_mm=0.1,
+                )
+            for row in nodes[nodes.node_type.eq("consumer_substation")].itertuples():
+                ppipe.create_sink(
+                    network, mapping[row.node_id],
+                    max(row.peak_heat_mw * 1e6 / (4180.0 * 35.0), 1e-5),
+                )
+            ppipe.pipeflow(network, mode="hydraulics", max_iter_hyd=100)
+            return network
+
+        # Shared road sections can carry flow from more than one heat territory.
+        # Their actual native-solver flow can therefore exceed the preliminary
+        # subtree estimate. Advance only violating pipes by one declared DN class
+        # and rerun; the velocity threshold itself is never relaxed.
+        diameter_resize_iterations = 0
+        diameter_upgraded_links = 0
+        while True:
+            net = solve_native_heat(corridors)
+            violations = net.res_pipe.v_mean_m_per_s.abs() > 2.0
+            if not bool(violations.any()) or diameter_resize_iterations >= 6:
+                break
+            changed = 0
+            for position in np.flatnonzero(violations.to_numpy()):
+                row_index = corridors.index[int(position)]
+                current = int(corridors.loc[row_index, "diameter_mm"])
+                larger = next((value for value in HEAT_DN if value > current), None)
+                if larger is not None:
+                    corridors.loc[row_index, "diameter_mm"] = larger
+                    changed += 1
+            diameter_resize_iterations += 1
+            diameter_upgraded_links += changed
+            if changed == 0:
+                break
+
+        final_diameter = corridors.set_index("corridor_id")["diameter_mm"]
+        paired["diameter_mm"] = paired["corridor_id"].map(final_diameter).astype(int)
         ppipe.to_json(net, str(case_dir / "district_heating_pandapipes.json"))
         solver = {
             "created": True, "converged": bool(net.converged),
@@ -1802,6 +1848,8 @@ def generate_district_heat(
                 net.res_junction.p_bar.min() - return_pressure_reference_bar
             ),
             "maximum_velocity_m_s": float(net.res_pipe.v_mean_m_per_s.abs().max()),
+            "diameter_resize_iterations": diameter_resize_iterations,
+            "diameter_upgraded_links": diameter_upgraded_links,
             "paired_physical_pipe_length_km": structural_metrics["paired_physical_pipe_length_km"],
             "route_trench_length_km": route_trench_length_km,
             "service_connection_length_km": service_connection_length_km,

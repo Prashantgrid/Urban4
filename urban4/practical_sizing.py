@@ -93,13 +93,14 @@ def water_station_estimate(
     motor_efficiency: float = 0.94,
     design_margin: float = 1.10,
 ) -> PumpEstimate:
-    """Screen a three-unit water station (two duty plus one standby).
+    """Screen a water station with identical duty units plus one standby.
 
-    Each identical unit carries the normal flow.  Two units therefore cover the
-    two-times-peak case while the third provides the declared standby unit.
+    Each identical unit carries the normal flow.  The number of duty units is
+    the smallest integer that covers the declared peak flow; one additional
+    unit provides standby capacity.
     """
-    if peak_flow_lps > 2.0 * normal_flow_lps + 1e-9:
-        raise ValueError("three-unit screening assumes peak <= 2 x normal flow")
+    if normal_flow_lps <= 0 or peak_flow_lps < normal_flow_lps:
+        raise ValueError("water-station flows must satisfy peak >= normal > 0")
     duty = pump_power_kw(
         normal_flow_lps,
         head_m,
@@ -107,15 +108,17 @@ def water_station_estimate(
         motor_efficiency=motor_efficiency,
     )
     motor = next_size(duty * design_margin, STANDARD_MOTOR_KW)
+    duty_units = int(math.ceil(peak_flow_lps / normal_flow_lps - 1e-12))
+    installed_units = duty_units + 1
     return PumpEstimate(
         design_flow_lps=normal_flow_lps,
         design_head_m=head_m,
         electrical_duty_kw=duty,
         selected_motor_kw=motor,
-        installed_units=3,
-        duty_units_at_peak=2,
-        installed_nameplate_kw=3.0 * motor,
-        firm_nameplate_kw=2.0 * motor,
+        installed_units=installed_units,
+        duty_units_at_peak=duty_units,
+        installed_nameplate_kw=installed_units * motor,
+        firm_nameplate_kw=duty_units * motor,
     )
 
 
@@ -389,8 +392,8 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
 
     # Water station and practical pressure audit.
     water_native = manifest["native_solver_results"]["drinking_water"]
-    normal_flow = float(config["official_anchors"]["drinking_water_annual_m3"]) / (365.0 * 86400.0) * 1000.0
-    peak_flow = 2.0 * normal_flow
+    normal_flow = float(config["official_anchors"]["drinking_water_total_delivery_m3"]) / (365.0 * 86400.0) * 1000.0
+    peak_flow = float(config["demand_model"]["drinking_water_peak_factor"]) * normal_flow
     water_station = water_station_estimate(
         normal_flow_lps=normal_flow,
         peak_flow_lps=peak_flow,
@@ -534,7 +537,10 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
             "electrical_duty_design_kw": water_station.electrical_duty_kw,
             "electrical_duty_upper_kw": water_power_upper_kw,
             "selected_motor_kw": water_station.selected_motor_kw,
-            "unit_arrangement": "3 identical: 1 duty normal / 2 duty peak / 1 standby",
+            "unit_arrangement": (
+                f"{water_station.installed_units} identical: "
+                f"{water_station.duty_units_at_peak} duty at design peak + 1 standby"
+            ),
             "status": "screening nameplate; pump curves, NPSH and storage required",
         },
         {
@@ -599,7 +605,8 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
                 f"{water_station.electrical_duty_kw:.1f} kW design; {water_station.selected_motor_kw:.0f}-kW motor"
             ),
             "installed_or_selected_arrangement": (
-                f"3 x {water_station.selected_motor_kw:.0f} kW (2 duty at peak + 1 standby); "
+                f"{water_station.installed_units} x {water_station.selected_motor_kw:.0f} kW "
+                f"({water_station.duty_units_at_peak} duty at design peak + 1 standby); "
                 f"{water_station.installed_nameplate_kw:.0f} kW installed"
             ),
             "practical_screen_status": (
@@ -619,7 +626,8 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
         {
             "id_or_sector": "H1-H14 / district heat",
             "model_operating_or_peak": (
-                f"58.333 MWth assigned; {heat_model_total_kw:.2f} kW model circulation duty"
+                f"{float(config['district_heating']['design_peak_mw_assumption']):.3f} MWth assigned; "
+                f"{heat_model_total_kw:.2f} kW model circulation duty"
             ),
             "practical_lower_upper_or_rule": "45-100 Pa/m preferred; <=150 Pa/m hard; 0.5-1.5 m/s preferred; <=2 m/s; 0.3-0.5 bar terminal dp; PN16 preferred/PN25 hard",
             "estimated_practical_size": (
@@ -641,7 +649,7 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
         {"sector": "Electricity", "asset": "MV cable", "voltage_or_pressure_class": "12/20(24) kV", "ordered_sizes": "95,150,185,240,300,400 mm2", "practical_rule": "model ampacity 250-560 A; <=3 parallel circuits; final installation derating required"},
         {"sector": "Electricity", "asset": "MV/LV transformer", "voltage_or_pressure_class": "20/0.4 kV", "ordered_sizes": ",".join(str(value) for value in PRACTICAL_TRANSFORMER_MVA) + " MVA", "practical_rule": "preferred site loading 20-80%; hard <=100%"},
         {"sector": "Drinking water", "asset": "main / service pipe", "voltage_or_pressure_class": "PN16 screening at W1/trunk; zone class after surge study", "ordered_sizes": "mains DN80-DN600; services DN25-DN80", "practical_rule": "35-48 m preferred pressure; 27.5-70 m hard normal; 0.3-1.5 m/s preferred"},
-        {"sector": "Drinking water", "asset": "W1 pump motor", "voltage_or_pressure_class": "400-V motor screening", "ordered_sizes": ",".join(str(value) for value in STANDARD_MOTOR_KW) + " kW", "practical_rule": "three identical units; one duty normal, two duty peak, one standby"},
+        {"sector": "Drinking water", "asset": "W1 pump motor", "voltage_or_pressure_class": "400-V motor screening", "ordered_sizes": ",".join(str(value) for value in STANDARD_MOTOR_KW) + " kW", "practical_rule": f"{water_station.installed_units} identical units; {water_station.duty_units_at_peak} duty at design peak and one standby"},
         {"sector": "Wastewater", "asset": "gravity / force-main pipe", "voltage_or_pressure_class": "PN10 force-main screening; verify surge", "ordered_sizes": "gravity DN200-DN2000; raw-sewage force main >=DN100", "practical_rule": "0.6-1.1 m/s force-main velocity; <=3 m/s hard"},
         {"sector": "Wastewater", "asset": "lift pump motor", "voltage_or_pressure_class": "400-V submersible motor screening", "ordered_sizes": ",".join(str(value) for value in STANDARD_MOTOR_KW) + " kW", "practical_rule": "size from wet-well on-state flow; one duty plus one standby"},
         {"sector": "District heating", "asset": "pre-insulated paired pipe", "voltage_or_pressure_class": "PN16 preferred; PN25 hard screen", "ordered_sizes": "DN25-DN800", "practical_rule": "0.5-1.5 m/s and 45-100 Pa/m preferred; <=2 m/s and <=150 Pa/m hard"},

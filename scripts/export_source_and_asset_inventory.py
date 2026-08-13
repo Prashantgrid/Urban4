@@ -106,7 +106,8 @@ lift_ifs = interfaces[interfaces.facility_type.isin(["network_lift_pump", "prope
 heat_ifs = interfaces[interfaces.facility_type.eq("district_heat_circulation_pump")]
 
 water_mean_lps = float(anchors["drinking_water_annual_m3"]) / (365.0 * 86400.0) * 1000.0
-water_peak_lps = 2.0 * water_mean_lps
+water_peak_factor = float(cfg["demand_model"]["drinking_water_peak_factor"])
+water_peak_lps = water_peak_factor * water_mean_lps
 waste_annual_m3 = float(s_services.annual_m3.sum())
 waste_mean_lps = waste_annual_m3 / (365.0 * 86400.0) * 1000.0
 
@@ -121,7 +122,7 @@ sector_rows = [
     },
     {
         "sector": "Drinking water",
-        "service_and_demand_scale": f"22641 services; {anchors['drinking_water_annual_m3']/1e6:.2f} million m3/a; {water_mean_lps:.1f}/{water_peak_lps:.1f} L/s mean/two-times-peak",
+        "service_and_demand_scale": f"22641 services; {anchors['drinking_water_annual_m3']/1e6:.2f} million m3/a; {water_mean_lps:.1f}/{water_peak_lps:.1f} L/s mean/design peak",
         "source_or_facility_rating": f"W1: {water_pump.design_flow_m3s*1000:.2f} L/s head pump; {json.loads((SERVICE/'integrated_generation_manifest.json').read_text())['native_solver_results']['drinking_water']['source_head_rise_m']:.2f} m head rise; {water_if.closed_interface_power_mw*1000:.1f} kW closed duty",
         "selected_asset_scale": f"{w_links.loc[w_links.link_type.eq('distribution_main'),'length_km'].sum():.2f} km mains; {w_links.loc[w_links.link_type.eq('building_service'),'length_km'].sum():.2f} km services",
         "powered_interface_count": 1,

@@ -26,7 +26,9 @@ def _finish(fig, stem):
 
 def leak_figure():
     d = pd.read_csv(OUT/'hydraulic_leak_coupling'/'hydraulic_leak_timeseries.csv')
-    base = d.iloc[0]
+    # Use the accepted state immediately before the leak, not the first
+    # controller warm-up step.
+    base = d.loc[~d.leak_active.astype(bool)].iloc[-1]
     final = d.iloc[-1]
     dp_kw=(final.pump_electrical_power_mw-base.pump_electrical_power_mw)*1000
     dp_pct=100*(final.pump_electrical_power_mw/base.pump_electrical_power_mw-1)
@@ -88,7 +90,7 @@ def electrical_figure():
     bars=ax.barh(y,footprint_values,color=[COL['slate'],COL['power'],COL['purple'],COL['gold']],height=.58)
     ax.set_yticks(y,footprint_labels); ax.invert_yaxis(); ax.set_xlim(0,34)
     ax.set_xlabel('Source-disconnected share of accepted model (%)')
-    ax.set_title('(a) PL044 has a network-scale electrical footprint',loc='left',fontweight='bold')
+    ax.set_title('(a) The selected feeder has a network-scale footprint',loc='left',fontweight='bold')
     ax.grid(axis='x',alpha=.18); ax.set_axisbelow(True)
     for bar,value,count in zip(bars,footprint_values,footprint_counts):
         ax.text(value+.6,bar.get_y()+bar.get_height()/2,f'{value:.1f}%  ({count})',va='center',fontsize=7.5)
@@ -100,7 +102,7 @@ def electrical_figure():
                    color=COL['green'],label='Delivered demand')
     ax.axhline(20,lw=.85,ls='--',color=COL['power'],label='20 m screen')
     ax.axhline(0,lw=.7,color='0.35')
-    ax.set_xticks(x,['Accepted base','PL044 outage'])
+    ax.set_xticks(x,['Accepted base','Waterworks-feeder outage'])
     ax.set_ylabel('Minimum nodal pressure (m)'); ax2.set_ylabel('Delivered demand (%)')
     ax.set_ylim(-72,55); ax2.set_ylim(0,112)
     ax.set_title('(b) Main-waterworks outage collapses service',loc='left',fontweight='bold')

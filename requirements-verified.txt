@@ -1,4 +1,4 @@
-# Exact direct dependencies used for the v2.7.0 full native-solver verification.
+# Exact direct dependencies used for the v2.8.0 full native-solver verification.
 numpy==2.5.1
 pandas==2.3.3
 networkx==3.6.1

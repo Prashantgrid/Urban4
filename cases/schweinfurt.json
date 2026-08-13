@@ -188,6 +188,14 @@
     "district_heat_sales_mwh_year": 87500,
     "district_heat_temperature_evidence": "published_area_operating_envelopes"
   },
+  "demand_model": {
+    "average_household_size": 2.0,
+    "residential_service_base_kw": 14.5,
+    "drinking_water_peak_factor": 2.62,
+    "wastewater_sanitary_return_fraction": 1.0,
+    "wastewater_peak_method": "Harmon",
+    "district_heat_full_load_hours": 1600.0
+  },
   "wastewater": {
     "terrain_rise_penalty_alpha_independent": 0.5,
     "terrain_rise_penalty_alpha_integrated": 0.45,
@@ -233,8 +241,8 @@
     "sales_contract_count": 841,
     "aggregate_consumer_nodes": 48,
     "heat_sales_mwh_year": 87500,
-    "equivalent_full_load_hours": 1500.0,
-    "design_peak_mw_assumption": 58.333333333333336,
+    "equivalent_full_load_hours": 1600.0,
+    "design_peak_mw_assumption": 54.6875,
     "minimum_heat_density_mwh_ha": 800.0,
     "heat_density_cell_size_km": 0.25,
     "heat_suitability_sensitivity_mwh_ha": [
@@ -663,7 +671,7 @@
     "delivered_water_tolerance": 0.0001,
     "return_temperature_tolerance_c": 0.05,
     "minimum_delivered_water_fraction": 0.995,
-    "water_design_head_rise_m": 105.21012163162229,
+    "water_design_head_rise_m": 100.14252,
     "water_pump_hydraulic_efficiency": 0.72,
     "motor_efficiency": 0.94,
     "wastewater_iteration_hours": 6,
@@ -695,7 +703,7 @@
     "pressure_controller_time_constant_minutes": 15.0,
     "initial_speed_command_pu": 0.99,
     "minimum_speed_command_pu": 0.9,
-    "maximum_speed_command_pu": 1.03,
+    "maximum_speed_command_pu": 1.0277,
     "minimum_inner_iterations": 3,
     "maximum_inner_iterations": 10,
     "interpretation": "Deterministic sequential quasi-steady coupling-response demonstration; not a probability, reliability, water-hammer, motor-transient, or restoration model."
@@ -800,7 +808,7 @@
         63,
         80
       ],
-      "station_configuration": "three identical pumps: one duty at normal flow, two duty at two-times-peak flow, one standby",
+      "station_configuration": "four identical pumps: three duty at the 2.62-times design peak, one standby",
       "nameplate_margin_fraction": 0.1,
       "reference_basis": [
         "public drinking-water system design guidance",
@@ -914,7 +922,7 @@
     "observed_constraints": [
       "105 MV/LV locations and 216.71 MVA transformation",
       "5.6 million m3/a physical drinking-water delivery and 341 km mains",
-      "13 wastewater pumpworks and 249 km total sewer scale"
+      "13 wastewater pumpworks, 236 km gravity sewer, and 13 km pressure mains"
     ],
     "synthesized": [
       "unknown distribution edges",

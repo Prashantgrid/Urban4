@@ -45,6 +45,15 @@ WATER_DN = [80, 100, 125, 150, 200, 250, 300, 400, 500, 600]
 SEWER_DN = [200, 250, 300, 400, 500, 600, 800, 1000, 1200]
 HEAT_DN = [25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300, 400, 500, 600]
 LV_LIBRARY = [(35, 0.115, 0.868), (70, 0.179, 0.443), (95, 0.216, 0.320), (150, 0.282, 0.206), (240, 0.368, 0.125)]
+DEMAND_MODEL = load_case()["demand_model"]
+WATER_PEAK_FACTOR = float(DEMAND_MODEL["drinking_water_peak_factor"])
+SEWER_PEAK_FACTOR = max(
+    2.0,
+    1.0 + 14.0 / (
+        4.0 + math.sqrt(float(load_case()["official_anchors"]["served_population"]) / 1000.0)
+    ),
+)
+HEAT_FULL_LOAD_HOURS = float(DEMAND_MODEL["district_heat_full_load_hours"])
 
 
 def _inside(point: tuple[float, float], bbox: list[float]) -> bool:
@@ -93,10 +102,10 @@ def _cluster_zones(buildings: pd.DataFrame, road: nx.Graph, count: int, seed: in
     zones = pd.DataFrame(rows.values())
     zones.insert(0, "zone_id", [f"Z{i:03d}" for i in range(1, len(zones) + 1)])
     zones["water_q_avg_m3s"] = zones["water_m3_year"] / (365.0 * 86400.0)
-    zones["water_q_peak_m3s"] = 2.0 * zones["water_q_avg_m3s"]
+    zones["water_q_peak_m3s"] = WATER_PEAK_FACTOR * zones["water_q_avg_m3s"]
     zones["sewer_q_dry_m3s"] = zones["wastewater_m3_year"] / (365.0 * 86400.0)
-    zones["sewer_q_wet_m3s"] = 3.6 * zones["sewer_q_dry_m3s"]
-    zones["heat_peak_mw"] = zones["heat_mwh_year"] / 1500.0
+    zones["sewer_q_wet_m3s"] = SEWER_PEAK_FACTOR * zones["sewer_q_dry_m3s"]
+    zones["heat_peak_mw"] = zones["heat_mwh_year"] / HEAT_FULL_LOAD_HOURS
     return zones
 
 
@@ -338,7 +347,7 @@ def _run_water(case_dir: Path, road: nx.Graph, zones: pd.DataFrame) -> tuple[pd.
         result = wntr.sim.EpanetSimulator(wn).run_sim()
         pressure = result.node["pressure"].iloc[0].drop(labels=[node_ids[source]], errors="ignore")
         velocity = result.link["velocity"].iloc[0]
-        wn.options.hydraulic.demand_multiplier = 2.0
+        wn.options.hydraulic.demand_multiplier = WATER_PEAK_FACTOR
         peak_result = wntr.sim.EpanetSimulator(wn).run_sim()
         peak_pressure = peak_result.node["pressure"].iloc[0].drop(labels=[node_ids[source]], errors="ignore")
         peak_velocity = peak_result.link["velocity"].iloc[0]
@@ -447,7 +456,7 @@ def _run_wastewater(case_dir: Path, road: nx.Graph, zones: pd.DataFrame) -> tupl
         diameter = (q * 0.013 * 4.0 ** (5.0 / 3.0) / (math.pi * math.sqrt(slope))) ** (3.0 / 8.0)
         dn = _round_up(max(200, math.ceil(diameter * 1000.0)), SEWER_DN)
         link_type = "force_main" if (u, v) in pump_edges else "gravity"
-        dry_flow = q / 3.6
+        dry_flow = q / SEWER_PEAK_FACTOR
         pump_flow = max(1.3 * dry_flow, 0.0002) if link_type == "force_main" else 0.0
         pump_head = max(2.0, inverts[v] - inverts[u] + 3.0) if link_type == "force_main" else 0.0
         link_rows.append({"link_id": f"S_C{index:04d}", "from_node": node_ids[u], "to_node": node_ids[v], "link_type": link_type, "length_km": data["length_km"], "diameter_mm": dn, "slope": slope, "manning_n": 0.013, "design_flow_m3s": q, "dry_design_flow_m3s": dry_flow, "pump_design_flow_m3s": pump_flow, "pump_head_m": pump_head, "geometry_json": json.dumps(data.get("geometry", [u, v]), separators=(",", ":"))})
@@ -746,7 +755,8 @@ def _interfaces(
             "building_id": building.building_id,
             "from_sector": "drinking_water", "from_id": water_by_building.loc[building.building_id].node_id,
             "to_sector": "wastewater", "to_id": sewer_by_building.loc[building.building_id].node_id,
-            "relation": "delivered_water_to_sanitary_inflow", "capacity_value": 0.82,
+            "relation": "delivered_water_to_sanitary_inflow",
+            "capacity_value": float(load_case(CASE)["demand_model"]["wastewater_sanitary_return_fraction"]),
             "capacity_unit": "m3/m3",
         })
     pump_outlet = water_nodes[water_nodes.node_type.eq("pump_outlet")].iloc[0]

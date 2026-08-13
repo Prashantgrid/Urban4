@@ -82,7 +82,9 @@ def inspect_water(output: Path) -> dict[str, Any]:
     ).abs()
 
     peak = wntr.network.WaterNetworkModel(str(path))
-    peak.options.hydraulic.demand_multiplier = 2.0
+    peak.options.hydraulic.demand_multiplier = float(
+        load_case()["demand_model"]["drinking_water_peak_factor"]
+    )
     peak_result = wntr.sim.EpanetSimulator(peak).run_sim()
     peak_pressure = peak_result.node["pressure"].iloc[-1].reindex(service_ids)
     peak_velocity = peak_result.link["velocity"].iloc[-1].drop(

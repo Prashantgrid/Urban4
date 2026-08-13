@@ -191,11 +191,15 @@ def write_coupling_interfaces(
             "facility_type": "building_mass_mapping",
             "exchange_variable": "volume_flow",
             "nominal_power_mw": np.nan,
-            "conversion": 0.82, "unit": "m3/m3",
+            "conversion": float(base.DEMAND_MODEL["wastewater_sanitary_return_fraction"]), "unit": "m3/m3",
             "directionality": "directed_mass_transfer_inside_coupled_loop",
             "connected_bus_type": "", "connected_bus_voltage_kv": np.nan,
             "connection_distance_km": 0.0,
-            "forward_duty_model": "Q_wastewater = 0.82 Q_delivered_water",
+            "forward_duty_model": (
+                "Q_wastewater = "
+                f"{float(base.DEMAND_MODEL['wastewater_sanitary_return_fraction']):g} "
+                "Q_delivered_water"
+            ),
             "reverse_response_model": "wastewater state does not alter delivered-water mass at this interface",
             "evidence_role": "common building identity",
         })

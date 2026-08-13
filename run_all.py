@@ -58,6 +58,12 @@ def main() -> None:
 
     environment = os.environ.copy()
     environment.setdefault("MPLCONFIGDIR", "/tmp/mpl-urban4")
+    existing_pythonpath = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = (
+        os.pathsep.join((str(PROJECT), existing_pythonpath))
+        if existing_pythonpath
+        else str(PROJECT)
+    )
     start = time.perf_counter()
     base_runtime = 0.0
     if not args.skip_base:

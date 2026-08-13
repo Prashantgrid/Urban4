@@ -42,7 +42,7 @@ Urban4/
 
 ## Installation
 
-Urban4 v2.7.0 was verified with Python 3.12. Create a clean environment and
+Urban4 v2.8.0 was verified with Python 3.12. Create a clean environment and
 install the exact direct dependencies used for the publication run:
 
 ```bash
@@ -80,20 +80,22 @@ python run_all.py --refresh-osm --skip-paper
 
 Refreshing the snapshot changes the evidence vintage and therefore does not
 reproduce the publication release. The retained files in `data/raw/` should be
-used for exact comparison with v2.7.0.
+used for exact comparison with v2.8.0.
 
 ## Verified publication result
 
-The archived v2.7.0 run reports 70 passed tests and no failures. Its coupling
-registry contains 22,641 exact building-level mappings and 27 powered-facility
-interfaces. The municipality-scale electricity, drinking-water, wastewater,
-and district-heating models all satisfy their declared acceptance criteria.
+The v2.8.0 verification reports 70 passed tests and no failures. It uses the
+audited building-demand equations, a 2.62 drinking-water peak factor, the
+Harmon wastewater peak factor, and 1,600 district-heating full-load hours.
+The municipality-scale electricity, drinking-water, wastewater, and
+district-heating models all satisfy their declared acceptance criteria.
 
-The executed PL044 electrical outage disconnects the main waterworks supply
-path. The native water-model rerun delivers approximately 0.009% of demand.
-Only the explicitly executed water consequence is claimed for that event.
+The executed main-waterworks feeder outage disconnects the pump supply path.
+The native water-model rerun delivers approximately 0.009% of demand. Only the
+explicitly executed water consequence is claimed for that event.
 
-See [the verification record](docs/VERIFICATION_v2.7.0.md) and
+See [the verification record](docs/VERIFICATION_v2.8.0.md), the
+[equation audit](docs/EQUATION_AUDIT.md), and
 [the compact reference results](reference_results/README.md) for details.
 
 ## Evidence and data
@@ -126,4 +128,3 @@ Urban4 source code is released under the [MIT License](LICENSE). The retained
 OpenStreetMap snapshots remain © OpenStreetMap contributors and are available
 under the Open Database License. Other cited public sources retain their
 original terms.
-

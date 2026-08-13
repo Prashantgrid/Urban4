@@ -328,9 +328,30 @@ def build_building_ledger(config: dict[str, Any]) -> pd.DataFrame:
     # industrial from retaining the provisional ``building=yes`` prior.
     residential_mask = frame["service_eligible"] & frame["service_class"].eq("residential")
     frame["household_count"] = 0
-    frame.loc[residential_mask, "household_count"] = np.ceil(
-        frame.loc[residential_mask, "floor_area_m2"] / 90.0
-    ).clip(lower=1).astype(int)
+    demand_model = config["demand_model"]
+    target_households = int(round(
+        float(config["official_anchors"]["served_population"])
+        / float(demand_model["average_household_size"])
+    ))
+    residential = frame.loc[residential_mask, ["building_id", "floor_area_m2"]].copy()
+    if target_households < len(residential):
+        raise ValueError("declared household total is smaller than the residential building count")
+    residential["households"] = 1
+    remaining_households = target_households - len(residential)
+    if remaining_households:
+        weights = residential["floor_area_m2"].clip(lower=1.0)
+        raw_extra = remaining_households * weights / weights.sum()
+        residential["households"] += np.floor(raw_extra).astype(int)
+        remainder = target_households - int(residential["households"].sum())
+        if remainder:
+            fractional = (raw_extra - np.floor(raw_extra)).rename("fractional")
+            order = (
+                residential.assign(fractional=fractional)
+                .sort_values(["fractional", "building_id"], ascending=[False, True])
+                .index[:remainder]
+            )
+            residential.loc[order, "households"] += 1
+    frame.loc[residential.index, "household_count"] = residential["households"].astype(int)
     frame["occupant_prior"] = 0.0
     frame.loc[residential_mask, "occupant_prior"] = frame.loc[residential_mask, "floor_area_m2"] / 43.0
     nonres_water = frame["service_class"].map(
@@ -361,13 +382,18 @@ def build_building_ledger(config: dict[str, Any]) -> pd.DataFrame:
         frame["water_prior"] / frame["water_prior"].sum()
         * anchors["drinking_water_annual_m3"]
     )
-    frame["wastewater_sanitary_m3_year"] = 0.82 * frame["water_m3_year"]
+    sanitary_return = float(demand_model["wastewater_sanitary_return_fraction"])
+    frame["wastewater_sanitary_m3_year"] = sanitary_return * frame["water_m3_year"]
     frame["heat_candidate_mwh_year"] = frame["heat_prior"] / 1000.0
     # Equipment design uses a building connection peak distinct from the
     # diversified coincident contribution used in system power flow.
     n_households = frame["household_count"].clip(lower=1).astype(float)
-    residential_coincidence = 0.10 + 0.90 / np.sqrt(n_households)
-    residential_service_kw = 14.5 * n_households * residential_coincidence
+    residential_coincidence = 0.07 + 0.93 * n_households ** (-0.75)
+    residential_service_kw = (
+        float(demand_model["residential_service_base_kw"])
+        * n_households
+        * residential_coincidence
+    )
     nonres_specific_w_m2 = frame["service_class"].map(
         {"commercial": 85.0, "public": 95.0, "industrial": 80.0}
     ).fillna(45.0)
@@ -376,9 +402,21 @@ def build_building_ledger(config: dict[str, Any]) -> pd.DataFrame:
         frame["service_class"].eq("residential"), residential_service_kw, nonres_service_kw
     )
     frame.loc[~frame["service_eligible"], "electricity_service_peak_kw"] = 0.0
-    frame["water_service_peak_lps"] = frame["water_m3_year"] / (365.0 * 86400.0) * 2.0 * 1000.0
-    frame["wastewater_service_peak_lps"] = frame["wastewater_sanitary_m3_year"] / (365.0 * 86400.0) * 3.6 * 1000.0
-    frame["heat_service_design_kw"] = frame["heat_candidate_mwh_year"] / 1.5
+    water_peak_factor = float(demand_model["drinking_water_peak_factor"])
+    harmon_factor = max(
+        2.0,
+        1.0 + 14.0 / (4.0 + math.sqrt(float(anchors["served_population"]) / 1000.0)),
+    )
+    frame["water_service_peak_lps"] = (
+        frame["water_m3_year"] / (365.0 * 86400.0) * water_peak_factor * 1000.0
+    )
+    frame["wastewater_service_peak_lps"] = (
+        frame["wastewater_sanitary_m3_year"] / (365.0 * 86400.0) * harmon_factor * 1000.0
+    )
+    frame["heat_service_design_kw"] = (
+        frame["heat_candidate_mwh_year"]
+        / (float(demand_model["district_heat_full_load_hours"]) / 1000.0)
+    )
     frame["electricity_connected"] = frame["service_eligible"]
     frame["electricity_connection_level"] = np.where(
         frame["electricity_service_peak_kw"] > 250.0, "MV", "LV"
@@ -432,7 +470,8 @@ def enrich_common_demand_zones(buildings: pd.DataFrame) -> pd.DataFrame:
     for column, values in totals.items():
         zones[column] = values
     zones["electricity_peak_mw"] = zones["electricity_peak_kw"] / 1000.0
-    zones["heat_candidate_peak_mw_1500h"] = zones["heat_candidate_mwh_year"] / 1500.0
+    heat_full_load_hours = float(load_case()["demand_model"]["district_heat_full_load_hours"])
+    zones["heat_candidate_peak_mw"] = zones["heat_candidate_mwh_year"] / heat_full_load_hours
     zones["clustering_weight_mode"] = "OSM building-use weight"
     zones["clustering_seed"] = int(load_case()["seed"])
     zones.to_csv(path, index=False)
@@ -1198,8 +1237,9 @@ def write_and_run_water_epanet() -> dict[str, Any]:
         diameter_library = sorted(int(value) for value in load_case()["equipment_libraries"]["water_dn_mm"])
         resize_iterations = 0
         upgraded_links = 0
+        peak_factor = float(load_case()["demand_model"]["drinking_water_peak_factor"])
         while True:
-            peak_network = create_network(pipes, multiplier=2.0)
+            peak_network = create_network(pipes, multiplier=peak_factor)
             peak_simulation = wntr.sim.EpanetSimulator(peak_network).run_sim()
             peak_velocity = peak_simulation.link["velocity"].iloc[0].abs()
             violations = peak_velocity[peak_velocity > load_case()["acceptance_screening"]["drinking_water"]["maximum_velocity_m_s"]]
@@ -1228,7 +1268,7 @@ def write_and_run_water_epanet() -> dict[str, Any]:
         minimum_peak_pressure = load_case()["acceptance_screening"]["drinking_water"]["peak_minimum_pressure_m"]
         junction_ids = nodes.loc[~nodes["node_id"].isin(source_ids), "node_id"].tolist()
         while head_adjustment_iterations < 4:
-            peak_network = create_network(pipes, multiplier=2.0)
+            peak_network = create_network(pipes, multiplier=peak_factor)
             peak_simulation = wntr.sim.EpanetSimulator(peak_network).run_sim()
             peak_pressure = peak_simulation.node["pressure"].iloc[0].reindex(junction_ids).dropna()
             peak_velocity = peak_simulation.link["velocity"].iloc[0].abs()
@@ -1245,7 +1285,7 @@ def write_and_run_water_epanet() -> dict[str, Any]:
         junction_pressure = pressure.reindex(junction_ids).dropna()
         velocity = simulation.link["velocity"].iloc[0].abs()
 
-        peak_network = create_network(pipes, multiplier=2.0)
+        peak_network = create_network(pipes, multiplier=peak_factor)
         peak_simulation = wntr.sim.EpanetSimulator(peak_network).run_sim()
         peak_pressure = peak_simulation.node["pressure"].iloc[0].reindex(junction_ids).dropna()
         peak_velocity = peak_simulation.link["velocity"].iloc[0].abs()
@@ -1267,7 +1307,7 @@ def write_and_run_water_epanet() -> dict[str, Any]:
             "maximum_pressure_m": float(junction_pressure.max()),
             "maximum_velocity_m_s": float(velocity.max()),
             "fraction_links_below_0_05_m_s": float((velocity < 0.05).mean()),
-            "peak_factor": 2.0,
+            "peak_factor": peak_factor,
             "peak_minimum_pressure_m": float(peak_pressure.min()),
             "peak_maximum_velocity_m_s": float(peak_velocity.max()),
             "water_age_p95_hours_at_48h": float(age_hours.quantile(0.95) / 3600.0),
@@ -1460,7 +1500,8 @@ def build_coupling_layer(
             {
                 "interface_id": f"IF_{len(rows)+1:04d}", "from_sector": "drinking_water",
                 "from_id": zone.zone_id, "to_sector": "wastewater", "to_id": zone.zone_id,
-                "relation": "delivered_water_to_sanitary_inflow", "capacity_value": 0.82,
+                "relation": "delivered_water_to_sanitary_inflow",
+                "capacity_value": float(config["demand_model"]["wastewater_sanitary_return_fraction"]),
                 "capacity_unit": "m3/m3", "confidence_class": "C/D",
                 "notes": "common-zone mapping; infiltration is represented separately",
             }
