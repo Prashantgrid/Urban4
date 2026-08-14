@@ -111,9 +111,9 @@ class ExecutableIntegrationContractTest(unittest.TestCase):
         self.assertEqual(selected.bus_id, "trafo_lv")
         self.assertEqual(selected.node_type, "transformer_lv_bus")
 
-    def test_drive_envelope_returns_voltage_to_sector_speed(self):
+    def test_drive_envelope_holds_command_above_recovery_and_trips_below_limit(self):
         speed = _drive_speed(np.asarray([1.0, 0.90, 0.825, 0.75, 0.70]))
-        np.testing.assert_allclose(speed, [1.0, 0.95, 0.0, 0.0, 0.0])
+        np.testing.assert_allclose(speed, [1.0, 1.0, 0.0, 0.0, 0.0])
 
     def test_shared_corridor_identity_uses_physical_segments(self):
         with tempfile.TemporaryDirectory() as temporary:

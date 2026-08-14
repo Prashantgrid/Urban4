@@ -35,7 +35,7 @@ jobs:
         run: python scripts/apply_v2_9_reference_grounding.py
 
       - name: Reproduce models and run tests
-        run: python run_all.py --skip-paper
+        run: python run_all.py
 
       - name: Upload v2.9 rerun outputs
         if: always()
@@ -48,5 +48,4 @@ jobs:
             cases/schweinfurt.json
             outputs/**
             figures/**
-            manuscript/**
             docs/**

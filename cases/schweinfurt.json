@@ -167,6 +167,7 @@
     "electricity_mv_lv_withdrawal_locations": 105,
     "electricity_mv_lv_installed_capacity_mva": 216.71,
     "electricity_lv_withdrawal_points": 43178,
+    "drinking_water_operator_served_population_approx": 100000,
     "drinking_water_annual_m3": 4100000,
     "drinking_water_total_delivery_m3": 5600000,
     "drinking_water_wholesale_delivery_m3": 1500000,
@@ -192,9 +193,12 @@
     "average_household_size": 2.0,
     "residential_service_base_kw": 14.5,
     "drinking_water_peak_factor": 2.62,
+    "drinking_water_peak_factor_exact": 2.610228786260013,
     "wastewater_sanitary_return_fraction": 1.0,
     "wastewater_peak_method": "Harmon",
-    "district_heat_full_load_hours": 1600.0
+    "district_heat_full_load_hours": 1600.0,
+    "drinking_water_peak_method": "DVGW W 410 population-based hourly peak factor",
+    "drinking_water_peak_basis": "DVGW W 410 dimensioning curve evaluated at the operator-reported water-service population; applicability checked against DVGW/TZW project W 201712. The exact result is rounded upward to two decimals for the retained EPANET design-hour check. Use measured utility peak-hour data when available."
   },
   "wastewater": {
     "terrain_rise_penalty_alpha_independent": 0.5,
@@ -687,8 +691,10 @@
       "recovery_voltage_pu": 0.9,
       "minimum_running_speed_pu": 0.95,
       "maximum_speed_pu": 1.05,
-      "voltage_speed_droop": 0.5,
-      "affinity_laws": "Q proportional to speed; H proportional to speed squared; pump duty returned by each native sector solver"
+      "voltage_speed_droop": 0.0,
+      "affinity_laws": "Q proportional to speed; H proportional to speed squared; pump duty returned by each native sector solver",
+      "normal_operation_contract": "Above the declared availability/recovery threshold, an energized variable-speed drive follows the explicit speed command; normal terminal-voltage variation does not create an invented speed droop.",
+      "validation_scope": "The feeder-outage result uses binary electrical availability. The archived service-voltage depression demonstration is not used as evidence for an equipment-specific undervoltage response."
     }
   },
   "hydraulic_leak_demonstration": {
@@ -808,7 +814,7 @@
         63,
         80
       ],
-      "station_configuration": "four identical pumps: three duty at the 2.62-times design peak, one standby",
+      "station_configuration": "four identical pumps: three duty at the 2.62-times DVGW W 410 design peak and one standby; selected pump efficiency remains a screening input until a manufacturer curve is supplied",
       "nameplate_margin_fraction": 0.1,
       "reference_basis": [
         "public drinking-water system design guidance",
@@ -948,5 +954,59 @@
       "external_grid_voltage_setpoint"
     ],
     "important_boundary": "The native runner uses the pandapower-solved pump-bus state directly; it does not apply the archived local service-voltage multiplier. Prescreened line outages are topology candidates only until pandapower/WNTR execution."
-  }
+  },
+  "reference_grounding_v2_9": {
+    "applied": true,
+    "water_peak_factor_previous": 2.62,
+    "water_operator_served_population_approx": 100000,
+    "water_peak_factor_w410_exact": 2.610228786260013,
+    "water_peak_factor_applied": 2.62,
+    "water_pipe_presizing_factor_applied": 2.62,
+    "water_peak_rounding": "upward to two decimals for the retained native EPANET check",
+    "water_factor_consistency_policy": "Use the same applied factor for building-ledger peak flows, catalogue pipe pre-sizing, and the native EPANET design-hour check. Do not retain pre-sized pipes from an earlier factor.",
+    "water_peak_formula": "f_h = 18.1 * E^(-0.1682), E = operator-served water population",
+    "water_peak_reference": "DVGW W 410; DVGW/TZW W 201712; Stadtwerke Schweinfurt water service page",
+    "water_peak_reference_urls": {
+      "dvgw_w410": "https://www.dvgw-regelwerk.de/technische-regel/w-410/51a6b5",
+      "dvgw_w201712": "https://www.dvgw.de/themen/forschung-und-innovation/forschungsprojekte/dvgw-forschungsprojekt-spitzenverbrauch",
+      "operator_service_area": "https://www.stadtwerke-sw.de/wasser"
+    },
+    "voltage_speed_droop_previous": 0.5,
+    "voltage_speed_droop_used": 0.0,
+    "pump_efficiency_policy": "No new hydraulic pump efficiency is invented. Existing values remain screening inputs and are not reported as measured or manufacturer-certified efficiencies.",
+    "wastewater_grade_policy": "The legacy minimum_gravity_grade is a reduced-model topology/sensitivity setting, not a universal DWA design criterion. Municipality-scale sewers are sized by Manning capacity on generated slopes and checked in SWMM; DWA-A 110 is cited for the hydraulic-performance basis."
+  },
+  "shared_energy_assets": [
+    {
+      "asset_id": "GKS_CHP",
+      "name": "GKS main CHP/waste-to-energy complex",
+      "asset_type": "combined_heat_and_power_source",
+      "enabled": true,
+      "available": true,
+      "documented_coordinate": [
+        10.22442,
+        50.02996
+      ],
+      "dispatch_mode": "availability_only",
+      "availability_coupling": "common_asset_state",
+      "electrical_port": {
+        "sector": "electricity",
+        "connection_policy": "nearest_compatible_generated_mv_node",
+        "minimum_connection_voltage_kv": 10.0,
+        "prescribed_active_power_mw": null,
+        "nameplate_active_power_mw": 29.0,
+        "nameplate_basis": "published 12 MW backpressure turbine plus 17 MW extraction-condensing turbine; nameplate metadata only, not dispatch"
+      },
+      "thermal_port": {
+        "sector": "district_heating",
+        "connection_policy": "documented_source_if_present_else_nearest_generated_heat_source",
+        "source_id": "H1",
+        "prescribed_heat_output_mw": null,
+        "nameplate_heat_output_mw": null,
+        "capacity_basis": "district-heat source identity is documented; delivered thermal nameplate is not inferred from fuel-input inventory"
+      },
+      "evidence_role": "documented GKS CHP shared by electricity and district heating; sector connection points are synthetic model attachments where the confidential utility connection is unavailable",
+      "scope_note": "The default benchmark records shared identity and common availability only. Later studies may supply prescribed operating points or replace this adapter with a detailed CHP model."
+    }
+  ]
 }

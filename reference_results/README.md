@@ -23,10 +23,9 @@ leaving that internal directory name unchanged.
 The full generated tree can be recreated with:
 
 ```bash
-python run_all.py --skip-paper
+python run_all.py
 ```
 
-The complete frozen archive will also accompany the tagged publication release
-and archival DOI. Reference files preserve the original schema keys, including
-older fields named `release_gate_passed`; in the manuscript and current
-documentation these are described as engineering acceptance criteria.
+The complete frozen archive can be attached to a tagged archival release. Reference files preserve the original schema keys, including
+older fields named `release_gate_passed`; current documentation describes these
+as engineering acceptance criteria.

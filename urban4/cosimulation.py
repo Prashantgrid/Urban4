@@ -67,11 +67,11 @@ def _config() -> dict[str, Any]:
 def _motor_speed(voltage_pu: float, command: float, drive: dict[str, float]) -> float:
     """Map terminal voltage to available pump speed.
 
-    Above the recovery threshold, a modest droop represents a grid-connected
-    or voltage-limited variable-speed drive.  Between trip and recovery the
-    drive is linearly derated; below trip it is unavailable.  Pump head and
-    capacity are subsequently changed by the affinity laws in the native
-    sector adapters.
+    Above the recovery threshold the explicit command is applied, with only a
+    configured droop term (zero in the v2.9 evidence-grounded case). Between
+    trip and recovery the drive is linearly derated; below trip it is
+    unavailable. Pump head and capacity are subsequently changed by the
+    affinity laws in the native sector adapters.
     """
     if not math.isfinite(voltage_pu) or voltage_pu < drive["trip_voltage_pu"]:
         return 0.0

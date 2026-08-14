@@ -17,6 +17,7 @@ from urban4.municipal_native import (
     generate_accepted_municipal_water_network,
     generate_accepted_municipal_wastewater_station_model,
 )
+from urban4.shared_energy_assets import build_shared_asset_interfaces
 
 OUT=ROOT/'outputs'/'municipal_scale_v2.5.0'
 OUT.mkdir(parents=True,exist_ok=True)
@@ -46,7 +47,8 @@ LEDGER_PATH=ROOT/'outputs'/'building_sector_demands.csv'
 ledger=pd.read_csv(LEDGER_PATH)
 required_ledger_columns={
     'building_id','lon','lat','service_eligible','wastewater_connected',
-    'heat_eligible','wastewater_sanitary_m3_year',
+    'heat_eligible','water_connected','water_m3_year','water_service_peak_lps',
+    'wastewater_sanitary_m3_year',
     'wastewater_service_peak_lps','heat_candidate_mwh_year',
 }
 missing_ledger_columns=sorted(required_ledger_columns.difference(ledger.columns))
@@ -89,13 +91,51 @@ links2,electricity_native_manifest=generate_accepted_municipal_electricity_netwo
 )
 
 # ---------- Drinking water: zone-first construction, native solve, bounded repair ----------
+water_grounding=case['reference_grounding_v2_9']
+water_operator_population=int(water_grounding['water_operator_served_population_approx'])
+water_peak_factor_exact=float(water_grounding['water_peak_factor_w410_exact'])
+water_peak_factor=float(water_grounding['water_peak_factor_applied'])
+water_presizing_factor=float(water_grounding['water_pipe_presizing_factor_applied'])
+registered_water=ledger[ledger.water_connected.astype(bool)]
+registered_average_lps=(
+    float(registered_water.water_m3_year.sum())/(365.0*86400.0)*1000.0
+)
+ledger_presizing_factor=(
+    float(registered_water.water_service_peak_lps.sum())/registered_average_lps
+)
+if abs(water_presizing_factor-water_peak_factor)>1e-12:
+    raise ValueError(
+        f"configured pipe pre-sizing factor {water_presizing_factor} does not match "
+        f"the applied EPANET factor {water_peak_factor}"
+    )
+if abs(ledger_presizing_factor-water_peak_factor)>1e-9:
+    raise ValueError(
+        f"building-ledger pipe pre-sizing factor {ledger_presizing_factor} does not match "
+        f"the applied EPANET factor {water_peak_factor}; regenerate the Phase-I ledger"
+    )
 _,_,_,water_manifest=generate_accepted_municipal_water_network(
     OUT,road,ledger,
     wholesale_delivery_m3_year=float(off['drinking_water_wholesale_delivery_m3']),
 )
+native_peak_factor=float(water_manifest['configuration']['peak_demand_multiplier'])
+if abs(native_peak_factor-water_peak_factor)>1e-12:
+    raise ValueError(
+        f"municipal EPANET peak multiplier {native_peak_factor} does not match "
+        f"the evidence-grounded applied factor {water_peak_factor}"
+    )
+water_manifest['dvgw_w410']={
+    'operator_served_population_approx':water_operator_population,
+    'exact_hourly_peak_factor':water_peak_factor_exact,
+    'applied_peak_multiplier':water_peak_factor,
+    'pipe_presizing_multiplier':ledger_presizing_factor,
+    'factor_consistency_verified':True,
+    'rounding':water_grounding['water_peak_rounding'],
+    'source':'DVGW W 410; operator service-area population from Stadtwerke Schweinfurt water service page',
+    'reference_urls':water_grounding['water_peak_reference_urls'],
+}
+json.dump(water_manifest,open(OUT/'drinking_water_native_manifest.json','w'),indent=2)
 water_zones=pd.read_csv(OUT/'drinking_water_zone_boundaries.csv')
 qavg_total=float(off['drinking_water_total_delivery_m3'])/365/86400*1000
-water_peak_factor=float(case['demand_model']['drinking_water_peak_factor'])
 qpeak_total=water_peak_factor*qavg_total
 source_zone=water_zones.sort_values('pressure_zone_id').iloc[0]
 head=float(water_zones.selected_boundary_head_m.max()-source_zone.ground_elevation_m)
@@ -107,16 +147,23 @@ water_installed_units=water_peak_duty_units+1
 water_station=pd.DataFrame([{
     'map_id':'W1','facility':'Wasserwerk Schweinfurt source/booster station','source_role':'aggregated municipal source station; individual wells are not separately motor-rated',
     'annual_delivery_m3':off['drinking_water_total_delivery_m3'],'direct_retail_m3':off['drinking_water_annual_m3'],'wholesale_boundary_m3':off['drinking_water_wholesale_delivery_m3'],
+    'operator_served_population_approx':water_operator_population,
+    'dvgw_w410_peak_factor_exact':water_peak_factor_exact,'applied_peak_factor':water_peak_factor,
     'average_total_flow_lps':qavg_total,'design_peak_flow_lps':qpeak_total,'design_peak_factor':water_peak_factor,'design_head_m':head,
     'pump_arrangement':f'{water_installed_units} identical VFD pumps: {water_peak_duty_units} duty at design peak + 1 standby',
-    'per_pump_design_flow_lps':per_pump_q,'per_pump_operating_power_kw':p_duty,'selected_motor_kw':water_motor,
+    'per_pump_design_flow_lps':per_pump_q,'pump_efficiency_screening':0.72,'motor_efficiency_screening':0.94,
+    'per_pump_operating_power_kw':p_duty,'selected_motor_kw':water_motor,
     'installed_units':water_installed_units,'installed_nameplate_kw':water_installed_units*water_motor,'firm_nameplate_kw_with_one_unavailable':water_peak_duty_units*water_motor,
     'main_length_km':water_manifest['main_length_km'],'pressure_zones':water_manifest['pressure_zones'],
     'source_coordinate_lon':source_zone.lon,'source_coordinate_lat':source_zone.lat,
     'native_average_pressure_range_m':f"{water_manifest['average_minimum_service_pressure_m']:.2f}-{water_manifest['average_maximum_service_pressure_m']:.2f}",
     'native_peak_pressure_range_m':f"{water_manifest['peak_minimum_service_pressure_m']:.2f}-{water_manifest['peak_maximum_service_pressure_m']:.2f}",
     'native_peak_maximum_velocity_m_s':water_manifest['peak_maximum_velocity_m_s'],
-    'status':'accepted municipality-scale EPANET network; pump curves/NPSH/surge remain manufacturer-design checks'
+    'status':(
+        f'accepted; W 410 factor for approximately {water_operator_population:,} operator-served inhabitants '
+        f'is {water_peak_factor_exact:.2f} and is rounded upward to {water_peak_factor:.2f} for the native '
+        'EPANET peak check; pump/motor efficiencies are screening inputs'
+    )
 }])
 water_station.to_csv(OUT/'drinking_water_station_municipal.csv',index=False)
 
@@ -348,6 +395,14 @@ for sd in source_defs:
     motor=next_size(max((1.0+margin)*per_duty,45.0),MOTOR)
     source_rows.append({'map_id':sid,'source_name':sd['name'],'lon':sd['coordinate'][0],'lat':sd['coordinate'][1],'source_role':sd['role'],'address':sd['address'],'plant_side_steam_bar':sd['plant_side_steam_bar'],'plant_side_steam_c':sd['plant_side_steam_c'],'documented_fuel_input_mw_total':sum(sd['documented_fuel_input_mw']),'documented_fuel_input_units_mw':'+'.join(str(x) for x in sd['documented_fuel_input_mw']),'capacity_interpretation':sd['capacity_note'],'assigned_hydraulic_customers':len(ss),'assigned_peak_mw_th':peak,'assigned_annual_heat_gwh':float(ss.annual_heat_mwh.sum()/1000),'design_mass_flow_kg_s':mdot,'design_volume_flow_m3h':q_m3h,'critical_one_way_path_km':critical,'screening_pressure_gradient_pa_m':pressure_gradient,'screening_local_loss_factor':local_loss,'terminal_dp_bar':terminal_dp,'screening_system_dp_bar':system_dp_bar,'maximum_screening_pump_lift_bar':float(dh_screen.get('maximum_circulation_pump_lift_bar',10.0)),'pump_lift_screen_pass':bool(system_dp_bar<=float(dh_screen.get('maximum_circulation_pump_lift_bar',10.0))),'full_peak_circulation_power_kw':full_power,'pump_arrangement':'3 identical VFD circulation pumps; 2 x 50% duty at peak + 1 standby','per_duty_pump_operating_kw':per_duty,'motor_nameplate_margin_fraction':margin,'selected_motor_kw_each':motor,'installed_pump_nameplate_kw':3*motor,'firm_nameplate_kw_with_one_unavailable':2*motor,'status':'documented supply boundary with synthetic hydraulic allocation; plant dispatch/nameplate heat export not inferred'})
 heat_sources=pd.DataFrame(source_rows); heat_sources.to_csv(OUT/'district_heating_sources_municipal.csv',index=False)
+# Preserve documented shared conversion assets for later municipality-scale
+# coupled studies. Availability-only mode records the common asset and its two
+# sector ports without changing either sector's present operating point.
+municipal_power_nodes=pd.read_csv(INTEG/'electricity_nodes.csv')
+shared_assets=pd.DataFrame(
+    build_shared_asset_interfaces(case,municipal_power_nodes,heat_sources)
+)
+shared_assets.to_csv(OUT/'shared_energy_assets_municipal.csv',index=False)
 # Execute the municipality-scale supply network in pandapipes.  The absolute
 # slack is a numerical reference only; release uses pressure-drop, velocity,
 # pressure-gradient and source-pump differential-pressure limits.
@@ -384,7 +439,7 @@ reach.to_csv(OUT/'district_heating_connectivity_audit.csv',index=False)
 # ---------- summary ----------
 summary=pd.DataFrame([
  {'sector':'Electricity','municipal_topology':'105 MV/LV sites; radial pandapower network accepted','demand_or_flow':'40.962 MW coincident peak; 156.851 GWh/a','source_or_pumps':'20-kV external-grid boundary; no generator invented','practical_rating':f"{electricity_capacity_total:.2f} MVA portfolio; Vmin {electricity_native_manifest['minimum_voltage_pu']:.3f} pu; max line/transformer loading {electricity_native_manifest['maximum_line_loading_percent']:.1f}/{electricity_native_manifest['maximum_transformer_loading_percent']:.1f}%", 'public_scale':'216.71 MVA; 319.4 km MV cable; 809.12 km LV cable'},
- {'sector':'Drinking water','municipal_topology':f"4 pressure zones; {water_manifest['main_length_km']:.1f}-km generated main network; EPANET accepted",'demand_or_flow':f'{qavg_total:.1f}/{qpeak_total:.1f} L/s average/peak total delivery','source_or_pumps':f'W1 waterworks plus explicit controlled zone boundaries; {water_installed_units} source pumps including standby','practical_rating':f"{water_installed_units} x {water_motor:.0f} kW motors; native pressure {water_manifest['peak_minimum_service_pressure_m']:.1f}-{water_manifest['average_maximum_service_pressure_m']:.1f} m; peak velocity {water_manifest['peak_maximum_velocity_m_s']:.2f} m/s",'public_scale':'5.6 million m3/a total delivery; 341 km mains'},
+ {'sector':'Drinking water','municipal_topology':f"4 pressure zones; {water_manifest['main_length_km']:.1f}-km generated main network; EPANET accepted",'demand_or_flow':f'{qavg_total:.1f}/{qpeak_total:.1f} L/s average/design total delivery; W 410 exact factor {water_peak_factor_exact:.2f}, applied {water_peak_factor:.2f}','source_or_pumps':f'W1 waterworks plus explicit controlled zone boundaries; {water_installed_units} source pumps including standby','practical_rating':f"{water_installed_units} x {water_motor:.0f} kW motors; native pressure {water_manifest['peak_minimum_service_pressure_m']:.1f}-{water_manifest['average_maximum_service_pressure_m']:.1f} m; peak velocity {water_manifest['peak_maximum_velocity_m_s']:.2f} m/s",'public_scale':f'5.6 million m3/a total delivery; approx. {water_operator_population:,} operator-served inhabitants; 341 km published mains'},
  {'sector':'Wastewater','municipal_topology':'6,179-manhole spatial layer plus accepted 815-catchment/13-station SWMM hydraulic layer','demand_or_flow':f"{wastewater_native_manifest['sanitary_inflow_m3_year']/1e6:.3f} million m3/a registered sanitary inflow; WWTP 19,000/80,000 m3/d dry/wet",'source_or_pumps':'13 wet wells, 13 active SWMM pump objects, 26 installed duty/standby pump units, 13 force mains + treatment works','practical_rating':f"{ww.selected_motor_kw.min():.0f}-{ww.selected_motor_kw.max():.0f} kW station motors; SWMM continuity {wastewater_native_manifest['continuity_error_percent']:.3f}%, flooding {wastewater_native_manifest['flooding_loss_percent']:.3f}%",'public_scale':'13 pumpworks; 236 km gravity sewers plus 13 km pressure mains; 9 million m3/a WWTP'},
  {'sector':'District heating','municipal_topology':'two documented injection boundaries linked by one source-reachable pandapipes-accepted network','demand_or_flow':f'{sel.peak_heat_mw.sum():.3f} MWth peak; 87.5 GWh/a','source_or_pumps':'H1 primary GKS + H2 documented peak/backup injection; source-level duty/assist/standby circulation screening','practical_rating':f"{heat_native_manifest['maximum_native_velocity_m_s']:.2f} m/s; {heat_native_manifest['maximum_catalogue_pressure_gradient_pa_m']:.1f} Pa/m; {heat_native_manifest['maximum_source_screening_differential_pressure_bar']:.2f} bar critical dp; {100*heat_native_manifest['annual_heat_loss_fraction']:.1f}% heat loss",'public_scale':f'{target_len:.1f} km network; 87.5 GWh/a; 841 contract equivalents'}
 ])

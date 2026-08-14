@@ -1,20 +1,26 @@
 from pathlib import Path
 import json
 import pandas as pd
+import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'outputs'/'municipal_scale_v2.5.0'
 
 def test_waterworks_is_municipal_scale():
     w=pd.read_csv(OUT/'drinking_water_station_municipal.csv').iloc[0]
+    b=pd.read_csv(ROOT/'outputs'/'building_sector_demands.csv')
     case=json.loads((ROOT/'cases'/'schweinfurt.json').read_text(encoding='utf-8'))
     peak_factor=float(case['demand_model']['drinking_water_peak_factor'])
     expected_peak=float(w.average_total_flow_lps)*peak_factor
+    registered=b[b.water_connected.astype(bool)]
+    average_registered_lps=float(registered.water_m3_year.sum())/(365*86400)*1000
+    ledger_presizing_factor=float(registered.water_service_peak_lps.sum())/average_registered_lps
     assert int(w.installed_units)==4
     assert float(w.selected_motor_kw)==315.0
     assert float(w.firm_nameplate_kw_with_one_unavailable)==945.0
     assert 170 <= float(w.average_total_flow_lps) <= 185
     assert abs(float(w.design_peak_flow_lps)-expected_peak) / expected_peak < 1e-3
+    assert ledger_presizing_factor == pytest.approx(peak_factor, abs=1e-12)
 
 def test_wastewater_uses_13_duty_standby_pumpworks():
     s=pd.read_csv(OUT/'wastewater_pump_stations_municipal.csv')
@@ -38,6 +44,15 @@ def test_municipal_water_is_natively_accepted_after_logged_bounded_repair():
     assert m['average_maximum_service_pressure_m'] <= 70.0 + 1e-6
     assert m['peak_maximum_velocity_m_s'] <= 2.0
     assert m['minimum_delivered_demand_fraction'] >= 0.999
+    assert m['dvgw_w410']['operator_served_population_approx'] == 100_000
+    assert m['dvgw_w410']['exact_hourly_peak_factor'] == 2.610228786260013
+    assert m['dvgw_w410']['applied_peak_multiplier'] == 2.62
+    assert m['dvgw_w410']['pipe_presizing_multiplier'] == pytest.approx(2.62, abs=1e-12)
+    assert m['dvgw_w410']['factor_consistency_verified']
+    assert m['dvgw_w410']['reference_urls']['operator_service_area'] == 'https://www.stadtwerke-sw.de/wasser'
+    assert m['repair_actions'] == 28
+    assert int(repairs.repair_action.str.startswith('upsize').sum()) == 24
+    assert int(repairs.repair_action.str.startswith('adjust').sum()) == 4
     assert len(repairs)==m['repair_actions']
     assert repairs.threshold_unchanged.astype(bool).all()
 
@@ -104,7 +119,7 @@ def test_municipal_electricity_is_natively_accepted_after_ac_power_flow():
 
 def test_released_service_resolved_interface_contract_is_complete():
     service=ROOT/'outputs'/'integrated_service_resolved'
-    interfaces=pd.read_csv(service/'coupling_interfaces.csv')
+    interfaces=pd.read_csv(service/'coupling_interfaces.csv',low_memory=False)
     states=pd.read_csv(service/'coupled_facility_interface_states.csv')
     ledger=pd.read_csv(service/'common_building_service_ledger.csv')
     assert len(ledger)==26434

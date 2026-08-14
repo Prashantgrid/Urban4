@@ -1797,7 +1797,7 @@ def generate_district_heat(
             for plant in nodes[nodes.node_type.eq("plant")].itertuples():
                 ppipe.create_ext_grid(
                     network, mapping[plant.node_id], p_bar=25.0,
-                    t_k=363.15, type="pt",
+                    t_k=363.15, type="pt", name=str(plant.node_id),
                 )
             for row in candidate.itertuples():
                 ppipe.create_pipe_from_parameters(

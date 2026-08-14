@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "urban4"
-version = "2.8.0"
+version = "2.9.0"
 description = "Shared-ledger generation and coupled simulation of electricity, water, wastewater, and district-heating networks"
 readme = "README.md"
 requires-python = ">=3.10"

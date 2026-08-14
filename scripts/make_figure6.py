@@ -109,7 +109,7 @@ def _save_all(fig: plt.Figure) -> None:
 def _draw_high_visibility_facilities(ax: plt.Axes, frames: dict) -> None:
     """Draw and identify the source/facility objects reported in the rating tables."""
     inventory = pd.read_csv(
-        PROJECT / "outputs" / "publication_ready_v1.5.3" / "facility_map_ids.csv"
+        PROJECT / "outputs" / "verified_inventory_v1.5.3" / "facility_map_ids.csv"
     )
     for row in inventory.itertuples():
         style = FACILITY_STYLE[row.sector]

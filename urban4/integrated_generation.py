@@ -122,7 +122,7 @@ def run_integrated_generation() -> dict[str, Any]:
     interfaces = write_coupling_interfaces(
         OUTPUT, power_nodes, water_nodes, water_links, water_services, water_solver,
         sewer_nodes, sewer_links, sewer_services,
-        heat_nodes, heat_corridors, heat_solver,
+        heat_nodes, heat_corridors, heat_solver, config,
     )
     shared_corridors = write_shared_corridor_ledger(OUTPUT)
     screening = {
@@ -154,6 +154,9 @@ def run_integrated_generation() -> dict[str, Any]:
             "coupling_interfaces": len(interfaces),
             "electrically_driven_facilities": int(
                 interfaces.relation.eq("electrically_driven_facility").sum()
+            ),
+            "shared_conversion_assets": int(
+                interfaces.relation.eq("shared_conversion_asset").sum()
             ),
             "shared_route_segments": int(shared_corridors.is_shared_corridor.sum()),
         },

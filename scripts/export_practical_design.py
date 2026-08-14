@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT))
 
 from urban4.practical_sizing import export_practical_design_outputs
 
-OUTPUT = ROOT / "outputs" / "publication_ready_v1.6.0"
+OUTPUT = ROOT / "outputs" / "verified_design_v1.6.0"
 
 if __name__ == "__main__":
     result = export_practical_design_outputs(ROOT, OUTPUT)
