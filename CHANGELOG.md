@@ -14,7 +14,7 @@
   pump flow rises 18.1%, pump power rises 16.0%, and the first pressure drop is
   11.7 m.
 - Added the equation audit, aggregate Topotherm routing comparison, and
-  verification summary used for the submission.
+  verification summary for the release.
 - Kept the retained compressed evidence snapshots usable in a clean checkout
   and made direct script entry points import the local package consistently.
 - Made the repair-audit test validate the allowed applied repair sequence
@@ -23,7 +23,7 @@
 
 ## v2.7.0, 11 August 2026
 
-- Prepared the publication repository from the complete v2.7.0 study archive.
+- Prepared the source repository from the complete v2.7.0 study archive.
 - Included the common-evidence generator, four sector modules, interface
   registry, coupled benchmark, and PL044 pandapower-WNTR contingency.
 - Included five retained OpenStreetMap snapshots and the Schweinfurt case

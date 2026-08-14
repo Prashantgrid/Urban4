@@ -33,7 +33,7 @@ Urban4/
 ├── data/raw/               # Retained OpenStreetMap evidence snapshots
 ├── scripts/                # Reproduction, audit, export, and figure scripts
 ├── tests/                  # Unit, integration, and result-consistency tests
-├── reference_results/      # Compact records supporting the paper
+├── reference_results/      # Compact verification records
 ├── docs/                   # Method and reproducibility documentation
 ├── run_all.py              # Complete code-and-results workflow
 ├── pyproject.toml
@@ -43,7 +43,7 @@ Urban4/
 ## Installation
 
 Urban4 v2.8.0 was verified with Python 3.12. Create a clean environment and
-install the exact direct dependencies used for the publication run:
+install the exact direct dependencies used for the verified release run:
 
 ```bash
 python -m venv .venv
@@ -63,26 +63,26 @@ On Windows PowerShell, activate the environment with:
 From the repository root, run:
 
 ```bash
-python run_all.py --skip-paper
+python run_all.py
 ```
 
 This command regenerates the topology cases, native-solver models, interface
 records, coupled benchmark, disturbance cases, figures, audits, tests, and
-checksums. Generated files are written to `outputs/`, `figures/`, and
-`manuscript/`. These directories are intentionally excluded from routine Git
-history because they are reproducible and substantially larger than the source.
+checksums. Generated files are written to `outputs/` and `figures/`. These directories are
+intentionally excluded from routine Git history because they are reproducible
+and substantially larger than the source.
 
 To refresh the retained OpenStreetMap snapshot before running the study, use:
 
 ```bash
-python run_all.py --refresh-osm --skip-paper
+python run_all.py --refresh-osm
 ```
 
 Refreshing the snapshot changes the evidence vintage and therefore does not
-reproduce the publication release. The retained files in `data/raw/` should be
+reproduce the verified release. The retained files in `data/raw/` should be
 used for exact comparison with v2.8.0.
 
-## Verified publication result
+## Verified release result
 
 The v2.8.0 verification reports 70 passed tests and no failures. It uses the
 audited building-demand equations, a 2.62 drinking-water peak factor, the
@@ -101,8 +101,8 @@ See [the verification record](docs/VERIFICATION_v2.8.0.md), the
 ## Evidence and data
 
 The retained geospatial snapshots were retrieved from OpenStreetMap through
-the Overpass API on 27 July 2026. They are included so the published run does
-not depend on a changing live map. Public utility totals and source references
+the Overpass API on 27 July 2026. They are included so the retained release run does not depend on a changing
+live map. Public utility totals and source references
 are declared in `cases/schweinfurt.json`.
 
 The code contains no confidential utility geometry, private customer records,
@@ -117,10 +117,8 @@ available. They are not required for the retained-snapshot reproduction. See
 
 ## Citation
 
-If you use Urban4 or its generated benchmark models, cite the accompanying
-manuscript and this software release. Machine-readable citation metadata are
-provided in [`CITATION.cff`](CITATION.cff). The archival DOI will be added to
-the citation metadata when the publication release is deposited.
+If you use Urban4 or its generated benchmark models, cite this software release.
+Machine-readable citation metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ## Licences
 

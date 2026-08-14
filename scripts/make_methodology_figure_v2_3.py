@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Create the final Urban4 three-phase methodology figure.
+"""Create the Urban4 three-phase methodology figure.
 
-The figure intentionally communicates only the publication-level workflow.
-Detailed bounded repair ordering remains implementation documentation rather
-than a manuscript contribution.
+The figure summarizes the reproducible workflow. Detailed bounded repair
+ordering remains in the implementation documentation.
 """
 from pathlib import Path
 import matplotlib as mpl
@@ -181,7 +180,7 @@ def main():
 
     FIG.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf","svg","png"):
-        fig.savefig(FIG/f"Fig01_Urban4_Methodology_Journal.{ext}", dpi=320,
+        fig.savefig(FIG/f"Fig01_Urban4_Methodology.{ext}", dpi=320,
                     bbox_inches="tight", pad_inches=0.03)
     plt.close(fig)
 

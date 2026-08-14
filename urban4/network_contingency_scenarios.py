@@ -18,7 +18,7 @@ Two levels are provided deliberately:
    returned pump duty through pandapower.  No local service-voltage multiplier
    is used.
 
-The v2.7 reviewer archive includes both the pre-screen and an executed PL044
+The v2.7 verification set includes both the pre-screen and an executed PL044
 outage.  PL044 is selected as the largest of the eight source-cut candidates
 identified for PB046.  It is therefore a deliberately severe but bounded
 upstream-branch event, not a probability-weighted reliability estimate.
@@ -223,7 +223,7 @@ def run_network_originating_water_event(
     if (outaged_line is None) == (ext_grid_vm_pu is None):
         raise ValueError("Specify exactly one of outaged_line or ext_grid_vm_pu")
 
-    # Imports are deliberately lazy so the reviewer archive remains inspectable
+    # Imports are deliberately lazy so the release remains inspectable
     # in environments without the native simulation packages.
     import pandapower  # noqa: F401  # pragma: no cover
     import wntr  # noqa: F401  # pragma: no cover

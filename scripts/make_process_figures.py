@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the two spatial process figures used by the Urban4 manuscript.
+"""Build the Urban4 spatial process figures.
 
 The script visualizes existing accepted CSV outputs; it does not regenerate or
 re-solve any infrastructure model.  ``--data-root`` is the root of an Urban4
@@ -40,7 +40,7 @@ COLORS = {
     "road": "#D5D8D9",
     "ink": "#18212B",
     "muted": "#66717E",
-    "paper": "#FBFBF9",
+    "background": "#FBFBF9",
     "green": "#2F7D59",
 }
 
@@ -60,7 +60,7 @@ mpl.rcParams.update(
         "axes.titlesize": 9.2,
         "axes.edgecolor": "#AEB5BA",
         "axes.linewidth": 0.65,
-        "axes.facecolor": COLORS["paper"],
+        "axes.facecolor": COLORS["background"],
         "figure.facecolor": "white",
         "savefig.facecolor": "white",
         "text.color": COLORS["ink"],
@@ -489,7 +489,7 @@ def figure_clusters_to_topologies_legacy(data_root: Path, output: Path) -> None:
     ].copy()
     fig, axes = plt.subplots(2, 3, figsize=(7.15, 4.50))
     # Figure caption carries the global explanation; equal panel rectangles use
-    # the available journal-column width without a duplicate in-figure heading.
+    # the available output width without a duplicate in-figure heading.
     plt.subplots_adjust(left=0.027, right=0.992, bottom=0.105, top=0.950, wspace=0.095, hspace=0.235)
 
     ax = axes[0, 0]

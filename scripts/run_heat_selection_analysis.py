@@ -201,7 +201,7 @@ def main() -> None:
             "demand_ranked": "largest annual heat candidates within suitable territories",
             "route_aware": "annual heat prize divided by newly added corridor plus service length, with quotas allocated across suitable cells",
         },
-        "native_solver_limitation": "pandapipes is not installed in this execution environment; topology, catalogue velocity/gradient, and heat-loss diagnostics were regenerated, while the paper's previously accepted coupled case remains the native-solver baseline until the revised candidate is rerun in the released environment",
+        "native_solver_limitation": "pandapipes is not installed in this execution environment; topology, catalogue velocity/gradient, and heat-loss diagnostics were regenerated, while the retained coupled case remains the native-solver baseline until the revised candidate is rerun in the released environment",
         "files": [
             "heat_selection_threshold_sweep.csv",
             "heat_selection_policy_comparison.csv",

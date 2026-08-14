@@ -18,7 +18,6 @@ dist/
 # Generated Urban4 artifacts
 /outputs/
 /figures/
-/manuscript/
 /output/
 /temp.bin
 /temp.inp
