@@ -43,7 +43,7 @@ is claimed.
 
 ## Archived reproduced coupling baseline
 
-`outputs/publication_ready_v1.5.3/` and `outputs/integrated_service_resolved/` preserve the earlier reproduced 27-interface coupled baseline. Its H1-H14 heat boundaries are retained only so that the published numerical coupling proof remains reproducible. They are not the current municipality-scale interpretation of Schweinfurt's district-heating supply architecture.
+`outputs/verified_inventory_v1.5.3/` and `outputs/integrated_service_resolved/` preserve the earlier reproduced 27-interface coupled baseline. Its H1-H14 heat boundaries are retained only so that the verified numerical coupling result remains reproducible. They are not the current municipality-scale interpretation of Schweinfurt's district-heating supply architecture.
 
 ## Terminal contract
 
@@ -73,6 +73,6 @@ The merge preserves upstream LV identities and replaces independent pylovo slack
 
 ## Figures and audits
 
-Every publication figure is available in `figures/` as PDF and SVG, with PNG previews. Figure 3 is reproducible with `scripts/make_process_figures.py`; its graph/coverage audit is `outputs/figure3_topology_audit.json` and `FIGURE3_TOPOLOGY_AUDIT.md`.
+Every generated topology figure is available in `figures/` as PDF and SVG, with PNG previews. Figure 3 is reproducible with `scripts/make_process_figures.py`; its graph/coverage audit is `outputs/figure3_topology_audit.json` and `FIGURE3_TOPOLOGY_AUDIT.md`.
 
 Exact shared road-segment reuse denotes synthetic co-location only; it is not evidence of an installed common trench.

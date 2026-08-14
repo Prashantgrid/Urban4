@@ -5,7 +5,7 @@ This case adapter retains the reproducible July 2026 Schweinfurt evidence
 snapshot.  The city-independent four-sector orchestration, district-heating
 module, shared-building ledger and normal-condition acceptance tests live in
 ``urban4.framework``.  No hazard, outage or resilience scenario is executed by
-the publication workflow.
+the reproducible release workflow.
 """
 
 from __future__ import annotations

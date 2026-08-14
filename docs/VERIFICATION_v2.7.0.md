@@ -1,4 +1,4 @@
-# Urban4 IEEE package v2.7.0 verification
+# Urban4 v2.7.0 verification
 
 - Full native-solver test suite: **70 passed, 0 skipped, 0 failed**.
 - Frozen Phase-I evidence table: **26,434 rows**, including **22,641
@@ -43,13 +43,3 @@ relative archive paths and contain no machine-specific absolute paths.
 The wastewater hydraulic layer contains 13 active SWMM pump objects. The
 equipment inventory independently records one duty and one standby unit per
 station, for 26 installed physical pump units.
-
-## Manuscript preflight
-
-- IEEE `IEEEtran` journal manuscript compiles without unresolved citations,
-  unresolved cross-references, overfull boxes, or LaTeX errors.
-- Output: 18 US-Letter pages in genuine IEEE two-column format, PDF 1.5, all
-  fonts embedded.
-- Figures and all 18 rendered pages were visually inspected.
-- Poppler reports embedded-font type mismatch warnings originating from mixed
-  embedded figure fonts; run the target journal's PDF checker before upload.

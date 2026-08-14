@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "outputs" / "publication_ready_v1.5.3"
+OUT = ROOT / "outputs" / "verified_inventory_v1.5.3"
 
 
 def test_map_ids_are_unique_and_complete() -> None:

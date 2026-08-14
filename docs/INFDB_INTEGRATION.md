@@ -51,5 +51,4 @@ licenses; reproducing Urban4 from an already exported contract does not.
 
 The currently packaged Schweinfurt run selected `retained_osm_snapshot` because
 no InfDB PostgreSQL export was supplied. The adapter and pylovo merge are tested
-and executable, but the paper must not describe that fallback run as an InfDB
-case. `evidence_backend_status.json` records this distinction.
+and executable, but that fallback run must not be identified as an InfDB case. `evidence_backend_status.json` records this distinction.

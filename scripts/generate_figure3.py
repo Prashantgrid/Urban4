@@ -3,8 +3,8 @@
 
 This entry point reads existing accepted CSV/native-model exports.  It neither
 regenerates topologies nor reruns any infrastructure solver.  The plotting
-implementation is kept in ``make_process_figures.py`` so manuscript and
-standalone renders use exactly the same code.
+implementation is kept in ``make_process_figures.py`` so all renders use
+exactly the same code.
 """
 
 from __future__ import annotations

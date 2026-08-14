@@ -328,7 +328,7 @@ def export_practical_design_outputs(code_root: Path, output_dir: Path) -> dict[s
     heat_services = pd.read_csv(integrated / "district_heating_service_connections.csv")
     heat_sources = pd.read_csv(integrated / "district_heating_sources.csv")
     published_heat = pd.read_csv(
-        code_root / "outputs" / "publication_ready_v1.5.3" / "heat_source_ratings.csv"
+        code_root / "outputs" / "verified_inventory_v1.5.3" / "heat_source_ratings.csv"
     )
 
     # Electricity audit.

@@ -2,7 +2,7 @@
 
 Date: 12 August 2026
 
-Scope: every displayed equation in the methodology, the equations written in the interface table, and each numerical coefficient that changes demand or component sizing. The manuscript was checked against the corrected Python implementation and the regenerated results.
+Scope: every displayed equation in the methodology, the equations written in the interface table, and each numerical coefficient that changes demand or component sizing. The audit compares these relations with the corrected Python implementation and regenerated results.
 
 ## Decision rule
 
@@ -63,7 +63,7 @@ The full workflow was regenerated. All native sector checks, both coupled checks
 | E26 | Energized state enables the documented speed command; disconnected state sets speed to zero | Reverse electrical-to-pump interface | Explicit binary availability contract; no invented voltage-speed curve | Pass for the stated quasi-steady interface | Manufacturer undervoltage, protection, and controller curves are still needed for equipment-specific dynamic claims. |
 | E27 | \(P^{k+1}=(1-\omega)P^k+\omega\widehat P^k\) | Coupling convergence | Standard under-relaxation form; co-simulation literature supports relaxation for stability | Pass | The corrected service-resolved closure converged in two iterations and the reduced stress-test model in eight, both with \(\omega=0.60\). The unused fallback values are numerical controls, not physical parameters. |
 
-## Consequences for the corrected paper
+## Consequences for the corrected model
 
 The code, topologies, component choices, native-solver outputs, interfaces, event tests, tables, and figures were regenerated. The main changes are:
 
@@ -79,7 +79,7 @@ K-means has four distinct roles in the code. It proposes electricity groups; it 
 ## Primary or authoritative sources checked
 
 - Kerber thesis: https://mediatum.ub.tum.de/998003
-- pyLOVO paper: https://doi.org/10.1016/j.segan.2024.101617
+- pyLOVO method reference: https://doi.org/10.1016/j.segan.2024.101617
 - DIN 18015-1: https://doi.org/10.31030/3143895
 - DVGW W 410: https://www.dvgw-regelwerk.de/technische-regel/w-410/51a6b5
 - Ontario drinking-water design guideline: https://www.ontario.ca/document/design-guidelines-drinking-water-systems/general-design-consideration-and-source-development
@@ -90,6 +90,6 @@ K-means has four distinct roles in the code. It proposes electricity groups; it 
 - Schweinfurt treatment-plant figures: https://www.schweinfurt.de/rathaus-politik/stadtentwaesserung/anlage1/zahlen--fakten/index.html
 - Sicklinger et al. co-simulation method: https://doi.org/10.1002/nme.4637
 
-## Submission decision
+## Audit status
 
-The corrected methodology and rerun are internally consistent. The paper can report these values as results of a synthetic planning model, provided it keeps the stated limits: the networks are not utility asset records, the sanitary case is an upper bound without rainfall infiltration, the heat-loss equation is a catalogue screening calculation, and real design still needs measured demands, pump curves, service boundaries, protection data, and operating records.
+The corrected methodology and rerun are internally consistent within the declared limits. The networks are not utility asset records; the sanitary case is an upper bound without rainfall infiltration; and the heat-loss equation is a catalogue screening calculation. Detailed design still requires measured demands, pump curves, service boundaries, protection data, and operating records.

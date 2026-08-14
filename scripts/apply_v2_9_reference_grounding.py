@@ -57,8 +57,8 @@ def main() -> None:
         "Above the declared availability/recovery threshold, an energized variable-speed drive follows the explicit "
         "speed command; normal terminal-voltage variation does not create an invented speed droop."
     )
-    drive["publication_scope"] = (
-        "The manuscript uses binary electrical availability for the feeder-outage event. The archived service-voltage "
+    drive["validation_scope"] = (
+        "The feeder-outage result uses binary electrical availability. The archived service-voltage 
         "depression demonstration is not used as evidence for an equipment-specific undervoltage response."
     )
 
