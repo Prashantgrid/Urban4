@@ -2000,7 +2000,7 @@ def validate_swmm_file() -> dict[str, Any]:
         "missing_sections": missing,
         "nodes": node_count,
         "links": link_count,
-        "note": "Forty-eight-hour normal dry-weather hydraulic-stability run; rainfall/runoff is outside this paper",
+        "note": "Forty-eight-hour normal dry-weather hydraulic-stability run; rainfall/runoff is outside this model scope",
         "routing_duration_hours": 48,
     }
     if missing:

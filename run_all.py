@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild Urban4 topology cases, interfaces, figures, tests, and manuscript."""
+"""Rebuild Urban4 topology cases, interfaces, figures, and tests."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ import argparse
 import csv
 import hashlib
 import os
-import shutil
 import subprocess
 import sys
 import time
@@ -53,7 +52,6 @@ def main() -> None:
         "--skip-service-resolved", action="store_true",
         help="Reuse the accepted building/service-resolved integrated outputs",
     )
-    parser.add_argument("--skip-paper", action="store_true", help="Generate models and figures without compiling LaTeX")
     args = parser.parse_args()
 
     environment = os.environ.copy()
@@ -108,17 +106,15 @@ def main() -> None:
         ],
         env=environment,
     )
-    # The generated manuscript tables depend on the independently executable
+    # The reproducibility checks depend on the independently executable
     # terrain/grade sensitivity.  Keep it in the clean-build path so a fresh
     # checkout cannot fail late with missing sensitivity outputs.
     _run([sys.executable, "-m", "urban4.sensitivity"], env=environment)
     _run([sys.executable, "-m", "urban4.heat_sensitivity"], env=environment)
-    # The publication figures use the threshold and policy sweeps in addition
+    # The generated figures use the threshold and policy sweeps in addition
     # to the native heat sensitivity.  Regenerate them here so a fresh checkout
     # does not depend on tables retained from an earlier release bundle.
     _run([sys.executable, "scripts/run_heat_selection_analysis.py"], env=environment)
-    _run([sys.executable, "scripts/write_results_tex.py"], env=environment)
-    _run([sys.executable, "scripts/write_submission_audits.py"], env=environment)
     # Regenerate the compact v1.5.x inventory tables from the current
     # service-resolved interface states.  Older bundles carried these files as
     # prebuilt outputs, which made a clean checkout fail later in the practical
@@ -139,39 +135,6 @@ def main() -> None:
     _run([sys.executable, "-m", "pytest", "-q"], env=environment)
     _write_output_checksums()
 
-    if not args.skip_paper:
-        # In the submission bundle the journal source is a sibling of this
-        # reviewer archive.  Keep paper compilation separate from generated
-        # result fragments, which remain under ``code_and_results/manuscript``.
-        paper_dir = PROJECT.parent / "manuscript"
-        paper_tex = paper_dir / "Urban4_IEEE_Submission_v2.7.0.tex"
-        if not paper_tex.exists():
-            raise FileNotFoundError(
-                f"Journal source not found at {paper_tex}; use --skip-paper "
-                "when running the code/results archive on its own."
-            )
-        output = PROJECT / "output" / "pdf"
-        output.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(
-            PROJECT / "figures" / "fig07_schweinfurt_municipal_scale_v2_5_0.pdf",
-            paper_dir / "figures" / "Fig07_Schweinfurt_Municipal_Small_Multiples.pdf",
-        )
-        shutil.copy2(
-            PROJECT / "figures" / "Fig09_Electrical_Supply_Disturbance.pdf",
-            paper_dir / "Fig09_Electrical_Supply_Disturbance.pdf",
-        )
-        latex_command = [
-            "pdflatex", "-interaction=nonstopmode", "-halt-on-error",
-            paper_tex.name,
-        ]
-        _run(latex_command, cwd=paper_dir, env=environment)
-        _run(["bibtex", paper_tex.stem], cwd=paper_dir, env=environment)
-        _run(latex_command, cwd=paper_dir, env=environment)
-        _run(latex_command, cwd=paper_dir, env=environment)
-        shutil.copy2(
-            paper_tex.with_suffix(".pdf"),
-            output / "Urban4_IEEE_Submission_v2.7.0.pdf",
-        )
     print(f"Complete workflow finished in {time.perf_counter() - start:.1f} s", flush=True)
 
 

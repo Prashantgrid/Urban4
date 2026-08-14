@@ -29,7 +29,7 @@ heating-route comparison with Topotherm 0.6.0 is stored in
 `reference_results/topotherm_comparison/`. That comparison checks route
 construction only; it is not an installed-network validation. Granular
 municipality node, edge, and demand files are intentionally not added to this
-publication pull request.
+source release.
 
 ## Stress tests
 

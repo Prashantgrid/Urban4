@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: >-
-  If you use Urban4 or its generated benchmark models, please cite the
-  accompanying manuscript and this software release.
+  If you use Urban4 or its generated benchmark models, please cite this
+  software release.
 title: "Urban4: Reproducible Generation and Coupling of Urban Infrastructure Networks"
 type: software
-version: 2.8.0
-date-released: 2026-08-13
+version: 2.9.0
+date-released: 2026-08-14
 authors:
   - family-names: Pant
     given-names: Prashant

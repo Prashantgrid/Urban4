@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create publication figures from the generated four-sector benchmark."""
+"""Create benchmark figures from the generated four-sector model."""
 
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ COLORS = {
     "road": "#D8D7D4",
     "ink": "#18212B",
     "muted": "#66717E",
-    "paper": "#FAFAF8",
+    "background": "#FAFAF8",
 }
 
 LABELS = {
@@ -66,7 +66,7 @@ mpl.rcParams.update(
         "axes.labelsize": 10.4,
         "axes.edgecolor": "#87919B",
         "axes.linewidth": 0.7,
-        "axes.facecolor": COLORS["paper"],
+        "axes.facecolor": COLORS["background"],
         "figure.facecolor": "white",
         "savefig.facecolor": "white",
         "legend.frameon": False,
@@ -128,7 +128,7 @@ def _load_frames() -> dict[str, pd.DataFrame]:
         "metrics": pd.read_csv(OUT / "morphology_metrics.csv"),
         "inventory": inventory,
         "anchors": pd.read_csv(OUT / "aggregate_anchor_checks.csv"),
-        "interfaces": pd.read_csv(service / "coupling_interfaces.csv"),
+        "interfaces": pd.read_csv(service / "coupling_interfaces.csv", low_memory=False),
         "corridors": pd.read_csv(service / "shared_corridor_ledger.csv"),
     }
 
@@ -1188,7 +1188,7 @@ def main() -> None:
     figure_electrical_supply_disturbance()
     figure_experiment_decomposition()
     figure_verification(frames)
-    print(f"Wrote 13 publication figures to {FIG}")
+    print(f"Wrote 13 benchmark figures to {FIG}")
 
 
 if __name__ == "__main__":

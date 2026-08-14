@@ -15,7 +15,7 @@ import pandas as pd
 
 PROJECT = Path(__file__).resolve().parents[1]
 SERVICE = PROJECT / "outputs" / "integrated_service_resolved"
-OUT = PROJECT / "outputs" / "publication_ready_v1.5.3"
+OUT = PROJECT / "outputs" / "verified_inventory_v1.5.3"
 OUT.mkdir(parents=True, exist_ok=True)
 
 cfg = json.loads((PROJECT / "cases" / "schweinfurt.json").read_text())
