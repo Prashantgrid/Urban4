@@ -326,6 +326,33 @@ def _union_tree(
     )
 
 
+def _lv_local_coincident_peak_kw(frame: pd.DataFrame) -> float:
+    """Return a local LV design peak without reusing the citywide coincidence share.
+
+    Residential customers use the same Kerber/DIN service relation as the
+    building ledger, but the household count is aggregated over the local
+    feeder or transformer area before the coincidence factor is applied.
+    Non-residential customers retain their allocated coincident contribution
+    because no local class-specific coincidence measurements are available.
+    """
+    if frame.empty:
+        return 0.0
+    residential = frame[frame["service_class"].eq("residential")]
+    household_count = float(residential["household_count"].sum())
+    residential_kw = 0.0
+    if household_count > 0.0:
+        base_kw = float(base.DEMAND_MODEL["residential_service_base_kw"])
+        residential_kw = (
+            base_kw
+            * household_count
+            * (0.07 + 0.93 * household_count ** (-0.75))
+        )
+    nonresidential_kw = float(
+        frame.loc[~frame["service_class"].eq("residential"), "electricity_peak_kw"].sum()
+    )
+    return residential_kw + nonresidential_kw
+
+
 def _weighted_centres(frame: pd.DataFrame, count: int, seed: int) -> np.ndarray:
     xy = np.asarray([base.xy_km((row.road_lon, row.road_lat)) for row in frame.itertuples()])
     if count <= 1:
@@ -416,7 +443,7 @@ def _transformer_sites(
         lv["transformer_route_km"] = route_distance
         violations: list[tuple[float, int]] = []
         for site_index, group in lv.groupby("site_index"):
-            peak_mw = float(group["electricity_peak_kw"].sum() / 1000.0)
+            peak_mw = _lv_local_coincident_peak_kw(group) / 1000.0
             overload = peak_mw / normal_capacity_mw
             too_many = len(group) / maximum_customers_per_site
             too_far = float(group["transformer_route_km"].max()) / maximum_radius_km
@@ -444,7 +471,7 @@ def _transformer_sites(
         lv["transformer_route_km"] = route_distance
         violations = []
         for site_index, group in lv.groupby("site_index"):
-            peak_mw = float(group.electricity_peak_kw.sum() / 1000.0)
+            peak_mw = _lv_local_coincident_peak_kw(group) / 1000.0
             score = max(
                 peak_mw / normal_capacity_mw,
                 len(group) / maximum_customers_per_site,
@@ -628,8 +655,9 @@ def generate_electricity(
     lv_line_counter = 1
     for site_index, site in enumerate(sites):
         group = lv[lv["site_index"].eq(site_index)].copy().reset_index(drop=True)
-        assigned_peak_mw = float(group["electricity_peak_kw"].sum() / 1000.0)
-        required_mva = assigned_peak_mw / (0.80 * 0.96)
+        assigned_system_peak_mw = float(group["electricity_peak_kw"].sum() / 1000.0)
+        assigned_design_peak_mw = _lv_local_coincident_peak_kw(group) / 1000.0
+        required_mva = assigned_design_peak_mw / (0.80 * 0.96)
         rating = next((value for value in TRANSFORMER_MVA if value >= required_mva), TRANSFORMER_MVA[-1])
         units = max(1, int(math.ceil(required_mva / TRANSFORMER_MVA[-1])))
         unit_rating = rating if units == 1 else TRANSFORMER_MVA[-1]
@@ -645,7 +673,10 @@ def generate_electricity(
         transformer_rows.append({
             "transformer_id": transformer_id, "hv_bus": mv_node_id[site], "lv_bus": lv_root,
             "unit_count": units, "unit_rating_mva": unit_rating, "sn_mva": portfolio_mva,
-            "assigned_peak_mw": assigned_peak_mw, "customer_count": len(group),
+            "assigned_peak_mw": assigned_design_peak_mw,
+            "assigned_design_peak_mw": assigned_design_peak_mw,
+            "assigned_system_peak_mw": assigned_system_peak_mw,
+            "customer_count": len(group),
             "maximum_customer_route_km": float(group["transformer_route_km"].max()),
             "lon": site[0], "lat": site[1],
         })
@@ -678,17 +709,38 @@ def generate_electricity(
                 })
                 lv_junction_counter += 1
             parent = {child: ancestor for ancestor, child in nx.bfs_edges(feeder_tree, site)}
-            direct = {node: 0.0 for node in feeder_tree}
+            # Size each LV branch from the coincidence of the households that
+            # are actually downstream of that branch, not from a spatial share
+            # of the citywide 41-MW simultaneous peak.
+            direct_households = {node: 0.0 for node in feeder_tree}
+            direct_nonres_kw = {node: 0.0 for node in feeder_tree}
+            direct_system_kw = {node: 0.0 for node in feeder_tree}
             for row in feeder_group.itertuples():
-                direct[row.road_node] += float(row.electricity_peak_kw / 1000.0)
-            subtree = dict(direct)
+                direct_system_kw[row.road_node] += float(row.electricity_peak_kw)
+                if row.service_class == "residential":
+                    direct_households[row.road_node] += float(row.household_count)
+                else:
+                    direct_nonres_kw[row.road_node] += float(row.electricity_peak_kw)
+            subtree_households = dict(direct_households)
+            subtree_nonres_kw = dict(direct_nonres_kw)
+            subtree_system_kw = dict(direct_system_kw)
             for node in reversed(list(nx.bfs_tree(feeder_tree, site).nodes)):
                 if node != site:
-                    subtree[parent[node]] += subtree[node]
+                    subtree_households[parent[node]] += subtree_households[node]
+                    subtree_nonres_kw[parent[node]] += subtree_nonres_kw[node]
+                    subtree_system_kw[parent[node]] += subtree_system_kw[node]
             longest = max(nx.single_source_dijkstra_path_length(feeder_tree, site, weight="length_km").values(), default=0.001)
             for child, ancestor in parent.items():
                 data = feeder_tree[ancestor][child]
-                power = max(subtree[child], 0.0005)
+                n_households = subtree_households[child]
+                residential_kw = (
+                    float(base.DEMAND_MODEL["residential_service_base_kw"])
+                    * n_households
+                    * (0.07 + 0.93 * n_households ** (-0.75))
+                    if n_households > 0.0 else 0.0
+                )
+                branch_design_kw = residential_kw + subtree_nonres_kw[child]
+                power = max(branch_design_kw / 1000.0, 0.0005)
                 current = power / (math.sqrt(3.0) * 0.4 * 0.96)
                 drop_budget = max(0.003, 0.035 * float(data["length_km"]) / max(longest, 0.001))
                 size, ampacity, resistance, parallel, drop = _choose_cable(
@@ -700,7 +752,10 @@ def generate_electricity(
                     "feeder_id": feeder_id, "length_km": float(data["length_km"]),
                     "cable_size_mm2": size, "parallel_circuits": parallel,
                     "r_ohm_per_km": resistance, "x_ohm_per_km": 0.08, "max_i_ka": ampacity,
-                    "normally_open": False, "design_power_mw": power, "design_current_ka": current,
+                    "normally_open": False, "design_power_mw": power,
+                    "system_peak_power_mw": subtree_system_kw[child] / 1000.0,
+                    "downstream_households": int(round(subtree_households[child])),
+                    "design_current_ka": current,
                     "design_voltage_drop_pu": drop,
                     "geometry_json": json.dumps(geometry(data, ancestor, child), separators=(",", ":")),
                 })
@@ -744,8 +799,9 @@ def generate_electricity(
         if verbose and (site_index + 1) % 10 == 0:
             progress(f"routed LV feeders for {site_index + 1}/{len(sites)} sites")
 
-    # Direct-MV customers above 250 kW keep their own service identity and do
-    # not masquerade as ordinary LV building loads.
+    # Explicit direct-MV customers are supported for cases that supply them as
+    # separate evidence.  The Schweinfurt building ledger is LV-calibrated and
+    # therefore does not infer such customers from a service-peak threshold.
     if not mv_customers.empty:
         for row in mv_customers.itertuples():
             bus_id = f"E_MVC_{str(row.building_id).replace('OSM_W', '')}"
