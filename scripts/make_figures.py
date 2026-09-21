@@ -994,8 +994,8 @@ def figure_electrical_supply_disturbance() -> None:
         markevery=2,
         label="Hydraulically weakest node",
     )
-    ax.axhline(20.0, color="#9E2A2B", ls="--", lw=1.1, label="20 m normal-state limit")
-    ax.fill_between(time, pressure, 20.0, where=pressure < 20.0, color="#D95F59", alpha=0.18)
+    ax.axhline(27.5, color="#9E2A2B", ls="--", lw=1.1, label="27.5 m normal-state limit")
+    ax.fill_between(time, pressure, 27.5, where=pressure < 27.5, step="post", color="#D95F59", alpha=0.18)
     ax.set_ylim(min(-25.0, float(pressure.min()) - 4.0), 50.0)
     ax.set_ylabel("Critical pressure (m)")
     ax.legend(loc="lower right", fontsize=8.3)
@@ -1042,7 +1042,7 @@ def figure_electrical_supply_disturbance() -> None:
     fig.text(
         0.98,
         0.012,
-        "Red: depressed local service voltage; amber: prescribed recovery; points are sequential quasi-steady fixed points.",
+        "Red: depressed local service voltage; amber: prescribed recovery; markers are discrete quasi-steady operating states.",
         ha="right",
         fontsize=8.0,
         color=COLORS["muted"],
