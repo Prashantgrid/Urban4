@@ -530,7 +530,14 @@ def generate_electricity(
     sites, lv = _transformer_sites(
         attached, road, maximum_radius_km, seed, target_site_count=target_site_count
     )
-    progress(f"attached {len(attached)} services and allocated {len(sites)} transformer sites")
+    mv_customers = attached[attached["electricity_connection_level"].eq("MV")].copy()
+    mv_terminals = list(dict.fromkeys(
+        [*sites, *mv_customers["road_node"].tolist()]
+    ))
+    progress(
+        f"attached {len(attached)} services, allocated {len(sites)} transformer sites "
+        f"and retained {len(mv_customers)} direct-MV terminals"
+    )
     if upstream_point is None:
         centroid = (
             float(np.average(lv["road_lon"], weights=np.maximum(lv["electricity_peak_kw"], 0.01))),
@@ -554,8 +561,10 @@ def generate_electricity(
         "annual_electricity_mwh": 0.0, "q_mvar": 0.0,
     })
 
-    # Connected road-routed MV tree.
-    mv_tree = _union_tree(road, upstream, sites)
+    # Connected road-routed MV tree.  Any explicitly supplied direct-MV
+    # customers are terminals of the same backbone before branch sizing, so
+    # their load is not appended after upstream MV currents have been fixed.
+    mv_tree = _union_tree(road, upstream, mv_terminals)
     progress(f"routed connected MV tree with {mv_tree.number_of_edges()} sections")
     mv_node_id: dict[tuple[float, float], str] = {upstream: "E_MV_SOURCE"}
     for site_index, site in enumerate(sites):
@@ -586,7 +595,11 @@ def generate_electricity(
     mv_parent = {child: parent for parent, child in nx.bfs_edges(mv_tree, upstream)}
     mv_direct = {node: 0.0 for node in mv_tree}
     for site_index, site in enumerate(sites):
-        mv_direct[site] += float(lv.loc[lv["site_index"].eq(site_index), "electricity_peak_kw"].sum() / 1000.0)
+        mv_direct[site] += float(
+            lv.loc[lv["site_index"].eq(site_index), "electricity_peak_kw"].sum() / 1000.0
+        )
+    for row in mv_customers.itertuples():
+        mv_direct[row.road_node] += float(row.electricity_peak_kw / 1000.0)
     mv_subtree = dict(mv_direct)
     for node in reversed(list(nx.bfs_tree(mv_tree, upstream).nodes)):
         if node != upstream:
@@ -733,9 +746,7 @@ def generate_electricity(
 
     # Direct-MV customers above 250 kW keep their own service identity and do
     # not masquerade as ordinary LV building loads.
-    mv_customers = attached[attached["electricity_connection_level"].eq("MV")]
     if not mv_customers.empty:
-        source_paths = nx.single_source_dijkstra(road, upstream, weight="length_km")[1]
         for row in mv_customers.itertuples():
             bus_id = f"E_MVC_{str(row.building_id).replace('OSM_W', '')}"
             node_rows.append({
@@ -746,8 +757,13 @@ def generate_electricity(
                 "annual_electricity_mwh": row.electricity_mwh_year,
                 "q_mvar": row.electricity_peak_kw / 1000.0 * math.tan(math.acos(0.96)),
             })
-            # Connect to the closest node already represented in the MV tree.
-            closest = min(mv_node_id, key=lambda node: base.distance_km(node, row.road_node))
+            # The direct-MV road attachment was included in the MV backbone
+            # before branch sizing; use that terminal directly when available.
+            closest = (
+                row.road_node
+                if row.road_node in mv_node_id
+                else min(mv_node_id, key=lambda node: base.distance_km(node, row.road_node))
+            )
             try:
                 path = nx.shortest_path(road, closest, row.road_node, weight="length_km")
                 route_geometry = [point for u, v in zip(path[:-1], path[1:]) for point in geometry(road[u][v], u, v)]
@@ -1075,7 +1091,10 @@ def generate_water(
             peak_result = wntr.sim.EpanetSimulator(peak_wn).run_sim()
             peak_pressure = peak_result.node["pressure"].iloc[-1].reindex(service_ids).dropna()
             peak_velocity = peak_result.link["velocity"].iloc[-1].drop(labels=["W_MAIN_PUMP"], errors="ignore").abs()
-            deficit = 20.0 - float(peak_pressure.min())
+            normal_minimum_pressure_m = float(
+                base.CASE_CONFIG["acceptance_screening"]["drinking_water"]["minimum_pressure_m"]
+            )
+            deficit = normal_minimum_pressure_m - float(peak_pressure.min())
             if deficit <= 0:
                 break
             head_rise += deficit + 1.0
@@ -1093,6 +1112,10 @@ def generate_water(
             "peak_maximum_velocity_m_s": float(peak_velocity.max()),
             "source_head_rise_m": head_rise,
             "cycle_rank": int(model.number_of_edges() - model.number_of_nodes() + 1),
+            "normal_pressure_band_m": [
+                float(base.CASE_CONFIG["acceptance_screening"]["drinking_water"]["minimum_pressure_m"]),
+                float(base.CASE_CONFIG["acceptance_screening"]["drinking_water"]["maximum_pressure_m"]),
+            ],
         }
     except Exception as exc:
         solver["error"] = f"{type(exc).__name__}: {exc}"
