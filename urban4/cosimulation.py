@@ -754,7 +754,7 @@ def _select_and_apply_limit_repair(
     water_rule = policy["water_speed_command"]
     water_command = float(commands.get("WAT-WW-01", 1.0))
     if (
-        not water["passed"]
+        not water.get("coupling_state_retained", water["passed"])
         and not water["checks"].get("maximum_pressure", True)
         and water_command > float(water_rule["minimum_pu"])
     ):
@@ -769,7 +769,7 @@ def _select_and_apply_limit_repair(
             phase="Phase III-B",
         ), None
     if (
-        not water["passed"]
+        not water.get("coupling_state_retained", water["passed"])
         and (
             not water["checks"].get("minimum_pressure", True)
             or not water["checks"].get("delivered_demand", True)
@@ -790,7 +790,7 @@ def _select_and_apply_limit_repair(
     heat_rule = policy["heat_speed_command"]
     heat_command = float(commands.get("DH_PUMP_GKS", 1.0))
     if (
-        not heat["passed"]
+        not heat.get("coupling_state_retained", heat["passed"])
         and not heat["checks"].get("minimum_pressure", True)
         and heat_command < float(heat_rule["maximum_pu"])
     ):
@@ -806,7 +806,7 @@ def _select_and_apply_limit_repair(
         ), None
     lift_rule = policy["heat_lift_factor"]
     if (
-        not heat["passed"]
+        not heat.get("coupling_state_retained", heat["passed"])
         and not heat["checks"].get("minimum_pressure", True)
         and float(runtime["heat_lift_factor"]) < float(lift_rule["maximum"])
     ):
@@ -895,7 +895,7 @@ def _select_and_apply_limit_repair(
                     phase="Phase II-A",
                 ), None
 
-        if sector == "drinking_water" and not water["passed"]:
+        if sector == "drinking_water" and not water.get("coupling_state_retained", water["passed"]):
             if not water["checks"]["maximum_velocity"]:
                 target = str(water["limiting_velocity_pipe_id"])
                 old_dn = float(water["limiting_velocity_pipe_dn_mm"])
@@ -917,7 +917,7 @@ def _select_and_apply_limit_repair(
                     phase="Phase II-B",
                 ), None
 
-        if sector == "district_heating" and not heat["passed"]:
+        if sector == "district_heating" and not heat.get("coupling_state_retained", heat["passed"]):
             if not heat["checks"]["maximum_velocity"]:
                 target = str(heat["limiting_velocity_corridor_id"])
                 old_dn = float(heat["limiting_velocity_corridor_dn_mm"])
@@ -950,7 +950,11 @@ def _select_and_apply_limit_repair(
     failing_sector = next(
         (
             sector for sector in sector_order
-            if not last[sector]["passed"]
+            if not (
+                last[sector].get("coupling_state_retained", last[sector]["passed"])
+                if sector in {"drinking_water", "district_heating"}
+                else last[sector]["passed"]
+            )
         ),
         "fixed_point",
     )
