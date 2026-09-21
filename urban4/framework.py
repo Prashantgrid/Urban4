@@ -242,12 +242,17 @@ def write_evidence_boundary_audit(config: dict[str, Any]) -> pd.DataFrame:
         ("LV coincident peak", a["electricity_lv_peak_mw"], "MW", "LV operator territory", "LV", 2025, "LV withdrawals", "building peak allocation", "input_constraint"),
         ("LV served population", a["electricity_lv_network_population"], "inhabitants", "LV operator territory", "--", 2025, "inhabitants", "common population allocation", "input_constraint"),
         ("LV reporting area", a["electricity_lv_network_area_km2"], "km2", "LV operator territory", "--", 2025, "geographic area", "boundary audit only; polygon unavailable", "diagnostic"),
-        ("MS/LV withdrawal locations", a["electricity_mv_lv_withdrawal_locations"], "count", "LV operator territory", "MS/LV", 2025, "withdrawal locations", "synthetic location count; not physical transformer count", "input_constraint"),
-        ("MS/LV installed capacity", a["electricity_mv_lv_installed_capacity_mva"], "MVA", "LV operator territory", "MS/LV", 2025, "installed transformation", "equivalent transformation portfolio", "input_constraint"),
+        ("MV customer withdrawal points", a["electricity_mv_withdrawal_points"], "count", "electricity operator territory", "MV", 2025, "customer withdrawal points", "context only; locations not public", "diagnostic"),
+        ("MV customer-level peak", a["electricity_mv_peak_mw"], "MW", "electricity operator territory", "MV", 2025, "customer-level annual maximum", "context only; not redistributed to the LV-calibrated building ledger", "diagnostic"),
+        ("MV/LV customer withdrawal points", a["electricity_mv_lv_withdrawal_points"], "count", "electricity operator territory", "MV/LV", 2025, "customer withdrawal points", "context only; not a transformer/substation count", "diagnostic"),
+        ("MV/LV customer-level peak", a["electricity_mv_lv_peak_mw"], "MW", "electricity operator territory", "MV/LV", 2025, "customer-level annual maximum", "context only; locations not public", "diagnostic"),
+        ("MV/LV installed capacity", a["electricity_mv_lv_installed_capacity_mva"], "MVA", "electricity operator territory", "MV/LV", 2025, "installed transformation", "context aggregate; not used to infer a site count", "diagnostic"),
         ("Water delivery, total", a["drinking_water_total_delivery_m3"], "m3/y", "water operator reporting territory", "distribution", 2024, "retail plus wholesale", "accounting identity only", "reported_total"),
         ("Water delivery, wholesale", a["drinking_water_wholesale_delivery_m3"], "m3/y", "downstream distributor interconnection", "boundary transfer", 2024, "wholesale", "excluded from building demand and local wastewater", "boundary_exclusion"),
         ("Water delivery, direct retail", a["drinking_water_annual_m3"], "m3/y", "modelled retail-service adapter", "distribution", 2024, "derived total minus wholesale", "building water allocation", "input_constraint"),
-        ("Municipal sewer inventory", a["wastewater_combined_km"] + a["wastewater_sanitary_km"] + a["wastewater_storm_km"] + a["wastewater_force_main_km"], "km", "municipal drainage territory", "collection", 2026, "combined/sanitary/storm/force main", "held-out aggregate comparison", "held_out_comparison"),
+        ("Dry-weather-relevant gravity sewer inventory", a["wastewater_dry_weather_gravity_route_km"], "km", "municipal drainage territory", "collection", 2026, "combined + sanitary", "route-inventory context for the sanitary dry-weather model; storm sewer excluded", "diagnostic"),
+        ("Storm-sewer inventory", a["wastewater_storm_km"], "km", "municipal drainage territory", "storm collection", 2026, "storm", "excluded from dry-weather sanitary hydraulic calibration", "boundary_exclusion"),
+        ("Wastewater force-main inventory", a["wastewater_force_main_km"], "km", "municipal drainage territory", "pressure collection", 2026, "force main", "route-inventory context", "diagnostic"),
         ("District-heat sales", a["district_heat_sales_mwh_year"], "MWh/y", "district-heat customer portfolio", "distribution", 2024, "retail heat sales", "selected-customer demand allocation", "input_constraint"),
         ("District-heat sales contracts", a["district_heat_sales_contracts"], "count", "district-heat customer portfolio", "distribution", 2024, "sales contracts", "represented contract count; not verified buildings", "input_constraint"),
         ("District-heat route", a["district_heat_route_km"], "km", "district-heat network", "distribution", 2024, "route length", "held-out comparison", "held_out_comparison"),
@@ -418,8 +423,13 @@ def build_building_ledger(config: dict[str, Any]) -> pd.DataFrame:
         / (float(demand_model["district_heat_full_load_hours"]) / 1000.0)
     )
     frame["electricity_connected"] = frame["service_eligible"]
+    # The published annual work and coincident peak used above are explicitly
+    # LV customer-level quantities.  Do not manufacture direct-MV customers
+    # from an LV-calibrated ledger merely because a building service prior is
+    # large.  MV/MV-LV customer withdrawals remain separate aggregate evidence
+    # until their locations and load records are available.
     frame["electricity_connection_level"] = np.where(
-        frame["electricity_service_peak_kw"] > 250.0, "MV", "LV"
+        frame["service_eligible"], "LV", "NONE"
     )
     frame.loc[~frame["service_eligible"], "electricity_connection_level"] = "NONE"
     frame["water_connected"] = frame["service_eligible"]
