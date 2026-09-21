@@ -115,6 +115,7 @@ def main() -> None:
     # to the native heat sensitivity.  Regenerate them here so a fresh checkout
     # does not depend on tables retained from an earlier release bundle.
     _run([sys.executable, "scripts/run_heat_selection_analysis.py"], env=environment)
+    _run([sys.executable, "scripts/write_submission_audits.py"], env=environment)
     # Hold accepted heat customers/source assignments fixed and compare only
     # route construction against a fast approximate-Steiner baseline.
     _run([sys.executable, "scripts/run_heat_steiner_baseline.py"], env=environment)
