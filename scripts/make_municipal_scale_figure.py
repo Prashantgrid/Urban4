@@ -58,7 +58,7 @@ def main():
     else: ex,ey=float(er.iloc[0].lon),float(er.iloc[0].lat)
     ax.scatter(ex,ey,s=95,marker='s',c='#C7362F',edgecolors='white',linewidths=1.0,zorder=8)
     ax.annotate('E1',(ex,ey),xytext=(5,5),textcoords='offset points',fontsize=7.5,fontweight='bold')
-    ax.set_title('(a) Electricity\n105 MV/LV sites; radial MV/LV topology',fontsize=10.2,loc='left',pad=3)
+    ax.set_title(f'(a) Electricity\\n{len(tr)} generated transformer areas; radial MV/LV topology',fontsize=10.2,loc='left',pad=3)
 
     # Drinking-water panel: show mains, not 22,641 property services.
     ax=axes[1]
