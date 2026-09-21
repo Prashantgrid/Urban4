@@ -15,8 +15,9 @@ is written to the municipal release manifest.
 
 ## Electricity
 
-- Build 105 synthetic MV/LV service sites and radial feeders from the shared
-  road/building evidence; allocate 0.80–4.00 MVA catalogue transformers until
+- Generate MV/LV transformer areas and radial feeders from the shared
+  road/building evidence using local demand, customer-count and route-distance
+  limits; allocate 0.80–4.00 MVA catalogue transformers until
   the 216.71 MVA public calibration scale is closed (216.95 MVA generated).
 - Execute AC power flow in pandapower.
 - If voltage, loading, or LV path-drop limits fail, advance the limiting cable
