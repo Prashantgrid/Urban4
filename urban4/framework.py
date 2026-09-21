@@ -2095,21 +2095,24 @@ def run_framework(base_runtime: float = 0.0) -> dict[str, Any]:
         "wastewater": _screen_solver_results(swmm, "wastewater", config),
         "district_heating": _screen_solver_results(heat_solver, "district_heating", config),
     }
-    # The reduced framework is retained only as the event-projection model.
-    # Its single-reservoir representation cannot satisfy the municipality
-    # pressure-zone upper bound at average demand while also meeting the peak
-    # minimum.  Do not mislabel that structural limitation as a failed release
-    # design: for this projection gate we require convergence, the same 27.5 m
-    # minimum reference, the peak minimum, and the velocity ceiling.  The
-    # accepted municipality model is screened separately against 27.5--70 m.
+    # The reduced framework is retained only for interface/event projection.
+    # Preserve its normal-operation screen truthfully; do not rewrite a failed
+    # pressure-zone check into a pass.  Coupling readiness is a separate
+    # numerical/state-retention contract evaluated by the co-simulation.
     reduced_water = native_screening["drinking_water"]
-    reduced_water["scope"] = "reduced event-projection hydraulic gate; not municipality design acceptance"
-    reduced_water["checks"]["maximum_pressure"] = True
-    reduced_water["maximum_pressure_interpretation"] = (
-        "not used as a design gate in the reduced single-reservoir event projection; "
-        "municipality pressure-zone acceptance applies the 70 m ceiling"
+    reduced_water["scope"] = (
+        "reduced single-reservoir event/interface projection; "
+        "not municipality hydraulic design acceptance"
     )
-    reduced_water["passed"] = all(reduced_water["checks"].values())
+    reduced_water["coupling_ready"] = bool(
+        reduced_water["checks"].get("solver_converged", False)
+        and reduced_water["checks"].get("maximum_velocity", False)
+        and reduced_water["checks"].get("peak_minimum_pressure", False)
+    )
+    reduced_water["maximum_pressure_interpretation"] = (
+        "reported but not used to validate the reduced projection topology; "
+        "the municipality pressure-zone model applies the 27.5--70 m design band"
+    )
     from .cosimulation import run_bidirectional_cosimulation
 
     bidirectional = run_bidirectional_cosimulation(interfaces, native_screening)
@@ -2119,7 +2122,7 @@ def run_framework(base_runtime: float = 0.0) -> dict[str, Any]:
             "thresholds": config["bidirectional_coupling"],
             "checks": {
                 "fixed_point_converged": bool(bidirectional.get("converged", False)),
-                "all_native_and_coupled_limits": bool(bidirectional.get("accepted", False)),
+                "coupling_state_retained": bool(bidirectional.get("accepted", False)),
                 "final_export_gate": bool(bidirectional.get("final_export_created", False)),
             },
             "passed": bool(bidirectional.get("accepted", False)),
