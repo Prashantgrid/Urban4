@@ -15,7 +15,7 @@ def test_mv_lv_withdrawals_are_not_transformer_count() -> None:
     cfg = load_case()
     anchors = cfg["official_anchors"]
     assert anchors["electricity_mv_lv_withdrawal_points"] == 105
-    assert "transformer" not in cfg["data_semantics"]["electricity_mv_lv_withdrawal_points"].lower()
+    assert "not a utility transformer" in cfg["data_semantics"]["electricity_mv_lv_withdrawal_points"].lower()
 
 
 def test_local_residential_coincidence_is_applied_to_branch_households() -> None:
@@ -48,11 +48,11 @@ def test_symmetric_corridor_metric_reports_both_directions_and_null() -> None:
         LineString([(0, 5), (100, 5)]),
         LineString([(0, 20), (100, 20)]),
     ]
-    coverage = symmetric_corridor_coverage(installed, generated, 10.0)
+    coverage = symmetric_corridor_coverage(installed, generated, 5.0)
     assert 0.79 <= coverage.installed_to_generated <= 0.81
     assert coverage.generated_to_installed == 1.0
     result = corridor_null_distribution(
-        installed, generated, roads, 10.0, repetitions=8, seed=7
+        installed, generated, roads, 5.0, repetitions=8, seed=7
     )
     assert "installed_to_generated" in result
     assert "generated_to_installed" in result
