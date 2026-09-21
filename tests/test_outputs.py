@@ -192,14 +192,32 @@ class GeneratedOutputTests(unittest.TestCase):
     def test_evidence_boundaries_and_transformer_interpretation(self) -> None:
         audit = pd.read_csv(OUT / "evidence_boundary_audit.csv")
         self.assertIn("Water delivery, wholesale", set(audit["quantity"]))
-        self.assertIn("MS/LV withdrawal locations", set(audit["quantity"]))
+        self.assertIn("MV/LV customer withdrawal points", set(audit["quantity"]))
+        row = audit[audit["quantity"] == "MV/LV customer withdrawal points"].iloc[0]
+        self.assertEqual(row["evidence_role"], "diagnostic")
+        self.assertIn("not a transformer/substation count", row["model_use"])
         transformers = pd.read_csv(OUT / "power_transformers.csv")
-        self.assertAlmostEqual(
+        allowed_active_mw = 0.63 * 0.80 * 0.96
+        expected_areas = max(
+            math.ceil(CASE["official_anchors"]["electricity_lv_peak_mw"] / allowed_active_mw),
+            math.ceil(CASE["official_anchors"]["electricity_lv_withdrawal_points"] / 300),
+        )
+        self.assertEqual(len(transformers), expected_areas)
+        self.assertNotEqual(
+            len(transformers),
+            CASE["official_anchors"]["electricity_mv_lv_withdrawal_points"],
+        )
+        self.assertGreater(transformers["sn_mva"].sum(), 0.0)
+        self.assertNotAlmostEqual(
             transformers["sn_mva"].sum(),
             CASE["official_anchors"]["electricity_mv_lv_installed_capacity_mva"],
             delta=0.25,
         )
-        self.assertTrue(transformers["asset_interpretation"].str.contains("equivalent portfolio").all())
+        self.assertTrue(
+            transformers["asset_interpretation"]
+            .str.contains("demand-sized synthetic transformer area")
+            .all()
+        )
 
     def test_bidirectional_fixed_point_is_converged_and_export_gated(self) -> None:
         coupled = self.manifest["solver_readiness"]["bidirectional_cosimulation"]
