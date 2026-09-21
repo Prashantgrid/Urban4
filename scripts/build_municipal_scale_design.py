@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 from pathlib import Path
-import json, math, shutil, sys
+import json, math, shutil, sys, time
 import numpy as np
 import pandas as pd
 import networkx as nx
 
 ROOT=Path(__file__).resolve().parents[1]
+BUILD_STARTED=time.perf_counter()
 sys.path.insert(0, str(ROOT))
 
 from urban4 import schweinfurt_base as base
@@ -27,7 +28,7 @@ case=json.load(open(ROOT/'cases'/'schweinfurt.json'))
 off=case['official_anchors']
 
 MOTOR=[1.3,1.5,2.2,3,4,5.5,7.5,11,15,18.5,22,30,37,45,55,75,90,110,132,160,200,250,315,355,400,500,560,630]
-TRF=[0.63,0.8,1.0,1.25,1.6,2.0,2.5,3.15,4.0]
+TRF=[float(x) for x in case["equipment_libraries"]["practical_transformer_mva"]]
 
 def next_size(x,cat):
     for c in cat:
@@ -57,26 +58,23 @@ if missing_ledger_columns:
 if ledger.building_id.astype(str).duplicated().any():
     raise ValueError('municipal evidence ledger contains duplicate building IDs')
 
-# ---------- Electricity: retain topology; calibrate actual site capacity scale ----------
+# ---------- Electricity: retain topology; demand-size practical transformer areas ----------
 tr=pd.read_csv(INTEG/'electricity_transformers.csv')
 links=pd.read_csv(INTEG/'electricity_links.csv')
-target=float(off['electricity_mv_lv_installed_capacity_mva'])
-raw=tr.sn_mva/tr.sn_mva.sum()*target
-sel=np.array([TRF[int(np.argmin(np.abs(np.array(TRF)-x)))] for x in raw],dtype=float)
-# Upgrade the most-loaded sites until the public aggregate is closed to within one catalogue step.
-while sel.sum()<target:
-    opts=[]
-    for i,s in enumerate(sel):
-        j=TRF.index(float(s))
-        if j<len(TRF)-1:
-            inc=TRF[j+1]-s
-            opts.append((float(tr.assigned_peak_mw.iloc[i]/max(s,1e-9))/inc,i,inc))
-    if not opts: break
-    _,i,inc=max(opts); sel[i]+=inc
+# The published 216.71-MVA transformation aggregate is not redistributed over
+# the synthetic areas because its exact physical site count and spatial
+# reporting polygon are not public.  Each generated area is instead sized from
+# its represented coincident demand and rounded upward to the declared
+# practical catalogue.  The operator aggregate remains a diagnostic comparison.
+required=np.maximum(
+    tr.sn_mva.to_numpy(dtype=float),
+    tr.assigned_peak_mw.to_numpy(dtype=float)/(0.80*0.96),
+)
+sel=np.array([next_size(x,TRF) for x in required],dtype=float)
 tr2=tr.copy()
 tr2['municipal_selected_capacity_mva']=sel
 tr2['municipal_peak_loading_percent']=100*tr2.assigned_peak_mw/(0.96*tr2.municipal_selected_capacity_mva)
-tr2['capacity_evidence']='catalogue allocation calibrated to published 216.71 MVA total; site locations remain synthetic'
+tr2['capacity_evidence']='demand-sized synthetic transformer area; published 216.71 MVA retained as territory-level diagnostic only'
 electricity_capacity_total=float(sel.sum())
 tr2.to_csv(OUT/'electricity_transformers_municipal.csv',index=False)
 # Cable family labels and practical circuit representation.
@@ -438,14 +436,16 @@ reach.to_csv(OUT/'district_heating_connectivity_audit.csv',index=False)
 
 # ---------- summary ----------
 summary=pd.DataFrame([
- {'sector':'Electricity','municipal_topology':'105 MV/LV sites; radial pandapower network accepted','demand_or_flow':'40.962 MW coincident peak; 156.851 GWh/a','source_or_pumps':'20-kV external-grid boundary; no generator invented','practical_rating':f"{electricity_capacity_total:.2f} MVA portfolio; Vmin {electricity_native_manifest['minimum_voltage_pu']:.3f} pu; max line/transformer loading {electricity_native_manifest['maximum_line_loading_percent']:.1f}/{electricity_native_manifest['maximum_transformer_loading_percent']:.1f}%", 'public_scale':'216.71 MVA; 319.4 km MV cable; 809.12 km LV cable'},
+ {'sector':'Electricity','municipal_topology':f"{len(tr2)} generated MV/LV transformer areas; radial pandapower network accepted",'demand_or_flow':'40.962 MW coincident LV peak; 156.851 GWh/a LV energy','source_or_pumps':'20-kV external-grid boundary; no generator invented','practical_rating':f"{electricity_capacity_total:.2f} MVA portfolio; Vmin {electricity_native_manifest['minimum_voltage_pu']:.3f} pu; max line/transformer loading {electricity_native_manifest['maximum_line_loading_percent']:.1f}/{electricity_native_manifest['maximum_transformer_loading_percent']:.1f}%", 'public_scale':f"generated demand-sized transformer capacity {electricity_capacity_total:.2f} MVA; published context only: 216.71 MVA installed MV/LV transformation, 319.4 km MV cable, 809.12 km LV cable, and 105 MV/LV customer withdrawal points"},
  {'sector':'Drinking water','municipal_topology':f"4 pressure zones; {water_manifest['main_length_km']:.1f}-km generated main network; EPANET accepted",'demand_or_flow':f'{qavg_total:.1f}/{qpeak_total:.1f} L/s average/design total delivery; W 410 exact factor {water_peak_factor_exact:.2f}, applied {water_peak_factor:.2f}','source_or_pumps':f'W1 waterworks plus explicit controlled zone boundaries; {water_installed_units} source pumps including standby','practical_rating':f"{water_installed_units} x {water_motor:.0f} kW motors; native pressure {water_manifest['peak_minimum_service_pressure_m']:.1f}-{water_manifest['average_maximum_service_pressure_m']:.1f} m; peak velocity {water_manifest['peak_maximum_velocity_m_s']:.2f} m/s",'public_scale':f'5.6 million m3/a total delivery; approx. {water_operator_population:,} operator-served inhabitants; 341 km published mains'},
- {'sector':'Wastewater','municipal_topology':'6,179-manhole spatial layer plus accepted 815-catchment/13-station SWMM hydraulic layer','demand_or_flow':f"{wastewater_native_manifest['sanitary_inflow_m3_year']/1e6:.3f} million m3/a registered sanitary inflow; WWTP 19,000/80,000 m3/d dry/wet",'source_or_pumps':'13 wet wells, 13 active SWMM pump objects, 26 installed duty/standby pump units, 13 force mains + treatment works','practical_rating':f"{ww.selected_motor_kw.min():.0f}-{ww.selected_motor_kw.max():.0f} kW station motors; SWMM continuity {wastewater_native_manifest['continuity_error_percent']:.3f}%, flooding {wastewater_native_manifest['flooding_loss_percent']:.3f}%",'public_scale':'13 pumpworks; 236 km gravity sewers plus 13 km pressure mains; 9 million m3/a WWTP'},
+ {'sector':'Wastewater','municipal_topology':'6,179-manhole spatial layer plus accepted 815-catchment/13-station SWMM hydraulic layer','demand_or_flow':f"{wastewater_native_manifest['sanitary_inflow_m3_year']/1e6:.3f} million m3/a registered sanitary inflow; WWTP 19,000/80,000 m3/d dry/wet",'source_or_pumps':'13 wet wells, 13 active SWMM pump objects, 26 installed duty/standby pump units, 13 force mains + treatment works','practical_rating':f"{ww.selected_motor_kw.min():.0f}-{ww.selected_motor_kw.max():.0f} kW station motors; SWMM continuity {wastewater_native_manifest['continuity_error_percent']:.3f}%, flooding {wastewater_native_manifest['flooding_loss_percent']:.3f}%",'public_scale':'13 pumpworks; 212 km combined+sanitary gravity routes relevant to dry-weather flow, 24 km storm sewer excluded from dry-weather calibration, plus 13 km pressure mains; 9 million m3/a WWTP'},
  {'sector':'District heating','municipal_topology':'two documented injection boundaries linked by one source-reachable pandapipes-accepted network','demand_or_flow':f'{sel.peak_heat_mw.sum():.3f} MWth peak; 87.5 GWh/a','source_or_pumps':'H1 primary GKS + H2 documented peak/backup injection; source-level duty/assist/standby circulation screening','practical_rating':f"{heat_native_manifest['maximum_native_velocity_m_s']:.2f} m/s; {heat_native_manifest['maximum_catalogue_pressure_gradient_pa_m']:.1f} Pa/m; {heat_native_manifest['maximum_source_screening_differential_pressure_bar']:.2f} bar critical dp; {100*heat_native_manifest['annual_heat_loss_fraction']:.1f}% heat loss",'public_scale':f'{target_len:.1f} km network; 87.5 GWh/a; 841 contract equivalents'}
 ])
 summary.to_csv(OUT/'municipal_scale_summary.csv',index=False)
-manifest={'version':'2.5.0','purpose':'accepted municipality-scale practical topology with deterministic build-solve-repair-release logic','input_building_ledger':str(LEDGER_PATH.relative_to(ROOT)),'service_eligible_buildings':int(ledger.service_eligible.astype(bool).sum()),'registered_wastewater_buildings':len(sewer_ledger),'electricity_native_acceptance':electricity_native_manifest,'heat_sources':heat_sources.to_dict(orient='records'),'heat_connectivity':reach.iloc[0].to_dict(),'heat_native_acceptance':heat_native_manifest,'water_station':water_station.iloc[0].to_dict(),'water_native_acceptance':water_manifest,'wastewater_native_acceptance':wastewater_native_manifest,'wastewater_station_count':len(ww),'electricity_transformer_capacity_mva':float(tr2.municipal_selected_capacity_mva.sum()),'release_gate_passed':bool(electricity_native_manifest['release_gate_passed'] and water_manifest['release_gate_passed'] and wastewater_native_manifest['release_gate_passed'] and heat_native_manifest['release_gate_passed'] and reach.iloc[0].source_reachability_fraction==1.0),'caveat':'Known public source, temperature, pressure, count and aggregate-scale evidence are inputs. Confidential installed edge geometry, exact named supply-area boundaries, plant dispatch and nameplates are not reconstructed.'}
+municipal_runtime_s=time.perf_counter()-BUILD_STARTED
+manifest={'version':'2.5.0','generation_runtime_s':municipal_runtime_s,'purpose':'accepted municipality-scale practical topology with deterministic build-solve-repair-release logic','input_building_ledger':str(LEDGER_PATH.relative_to(ROOT)),'service_eligible_buildings':int(ledger.service_eligible.astype(bool).sum()),'registered_wastewater_buildings':len(sewer_ledger),'electricity_native_acceptance':electricity_native_manifest,'heat_sources':heat_sources.to_dict(orient='records'),'heat_connectivity':reach.iloc[0].to_dict(),'heat_native_acceptance':heat_native_manifest,'water_station':water_station.iloc[0].to_dict(),'water_native_acceptance':water_manifest,'wastewater_native_acceptance':wastewater_native_manifest,'wastewater_station_count':len(ww),'electricity_transformer_capacity_mva':float(tr2.municipal_selected_capacity_mva.sum()),'release_gate_passed':bool(electricity_native_manifest['release_gate_passed'] and water_manifest['release_gate_passed'] and wastewater_native_manifest['release_gate_passed'] and heat_native_manifest['release_gate_passed'] and reach.iloc[0].source_reachability_fraction==1.0),'caveat':'Known public source, temperature, pressure, count and aggregate-scale evidence are inputs. Confidential installed edge geometry, exact named supply-area boundaries, plant dispatch and nameplates are not reconstructed.'}
 json.dump(manifest,open(OUT/'manifest.json','w'),indent=2,default=float)
 print(summary.to_string(index=False))
+print(f'\nMunicipality-scale build runtime: {municipal_runtime_s:.1f} s')
 print('\nHeat sources:',heat_sources.to_string(index=False))
 print('\nWastewater motors:',ww[['map_id','design_pump_flow_lps','screening_tdh_m','force_main_dn_mm','selected_motor_kw']].to_string(index=False))

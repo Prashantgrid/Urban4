@@ -242,12 +242,17 @@ def write_evidence_boundary_audit(config: dict[str, Any]) -> pd.DataFrame:
         ("LV coincident peak", a["electricity_lv_peak_mw"], "MW", "LV operator territory", "LV", 2025, "LV withdrawals", "building peak allocation", "input_constraint"),
         ("LV served population", a["electricity_lv_network_population"], "inhabitants", "LV operator territory", "--", 2025, "inhabitants", "common population allocation", "input_constraint"),
         ("LV reporting area", a["electricity_lv_network_area_km2"], "km2", "LV operator territory", "--", 2025, "geographic area", "boundary audit only; polygon unavailable", "diagnostic"),
-        ("MS/LV withdrawal locations", a["electricity_mv_lv_withdrawal_locations"], "count", "LV operator territory", "MS/LV", 2025, "withdrawal locations", "synthetic location count; not physical transformer count", "input_constraint"),
-        ("MS/LV installed capacity", a["electricity_mv_lv_installed_capacity_mva"], "MVA", "LV operator territory", "MS/LV", 2025, "installed transformation", "equivalent transformation portfolio", "input_constraint"),
+        ("MV customer withdrawal points", a["electricity_mv_withdrawal_points"], "count", "electricity operator territory", "MV", 2025, "customer withdrawal points", "context only; locations not public", "diagnostic"),
+        ("MV customer-level peak", a["electricity_mv_peak_mw"], "MW", "electricity operator territory", "MV", 2025, "customer-level annual maximum", "context only; not redistributed to the LV-calibrated building ledger", "diagnostic"),
+        ("MV/LV customer withdrawal points", a["electricity_mv_lv_withdrawal_points"], "count", "electricity operator territory", "MV/LV", 2025, "customer withdrawal points", "context only; not a transformer/substation count", "diagnostic"),
+        ("MV/LV customer-level peak", a["electricity_mv_lv_peak_mw"], "MW", "electricity operator territory", "MV/LV", 2025, "customer-level annual maximum", "context only; locations not public", "diagnostic"),
+        ("MV/LV installed capacity", a["electricity_mv_lv_installed_capacity_mva"], "MVA", "electricity operator territory", "MV/LV", 2025, "installed transformation", "context aggregate; not used to infer a site count", "diagnostic"),
         ("Water delivery, total", a["drinking_water_total_delivery_m3"], "m3/y", "water operator reporting territory", "distribution", 2024, "retail plus wholesale", "accounting identity only", "reported_total"),
         ("Water delivery, wholesale", a["drinking_water_wholesale_delivery_m3"], "m3/y", "downstream distributor interconnection", "boundary transfer", 2024, "wholesale", "excluded from building demand and local wastewater", "boundary_exclusion"),
         ("Water delivery, direct retail", a["drinking_water_annual_m3"], "m3/y", "modelled retail-service adapter", "distribution", 2024, "derived total minus wholesale", "building water allocation", "input_constraint"),
-        ("Municipal sewer inventory", a["wastewater_combined_km"] + a["wastewater_sanitary_km"] + a["wastewater_storm_km"] + a["wastewater_force_main_km"], "km", "municipal drainage territory", "collection", 2026, "combined/sanitary/storm/force main", "held-out aggregate comparison", "held_out_comparison"),
+        ("Dry-weather-relevant gravity sewer inventory", a["wastewater_dry_weather_gravity_route_km"], "km", "municipal drainage territory", "collection", 2026, "combined + sanitary", "route-inventory context for the sanitary dry-weather model; storm sewer excluded", "diagnostic"),
+        ("Storm-sewer inventory", a["wastewater_storm_km"], "km", "municipal drainage territory", "storm collection", 2026, "storm", "excluded from dry-weather sanitary hydraulic calibration", "boundary_exclusion"),
+        ("Wastewater force-main inventory", a["wastewater_force_main_km"], "km", "municipal drainage territory", "pressure collection", 2026, "force main", "route-inventory context", "diagnostic"),
         ("District-heat sales", a["district_heat_sales_mwh_year"], "MWh/y", "district-heat customer portfolio", "distribution", 2024, "retail heat sales", "selected-customer demand allocation", "input_constraint"),
         ("District-heat sales contracts", a["district_heat_sales_contracts"], "count", "district-heat customer portfolio", "distribution", 2024, "sales contracts", "represented contract count; not verified buildings", "input_constraint"),
         ("District-heat route", a["district_heat_route_km"], "km", "district-heat network", "distribution", 2024, "route length", "held-out comparison", "held_out_comparison"),
@@ -418,8 +423,13 @@ def build_building_ledger(config: dict[str, Any]) -> pd.DataFrame:
         / (float(demand_model["district_heat_full_load_hours"]) / 1000.0)
     )
     frame["electricity_connected"] = frame["service_eligible"]
+    # The published annual work and coincident peak used above are explicitly
+    # LV customer-level quantities.  Do not manufacture direct-MV customers
+    # from an LV-calibrated ledger merely because a building service prior is
+    # large.  MV/MV-LV customer withdrawals remain separate aggregate evidence
+    # until their locations and load records are available.
     frame["electricity_connection_level"] = np.where(
-        frame["electricity_service_peak_kw"] > 250.0, "MV", "LV"
+        frame["service_eligible"], "LV", "NONE"
     )
     frame.loc[~frame["service_eligible"], "electricity_connection_level"] = "NONE"
     frame["water_connected"] = frame["service_eligible"]
@@ -722,9 +732,20 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
     def xy_frame(frame: pd.DataFrame) -> np.ndarray:
         return np.asarray([base.xy_km((r.lon, r.lat)) for r in frame.itertuples()], dtype=float)
 
-    # The public aggregate reports 105 MV/LV withdrawal sites.  Their synthetic
-    # locations are demand-cluster centroids snapped to the admissible road graph.
-    target_sites = int(config["official_anchors"]["electricity_mv_lv_withdrawal_locations"])
+    # The operator's 105 MV/LV quantity is a count of customer withdrawal
+    # points at the transformation connection level, not a transformer count.
+    # The reduced projection therefore generates transformer *areas* from the
+    # same planning constraints used in the paper: a 630-kVA class at 80%
+    # planning utilisation and pf=0.96, plus at most 300 LV withdrawal points
+    # per area.  This is a synthetic aggregation count, not an estimate of the
+    # utility's physical transformer inventory.
+    allowed_active_mw = 0.63 * 0.80 * 0.96
+    allowed_lv_withdrawals = 300
+    target_sites = max(
+        int(math.ceil(float(config["official_anchors"]["electricity_lv_peak_mw"]) / allowed_active_mw)),
+        int(math.ceil(float(config["official_anchors"]["electricity_lv_withdrawal_points"]) / allowed_lv_withdrawals)),
+    )
+    target_sites = min(target_sites, len(targets))
     building_xy = xy_frame(buildings)
     target_xy = xy_frame(targets)
     target_tree = cKDTree(target_xy)
@@ -736,7 +757,8 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
         if node not in site_nodes:
             site_nodes.append(node)
     # Snapping can merge rare adjacent centroids; supplement with the target
-    # farthest from the current site set until the published site count is met.
+    # farthest from the current site set until the generated planning-area
+    # count is met.
     target_points = [(float(r.lon), float(r.lat)) for r in targets.itertuples()]
     while len(site_nodes) < target_sites:
         candidate = max(
@@ -797,50 +819,20 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
     site_population = targets.groupby("site_index")["population"].sum().to_dict()
     transformer_rows = []
     transformer_standard_mva = [0.25, 0.4, 0.63, 0.8, 1.0, 1.25, 1.6, 2.0, 2.5]
-    # The published 105 quantity is a count of MS/LV withdrawal locations,
-    # not a verified count of physical transformer sites.  Each generated
-    # element is therefore an equivalent transformation portfolio at one
-    # synthetic withdrawal location.  The portfolio is upgraded, using the
-    # declared standard ratings, until its aggregate installed capacity is as
-    # close as possible to the separately published 216.71 MVA.
-    target_installed_mva = float(
-        config["official_anchors"]["electricity_mv_lv_installed_capacity_mva"]
-    )
+    # Size each generated area from its represented coincident LV demand.
+    # The published 216.71 MVA aggregate remains an external/context statistic;
+    # it is not distributed over synthetic sites because the physical number,
+    # location, redundancy and customer mix of installed transformers are not
+    # public.
     equivalent_ratings = []
     for index in range(target_sites):
-        required = float(site_peak.get(index, 0.0)) / 0.80
+        required = float(site_peak.get(index, 0.0)) / (0.80 * 0.96)
         equivalent_ratings.append(
-            next((value for value in transformer_standard_mva if value >= required), transformer_standard_mva[-1])
+            next(
+                (value for value in transformer_standard_mva if value >= required),
+                transformer_standard_mva[-1],
+            )
         )
-    while sum(equivalent_ratings) < target_installed_mva:
-        candidates = []
-        for index, current in enumerate(equivalent_ratings):
-            position = transformer_standard_mva.index(current)
-            if position + 1 >= len(transformer_standard_mva):
-                continue
-            upgraded = transformer_standard_mva[position + 1]
-            increment = upgraded - current
-            score = float(site_peak.get(index, 0.0)) / max(current, 0.01)
-            candidates.append((score, -increment, index, upgraded))
-        if not candidates:
-            break
-        _, _, selected_index, upgraded = max(candidates)
-        before = abs(target_installed_mva - sum(equivalent_ratings))
-        after = abs(target_installed_mva - (sum(equivalent_ratings) - equivalent_ratings[selected_index] + upgraded))
-        if after > before:
-            break
-        equivalent_ratings[selected_index] = upgraded
-    # A location represents a portfolio, not one nameplate unit.  Allocate the
-    # remaining sub-step residual to the most heavily loaded non-saturated
-    # portfolio so the published aggregate capacity is reproduced exactly
-    # without pretending that 216.71 MVA identifies individual transformers.
-    residual_mva = target_installed_mva - sum(equivalent_ratings)
-    if abs(residual_mva) > 1e-9:
-        adjustment_index = max(
-            range(len(equivalent_ratings)),
-            key=lambda item: float(site_peak.get(item, 0.0)) / max(equivalent_ratings[item], 0.01),
-        )
-        equivalent_ratings[adjustment_index] += residual_mva
     for index, point in enumerate(site_nodes):
         mv_bus = f"TMV{index + 1:03d}"
         lv_bus = f"TLV{index + 1:03d}"
@@ -849,7 +841,7 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
         bus_rows.extend(
             [
                 {
-                    "bus_id": mv_bus, "name": f"Synthetic MS/LV withdrawal location {index + 1:03d}",
+                    "bus_id": mv_bus, "name": f"Generated MV/LV transformer area {index + 1:03d}",
                     "voltage_kv": 20.0, "operator": "synthetic", "root": False, "osm_id": np.nan,
                     "confidence_class": "D", "bus_role": "transformer_mv_bus",
                     "background_peak_p_mw": 0.0, "background_peak_q_mvar": 0.0,
@@ -874,7 +866,7 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
                 "annual_electricity_mwh": float(site_energy.get(index, 0.0)),
                 "population": float(site_population.get(index, 0.0)),
                 "lon": point[0], "lat": point[1], "morphology": _morphology(point, config),
-                "confidence_class": "D", "asset_interpretation": "equivalent portfolio at synthetic withdrawal location",
+                "confidence_class": "D", "asset_interpretation": "demand-sized synthetic transformer area; not a utility withdrawal-point count",
             }
         )
     transformers = pd.DataFrame(transformer_rows)
@@ -894,7 +886,7 @@ def augment_power_model(config: dict[str, Any]) -> dict[str, Any]:
             }
         )
 
-    # Each synthetic transformer site is attached by one radial MV spur to the
+    # Each generated transformer area is attached by one radial MV spur to the
     # closest visible MV bus.  Shared street segments remain registered later.
     for index, point in enumerate(site_nodes):
         nearest = min(range(len(visible_points)), key=lambda j: base.distance_km(point, visible_points[j]))
@@ -1869,8 +1861,9 @@ def build_inventory_and_anchor_checks(
     checks = [
         ("Electricity LV annual energy", buildings["electricity_mwh_year"].sum(), anchors["electricity_lv_annual_mwh"], "MWh/y", "input_constraint", 0.0, "accounting_identity"),
         ("Electricity LV coincident peak", buildings["electricity_peak_kw"].sum() / 1000.0, anchors["electricity_lv_peak_mw"], "MW", "input_constraint", 0.0, "accounting_identity"),
-        ("MS/LV withdrawal locations", len(transformers), anchors["electricity_mv_lv_withdrawal_locations"], "count", "input_constraint", 0.0, "accounting_identity"),
-        ("MS/LV installed capacity", transformers["sn_mva"].sum(), anchors["electricity_mv_lv_installed_capacity_mva"], "MVA", "input_constraint", 0.0, "accounting_identity"),
+        ("Generated MV/LV transformer areas", len(transformers), len(transformers), "count", "generated_output", 0.0, "none"),
+        ("Published MV/LV customer withdrawal points", anchors["electricity_mv_lv_withdrawal_points"], anchors["electricity_mv_lv_withdrawal_points"], "count", "diagnostic_only", math.nan, "none"),
+        ("Generated transformer capacity vs published installed aggregate", transformers["sn_mva"].sum(), anchors["electricity_mv_lv_installed_capacity_mva"], "MVA", "diagnostic_only", math.nan, "none"),
         ("Mapped synthetic MV network", power_edges.loc[power_edges["voltage_level"] == "MV", "length_km"].sum(), anchors["electricity_mv_cable_km"], "km", "diagnostic_only", math.nan, "none"),
         ("Direct-retail drinking-water allocation", buildings["water_m3_year"].sum(), anchors["drinking_water_annual_m3"], "m3/y", "input_constraint", 0.0, "accounting_identity"),
         ("Drinking-water route", water_edges["length_km"].sum(), anchors["drinking_water_route_km"], "km", "held_out_comparison", route_tolerance, "relative_percent"),
@@ -1888,6 +1881,8 @@ def build_inventory_and_anchor_checks(
         error = (float(generated) - float(reference)) / float(reference) * 100.0 if reference else 0.0
         if role in {"input_constraint", "derived_assumption"}:
             status = "satisfied" if abs(error) <= 1e-6 else "review"
+        elif role == "generated_output":
+            status = "generated"
         elif role == "diagnostic_only":
             status = "diagnostic"
         elif tolerance_basis == "absolute_count":
@@ -2085,6 +2080,24 @@ def run_framework(base_runtime: float = 0.0) -> dict[str, Any]:
         "wastewater": _screen_solver_results(swmm, "wastewater", config),
         "district_heating": _screen_solver_results(heat_solver, "district_heating", config),
     }
+    # The reduced framework is retained only for interface/event projection.
+    # Preserve its normal-operation screen truthfully; do not rewrite a failed
+    # pressure-zone check into a pass.  Coupling readiness is a separate
+    # numerical/state-retention contract evaluated by the co-simulation.
+    reduced_water = native_screening["drinking_water"]
+    reduced_water["scope"] = (
+        "reduced single-reservoir event/interface projection; "
+        "not municipality hydraulic design acceptance"
+    )
+    reduced_water["coupling_ready"] = bool(
+        reduced_water["checks"].get("solver_converged", False)
+        and reduced_water["checks"].get("maximum_velocity", False)
+        and reduced_water["checks"].get("peak_minimum_pressure", False)
+    )
+    reduced_water["maximum_pressure_interpretation"] = (
+        "reported but not used to validate the reduced projection topology; "
+        "the municipality pressure-zone model applies the 27.5--70 m design band"
+    )
     from .cosimulation import run_bidirectional_cosimulation
 
     bidirectional = run_bidirectional_cosimulation(interfaces, native_screening)
@@ -2094,7 +2107,7 @@ def run_framework(base_runtime: float = 0.0) -> dict[str, Any]:
             "thresholds": config["bidirectional_coupling"],
             "checks": {
                 "fixed_point_converged": bool(bidirectional.get("converged", False)),
-                "all_native_and_coupled_limits": bool(bidirectional.get("accepted", False)),
+                "coupling_state_retained": bool(bidirectional.get("accepted", False)),
                 "final_export_gate": bool(bidirectional.get("final_export_created", False)),
             },
             "passed": bool(bidirectional.get("accepted", False)),
@@ -2103,7 +2116,7 @@ def run_framework(base_runtime: float = 0.0) -> dict[str, Any]:
 
     manifest = {
         "case_id": config["case_id"],
-        "scope": "normal-condition four-sector synthetic topology generation and bidirectional iterative co-simulation",
+        "scope": "reduced four-sector event-projection topology and interface closure; municipality design acceptance is performed separately",
         "scope_exclusions": [
             "hazards", "outages", "resilience indices", "restoration", "backup generation",
             "service-loss scenarios", "intervention optimisation", "exact utility-network recovery",

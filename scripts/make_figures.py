@@ -302,6 +302,13 @@ def _north_and_scale(ax: plt.Axes, km: float = 5.0) -> None:
     xn = east - 0.055 * (east - west)
     yn = north - 0.075 * (north - south)
     ax.annotate("N", xy=(xn, yn), xytext=(xn, yn - 0.055 * (north - south)), ha="center", va="center", fontsize=8.2, fontweight="bold", arrowprops={"arrowstyle": "-|>", "lw": 1.0, "color": COLORS["ink"]})
+    ax.text(
+        0.995, 0.006, "© OpenStreetMap contributors · ODbL",
+        transform=ax.transAxes, ha="right", va="bottom",
+        fontsize=5.6, color=COLORS["muted"],
+        bbox={"boxstyle": "round,pad=0.12", "fc": "white", "ec": "none", "alpha": 0.72},
+        zorder=20,
+    )
 
 
 def _save(fig: plt.Figure, stem: str) -> None:
@@ -551,14 +558,26 @@ def figure_morphology_zooms() -> None:
         case_frames = _load_benchmark_case(case_id)
         _draw_base(ax, case_frames["buildings"], item["bbox"], building_alpha=0.28)
         _draw_networks(ax, case_frames)
-        _draw_facilities(ax, case_frames)
+        # Settlement panels compare morphology and generated corridors only.
+        # Facility markers are omitted here because their count is a model
+        # construction detail, not an observed local inventory.
         subset = metrics[metrics["case_id"] == case_id]
         density = subset["building_density_per_km2"].iloc[0]
-        route = subset["route_length_km"].sum()
-        heat = subset.loc[subset["sector"] == "district_heating", "district_heat_contract_equivalents"].iloc[0]
+        heat_row = subset.loc[subset["sector"] == "district_heating"].iloc[0]
+        heat_status = (
+            "district heat: no selected territory"
+            if float(heat_row["route_length_km"]) <= 0.0
+            else "district heat: synthetic territory selected"
+        )
         panel = "ABC"[list(BENCHMARK_CASES).index(item)]
         ax.set_title(f"({panel.lower()}) {item['place_name']} — {item['morphology_label']}", loc="left", color=MORPH_COLORS[morphology], fontweight="bold", pad=4, fontsize=10.2)
-        ax.text(0.015, 0.025, f"{density:,.0f} buildings km$^{{-2}}$\n{route:.0f} km total generated route · {heat:.0f} heat connections", transform=ax.transAxes, fontsize=8.0, linespacing=1.30, bbox={"boxstyle": "round,pad=0.23", "fc": "white", "ec": "#CBD0D5", "alpha": 0.90}, zorder=10)
+        ax.text(
+            0.015, 0.025,
+            f"{density:,.0f} registered buildings km$^{{-2}}$\n{heat_status}",
+            transform=ax.transAxes, fontsize=8.0, linespacing=1.30,
+            bbox={"boxstyle": "round,pad=0.23", "fc": "white", "ec": "#CBD0D5", "alpha": 0.90},
+            zorder=10,
+        )
         _north_and_scale(ax, 0.5 if morphology == "dense" else 1.0)
     handles = [Line2D([0], [0], color=COLORS[k], lw=2.0, linestyle=(0, (2.3, 1.4)) if k == "wastewater" else "-") for k in LABELS]
     handles.insert(1, Line2D([0], [0], color="#7E2948", lw=1.7, ls="--"))
@@ -771,8 +790,8 @@ def figure_hydraulic_leak_response() -> None:
     ax = axes[0, 0]
     event_background(ax)
     pump_line = ax.plot(
-        time, data["pump_flow_l_s"], color=COLORS["drinking_water"], lw=2.1,
-        marker="o", ms=2.8, markevery=2, label="Pump flow",
+        time, data["pump_flow_l_s"], color=COLORS["drinking_water"], lw=1.8, drawstyle="steps-post",
+        marker="o", ms=3.0, label="Pump flow",
     )[0]
     ax.set_ylabel("Pump flow (L s$^{-1}$)")
     ax.set_ylim(125, 159)
@@ -791,14 +810,14 @@ def figure_hydraulic_leak_response() -> None:
     ax = axes[0, 1]
     event_background(ax)
     ax.plot(
-        time, data["pump_discharge_pressure_m"], color="#285F9E", lw=2.0,
+        time, data["pump_discharge_pressure_m"], color="#285F9E", lw=1.8, drawstyle="steps-post", marker="o", ms=2.8,
         label="Pump-discharge node",
     )
     ax.plot(
-        time, data["critical_node_pressure_m"], color="#D55E00", lw=2.0,
+        time, data["critical_node_pressure_m"], color="#D55E00", lw=1.8, drawstyle="steps-post", marker="o", ms=2.8,
         label="Hydraulically weakest node",
     )
-    ax.axhline(20.0, color="#A33A3A", ls=":", lw=1.2, label="20 m acceptance limit")
+    ax.axhline(27.5, color="#A33A3A", ls=":", lw=1.2, label="27.5 m normal-operation limit")
     ax.axhline(
         float(manifest["target_discharge_pressure_m"]), color="#285F9E",
         ls="--", lw=0.9, alpha=0.7,
@@ -811,11 +830,11 @@ def figure_hydraulic_leak_response() -> None:
     ax = axes[1, 0]
     event_background(ax)
     command_line = ax.plot(
-        time, data["pump_speed_command_pu"], color="#704A8A", lw=1.5,
+        time, data["pump_speed_command_pu"], color="#704A8A", lw=1.5, drawstyle="steps-post", marker="o", ms=2.6,
         ls="--", label="Speed command",
     )[0]
     actual_line = ax.plot(
-        time, data["pump_actual_speed_pu"], color="#9A6CB4", lw=1.8,
+        time, data["pump_actual_speed_pu"], color="#9A6CB4", lw=1.7, drawstyle="steps-post", marker="o", ms=2.6,
         label="Speed after returned-voltage adapter",
     )[0]
     ax.set_ylabel("Pump speed (p.u.)")
@@ -831,7 +850,7 @@ def figure_hydraulic_leak_response() -> None:
     event_background(ax)
     power_line = ax.plot(
         time, 1000.0 * data["pump_electrical_power_mw"], color=COLORS["electricity"],
-        lw=2.1, marker="s", ms=2.8, markevery=2, label="Pump active power",
+        lw=1.8, drawstyle="steps-post", marker="s", ms=3.0, label="Pump active power",
     )[0]
     ax.set_ylabel("Pump active power (kW)")
     ax.set_ylim(190, 250)
@@ -839,7 +858,7 @@ def figure_hydraulic_leak_response() -> None:
     baseline_voltage = float(data.loc[data["elapsed_minute"] < event_minute, "pump_bus_voltage_pu"].iloc[-1])
     voltage_change = 1e4 * (data["pump_bus_voltage_pu"] - baseline_voltage)
     voltage_line = ax2.plot(
-        time, voltage_change, color="#2B3440", lw=1.8,
+        time, voltage_change, color="#2B3440", lw=1.6, drawstyle="steps-post", marker="o", ms=2.5,
         ls="--", label=r"Pump-bus $\Delta V$",
     )[0]
     ax2.set_ylabel(r"Pump-bus $\Delta V$ ($10^{-4}$ p.u.)", color="#2B3440")
@@ -862,7 +881,7 @@ def figure_hydraulic_leak_response() -> None:
         ax.set_xlim(float(time.min()), float(time.max()))
         ax.set_xticks(np.arange(float(time.min()), float(time.max()) + 1, 15))
     fig.text(
-        0.98, 0.012, "Blue shading begins at leak opening; points are sequential quasi-steady fixed points.",
+        0.98, 0.012, "Blue shading begins at leak opening; markers are discrete sequential quasi-steady operating states, not a continuous transient.",
         ha="right", fontsize=8.0, color=COLORS["muted"],
     )
     fig.subplots_adjust(hspace=0.35, wspace=0.34, top=0.965, bottom=0.13, left=0.085, right=0.92)
@@ -904,7 +923,8 @@ def figure_electrical_supply_disturbance() -> None:
         time,
         data["drive_terminal_voltage_pu"],
         color=COLORS["electricity"],
-        lw=2.2,
+        lw=1.8,
+        drawstyle="steps-post",
         marker="o",
         ms=2.8,
         markevery=2,
@@ -915,6 +935,8 @@ def figure_electrical_supply_disturbance() -> None:
         data["connection_bus_voltage_pu"],
         color="#354052",
         lw=1.5,
+        drawstyle="steps-post",
+        marker="o", ms=2.4,
         ls="--",
         label=f"Grid bus {manifest['connection_bus_id']}",
     )[0]
@@ -923,6 +945,8 @@ def figure_electrical_supply_disturbance() -> None:
         data["service_voltage_factor"],
         color="#7B5EA7",
         lw=1.4,
+        drawstyle="steps-post",
+        marker="o", ms=2.4,
         ls=":",
         label="Service-voltage factor",
     )[0]
@@ -939,7 +963,8 @@ def figure_electrical_supply_disturbance() -> None:
         time,
         data["pump_actual_speed_pu"],
         color="#7B5EA7",
-        lw=2.1,
+        lw=1.8,
+        drawstyle="steps-post",
         marker="o",
         ms=2.8,
         markevery=2,
@@ -952,7 +977,9 @@ def figure_electrical_supply_disturbance() -> None:
         time,
         1000.0 * data["pump_electrical_power_mw"],
         color=COLORS["electricity"],
-        lw=1.9,
+        lw=1.7,
+        drawstyle="steps-post",
+        marker="o", ms=2.4,
         ls="--",
         label="Pump active power",
     )[0]
@@ -969,14 +996,15 @@ def figure_electrical_supply_disturbance() -> None:
         time,
         pressure,
         color=COLORS["drinking_water"],
-        lw=2.2,
+        lw=1.8,
+        drawstyle="steps-post",
         marker="s",
         ms=2.8,
         markevery=2,
         label="Hydraulically weakest node",
     )
-    ax.axhline(20.0, color="#9E2A2B", ls="--", lw=1.1, label="20 m normal-state limit")
-    ax.fill_between(time, pressure, 20.0, where=pressure < 20.0, color="#D95F59", alpha=0.18)
+    ax.axhline(27.5, color="#9E2A2B", ls="--", lw=1.1, label="27.5 m normal-state limit")
+    ax.fill_between(time, pressure, 27.5, where=pressure < 27.5, step="post", color="#D95F59", alpha=0.18)
     ax.set_ylim(min(-25.0, float(pressure.min()) - 4.0), 50.0)
     ax.set_ylabel("Critical pressure (m)")
     ax.legend(loc="lower right", fontsize=8.3)
@@ -1001,7 +1029,9 @@ def figure_electrical_supply_disturbance() -> None:
         time,
         data["maximum_line_loading_percent"],
         color="#354052",
-        lw=1.8,
+        lw=1.6,
+        drawstyle="steps-post",
+        marker="o", ms=2.4,
         ls="--",
         label="Maximum line loading",
     )[0]
@@ -1023,7 +1053,7 @@ def figure_electrical_supply_disturbance() -> None:
     fig.text(
         0.98,
         0.012,
-        "Red: depressed local service voltage; amber: prescribed recovery; points are sequential quasi-steady fixed points.",
+        "Red: depressed local service voltage; amber: prescribed recovery; markers are discrete quasi-steady operating states.",
         ha="right",
         fontsize=8.0,
         color=COLORS["muted"],
@@ -1053,7 +1083,7 @@ def figure_experiment_decomposition() -> None:
     p_heat = policy[policy["sector"] == "district_heating"].set_index("case_id").loc[order]
     axes[0, 1].bar(x - 0.18, c_heat["district_heat_contract_equivalents"], 0.36, color="#72849A")
     axes[0, 1].bar(x + 0.18, p_heat["district_heat_contract_equivalents"], 0.36, color="#D78731")
-    axes[0, 1].set_ylabel("Represented heat connections")
+    axes[0, 1].set_ylabel("Synthetic heat service points")
 
     seed_data = [seeds.loc[seeds["case_id"] == case_id, "water_zone_cv"].to_numpy() for case_id in order]
     boxes = axes[1, 0].boxplot(seed_data, positions=x, widths=0.55, patch_artist=True, showfliers=False)

@@ -119,7 +119,8 @@ def main() -> None:
         "wastewater_grade_policy": (
             "The legacy minimum_gravity_grade is a reduced-model topology/sensitivity setting, not a universal DWA "
             "design criterion. Municipality-scale sewers are sized by Manning capacity on generated slopes and checked "
-            "in SWMM; DWA-A 110 is cited for the hydraulic-performance basis."
+            "in SWMM. DWA-A 198 (2026) is the German reference for deriving wastewater design values; DWA-A 110 "
+            "remains the hydraulic-performance reference. Measured utility hydrographs supersede the Harmon fallback."
         ),
     }
 

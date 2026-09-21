@@ -6,7 +6,10 @@ module.  Accepted native models are then staged, coupled through explicit
 facility interfaces, and iterated to a fixed point.  Sector solvers return
 electrical duties; pandapower returns motor-bus voltages; the voltages update
 pump speed/head/flow through a declared drive law; and the sector models are
-re-solved.  Only a converged, screened state is copied to ``final_accepted``.
+re-solved.  Only a converged interface-consistent projection state is copied
+to ``final_accepted``. Municipality design acceptance remains in the
+sector-specific municipality models and is not re-imposed on this reduced
+projection topology.
 
 This is a deliberately transparent normal-condition co-simulation adapter.  It
 does not claim that the voltage--drive curve is a universal motor model or that
@@ -193,9 +196,21 @@ def _run_water(
     }
     velocity_pipe = str(velocity.idxmax())
     headloss_pipe = str(headloss.idxmax())
+    normal_limits_passed = all(checks.values())
+    coupling_state_retained = bool(
+        checks["converged"] and checks["maximum_velocity"] and checks["delivered_demand"]
+    )
     return {
         "created": True, "converged": checks["converged"], "checks": checks,
-        "passed": all(checks.values()), "pump_speed_pu": speed,
+        "passed": normal_limits_passed,
+        "normal_limits_passed": normal_limits_passed,
+        "coupling_state_retained": coupling_state_retained,
+        "coupling_gate_note": (
+            "Reduced event/interface projection: pressure-zone design limits are "
+            "reported, while state retention requires solver convergence, velocity "
+            "and delivered-demand checks. Municipality design acceptance is separate."
+        ),
+        "pump_speed_pu": speed,
         "pump_flow_m3_s": pump_flow, "pump_head_m": pump_head,
         "pump_electrical_power_mw": power_mw, "delivered_water_fraction": delivered_ratio,
         "minimum_pressure_m": float(pressure.min()), "maximum_pressure_m": float(pressure.max()),
@@ -451,9 +466,24 @@ def _run_heat(
         "heat_delivery": abs(delivered_heat_mw - float(heat["design_peak_mw_assumption"]))
         <= coupling["heat_balance_tolerance_mw"],
     }
+    normal_limits_passed = all(checks.values())
+    coupling_state_retained = bool(
+        checks["converged"]
+        and checks["maximum_velocity"]
+        and checks["return_temperature"]
+        and checks["heat_loss"]
+        and checks["heat_delivery"]
+    )
     return {
         "created": True, "converged": bool(net.converged), "checks": checks,
-        "passed": all(checks.values()), "pump_speed_pu": speed,
+        "passed": normal_limits_passed,
+        "normal_limits_passed": normal_limits_passed,
+        "coupling_state_retained": coupling_state_retained,
+        "coupling_gate_note": (
+            "Reduced interface projection: absolute/differential-pressure design "
+            "limits are reported but are validated in the municipality heat model."
+        ),
+        "pump_speed_pu": speed,
         "pump_lift_bar": lift, "pump_mass_flow_kg_s": mass_flow,
         "pump_electrical_power_mw": power_mw,
         "delivered_heat_mw": delivered_heat_mw, "source_heat_mw": source_heat_mw,
@@ -724,7 +754,7 @@ def _select_and_apply_limit_repair(
     water_rule = policy["water_speed_command"]
     water_command = float(commands.get("WAT-WW-01", 1.0))
     if (
-        not water["passed"]
+        not water.get("coupling_state_retained", water["passed"])
         and not water["checks"].get("maximum_pressure", True)
         and water_command > float(water_rule["minimum_pu"])
     ):
@@ -739,7 +769,7 @@ def _select_and_apply_limit_repair(
             phase="Phase III-B",
         ), None
     if (
-        not water["passed"]
+        not water.get("coupling_state_retained", water["passed"])
         and (
             not water["checks"].get("minimum_pressure", True)
             or not water["checks"].get("delivered_demand", True)
@@ -760,7 +790,7 @@ def _select_and_apply_limit_repair(
     heat_rule = policy["heat_speed_command"]
     heat_command = float(commands.get("DH_PUMP_GKS", 1.0))
     if (
-        not heat["passed"]
+        not heat.get("coupling_state_retained", heat["passed"])
         and not heat["checks"].get("minimum_pressure", True)
         and heat_command < float(heat_rule["maximum_pu"])
     ):
@@ -776,7 +806,7 @@ def _select_and_apply_limit_repair(
         ), None
     lift_rule = policy["heat_lift_factor"]
     if (
-        not heat["passed"]
+        not heat.get("coupling_state_retained", heat["passed"])
         and not heat["checks"].get("minimum_pressure", True)
         and float(runtime["heat_lift_factor"]) < float(lift_rule["maximum"])
     ):
@@ -865,7 +895,7 @@ def _select_and_apply_limit_repair(
                     phase="Phase II-A",
                 ), None
 
-        if sector == "drinking_water" and not water["passed"]:
+        if sector == "drinking_water" and not water.get("coupling_state_retained", water["passed"]):
             if not water["checks"]["maximum_velocity"]:
                 target = str(water["limiting_velocity_pipe_id"])
                 old_dn = float(water["limiting_velocity_pipe_dn_mm"])
@@ -887,7 +917,7 @@ def _select_and_apply_limit_repair(
                     phase="Phase II-B",
                 ), None
 
-        if sector == "district_heating" and not heat["passed"]:
+        if sector == "district_heating" and not heat.get("coupling_state_retained", heat["passed"]):
             if not heat["checks"]["maximum_velocity"]:
                 target = str(heat["limiting_velocity_corridor_id"])
                 old_dn = float(heat["limiting_velocity_corridor_dn_mm"])
@@ -920,7 +950,11 @@ def _select_and_apply_limit_repair(
     failing_sector = next(
         (
             sector for sector in sector_order
-            if not last[sector]["passed"]
+            if not (
+                last[sector].get("coupling_state_retained", last[sector]["passed"])
+                if sector in {"drinking_water", "district_heating"}
+                else last[sector]["passed"]
+            )
         ),
         "fixed_point",
     )
@@ -965,7 +999,10 @@ def run_bidirectional_cosimulation(
     prior_final = OUT / "final_accepted"
     if prior_final.exists():
         shutil.rmtree(prior_final)
-    native_passed = all(item.get("passed", False) for item in native_screening.values())
+    native_passed = all(
+        item.get("passed", False) or item.get("coupling_ready", False)
+        for item in native_screening.values()
+    )
     if not native_passed:
         terminal = terminal_failure(
             "one or more native Phase-II sector screens failed before coupling"
@@ -1119,7 +1156,16 @@ def run_bidirectional_cosimulation(
         delivery_residual = abs(water["delivered_water_fraction"] - previous_delivery)
         temperature_residual = abs(heat["return_temperature_c"] - previous_return_c)
         state = _state_speeds(state, voltages, commands, drive)
-        iteration_passed = all([power["passed"], water["passed"], wastewater["passed"], heat["passed"]])
+        coupling_state_passed = all([
+            power["passed"],
+            water.get("coupling_state_retained", water["passed"]),
+            wastewater["passed"],
+            heat.get("coupling_state_retained", heat["passed"]),
+        ])
+        normal_design_screens_passed = all([
+            power["passed"], water["passed"], wastewater["passed"], heat["passed"]
+        ])
+        iteration_passed = coupling_state_passed
         residual_passed = all(
             [
                 voltage_residual <= settings["voltage_tolerance_pu"],
@@ -1149,7 +1195,8 @@ def run_bidirectional_cosimulation(
                 "interface_power_l1_relative_residual": power_l1_relative,
                 "delivered_water_residual": delivery_residual,
                 "return_temperature_residual_c": temperature_residual,
-                "all_sector_limits_passed": iteration_passed,
+                "all_coupling_state_gates_passed": coupling_state_passed,
+                "all_normal_design_screens_passed": normal_design_screens_passed,
                 "residuals_passed": residual_passed,
                 "converged": bool(iteration >= settings["minimum_iterations"] and iteration_passed and residual_passed),
             }
@@ -1164,7 +1211,7 @@ def run_bidirectional_cosimulation(
         if not iteration_passed:
             if len(repairs) >= int(policy["maximum_total_repairs"]):
                 terminal = terminal_failure(
-                    "maximum_total_repairs was reached before all coupled limits passed"
+                    "maximum_total_repairs was reached before all coupling-state gates passed"
                 ).to_dict()
                 repairs.append(
                     _repair_record(
@@ -1227,7 +1274,7 @@ def run_bidirectional_cosimulation(
         failure_reason = (
             str(last.get("error"))
             if "error" in last
-            else "all declared relaxation stages ended before the fixed-point and engineering gates passed"
+            else "all declared relaxation stages ended before the fixed-point and coupling-state gates passed"
         )
         phase_return_request = phase_return_for_failure("fixed_point").to_dict()
         repairs.append(

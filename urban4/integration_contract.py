@@ -246,13 +246,19 @@ def write_coupling_interfaces(
 
     outfall = sewer_nodes[sewer_nodes.node_type.eq("outfall")].iloc[0]
     annual_m3 = float(sewer_services.annual_m3.sum())
-    treatment_power_mw = annual_m3 * 0.35 / 8760.0 / 1000.0 * 1.5
+    # Use the same reported normal-condition treatment-site demand used by the
+    # municipality case (10,500 kWh/d = 0.4375 MW average).  The previous
+    # synthetic 0.35 kWh/m3 × 1.5 estimate created a second, inconsistent
+    # facility ledger and understated the benchmark total.
+    treatment_power_mw = float(
+        config["official_anchors"]["wastewater_treatment_average_power_mw"]
+    )
     _facility_interface(
         rows, power_nodes=power_nodes, sector="wastewater",
         asset_id="WWTP_INTERFACE", point=(outfall.lon, outfall.lat),
         nominal_power_mw=treatment_power_mw,
         facility_type="wastewater_treatment_interface",
-        duty_basis="0.35 kWh/m3 specific electricity and 1.5 operating peak factor",
+        duty_basis="reported treatment-site electricity: 10,500 kWh/d represented as 0.4375 MW normal-condition average",
         reverse_response="terminal voltage -> treatment availability; inflow remains a mass balance state",
     )
 

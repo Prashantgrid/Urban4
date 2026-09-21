@@ -116,7 +116,7 @@ sector_rows = [
         "sector": "Electricity",
         "service_and_demand_scale": f"22641 building loads; {anchors['electricity_lv_annual_mwh']/1000:.3f} GWh/a; {anchors['electricity_lv_peak_mw']:.3f} MW coincident peak",
         "source_or_facility_rating": f"E1: 20 kV external-grid boundary; no installed generator rating",
-        "selected_asset_scale": f"105 MV/LV sites; {e_tr.sn_mva.sum():.2f} MVA selected transformer capacity ({transformer_distribution_text})",
+        "selected_asset_scale": f"{len(e_tr)} generated MV/LV transformer areas; {e_tr.sn_mva.sum():.2f} MVA selected transformer capacity ({transformer_distribution_text})",
         "powered_interface_count": int(len(interfaces)),
         "closed_interface_duty_mw": float(interfaces.closed_interface_power_mw.sum()),
     },

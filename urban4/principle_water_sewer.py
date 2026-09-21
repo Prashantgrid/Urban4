@@ -66,7 +66,7 @@ class WaterCandidateConfig:
 @dataclass(frozen=True)
 class SewerCandidateConfig:
     subcatchment_cell_size_km: float = 0.21
-    target_total_main_length_km: float = 249.0
+    target_total_main_length_km: float = 225.0
     target_force_main_length_km: float = 13.0
     target_manhole_count: int = 6200
     target_pump_station_count: int = 13
@@ -557,8 +557,11 @@ def generate_pressure_zone_water_candidate(
     # system-wide pressure deficit.  If the upper pressure screen would be
     # exceeded, the candidate is left for explicit zone-control repair instead
     # of silently relaxing a threshold.
-    head_adjustment_m = max(0.0, 20.0 - min(finite_pressures))
-    if max(finite_pressures) + head_adjustment_m <= 110.0 + 1e-9:
+    normal_water_limits = base.CASE_CONFIG["acceptance_screening"]["drinking_water"]
+    normal_minimum_pressure_m = float(normal_water_limits["minimum_pressure_m"])
+    normal_maximum_pressure_m = float(normal_water_limits["maximum_pressure_m"])
+    head_adjustment_m = max(0.0, normal_minimum_pressure_m - min(finite_pressures))
+    if max(finite_pressures) + head_adjustment_m <= normal_maximum_pressure_m + 1e-9:
         effective_source_head_rise_m = config.source_head_rise_m + head_adjustment_m
         finite_pressures = [value + head_adjustment_m for value in finite_pressures]
         proxy_pressures = {
@@ -603,8 +606,12 @@ def generate_pressure_zone_water_candidate(
         "proxy_minimum_pressure_m": float(min(finite_pressures)),
         "proxy_maximum_pressure_m": float(max(finite_pressures)),
         "proxy_pressure_screen_passed": bool(
-            min(finite_pressures) >= 20.0 and max(finite_pressures) <= 110.0
+            min(finite_pressures) >= normal_minimum_pressure_m
+            and max(finite_pressures) <= normal_maximum_pressure_m
         ),
+        "proxy_pressure_band_m": [
+            normal_minimum_pressure_m, normal_maximum_pressure_m
+        ],
         "source_head_rise_m": float(effective_source_head_rise_m),
         "source_head_adjustment_m": float(head_adjustment_m),
         "pressure_repair": pressure_repair,
@@ -1604,9 +1611,7 @@ def run_principle_aligned_candidates(
     )
     sewer_config = SewerCandidateConfig(
         target_total_main_length_km=float(
-            config["official_anchors"]["wastewater_combined_km"]
-            + config["official_anchors"]["wastewater_sanitary_km"]
-            + config["official_anchors"]["wastewater_storm_km"]
+            config["official_anchors"]["wastewater_dry_weather_gravity_route_km"]
             + config["official_anchors"]["wastewater_force_main_km"]
         ),
         target_force_main_length_km=float(
@@ -1640,8 +1645,9 @@ def run_principle_aligned_candidates(
         ),
         "evidence_boundary": {
             "water_route_km": "calibration input",
-            "wastewater_total_collection_km": "calibration input; includes combined, sanitary, storm and force-main inventories",
-            "wastewater_gravity_and_force_main_lengths": "calibration inputs",
+            "wastewater_dry_weather_collection_km": "route-inventory context: combined + sanitary gravity routes plus force mains; storm-only sewers excluded",
+            "wastewater_storm_route_km": "boundary exclusion for the dry-weather sanitary model",
+            "wastewater_gravity_and_force_main_lengths": "route-inventory context, not a wet-weather capacity validation",
             "wastewater_manhole_count": "calibration input",
             "wastewater_pump_stations": "calibration input for spatial station compounds",
             "installed_edge_geometry": "unavailable and not reconstructed",

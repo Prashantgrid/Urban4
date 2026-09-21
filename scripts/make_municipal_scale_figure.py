@@ -29,6 +29,7 @@ def draw_geom(ax,df,color,lw,ls='-',alpha=.87,zorder=2):
 def main():
     b=pd.read_csv(ROOT/'outputs'/'building_sector_demands.csv')
     e=pd.read_csv(OUT/'electricity_links_municipal.csv')
+    tr=pd.read_csv(OUT/'electricity_transformers_municipal.csv')
     w=pd.read_csv(OUT/'drinking_water_links.csv')
     s=pd.read_csv(OUT/'wastewater_links.csv')
     h=pd.read_csv(OUT/'district_heating_corridors_municipal.csv')
@@ -58,7 +59,7 @@ def main():
     else: ex,ey=float(er.iloc[0].lon),float(er.iloc[0].lat)
     ax.scatter(ex,ey,s=95,marker='s',c='#C7362F',edgecolors='white',linewidths=1.0,zorder=8)
     ax.annotate('E1',(ex,ey),xytext=(5,5),textcoords='offset points',fontsize=7.5,fontweight='bold')
-    ax.set_title('(a) Electricity\n105 MV/LV sites; radial MV/LV topology',fontsize=10.2,loc='left',pad=3)
+    ax.set_title(f'(a) Electricity\\n{len(tr)} generated transformer areas; radial MV/LV topology',fontsize=10.2,loc='left',pad=3)
 
     # Drinking-water panel: show mains, not 22,641 property services.
     ax=axes[1]
