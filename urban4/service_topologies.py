@@ -1154,7 +1154,32 @@ def generate_water(
             if deficit <= 0:
                 break
             head_rise += deficit + 1.0
-        wn = create_network(1.0, head_rise)
+        # Normal and design-hour operation need not use one fixed pump head.
+        # Keep the design-hour head required to meet the 27.5-m floor, then
+        # reduce the normal-state head only when needed to respect the same
+        # 70-m upper pressure bound. This represents bounded variable-speed/
+        # pressure-setpoint operation rather than relaxing the pressure screen.
+        thresholds = base.CASE_CONFIG["acceptance_screening"]["drinking_water"]
+        normal_head_rise = float(head_rise)
+        pressure = pd.Series(dtype=float)
+        velocity = pd.Series(dtype=float)
+        normal_adjustments = 0
+        for _ in range(5):
+            wn = create_network(1.0, normal_head_rise)
+            result = wntr.sim.EpanetSimulator(wn).run_sim()
+            pressure = result.node["pressure"].iloc[-1].reindex(service_ids).dropna()
+            velocity = result.link["velocity"].iloc[-1].drop(labels=["W_MAIN_PUMP"], errors="ignore").abs()
+            excess = float(pressure.max()) - float(thresholds["maximum_pressure_m"])
+            if excess <= 1e-6:
+                break
+            candidate = normal_head_rise - excess - 0.05
+            # Do not trade an upper-pressure repair for a lower-pressure
+            # violation; the normal state has ample margin in the public cases.
+            if float(pressure.min()) - excess - 0.05 < float(thresholds["minimum_pressure_m"]):
+                break
+            normal_head_rise = candidate
+            normal_adjustments += 1
+        wn = create_network(1.0, normal_head_rise)
         wntr.network.io.write_inpfile(wn, case_dir / "drinking_water_epanet.inp", units="LPS")
         result = wntr.sim.EpanetSimulator(wn).run_sim()
         pressure = result.node["pressure"].iloc[-1].reindex(service_ids).dropna()
@@ -1166,11 +1191,15 @@ def generate_water(
             "maximum_velocity_m_s": float(velocity.max()),
             "peak_minimum_pressure_m": float(peak_pressure.min()),
             "peak_maximum_velocity_m_s": float(peak_velocity.max()),
-            "source_head_rise_m": head_rise,
+            "source_head_rise_m": normal_head_rise,
+            "normal_source_head_rise_m": normal_head_rise,
+            "design_hour_source_head_rise_m": head_rise,
+            "normal_head_adjustments": normal_adjustments,
+            "head_control_interpretation": "bounded variable-speed/pressure-setpoint operation between normal and design-hour states",
             "cycle_rank": int(model.number_of_edges() - model.number_of_nodes() + 1),
             "normal_pressure_band_m": [
-                float(base.CASE_CONFIG["acceptance_screening"]["drinking_water"]["minimum_pressure_m"]),
-                float(base.CASE_CONFIG["acceptance_screening"]["drinking_water"]["maximum_pressure_m"]),
+                float(thresholds["minimum_pressure_m"]),
+                float(thresholds["maximum_pressure_m"]),
             ],
         }
     except Exception as exc:
