@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 from pathlib import Path
-import json, math, shutil, sys
+import json, math, shutil, sys, time
 import numpy as np
 import pandas as pd
 import networkx as nx
 
 ROOT=Path(__file__).resolve().parents[1]
+BUILD_STARTED=time.perf_counter()
 sys.path.insert(0, str(ROOT))
 
 from urban4 import schweinfurt_base as base
@@ -444,8 +445,10 @@ summary=pd.DataFrame([
  {'sector':'District heating','municipal_topology':'two documented injection boundaries linked by one source-reachable pandapipes-accepted network','demand_or_flow':f'{sel.peak_heat_mw.sum():.3f} MWth peak; 87.5 GWh/a','source_or_pumps':'H1 primary GKS + H2 documented peak/backup injection; source-level duty/assist/standby circulation screening','practical_rating':f"{heat_native_manifest['maximum_native_velocity_m_s']:.2f} m/s; {heat_native_manifest['maximum_catalogue_pressure_gradient_pa_m']:.1f} Pa/m; {heat_native_manifest['maximum_source_screening_differential_pressure_bar']:.2f} bar critical dp; {100*heat_native_manifest['annual_heat_loss_fraction']:.1f}% heat loss",'public_scale':f'{target_len:.1f} km network; 87.5 GWh/a; 841 contract equivalents'}
 ])
 summary.to_csv(OUT/'municipal_scale_summary.csv',index=False)
-manifest={'version':'2.5.0','purpose':'accepted municipality-scale practical topology with deterministic build-solve-repair-release logic','input_building_ledger':str(LEDGER_PATH.relative_to(ROOT)),'service_eligible_buildings':int(ledger.service_eligible.astype(bool).sum()),'registered_wastewater_buildings':len(sewer_ledger),'electricity_native_acceptance':electricity_native_manifest,'heat_sources':heat_sources.to_dict(orient='records'),'heat_connectivity':reach.iloc[0].to_dict(),'heat_native_acceptance':heat_native_manifest,'water_station':water_station.iloc[0].to_dict(),'water_native_acceptance':water_manifest,'wastewater_native_acceptance':wastewater_native_manifest,'wastewater_station_count':len(ww),'electricity_transformer_capacity_mva':float(tr2.municipal_selected_capacity_mva.sum()),'release_gate_passed':bool(electricity_native_manifest['release_gate_passed'] and water_manifest['release_gate_passed'] and wastewater_native_manifest['release_gate_passed'] and heat_native_manifest['release_gate_passed'] and reach.iloc[0].source_reachability_fraction==1.0),'caveat':'Known public source, temperature, pressure, count and aggregate-scale evidence are inputs. Confidential installed edge geometry, exact named supply-area boundaries, plant dispatch and nameplates are not reconstructed.'}
+municipal_runtime_s=time.perf_counter()-BUILD_STARTED
+manifest={'version':'2.5.0','generation_runtime_s':municipal_runtime_s,'purpose':'accepted municipality-scale practical topology with deterministic build-solve-repair-release logic','input_building_ledger':str(LEDGER_PATH.relative_to(ROOT)),'service_eligible_buildings':int(ledger.service_eligible.astype(bool).sum()),'registered_wastewater_buildings':len(sewer_ledger),'electricity_native_acceptance':electricity_native_manifest,'heat_sources':heat_sources.to_dict(orient='records'),'heat_connectivity':reach.iloc[0].to_dict(),'heat_native_acceptance':heat_native_manifest,'water_station':water_station.iloc[0].to_dict(),'water_native_acceptance':water_manifest,'wastewater_native_acceptance':wastewater_native_manifest,'wastewater_station_count':len(ww),'electricity_transformer_capacity_mva':float(tr2.municipal_selected_capacity_mva.sum()),'release_gate_passed':bool(electricity_native_manifest['release_gate_passed'] and water_manifest['release_gate_passed'] and wastewater_native_manifest['release_gate_passed'] and heat_native_manifest['release_gate_passed'] and reach.iloc[0].source_reachability_fraction==1.0),'caveat':'Known public source, temperature, pressure, count and aggregate-scale evidence are inputs. Confidential installed edge geometry, exact named supply-area boundaries, plant dispatch and nameplates are not reconstructed.'}
 json.dump(manifest,open(OUT/'manifest.json','w'),indent=2,default=float)
 print(summary.to_string(index=False))
+print(f'\nMunicipality-scale build runtime: {municipal_runtime_s:.1f} s')
 print('\nHeat sources:',heat_sources.to_string(index=False))
 print('\nWastewater motors:',ww[['map_id','design_pump_flow_lps','screening_tdh_m','force_main_dn_mm','selected_motor_kw']].to_string(index=False))
