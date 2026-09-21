@@ -1037,5 +1037,12 @@
     "stochastic_initialization": "k-means++ uses explicit fixed seeds in reported runs",
     "clustering_seed_sensitivity": "20 seeds per settlement-context case are exported to outputs/clustering_seed_sensitivity.csv",
     "repair_policy": "first feasible standard component in the ordered catalogue is retained; values near limits are a consequence of this first-feasible rule, not continuous tuning"
+  },
+  "reduced_event_projection": {
+    "role": "dependency-direction stress projection only; not the accepted municipality hydraulic design",
+    "normal_minimum_pressure_reference_m": 27.5,
+    "normal_maximum_pressure_design_gate_applies": false,
+    "reason": "single-reservoir reduced topology is not a pressure-zone design model; the accepted municipality model is screened against 27.5-70 m",
+    "disturbance_policy": "retain converged quasi-steady states even when normal pressure/service limits are violated; report the violations explicitly"
   }
 }
