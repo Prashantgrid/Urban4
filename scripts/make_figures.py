@@ -302,6 +302,13 @@ def _north_and_scale(ax: plt.Axes, km: float = 5.0) -> None:
     xn = east - 0.055 * (east - west)
     yn = north - 0.075 * (north - south)
     ax.annotate("N", xy=(xn, yn), xytext=(xn, yn - 0.055 * (north - south)), ha="center", va="center", fontsize=8.2, fontweight="bold", arrowprops={"arrowstyle": "-|>", "lw": 1.0, "color": COLORS["ink"]})
+    ax.text(
+        0.995, 0.006, "© OpenStreetMap contributors · ODbL",
+        transform=ax.transAxes, ha="right", va="bottom",
+        fontsize=5.6, color=COLORS["muted"],
+        bbox={"boxstyle": "round,pad=0.12", "fc": "white", "ec": "none", "alpha": 0.72},
+        zorder=20,
+    )
 
 
 def _save(fig: plt.Figure, stem: str) -> None:
