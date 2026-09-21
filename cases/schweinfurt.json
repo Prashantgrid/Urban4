@@ -452,7 +452,8 @@
           50.047
         ]
       }
-    ]
+    ],
+    "design_peak_basis": "Portfolio-level coincident peak from 87.5 GWh/a divided by 1,600 equivalent full-load hours; selected customer peaks are scaled to this system target before pipe sizing, so independent customer nameplate peaks are not simply summed."
   },
   "equipment_libraries": {
     "electricity_cable_mm2": [
@@ -833,7 +834,9 @@
       "reference_basis": [
         "public drinking-water system design guidance",
         "Urban4 velocity screen"
-      ]
+      ],
+      "fire_flow_included": false,
+      "fire_flow_status": "Not allocated in the public-data case because hydrant classes and utility fire-flow allocation are unavailable; design-grade use must add a DVGW W 405 fire-flow case."
     },
     "wastewater": {
       "minimum_force_main_velocity_m_s": 0.6,
@@ -853,7 +856,9 @@
       "reference_basis": [
         "public sewage-pumping and force-main design guidance",
         "manufacturer raw-sewage pump range"
-      ]
+      ],
+      "wet_weather_included": false,
+      "wet_weather_status": "The reported SWMM check is a dry-weather sanitary screening case. Combined-sewer wet-weather capacity and flooding require rainfall/infiltration and DWA design inputs that are not available in the public case."
     },
     "district_heating": {
       "preferred_velocity_m_s": [
@@ -1027,5 +1032,10 @@
     "electricity_scope": "The building ledger is calibrated to the published LV customer level only. Published MV and MV/LV customer-level annual work, peaks and withdrawal-point counts are retained as context and are not spatially redistributed without customer locations.",
     "electricity_mv_lv_withdrawal_points": "The published count 105 is a customer withdrawal-point count at the MV/LV transformation level, not a utility transformer/substation count.",
     "wastewater_scope": "The dry-weather sanitary model may use combined and sanitary gravity routes (191 + 21 = 212 km) as route-inventory context. The 24 km storm-sewer inventory is excluded from dry-weather hydraulic calibration; no wet-weather flooding validation is claimed."
+  },
+  "reproducibility": {
+    "stochastic_initialization": "k-means++ uses explicit fixed seeds in reported runs",
+    "clustering_seed_sensitivity": "20 seeds per settlement-context case are exported to outputs/clustering_seed_sensitivity.csv",
+    "repair_policy": "first feasible standard component in the ordered catalogue is retained; values near limits are a consequence of this first-feasible rule, not continuous tuning"
   }
 }
