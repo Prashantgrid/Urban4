@@ -29,6 +29,7 @@ def draw_geom(ax,df,color,lw,ls='-',alpha=.87,zorder=2):
 def main():
     b=pd.read_csv(ROOT/'outputs'/'building_sector_demands.csv')
     e=pd.read_csv(OUT/'electricity_links_municipal.csv')
+    tr=pd.read_csv(OUT/'electricity_transformers_municipal.csv')
     w=pd.read_csv(OUT/'drinking_water_links.csv')
     s=pd.read_csv(OUT/'wastewater_links.csv')
     h=pd.read_csv(OUT/'district_heating_corridors_municipal.csv')
