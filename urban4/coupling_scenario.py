@@ -148,8 +148,14 @@ def _run_water_with_leak(
         "delivered_demand": delivered_ratio
         >= float(config["bidirectional_coupling"]["minimum_delivered_water_fraction"]),
     }
+    solver_state_retained = bool(checks["converged"] and checks["maximum_velocity"])
+    normal_limits_passed = bool(
+        checks["minimum_pressure"] and checks["maximum_pressure"] and checks["delivered_demand"]
+    )
     return {
-        "passed": all(checks.values()),
+        "passed": normal_limits_passed,
+        "solver_state_retained": solver_state_retained,
+        "normal_limits_passed": normal_limits_passed,
         "checks": checks,
         "pump_speed_pu": float(speed),
         "pump_flow_m3_s": pump_flow,
@@ -248,7 +254,13 @@ def run_hydraulic_leak_demonstration() -> dict[str, Any]:
 
         final_voltage = float(voltages[main_bus])
         final_speed = _motor_speed(final_voltage, command, coupling["drive_model"])
-        step_passed = bool(inner_converged and water["passed"] and power["passed"])
+        # Disturbance points are allowed to violate normal design limits.
+        # Scenario retention requires a converged coupled solver state; normal
+        # pressure/service violations are recorded as outputs rather than
+        # converted into an artificial design repair.
+        step_passed = bool(
+            inner_converged and water["solver_state_retained"] and power["passed"]
+        )
         rows.append(
             {
                 "elapsed_minute": elapsed_minute,
@@ -279,7 +291,9 @@ def run_hydraulic_leak_demonstration() -> dict[str, Any]:
             }
         )
         if not step_passed:
-            raise RuntimeError(f"Hydraulic-leak state at {elapsed_minute} min failed its declared gate")
+            raise RuntimeError(
+                f"Hydraulic-leak state at {elapsed_minute} min failed numerical/state retention"
+            )
 
         # First-order pressure-control update for the next elapsed-time point.
         # The desired speed follows H~n^2; the command is adjusted with a
@@ -321,6 +335,7 @@ def run_hydraulic_leak_demonstration() -> dict[str, Any]:
     final = timeline.iloc[-1]
     summary = {
         "accepted": bool(timeline["step_accepted"].all()),
+        "normal_limits_violated_during_event": bool((~timeline["water_limits_passed"]).any()),
         "method": "sequential quasi-steady WNTR--pandapower fixed point at each elapsed-time step",
         "scenario": scenario,
         "leak_node_id": str(last_water["leak_node_id"]),
@@ -477,7 +492,9 @@ def run_electrical_supply_disturbance_demonstration() -> dict[str, Any]:
         bus_voltage = float(grid_voltages[affected_bus])
         terminal_voltage = factor * bus_voltage
         pump_speed = _motor_speed(terminal_voltage, command, drive)
-        solver_state_retained = bool(inner_converged and water["checks"]["converged"] and power["passed"])
+        solver_state_retained = bool(
+            inner_converged and water["solver_state_retained"] and power["passed"]
+        )
         phase = (
             "normal_pre"
             if elapsed_minute < int(scenario["fault_start_minute"])
