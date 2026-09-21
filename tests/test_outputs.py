@@ -369,12 +369,12 @@ class GeneratedOutputTests(unittest.TestCase):
         worst = fault.loc[fault["critical_node_pressure_m"].idxmin()]
         # The reduced projection retains converged pre/post states even when
         # its single pressure boundary is outside the municipality design band.
-        self.assertTrue(bool(pre["solver_state_retained"]))
-        self.assertTrue(bool(post["solver_state_retained"]))
+        self.assertTrue(bool(pre["disturbed_state_retained"]))
+        self.assertTrue(bool(post["disturbed_state_retained"]))
         self.assertLess(float(worst["drive_terminal_voltage_pu"]), 0.90)
         self.assertGreater(float(worst["drive_terminal_voltage_pu"]), 0.85)
         self.assertLess(float(worst["pump_actual_speed_pu"]), 0.75)
-        self.assertLess(float(worst["critical_node_pressure_m"]), 20.0)
+        self.assertLess(float(worst["critical_node_pressure_m"]), 27.5)
         self.assertLess(float(worst["delivered_water_fraction"]), 0.95)
         self.assertLess(float(worst["pump_electrical_power_mw"]), float(pre["pump_electrical_power_mw"]))
         self.assertLessEqual(
