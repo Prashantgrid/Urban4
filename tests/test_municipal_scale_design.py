@@ -98,15 +98,17 @@ def test_municipal_manifest_uses_the_frozen_phase_i_ledger():
     assert int(manifest['service_eligible_buildings'])==int(b.service_eligible.astype(bool).sum())
     assert int(manifest['registered_wastewater_buildings'])==int(b.wastewater_connected.astype(bool).sum())
 
-def test_transformer_portfolio_closes_public_scale():
+def test_transformer_portfolio_is_demand_sized_not_forced_to_operator_aggregate():
     e=pd.read_csv(OUT/'electricity_transformers_municipal.csv')
     source=pd.read_csv(ROOT/'outputs'/'integrated_service_resolved'/'electricity_transformers.csv')
     assert len(e)==len(source)
     assert len(e)>0
-    total=float(e.municipal_selected_capacity_mva.sum())
-    assert abs(total-216.71)/216.71 < 0.005
-    assert e.municipal_selected_capacity_mva.min() >= 0.63
+    required=source.assigned_peak_mw/(0.80*0.96)
+    assert (e.municipal_selected_capacity_mva + 1e-12 >= required).all()
+    assert e.municipal_selected_capacity_mva.min() >= 0.25
     assert e.municipal_selected_capacity_mva.max() <= 4.0
+    assert abs(float(e.municipal_selected_capacity_mva.sum())-216.71) > 0.25
+    assert e.capacity_evidence.str.contains('diagnostic only').all()
 
 def test_municipal_electricity_is_natively_accepted_after_ac_power_flow():
     m=json.loads((OUT/'electricity_native_manifest.json').read_text(encoding='utf-8'))
