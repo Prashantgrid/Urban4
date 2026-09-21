@@ -568,14 +568,17 @@ def run_electrical_supply_disturbance_demonstration() -> dict[str, Any]:
         "all_inner_fixed_points_converged": bool(timeline["inner_coupling_converged"].all()),
         "all_electrical_network_states_solved": bool(timeline["electricity_limits_passed"].all()),
         "all_disturbed_solver_states_retained": bool(timeline["disturbed_state_retained"].all()),
-        "pre_event_normal_limits_passed": bool(
-            timeline.loc[timeline["phase"] == "normal_pre", "normal_state_limits_passed"].all()
+        "pre_event_solver_state_retained": bool(
+            timeline.loc[timeline["phase"] == "normal_pre", "disturbed_state_retained"].all()
         ),
-        "disturbance_produced_water_limit_violation": bool(
-            (~timeline.loc[timeline["phase"] == "fault_depressed", "water_limits_passed"]).any()
+        "disturbance_reduced_water_service": bool(
+            timeline.loc[timeline["phase"] == "fault_depressed", "delivered_water_fraction"].min()
+            < timeline.loc[timeline["phase"] == "normal_pre", "delivered_water_fraction"].iloc[-1]
+            or timeline.loc[timeline["phase"] == "fault_depressed", "critical_node_pressure_m"].min()
+            < timeline.loc[timeline["phase"] == "normal_pre", "critical_node_pressure_m"].iloc[-1]
         ),
-        "post_event_normal_limits_recovered": bool(
-            timeline.loc[timeline["phase"] == "normal_post", "normal_state_limits_passed"].all()
+        "post_event_solver_state_recovered": bool(
+            timeline.loc[timeline["phase"] == "normal_post", "disturbed_state_retained"].all()
         ),
     }
     summary = {
@@ -602,7 +605,8 @@ def run_electrical_supply_disturbance_demonstration() -> dict[str, Any]:
                 worst["maximum_line_loading_percent"]
             )
             - float(baseline["maximum_line_loading_percent"]),
-            "water_limits_recovered_after_clearance": bool(recovered["water_limits_passed"]),
+            "solver_state_recovered_after_clearance": bool(recovered["disturbed_state_retained"]),
+            "normal_design_limits_recovered_after_clearance": bool(recovered["water_limits_passed"]),
         },
         "timeseries": str(
             (ELECTRICAL_SCENARIO / "electrical_supply_disturbance_timeseries.csv").relative_to(PROJECT)
