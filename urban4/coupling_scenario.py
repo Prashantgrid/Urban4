@@ -103,8 +103,20 @@ def _run_water_with_leak(
     thresholds = config["acceptance_screening"]["drinking_water"]
     wn.options.time.duration = 0
     wn.options.hydraulic.demand_model = "PDD"
-    wn.options.hydraulic.minimum_pressure = 0.0
-    wn.options.hydraulic.required_pressure = float(thresholds["minimum_pressure_m"])
+    # Disturbance hydraulics use a pressure-dependent service model.  The
+    # required pressure equals the normal-operation acceptance floor, while
+    # the PDD minimum remains zero so a depressurized event can be quantified
+    # rather than repaired into feasibility.
+    scenario = config.get("hydraulic_leak_demonstration", {})
+    wn.options.hydraulic.minimum_pressure = float(
+        scenario.get("pdd_minimum_pressure_m", thresholds.get("event_pdd_minimum_pressure_m", 0.0))
+    )
+    wn.options.hydraulic.required_pressure = float(
+        scenario.get("pdd_required_pressure_m", thresholds["minimum_pressure_m"])
+    )
+    wn.options.hydraulic.pressure_exponent = float(
+        scenario.get("pdd_exponent", thresholds.get("event_pdd_exponent", 0.5))
+    )
     if export_path is not None:
         export_path.parent.mkdir(parents=True, exist_ok=True)
         wntr.network.io.write_inpfile(wn, export_path, units="LPS")
