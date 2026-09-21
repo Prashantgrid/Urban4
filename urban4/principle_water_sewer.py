@@ -1604,9 +1604,7 @@ def run_principle_aligned_candidates(
     )
     sewer_config = SewerCandidateConfig(
         target_total_main_length_km=float(
-            config["official_anchors"]["wastewater_combined_km"]
-            + config["official_anchors"]["wastewater_sanitary_km"]
-            + config["official_anchors"]["wastewater_storm_km"]
+            config["official_anchors"]["wastewater_dry_weather_gravity_route_km"]
             + config["official_anchors"]["wastewater_force_main_km"]
         ),
         target_force_main_length_km=float(
@@ -1640,8 +1638,9 @@ def run_principle_aligned_candidates(
         ),
         "evidence_boundary": {
             "water_route_km": "calibration input",
-            "wastewater_total_collection_km": "calibration input; includes combined, sanitary, storm and force-main inventories",
-            "wastewater_gravity_and_force_main_lengths": "calibration inputs",
+            "wastewater_dry_weather_collection_km": "route-inventory context: combined + sanitary gravity routes plus force mains; storm-only sewers excluded",
+            "wastewater_storm_route_km": "boundary exclusion for the dry-weather sanitary model",
+            "wastewater_gravity_and_force_main_lengths": "route-inventory context, not a wet-weather capacity validation",
             "wastewater_manhole_count": "calibration input",
             "wastewater_pump_stations": "calibration input for spatial station compounds",
             "installed_edge_geometry": "unavailable and not reconstructed",
