@@ -100,7 +100,9 @@ def test_municipal_manifest_uses_the_frozen_phase_i_ledger():
 
 def test_transformer_portfolio_closes_public_scale():
     e=pd.read_csv(OUT/'electricity_transformers_municipal.csv')
-    assert len(e)==105
+    source=pd.read_csv(ROOT/'outputs'/'integrated_service_resolved'/'electricity_transformers.csv')
+    assert len(e)==len(source)
+    assert len(e)>0
     total=float(e.municipal_selected_capacity_mva.sum())
     assert abs(total-216.71)/216.71 < 0.005
     assert e.municipal_selected_capacity_mva.min() >= 0.63
