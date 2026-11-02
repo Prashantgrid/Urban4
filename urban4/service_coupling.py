@@ -17,6 +17,7 @@ from .coupling_repair import (
     terminal_failure,
     validate_interface_state,
 )
+from .shared_energy_assets import RELATION as SHARED_ASSET_RELATION, resolve_shared_asset_states
 
 
 def _drive_speed(
@@ -39,6 +40,7 @@ def run_nominal_interface_closure(
     relaxation: float | None = None,
     voltage_tolerance_pu: float = 1e-6,
     power_tolerance_mw: float = 1e-5,
+    shared_asset_availability: dict[str, bool] | None = None,
 ) -> dict[str, Any]:
     """Iterate sector duty, electrical load and terminal voltage to closure.
 
@@ -59,9 +61,12 @@ def run_nominal_interface_closure(
         maximum_iterations = int(config["bidirectional_coupling"]["maximum_iterations"])
     fixed_relaxation = relaxation
     net = pp.from_json(str(output / "electricity_pandapower.json"))
-    interfaces = pd.read_csv(output / "coupling_interfaces.csv")
+    interfaces = pd.read_csv(output / "coupling_interfaces.csv", low_memory=False)
     active = interfaces[
         interfaces.relation.eq("electrically_driven_facility")
+    ].copy().reset_index(drop=True)
+    shared = interfaces[
+        interfaces.relation.eq(SHARED_ASSET_RELATION)
     ].copy().reset_index(drop=True)
     if active.empty:
         raise ValueError("No electrically driven facility interfaces found")
@@ -70,6 +75,41 @@ def run_nominal_interface_closure(
     if missing:
         raise ValueError(f"Interface buses absent from pandapower model: {missing[:5]}")
     active["pandapower_bus"] = active.from_id.astype(str).map(bus_by_name).astype(int)
+
+    shared_states = resolve_shared_asset_states(shared, shared_asset_availability)
+    if not shared.empty:
+        shared_missing = sorted(set(shared.from_id.astype(str)) - set(bus_by_name.index))
+        if shared_missing:
+            raise ValueError(
+                f"Shared-asset electrical connection points absent from pandapower model: {shared_missing[:5]}"
+            )
+        shared["pandapower_bus"] = (
+            shared.from_id.astype(str).map(bus_by_name).astype(int)
+        )
+        shared_bus_by_asset = pd.Series(
+            shared.pandapower_bus.to_numpy(int),
+            index=shared.shared_asset_id.astype(str),
+        )
+        shared_states["pandapower_bus"] = (
+            shared_states.shared_asset_id.astype(str)
+            .map(shared_bus_by_asset)
+            .astype(int)
+        )
+        # Positive prescribed active power is generation.  Availability-only
+        # assets create no injection, so adding the interface cannot change the
+        # present benchmark merely because the physical asset is recorded.
+        prescribed = shared_states[
+            shared_states.available.astype(bool)
+            & shared_states.electrical_injection_mw.notna()
+        ]
+        if len(prescribed):
+            pp.create_sgens(
+                net,
+                buses=prescribed.pandapower_bus.to_numpy(int),
+                p_mw=prescribed.electrical_injection_mw.to_numpy(float),
+                q_mvar=np.zeros(len(prescribed), dtype=float),
+                name=("U4_SHARED_" + prescribed.shared_asset_id.astype(str)).tolist(),
+            )
     contract_view = active.rename(
         columns={
             "from_id": "bus_id", "to_sector": "sector", "to_id": "asset_id",
@@ -154,6 +194,18 @@ def run_nominal_interface_closure(
     active["closed_interface_power_mw"] = power
     active["energized"] = final_voltage >= 0.75
     active.to_csv(output / "coupled_facility_interface_states.csv", index=False)
+    if len(shared_states):
+        shared_states["electrical_connection_voltage_pu"] = (
+            net.res_bus.vm_pu.reindex(shared_states.pandapower_bus).to_numpy(float)
+        )
+        shared_states["electrical_connection_energized"] = (
+            shared_states.electrical_connection_voltage_pu >= 0.75
+        )
+        shared_states["availability_note"] = (
+            "Common shared-asset availability is a scenario state; connection voltage is monitored but does not "
+            "invent a CHP trip/dispatch rule."
+        )
+    shared_states.to_csv(output / "shared_energy_asset_states.csv", index=False)
     pd.DataFrame(history).to_csv(
         output / "coupled_nominal_convergence_history.csv", index=False
     )
@@ -186,6 +238,16 @@ def run_nominal_interface_closure(
         ),
         "iterations": int(len(history)),
         "facility_interfaces": int(len(active)),
+        "shared_conversion_assets": int(len(shared_states)),
+        "shared_asset_electrical_injection_mw": float(
+            shared_states.electrical_injection_mw.fillna(0.0).sum()
+            if len(shared_states) else 0.0
+        ),
+        "shared_asset_state_file": "shared_energy_asset_states.csv",
+        "shared_asset_policy": (
+            "Common availability is explicit. Electrical/thermal operating points are used only when prescribed; "
+            "Urban4 does not infer a CHP conversion curve."
+        ),
         "nominal_interface_power_mw": float(nominal.sum()),
         "closed_interface_power_mw": float(power.sum()),
         "minimum_terminal_voltage_pu": float(final_voltage.min()),

@@ -1,0 +1,359 @@
+{
+  "assumptions": {
+    "pdd": {
+      "p_min_m": 0.0,
+      "p_req_m": 27.5,
+      "exponent": 0.5
+    },
+    "state": "design hour, radial MV network, before switching or repair",
+    "booster_supply": "boosters take suction from the waterworks zone WZ1; bypass at WZ1 head (upper bound) or no supply (lower bound)",
+    "storage": "none represented",
+    "sewer": "average dry-weather sanitary inflow of catchments whose lift station is unpowered",
+    "attachment": "nearest MV/LV transformer MV bus (water stations), nearest LV bus (lift stations); synthetic attachments"
+  },
+  "mv_lines": 407,
+  "mv_km": 157.67568747639035,
+  "total_loads": 22641,
+  "total_mw": 40.96199999999922,
+  "population": 68799.0,
+  "base_water": {
+    "unserved_lps": 0.0,
+    "unserved_pct": 0.0,
+    "pop_equiv_without_water": 0.0,
+    "buildings_below_half": 0,
+    "min_pressure_supplied_m": 27.637319564819336
+  },
+  "facilities": [
+    {
+      "facility": "WZ1",
+      "kind": "water",
+      "role": "waterworks",
+      "lon": 10.2415843,
+      "lat": 50.0417157,
+      "bus_name": "E_MV_TR135",
+      "distance_km": 0.24704756359824456,
+      "buildings": 12819,
+      "design_flow_lps": 322.6170003031949
+    },
+    {
+      "facility": "WZ2",
+      "kind": "water",
+      "role": "booster",
+      "lon": 10.241701,
+      "lat": 50.0555212,
+      "bus_name": "E_MV_TR028",
+      "distance_km": 0.1387317359923912,
+      "buildings": 8902,
+      "design_flow_lps": 129.18027749621004
+    },
+    {
+      "facility": "WZ3",
+      "kind": "water",
+      "role": "booster",
+      "lon": 10.2526672,
+      "lat": 50.0718997,
+      "bus_name": "E_MV_TR011",
+      "distance_km": 0.27694040012808985,
+      "buildings": 905,
+      "design_flow_lps": 13.2423512846006
+    },
+    {
+      "facility": "WZ4",
+      "kind": "water",
+      "role": "booster",
+      "lon": 10.208253,
+      "lat": 50.093591,
+      "bus_name": "E_MV_TR071",
+      "distance_km": 0.19506217277950683,
+      "buildings": 15,
+      "design_flow_lps": 0.2064389017884274
+    },
+    {
+      "facility": "S1",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.1791475,
+      "lat": 50.0473748,
+      "bus_name": "E_LV_J004924",
+      "distance_km": 0.0,
+      "buildings": 447,
+      "design_flow_lps": 5.944002719417729
+    },
+    {
+      "facility": "S2",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.293855916,
+      "lat": 50.054532147,
+      "bus_name": "E_LV_J009551",
+      "distance_km": 0.1406058650926033,
+      "buildings": 339,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S3",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.203185768,
+      "lat": 50.006293104,
+      "bus_name": "E_LV_TR206",
+      "distance_km": 0.19826439377763777,
+      "buildings": 3,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S4",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.238986777,
+      "lat": 50.040283528,
+      "bus_name": "E_LV_J006554",
+      "distance_km": 0.04121235512657352,
+      "buildings": 11383,
+      "design_flow_lps": 140.3957112515419
+    },
+    {
+      "facility": "S5",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.300722843,
+      "lat": 50.024858347,
+      "bus_name": "E_LV_J000378",
+      "distance_km": 0.7615640672787839,
+      "buildings": 2,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S6",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.203877821,
+      "lat": 50.032785376,
+      "bus_name": "E_LV_J006607",
+      "distance_km": 0.036061752348005086,
+      "buildings": 3484,
+      "design_flow_lps": 47.46552405623942
+    },
+    {
+      "facility": "S7",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.264303205,
+      "lat": 50.027324378,
+      "bus_name": "E_LV_J007149",
+      "distance_km": 0.02476137823659139,
+      "buildings": 151,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S8",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.2900132,
+      "lat": 50.0437774,
+      "bus_name": "E_LV_J001048",
+      "distance_km": 0.0,
+      "buildings": 107,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S9",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.214376188,
+      "lat": 50.011408986,
+      "bus_name": "E_B_745135635",
+      "distance_km": 0.05519448100554527,
+      "buildings": 458,
+      "design_flow_lps": 4.8
+    },
+    {
+      "facility": "S10",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.283498676,
+      "lat": 50.026881621,
+      "bus_name": "E_B_213837912",
+      "distance_km": 0.013569494564137426,
+      "buildings": 1262,
+      "design_flow_lps": 14.162617549948571
+    },
+    {
+      "facility": "S11",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.165395579,
+      "lat": 50.050685686,
+      "bus_name": "E_B_819612817",
+      "distance_km": 0.027513516709362452,
+      "buildings": 1955,
+      "design_flow_lps": 23.52279513935802
+    },
+    {
+      "facility": "S12",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.218242972,
+      "lat": 50.033135767,
+      "bus_name": "E_LV_J001330",
+      "distance_km": 0.03190452669791566,
+      "buildings": 975,
+      "design_flow_lps": 12.177911418468604
+    },
+    {
+      "facility": "S13",
+      "kind": "wastewater",
+      "role": "lift station",
+      "lon": 10.255262093,
+      "lat": 50.038132523,
+      "bus_name": "E_LV_J007295",
+      "distance_km": 0.0034211193971108622,
+      "buildings": 2075,
+      "design_flow_lps": 22.633987505373128
+    }
+  ],
+  "lines_affecting_water_M0": 43,
+  "lines_affecting_lift_stations": 78,
+  "max_unpumped_sanitary_inflow_lps": 114.25935052580155,
+  "total_sanitary_inflow_lps": 130.0101471334348,
+  "lines_ge_1000_pe_M0": 18,
+  "lines_ge_1000_pe_M1": 9,
+  "lines_ge_1000_pe_M2": 0,
+  "waterworks_path_lines": 9,
+  "waterworks_path_km": 2.1627255513760746,
+  "waterworks_path_loads_min_max": [
+    33,
+    7955
+  ],
+  "waterworks_path_mw_min_max": [
+    0.107637153541226,
+    18.10905894577743
+  ],
+  "spearman_electric_vs_water": 0.3914688909361206,
+  "waterworks_path_electric_ranks": [
+    2,
+    3,
+    6,
+    7,
+    8,
+    10,
+    11,
+    13,
+    347
+  ],
+  "lines_ge_1000_pe_M0_no_bypass": 28,
+  "lines_affecting_water_M1": 34,
+  "lines_affecting_water_M2": 0,
+  "backup_power_kw": {
+    "waterworks_duty": 819.3868809066396,
+    "WZ2": 35.27415076610293,
+    "WZ3": 7.514178463184569,
+    "WZ4": 0.07585415791570023
+  },
+  "max_pop_equiv_M0": 68799.0,
+  "max_pop_equiv_M1": 2218.1504557134294,
+  "max_pop_equiv_M2": 0.0,
+  "sum_pop_equiv_km_M0": 154841.21209054932,
+  "sum_pop_equiv_km_M1": 6047.856881426728,
+  "sum_pop_equiv_km_M2": 0.0,
+  "water_state_cache": {
+    "none|bypass=True": {
+      "unserved_lps": 0.0,
+      "unserved_pct": 0.0,
+      "pop_equiv_without_water": 0.0,
+      "buildings_below_half": 0,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ2+WZ3+WZ4|bypass=True": {
+      "unserved_lps": 10.416694484988794,
+      "unserved_pct": 3.0580979899959835,
+      "pop_equiv_without_water": 2218.1504557134294,
+      "buildings_below_half": 13,
+      "min_pressure_supplied_m": 3.2794713973999023
+    },
+    "WZ2+WZ3+WZ4|bypass=False": {
+      "unserved_lps": 142.62906352892003,
+      "unserved_pct": 41.87255881617316,
+      "pop_equiv_without_water": 30225.473462035978,
+      "buildings_below_half": 9822,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ1|bypass=True": {
+      "unserved_lps": 340.62657635776003,
+      "unserved_pct": 100.0,
+      "pop_equiv_without_water": 68799.0,
+      "buildings_below_half": 22641,
+      "min_pressure_supplied_m": NaN
+    },
+    "WZ1|bypass=False": {
+      "unserved_lps": 340.62657635776003,
+      "unserved_pct": 100.0,
+      "pop_equiv_without_water": 68799.0,
+      "buildings_below_half": 22641,
+      "min_pressure_supplied_m": NaN
+    },
+    "none|bypass=False": {
+      "unserved_lps": 0.0,
+      "unserved_pct": 0.0,
+      "pop_equiv_without_water": 0.0,
+      "buildings_below_half": 0,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ3+WZ4|bypass=True": {
+      "unserved_lps": 3.401610445913755,
+      "unserved_pct": 0.9986333075611352,
+      "pop_equiv_without_water": 734.9199467271587,
+      "buildings_below_half": 13,
+      "min_pressure_supplied_m": 3.2794713973999023
+    },
+    "WZ3+WZ4|bypass=False": {
+      "unserved_lps": 13.448789758439998,
+      "unserved_pct": 3.9482502810687143,
+      "pop_equiv_without_water": 2906.71073181935,
+      "buildings_below_half": 920,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ2|bypass=True": {
+      "unserved_lps": 7.015084039075035,
+      "unserved_pct": 2.0594646824348475,
+      "pop_equiv_without_water": 1483.2305089862712,
+      "buildings_below_half": 0,
+      "min_pressure_supplied_m": 13.85734748840332
+    },
+    "WZ2|bypass=False": {
+      "unserved_lps": 129.18027377047997,
+      "unserved_pct": 37.92430853510442,
+      "pop_equiv_without_water": 27318.76273021663,
+      "buildings_below_half": 8902,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ3|bypass=True": {
+      "unserved_lps": 3.3197976207948083,
+      "unserved_pct": 0.9746149746425028,
+      "pop_equiv_without_water": 717.1279346403943,
+      "buildings_below_half": 13,
+      "min_pressure_supplied_m": 3.2794713973999023
+    },
+    "WZ3|bypass=False": {
+      "unserved_lps": 13.242350867039999,
+      "unserved_pct": 3.8876446484702827,
+      "pop_equiv_without_water": 2861.8160194606585,
+      "buildings_below_half": 905,
+      "min_pressure_supplied_m": 27.637319564819336
+    },
+    "WZ4|bypass=True": {
+      "unserved_lps": 0.08181282511894722,
+      "unserved_pct": 0.02401833291863264,
+      "pop_equiv_without_water": 17.792012086764423,
+      "buildings_below_half": 0,
+      "min_pressure_supplied_m": 9.600666999816895
+    },
+    "WZ4|bypass=False": {
+      "unserved_lps": 0.2064388914,
+      "unserved_pct": 0.06060563259843157,
+      "pop_equiv_without_water": 44.89471235869129,
+      "buildings_below_half": 15,
+      "min_pressure_supplied_m": 27.637319564819336
+    }
+  }
+}

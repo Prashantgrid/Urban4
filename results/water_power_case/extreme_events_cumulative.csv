@@ -1,0 +1,22 @@
+event,measure,duration,duration_h,pe_hours_without_water,sewage_m3,customer_hours
+Blackout (grid supply point lost),no backup,Koepenick 2019 (31 h),31.0,481593.0,14509.132420091324,701871.0
+Blackout (grid supply point lost),no backup,Berlin 2026 (about 5 d),120.0,6604704.0,56164.38356164383,2716920.0
+Blackout (grid supply point lost),no backup,Ahr 2021 (5 weeks),840.0,56139984.0,393150.6849315068,19018440.0
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",Koepenick 2019 (31 h),31.0,0.0,14509.132420091324,701871.0
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",Berlin 2026 (about 5 d),120.0,1651176.0,56164.38356164383,2716920.0
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",Ahr 2021 (5 weeks),840.0,51186456.0,393150.6849315068,19018440.0
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",Koepenick 2019 (31 h),31.0,0.0,0.0,701871.0
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",Berlin 2026 (about 5 d),120.0,0.0,0.0,2716920.0
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",Ahr 2021 (5 weeks),840.0,0.0,0.0,19018440.0
+HQ100 flood,as mapped,Koepenick 2019 (31 h),31.0,481593.0,7325.95583425422,7347.0
+HQ100 flood,as mapped,Berlin 2026 (about 5 d),120.0,6604704.0,28358.53871324214,28440.0
+HQ100 flood,as mapped,Ahr 2021 (5 weeks),840.0,56139984.0,198509.77099269498,199080.0
+HQ100 flood,waterworks site and supply station protected,Koepenick 2019 (31 h),31.0,0.0,7325.95583425422,6324.0
+HQ100 flood,waterworks site and supply station protected,Berlin 2026 (about 5 d),120.0,0.0,28358.53871324214,24480.0
+HQ100 flood,waterworks site and supply station protected,Ahr 2021 (5 weeks),840.0,0.0,198509.77099269498,171360.0
+HQextrem flood,as mapped,Koepenick 2019 (31 h),31.0,481593.0,14509.132420091324,56978.0
+HQextrem flood,as mapped,Berlin 2026 (about 5 d),120.0,6604704.0,56164.38356164383,220560.0
+HQextrem flood,as mapped,Ahr 2021 (5 weeks),840.0,56139984.0,393150.6849315068,1543920.0
+HQextrem flood,waterworks site and supply station protected,Koepenick 2019 (31 h),31.0,0.0,14509.132420091324,55955.0
+HQextrem flood,waterworks site and supply station protected,Berlin 2026 (about 5 d),120.0,0.0,56164.38356164383,216600.0
+HQextrem flood,waterworks site and supply station protected,Ahr 2021 (5 weeks),840.0,0.0,393150.6849315068,1516200.0

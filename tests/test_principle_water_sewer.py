@@ -33,11 +33,17 @@ def test_water_candidate_closes_registered_scale_and_structural_screens(manifest
     assert not water["native_solver_executed"]
 
 
-def test_wastewater_candidate_closes_registered_structural_inventories(manifest: dict) -> None:
+def test_wastewater_candidate_preserves_dry_weather_boundary_and_structure(manifest: dict) -> None:
     sewer = manifest["wastewater"]
     assert sewer["registered_buildings"] == 22641
-    assert sewer["inventory_gate_passed"]
-    assert sewer["main_length_km"] == pytest.approx(249.0, rel=0.01)
+    # Public dry-weather route context is 191 km combined + 21 km sanitary
+    # gravity plus 13 km force main.  The 24 km storm-only inventory is not
+    # used as a sanitary calibration target.  Generated route length remains
+    # a diagnostic because installed edge geometry is unavailable.
+    assert sewer["published_total_collection_length_km"] == pytest.approx(225.0)
+    assert sewer["configuration"]["target_total_main_length_km"] == pytest.approx(225.0)
+    assert sewer["main_length_km"] > 0.0
+    assert sewer["gravity_main_length_km"] > 0.0
     assert sewer["force_main_inventory_gate_passed"]
     assert sewer["force_main_length_km"] == pytest.approx(13.0, rel=0.02)
     assert abs(sewer["manhole_count_error"]) <= 50

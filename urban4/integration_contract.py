@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 
 from . import schweinfurt_base as base
+from .shared_energy_assets import RELATION as SHARED_ASSET_RELATION, build_shared_asset_interfaces
 
 
 def _normalise_geometry(value: Any) -> list[tuple[float, float]]:
@@ -175,6 +176,7 @@ def write_coupling_interfaces(
     heat_nodes: pd.DataFrame,
     heat_corridors: pd.DataFrame,
     heat_solver: dict[str, Any],
+    config: dict[str, Any],
 ) -> pd.DataFrame:
     """Write building mass mappings and capacity-aware facility interfaces."""
     rows: list[dict[str, Any]] = []
@@ -244,13 +246,19 @@ def write_coupling_interfaces(
 
     outfall = sewer_nodes[sewer_nodes.node_type.eq("outfall")].iloc[0]
     annual_m3 = float(sewer_services.annual_m3.sum())
-    treatment_power_mw = annual_m3 * 0.35 / 8760.0 / 1000.0 * 1.5
+    # Use the same reported normal-condition treatment-site demand used by the
+    # municipality case (10,500 kWh/d = 0.4375 MW average).  The previous
+    # synthetic 0.35 kWh/m3 × 1.5 estimate created a second, inconsistent
+    # facility ledger and understated the benchmark total.
+    treatment_power_mw = float(
+        config["official_anchors"]["wastewater_treatment_average_power_mw"]
+    )
     _facility_interface(
         rows, power_nodes=power_nodes, sector="wastewater",
         asset_id="WWTP_INTERFACE", point=(outfall.lon, outfall.lat),
         nominal_power_mw=treatment_power_mw,
         facility_type="wastewater_treatment_interface",
-        duty_basis="0.35 kWh/m3 specific electricity and 1.5 operating peak factor",
+        duty_basis="reported treatment-site electricity: 10,500 kWh/d represented as 0.4375 MW normal-condition average",
         reverse_response="terminal voltage -> treatment availability; inflow remains a mass balance state",
     )
 
@@ -276,6 +284,12 @@ def write_coupling_interfaces(
             reverse_response="terminal voltage -> circulation-pump speed -> mass flow, pressure and temperature delivery",
         )
 
+    # Shared conversion assets are separate from ordinary powered facilities.
+    # Their operating points are never inferred: availability-only assets add no
+    # electrical or thermal injection until a later study supplies a setpoint or
+    # a detailed conversion model.
+    rows.extend(build_shared_asset_interfaces(config, power_nodes, heat_nodes))
+
     frame = pd.DataFrame(rows)
     frame.insert(
         0, "interface_id",
@@ -283,7 +297,16 @@ def write_coupling_interfaces(
     )
     frame.to_csv(output / "coupling_interfaces.csv", index=False)
     facility = frame[frame.relation.eq("electrically_driven_facility")]
+    shared_assets = frame[frame.relation.eq(SHARED_ASSET_RELATION)].copy()
+    shared_assets.to_csv(output / "shared_energy_assets.csv", index=False)
     audit = {
+        "shared_conversion_assets": int(len(shared_assets)),
+        "shared_assets_with_prescribed_electrical_dispatch": int(
+            shared_assets.electrical_setpoint_mw.notna().sum() if len(shared_assets) else 0
+        ),
+        "shared_assets_with_prescribed_thermal_dispatch": int(
+            shared_assets.thermal_setpoint_mw.notna().sum() if len(shared_assets) else 0
+        ),
         "building_mass_interfaces": int(
             frame.relation.eq("delivered_water_to_sanitary_inflow").sum()
         ),

@@ -1,0 +1,442 @@
+{
+  "storage_h": 24.0,
+  "fuel_autonomy_h": 72.0,
+  "durations_h": {
+    "Koepenick 2019 (31 h)": 31.0,
+    "Berlin 2026 (about 5 d)": 120.0,
+    "Ahr 2021 (5 weeks)": 840.0
+  },
+  "backup_mw": {
+    "water_stations": 0.8622510642938428,
+    "lift_stations": 0.0905,
+    "dh_pumps": 0.23657713538879216,
+    "all_pumped_facilities": 1.189328199682635
+  },
+  "population": 68799.0,
+  "customers": 22641,
+  "sanitary_lps": 130.0101471334348,
+  "dh_customers": 841,
+  "events": [
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 22641.0,
+      "unit": "customers",
+      "label": "22,641 customers",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "sector": "water",
+      "onset_h": 24.0,
+      "value": 68799.0,
+      "unit": "PE",
+      "label": "68,799 PE",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 130.0101471334348,
+      "unit": "L/s",
+      "label": "130 L/s unpumped",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "sector": "heat",
+      "onset_h": 0.0,
+      "value": 841.0,
+      "unit": "DH customers",
+      "label": "841 DH customers",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 22641.0,
+      "unit": "customers",
+      "label": "22,641 customers",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "sector": "water",
+      "onset_h": 96.0,
+      "value": 68799.0,
+      "unit": "PE",
+      "label": "68,799 PE",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 130.0101471334348,
+      "unit": "L/s",
+      "label": "130 L/s unpumped",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "sector": "heat",
+      "onset_h": 0.0,
+      "value": 841.0,
+      "unit": "DH customers",
+      "label": "841 DH customers",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 22641.0,
+      "unit": "customers",
+      "label": "22,641 customers",
+      "conditional": false
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 130.0101471334348,
+      "unit": "L/s",
+      "label": "treated only if the plant's CHP runs islanded",
+      "conditional": true
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "sector": "heat",
+      "onset_h": 0.0,
+      "value": 841.0,
+      "unit": "DH customers",
+      "label": "supplied only if DH plants run islanded",
+      "conditional": true
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 237.0,
+      "unit": "customers",
+      "label": "237 customers",
+      "conditional": false
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "sector": "water",
+      "onset_h": 24.0,
+      "value": 68799.0,
+      "unit": "PE",
+      "label": "68,799 PE",
+      "conditional": false
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 65.64476553991236,
+      "unit": "L/s",
+      "label": "66 L/s unpumped",
+      "conditional": false
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "waterworks site and supply station protected",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 204.0,
+      "unit": "customers",
+      "label": "204 customers",
+      "conditional": false
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "waterworks site and supply station protected",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 65.64476553991236,
+      "unit": "L/s",
+      "label": "66 L/s unpumped",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 1838.0,
+      "unit": "customers",
+      "label": "1,838 customers",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "sector": "water",
+      "onset_h": 24.0,
+      "value": 68799.0,
+      "unit": "PE",
+      "label": "68,799 PE",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 130.0101471334348,
+      "unit": "L/s",
+      "label": "130 L/s untreated",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "sector": "heat",
+      "onset_h": 0.0,
+      "value": 0.1871795654296875,
+      "unit": "share of design heat",
+      "label": "shortfall below -8.6 \u00b0C",
+      "conditional": true
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "sector": "power",
+      "onset_h": 0.0,
+      "value": 1805.0,
+      "unit": "customers",
+      "label": "1,805 customers",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "sector": "wastewater",
+      "onset_h": 0.0,
+      "value": 130.0101471334348,
+      "unit": "L/s",
+      "label": "130 L/s untreated",
+      "conditional": false
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "sector": "heat",
+      "onset_h": 0.0,
+      "value": 0.1871795654296875,
+      "unit": "share of design heat",
+      "label": "shortfall below -8.6 \u00b0C",
+      "conditional": true
+    }
+  ],
+  "cumulative": [
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 481593.0,
+      "sewage_m3": 14509.132420091324,
+      "customer_hours": 701871.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 6604704.0,
+      "sewage_m3": 56164.38356164383,
+      "customer_hours": 2716920.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "no backup",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 56139984.0,
+      "sewage_m3": 393150.6849315068,
+      "customer_hours": 19018440.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 14509.132420091324,
+      "customer_hours": 701871.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 1651176.0,
+      "sewage_m3": 56164.38356164383,
+      "customer_hours": 2716920.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "water stations on backup, 72 h fuel",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 51186456.0,
+      "sewage_m3": 393150.6849315068,
+      "customer_hours": 19018440.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 0.0,
+      "customer_hours": 701871.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 0.0,
+      "customer_hours": 2716920.0
+    },
+    {
+      "event": "Blackout (grid supply point lost)",
+      "measure": "all pumped facilities on backup, refuelled",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 0.0,
+      "customer_hours": 19018440.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 481593.0,
+      "sewage_m3": 7325.95583425422,
+      "customer_hours": 7347.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 6604704.0,
+      "sewage_m3": 28358.53871324214,
+      "customer_hours": 28440.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "as mapped",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 56139984.0,
+      "sewage_m3": 198509.77099269498,
+      "customer_hours": 199080.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 7325.95583425422,
+      "customer_hours": 6324.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 28358.53871324214,
+      "customer_hours": 24480.0
+    },
+    {
+      "event": "HQ100 flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 198509.77099269498,
+      "customer_hours": 171360.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 481593.0,
+      "sewage_m3": 14509.132420091324,
+      "customer_hours": 56978.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 6604704.0,
+      "sewage_m3": 56164.38356164383,
+      "customer_hours": 220560.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "as mapped",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 56139984.0,
+      "sewage_m3": 393150.6849315068,
+      "customer_hours": 1543920.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Koepenick 2019 (31 h)",
+      "duration_h": 31.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 14509.132420091324,
+      "customer_hours": 55955.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Berlin 2026 (about 5 d)",
+      "duration_h": 120.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 56164.38356164383,
+      "customer_hours": 216600.0
+    },
+    {
+      "event": "HQextrem flood",
+      "measure": "waterworks site and supply station protected",
+      "duration": "Ahr 2021 (5 weeks)",
+      "duration_h": 840.0,
+      "pe_hours_without_water": 0.0,
+      "sewage_m3": 393150.6849315068,
+      "customer_hours": 1516200.0
+    }
+  ]
+}

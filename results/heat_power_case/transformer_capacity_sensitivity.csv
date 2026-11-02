@@ -1,0 +1,19 @@
+ratio_mode,ratio_name,renovation_f,capacity_case,rating_factor,total_rating_mva,overloaded_areas,max_transformer_loading_pct
+cop,COP model,1.0,generated,1.0,97.8,19,914.349378198855
+cop,COP model,1.0,published_per_retained_building,1.3043,127.6,17,701.0258115755856
+cop,COP model,1.0,published_total,2.2179,217.0,14,412.2578025943593
+cop,COP model,0.8,generated,1.0,97.8,19,745.9740672306473
+cop,COP model,0.8,published_per_retained_building,1.3043,127.6,14,571.9335391520036
+cop,COP model,0.8,published_total,2.2179,217.0,12,336.34148727118213
+cop,COP model,0.6,generated,1.0,97.8,16,577.5987562624396
+cop,COP model,0.6,published_per_retained_building,1.3043,127.6,14,442.8412667284216
+cop,COP model,0.6,published_total,2.2179,217.0,8,260.425171948005
+measured,Study-based ratio 0.40,1.0,generated,1.0,97.8,17,595.3541348544103
+measured,Study-based ratio 0.40,1.0,published_per_retained_building,1.3043,127.6,14,456.4542017662153
+measured,Study-based ratio 0.40,1.0,published_total,2.2179,217.0,8,268.43063849841246
+measured,Study-based ratio 0.40,0.8,generated,1.0,97.8,14,490.77787255509156
+measured,Study-based ratio 0.40,0.8,published_per_retained_building,1.3043,127.6,14,376.27625130450735
+measured,Study-based ratio 0.40,0.8,published_total,2.2179,217.0,6,221.27975599442468
+measured,Study-based ratio 0.40,0.6,generated,1.0,97.8,14,386.2016102557729
+measured,Study-based ratio 0.40,0.6,published_per_retained_building,1.3043,127.6,11,296.0983008427995
+measured,Study-based ratio 0.40,0.6,published_total,2.2179,217.0,4,174.12887349043694

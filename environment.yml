@@ -1,4 +1,4 @@
-name: urban4-2.7.0
+name: urban4-2.9.0
 channels:
   - conda-forge
 dependencies:
@@ -6,4 +6,3 @@ dependencies:
   - pip
   - pip:
       - -r requirements-verified.txt
-

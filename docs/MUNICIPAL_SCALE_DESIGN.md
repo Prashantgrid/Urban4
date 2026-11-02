@@ -1,4 +1,4 @@
-# Municipality-scale build, repair, and acceptance logic (v2.8.0)
+# Municipality-scale build, repair, and acceptance logic (v2.9.0)
 
 Urban4 separates observed evidence, synthetic topology decisions, native-solver
 acceptance, and coupled acceptance. Public totals and documented facilities
@@ -15,9 +15,12 @@ is written to the municipal release manifest.
 
 ## Electricity
 
-- Build 105 synthetic MV/LV service sites and radial feeders from the shared
-  road/building evidence; allocate 0.80–4.00 MVA catalogue transformers until
-  the 216.71 MVA public calibration scale is closed (216.95 MVA generated).
+- Generate MV/LV transformer areas and radial feeders from the shared
+  road/building evidence using local demand, customer-count and route-distance
+  limits. Size each area from represented coincident demand and round upward
+  to the declared 0.25--4.00 MVA catalogue. The published 216.71 MVA installed
+  transformation aggregate and 105 MV/LV customer withdrawal points are kept
+  as territory-level diagnostics; neither is used to infer physical sites.
 - Execute AC power flow in pandapower.
 - If voltage, loading, or LV path-drop limits fail, advance the limiting cable
   by one catalogue class; if the class is exhausted, add one separately
@@ -34,15 +37,22 @@ is written to the municipal release manifest.
   controlled zone boundaries, and add six second feeds to critical access
   nodes. The 341-km public main inventory is a calibration target with a fixed
   10% tolerance; the generated network is 369.095 km (+8.24%).
-- Size from accumulated peak flow using an ordered DN catalogue and execute
-  average and 2.62-times-demand states in EPANET through WNTR.
+- Evaluate the DVGW W 410 hourly factor at the operator-reported water-service
+  population of approximately 100,000 inhabitants. The exact factor is
+  2.610228786; conservatively round upward to 2.62 for the retained EPANET
+  design-hour check. Use that same 2.62 factor in the Phase-I building ledger
+  and catalogue pipe pre-sizing, then execute average and design-hour states
+  in EPANET through WNTR. A release gate rejects stale pre-sizing from any
+  earlier factor.
 - First adjust the failed zone's head-controlled boundary. If no feasible head
   shift can close the pressure window, advance the highest-loss main on the
   active critical path by one DN class. Rerun both states after every action.
 - Bounds: four head adjustments per zone and 60 pipe upgrades.
-- Accepted output: average/peak flow 177.6/465.2 L/s, peak pressure
-  27.7–70.0 m, peak velocity 1.20 m/s, and four 315-kW source-pump units
-  including standby.
+- Accepted output after 28 bounded actions (24 pipe upsizes and 4 head
+  adjustments): average/design flow 177.6/465.2 L/s, peak pressure
+  27.673–69.834 m, peak velocity 1.199 m/s, and four 315-kW source-pump units
+  including standby. Pump and motor efficiencies remain declared screening
+  inputs until manufacturer curves are available.
 
 ## Wastewater
 
@@ -86,3 +96,8 @@ is written to the municipal release manifest.
 represented heat substation remains source reachable. The municipality-scale
 states are accepted sector models; a separate municipality-scale coupled
 fixed-point result is not claimed.
+
+The municipality export also records the documented GKS CHP as one shared
+electricity/district-heating asset. Its default interface is availability-only:
+it has no inferred electrical or thermal setpoint and therefore does not alter
+the accepted sector operating points.

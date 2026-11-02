@@ -1,0 +1,24 @@
+event,measure,sector,onset_h,value,unit,label,conditional
+Blackout (grid supply point lost),no backup,power,0.0,22641.0,customers,"22,641 customers",False
+Blackout (grid supply point lost),no backup,water,24.0,68799.0,PE,"68,799 PE",False
+Blackout (grid supply point lost),no backup,wastewater,0.0,130.0101471334348,L/s,130 L/s unpumped,False
+Blackout (grid supply point lost),no backup,heat,0.0,841.0,DH customers,841 DH customers,False
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",power,0.0,22641.0,customers,"22,641 customers",False
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",water,96.0,68799.0,PE,"68,799 PE",False
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",wastewater,0.0,130.0101471334348,L/s,130 L/s unpumped,False
+Blackout (grid supply point lost),"water stations on backup, 72 h fuel",heat,0.0,841.0,DH customers,841 DH customers,False
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",power,0.0,22641.0,customers,"22,641 customers",False
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",wastewater,0.0,130.0101471334348,L/s,treated only if the plant's CHP runs islanded,True
+Blackout (grid supply point lost),"all pumped facilities on backup, refuelled",heat,0.0,841.0,DH customers,supplied only if DH plants run islanded,True
+HQ100 flood,as mapped,power,0.0,237.0,customers,237 customers,False
+HQ100 flood,as mapped,water,24.0,68799.0,PE,"68,799 PE",False
+HQ100 flood,as mapped,wastewater,0.0,65.64476553991236,L/s,66 L/s unpumped,False
+HQ100 flood,waterworks site and supply station protected,power,0.0,204.0,customers,204 customers,False
+HQ100 flood,waterworks site and supply station protected,wastewater,0.0,65.64476553991236,L/s,66 L/s unpumped,False
+HQextrem flood,as mapped,power,0.0,1838.0,customers,"1,838 customers",False
+HQextrem flood,as mapped,water,24.0,68799.0,PE,"68,799 PE",False
+HQextrem flood,as mapped,wastewater,0.0,130.0101471334348,L/s,130 L/s untreated,False
+HQextrem flood,as mapped,heat,0.0,0.1871795654296875,share of design heat,shortfall below -8.6 °C,True
+HQextrem flood,waterworks site and supply station protected,power,0.0,1805.0,customers,"1,805 customers",False
+HQextrem flood,waterworks site and supply station protected,wastewater,0.0,130.0101471334348,L/s,130 L/s untreated,False
+HQextrem flood,waterworks site and supply station protected,heat,0.0,0.1871795654296875,share of design heat,shortfall below -8.6 °C,True

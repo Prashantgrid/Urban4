@@ -295,10 +295,13 @@ def refresh_manifest(output: Path) -> dict[str, Any]:
     interfaces_path = output / "coupling_interfaces.csv"
     corridors_path = output / "shared_corridor_ledger.csv"
     if interfaces_path.exists():
-        interfaces = pd.read_csv(interfaces_path)
+        interfaces = pd.read_csv(interfaces_path, low_memory=False)
         manifest.setdefault("counts", {})["coupling_interfaces"] = int(len(interfaces))
         manifest["counts"]["electrically_driven_facilities"] = int(
             interfaces.relation.eq("electrically_driven_facility").sum()
+        )
+        manifest["counts"]["shared_conversion_assets"] = int(
+            interfaces.relation.eq("shared_conversion_asset").sum()
         )
     if corridors_path.exists():
         corridors = pd.read_csv(corridors_path)

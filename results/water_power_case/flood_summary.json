@@ -1,0 +1,154 @@
+{
+  "source": "Bayerisches Landesamt fuer Umwelt (WWA Bad Kissingen): flood-hazard extents HQ100 and HQextrem (Main, Wern, Marienbach)",
+  "storage_h": 24.0,
+  "assumptions": {
+    "sites": "inside the mapped extent -> out of service for the flood duration; no site protection unless stated",
+    "stations": "flooded MV/LV stations switched off; restoration through open-ring ties with AC check",
+    "water_states": "average-day EPANET PDD after storage is spent"
+  },
+  "events": {
+    "HQ100": {
+      "annual_exceedance_probability": 0.01,
+      "stations_flooded": 4,
+      "through_stations_flooded": 0,
+      "customers_at_flooded_stations": 237,
+      "customers_cut_off": 0,
+      "customers_without_power_after_switching": 237,
+      "customers_without_power_waterworks_station_protected": 204,
+      "ties_closed": 0,
+      "buildings_flooded": 529,
+      "residents_flooded": 1422.8011599469382,
+      "assets_flooded": [
+        "S4",
+        "WZ1"
+      ],
+      "waterworks_supply_station_flooded": true,
+      "water": {
+        "as mapped": {
+          "stations_out": [
+            "WZ1",
+            "WZ2",
+            "WZ3",
+            "WZ4"
+          ],
+          "pe_without_water_after_storage": 68799.0,
+          "unserved_m3_per_day_after_storage": 11232.8764111872,
+          "hours_until_loss": 24.0
+        },
+        "waterworks site protected": {
+          "stations_out": [
+            "WZ1",
+            "WZ2",
+            "WZ3",
+            "WZ4"
+          ],
+          "pe_without_water_after_storage": 68799.0,
+          "unserved_m3_per_day_after_storage": 11232.8764111872,
+          "hours_until_loss": 24.0
+        },
+        "site and supply station protected": {
+          "stations_out": [],
+          "pe_without_water_after_storage": 0.0,
+          "unserved_m3_per_day_after_storage": 0.0,
+          "hours_until_loss": null
+        },
+        "site protected + waterworks backup": {
+          "stations_out": [],
+          "pe_without_water_after_storage": 0.0,
+          "unserved_m3_per_day_after_storage": 0.0,
+          "hours_until_loss": null
+        }
+      },
+      "wastewater": {
+        "lift_stations_out": [
+          "S4"
+        ],
+        "unpumped_sanitary_lps": 65.64476553991236,
+        "treatment_plant_flooded": false,
+        "untreated_sanitary_lps": 65.64476553991236
+      },
+      "heat": {
+        "sources_out": [],
+        "dh_share_at_design": 1.0,
+        "full_supply_down_to_c": -14.0,
+        "h2_attachment_powered": true
+      }
+    },
+    "HQextrem": {
+      "annual_exceedance_probability": 0.001,
+      "stations_flooded": 33,
+      "through_stations_flooded": 4,
+      "customers_at_flooded_stations": 1775,
+      "customers_cut_off": 646,
+      "customers_without_power_after_switching": 1838,
+      "customers_without_power_waterworks_station_protected": 1805,
+      "ties_closed": 2,
+      "buildings_flooded": 1774,
+      "residents_flooded": 3697.156967414708,
+      "assets_flooded": [
+        "H1",
+        "S12",
+        "S4",
+        "S9",
+        "WWTP",
+        "WZ1"
+      ],
+      "waterworks_supply_station_flooded": true,
+      "water": {
+        "as mapped": {
+          "stations_out": [
+            "WZ1",
+            "WZ2",
+            "WZ3",
+            "WZ4"
+          ],
+          "pe_without_water_after_storage": 68799.0,
+          "unserved_m3_per_day_after_storage": 11232.8764111872,
+          "hours_until_loss": 24.0
+        },
+        "waterworks site protected": {
+          "stations_out": [
+            "WZ1",
+            "WZ2",
+            "WZ3",
+            "WZ4"
+          ],
+          "pe_without_water_after_storage": 68799.0,
+          "unserved_m3_per_day_after_storage": 11232.8764111872,
+          "hours_until_loss": 24.0
+        },
+        "site and supply station protected": {
+          "stations_out": [],
+          "pe_without_water_after_storage": 0.0,
+          "unserved_m3_per_day_after_storage": 0.0,
+          "hours_until_loss": null
+        },
+        "site protected + waterworks backup": {
+          "stations_out": [],
+          "pe_without_water_after_storage": 0.0,
+          "unserved_m3_per_day_after_storage": 0.0,
+          "hours_until_loss": null
+        }
+      },
+      "wastewater": {
+        "lift_stations_out": [
+          "S4",
+          "S9",
+          "S12"
+        ],
+        "unpumped_sanitary_lps": 73.4464962927978,
+        "treatment_plant_flooded": true,
+        "untreated_sanitary_lps": 130.0101471334348
+      },
+      "heat": {
+        "sources_out": [
+          "H1"
+        ],
+        "dh_share_at_design": 0.8128204345703125,
+        "full_supply_down_to_c": -8.571792602539062,
+        "with_dn400_intertie_share_at_design": 1.0,
+        "h2_attachment_powered": true
+      }
+    }
+  }
+}

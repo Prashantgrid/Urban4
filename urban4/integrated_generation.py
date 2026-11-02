@@ -71,10 +71,11 @@ def run_integrated_generation() -> dict[str, Any]:
         power_nodes, _, _, _, power_solver = generate_electricity(
             OUTPUT, road, buildings, maximum_radius_km=0.70,
             seed=int(config["seed"]),
-            target_site_count=(
-                int(config["official_anchors"]["electricity_mv_lv_withdrawal_locations"])
-                if len(buildings) > 10_000 else None
-            ),
+            # Utility data report 105 customer withdrawal points at the MV/LV
+            # transformation level.  They are not a transformer/substation count,
+            # so transformer areas are generated from load, customer-count and
+            # route-distance limits rather than forced to 105 sites.
+            target_site_count=None,
             verbose=True,
         )
         electricity_backend = "Urban4 building-service fallback; pylovo export unavailable"
@@ -122,7 +123,7 @@ def run_integrated_generation() -> dict[str, Any]:
     interfaces = write_coupling_interfaces(
         OUTPUT, power_nodes, water_nodes, water_links, water_services, water_solver,
         sewer_nodes, sewer_links, sewer_services,
-        heat_nodes, heat_corridors, heat_solver,
+        heat_nodes, heat_corridors, heat_solver, config,
     )
     shared_corridors = write_shared_corridor_ledger(OUTPUT)
     screening = {
@@ -154,6 +155,9 @@ def run_integrated_generation() -> dict[str, Any]:
             "coupling_interfaces": len(interfaces),
             "electrically_driven_facilities": int(
                 interfaces.relation.eq("electrically_driven_facility").sum()
+            ),
+            "shared_conversion_assets": int(
+                interfaces.relation.eq("shared_conversion_asset").sum()
             ),
             "shared_route_segments": int(shared_corridors.is_shared_corridor.sum()),
         },

@@ -8,7 +8,9 @@ its own topology, component sizing rules, and native solver. Explicit interface
 records connect powered facilities and preserve building-level water-to-sanitary
 mappings.
 
-![Urban4 workflow](docs/figures/urban4_methodology.png)
+![Three-stage Urban4 workflow: shared register, sector generation and checks, and coupling](docs/figures/urban4_methodology.png)
+
+*Illustrated overview of the method. The study scripts generate the case-specific network maps.*
 
 Urban4 is intended for transparent, reproducible infrastructure studies. The
 generated networks are evidence-conditioned synthetic models. They are not
@@ -21,7 +23,8 @@ maps of confidential installed utility assets.
 - Exports pandapower, EPANET/WNTR, SWMM, and pandapipes models.
 - Stores machine-readable cross-sector interface contracts.
 - Applies predefined engineering acceptance criteria and bounded repairs.
-- Runs a coupled benchmark and two water-power disturbance cases.
+- Runs a coupled benchmark, heat-power conversion and backup scenarios, and
+  water-power outage, restoration, storage, blackout, and flood cases.
 - Retains evidence roles, solver results, repair records, and output hashes.
 
 ## Repository structure
@@ -32,6 +35,8 @@ Urban4/
 ├── cases/                  # Case configuration and declared assumptions
 ├── data/raw/               # Retained OpenStreetMap evidence snapshots
 ├── scripts/                # Reproduction, audit, export, and figure scripts
+├── code/                   # Final manuscript case studies and figure scripts
+├── results/                # Retained manuscript CSV/JSON reference tables
 ├── tests/                  # Unit, integration, and result-consistency tests
 ├── reference_results/      # Compact verification records
 ├── docs/                   # Method and reproducibility documentation
@@ -42,7 +47,7 @@ Urban4/
 
 ## Installation
 
-Urban4 v2.8.0 was verified with Python 3.12. Create a clean environment and
+Urban4 v2.9.0 was verified with Python 3.12. Create a clean environment and
 install the exact direct dependencies used for the verified release run:
 
 ```bash
@@ -80,23 +85,60 @@ python run_all.py --refresh-osm
 
 Refreshing the snapshot changes the evidence vintage and therefore does not
 reproduce the verified release. The retained files in `data/raw/` should be
-used for exact comparison with v2.8.0.
+used for exact comparison with v2.9.0.
 
 ## Verified release result
 
-The v2.8.0 verification reports 70 passed tests and no failures. It uses the
-audited building-demand equations, a 2.62 drinking-water peak factor, the
-Harmon wastewater peak factor, and 1,600 district-heating full-load hours.
-The municipality-scale electricity, drinking-water, wastewater, and
-district-heating models all satisfy their declared acceptance criteria.
+The retained v2.9.0 core-verification record reports 83 passed tests and no
+failures. It preserves
+the complete v2.8.0 equation corrections and uses the operator-reported water
+service population of approximately 100,000 inhabitants for the DVGW W 410
+hourly factor. The exact result is 2.610228786; the native EPANET design-hour
+check conservatively rounds it upward to 2.62. That same factor is enforced in
+the building ledger and pipe pre-sizing, preventing stale geometry from an
+earlier factor. The Harmon wastewater peak
+factor and 1,600 district-heating full-load hours are unchanged. All four
+municipality-scale models satisfy their declared acceptance criteria.
+
+The documented GKS CHP is now represented once as a shared electricity and
+district-heating asset. Its default contract is availability-only, with no
+inferred dispatch or conversion curve, so it does not change the verified
+benchmark operating point.
 
 The executed main-waterworks feeder outage disconnects the pump supply path.
 The native water-model rerun delivers approximately 0.009% of demand. Only the
 explicitly executed water consequence is claimed for that event.
 
-See [the verification record](docs/VERIFICATION_v2.8.0.md), the
+See [the verification record](docs/VERIFICATION_v2.9.0.md), the
 [equation audit](docs/EQUATION_AUDIT.md), and
 [the compact reference results](reference_results/README.md) for details.
+
+## Final manuscript case studies
+
+The final heat-power and water-power scripts are in [`code/`](code/README.md),
+with the retained numerical reference tables in [`results/`](results/README.md).
+Install the study extras into the same environment:
+
+```bash
+python -m pip install -e '.[test,study]'
+python code/reproduce_study.py
+```
+
+This recomputes the existing-demand and transformer-capacity sensitivities and
+regenerates Figures 3, 6, and 7 from retained evidence. Outputs go to
+`outputs/manuscript_study/`; the reference tables stay unchanged.
+
+To recompute all case studies and their figures from native models:
+
+```bash
+python run_all.py
+python code/reproduce_study.py --from-models
+```
+
+The first command rebuilds the native models. The second executes the heat-power
+sweep, renovation variants, water-power contingencies, restoration and storage,
+flood exposure, and extreme-event service losses. See the
+[reproduction notes](docs/STUDY_REPRODUCTION.md) for the validation scope.
 
 ## Evidence and data
 

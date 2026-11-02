@@ -1,0 +1,2313 @@
+event,variant,t_h,pe_without_water
+HQ100,as mapped,0.0,0.0
+HQ100,as mapped,0.25,0.0
+HQ100,as mapped,0.5,0.0
+HQ100,as mapped,0.75,0.0
+HQ100,as mapped,1.0,0.0
+HQ100,as mapped,1.25,0.0
+HQ100,as mapped,1.5,0.0
+HQ100,as mapped,1.75,0.0
+HQ100,as mapped,2.0,0.0
+HQ100,as mapped,2.25,0.0
+HQ100,as mapped,2.5,0.0
+HQ100,as mapped,2.75,0.0
+HQ100,as mapped,3.0,0.0
+HQ100,as mapped,3.25,0.0
+HQ100,as mapped,3.5,0.0
+HQ100,as mapped,3.75,0.0
+HQ100,as mapped,4.0,0.0
+HQ100,as mapped,4.25,0.0
+HQ100,as mapped,4.5,0.0
+HQ100,as mapped,4.75,0.0
+HQ100,as mapped,5.0,0.0
+HQ100,as mapped,5.25,0.0
+HQ100,as mapped,5.5,0.0
+HQ100,as mapped,5.75,0.0
+HQ100,as mapped,6.0,0.0
+HQ100,as mapped,6.25,0.0
+HQ100,as mapped,6.5,0.0
+HQ100,as mapped,6.75,0.0
+HQ100,as mapped,7.0,0.0
+HQ100,as mapped,7.25,0.0
+HQ100,as mapped,7.5,0.0
+HQ100,as mapped,7.75,0.0
+HQ100,as mapped,8.0,0.0
+HQ100,as mapped,8.25,0.0
+HQ100,as mapped,8.5,0.0
+HQ100,as mapped,8.75,0.0
+HQ100,as mapped,9.0,0.0
+HQ100,as mapped,9.25,0.0
+HQ100,as mapped,9.5,0.0
+HQ100,as mapped,9.75,0.0
+HQ100,as mapped,10.0,0.0
+HQ100,as mapped,10.25,0.0
+HQ100,as mapped,10.5,0.0
+HQ100,as mapped,10.75,0.0
+HQ100,as mapped,11.0,0.0
+HQ100,as mapped,11.25,0.0
+HQ100,as mapped,11.5,0.0
+HQ100,as mapped,11.75,0.0
+HQ100,as mapped,12.0,0.0
+HQ100,as mapped,12.25,0.0
+HQ100,as mapped,12.5,0.0
+HQ100,as mapped,12.75,0.0
+HQ100,as mapped,13.0,0.0
+HQ100,as mapped,13.25,0.0
+HQ100,as mapped,13.5,0.0
+HQ100,as mapped,13.75,0.0
+HQ100,as mapped,14.0,0.0
+HQ100,as mapped,14.25,0.0
+HQ100,as mapped,14.5,0.0
+HQ100,as mapped,14.75,0.0
+HQ100,as mapped,15.0,0.0
+HQ100,as mapped,15.25,0.0
+HQ100,as mapped,15.5,0.0
+HQ100,as mapped,15.75,0.0
+HQ100,as mapped,16.0,0.0
+HQ100,as mapped,16.25,0.0
+HQ100,as mapped,16.5,0.0
+HQ100,as mapped,16.75,0.0
+HQ100,as mapped,17.0,0.0
+HQ100,as mapped,17.25,0.0
+HQ100,as mapped,17.5,0.0
+HQ100,as mapped,17.75,0.0
+HQ100,as mapped,18.0,0.0
+HQ100,as mapped,18.25,0.0
+HQ100,as mapped,18.5,0.0
+HQ100,as mapped,18.75,0.0
+HQ100,as mapped,19.0,0.0
+HQ100,as mapped,19.25,0.0
+HQ100,as mapped,19.5,0.0
+HQ100,as mapped,19.75,0.0
+HQ100,as mapped,20.0,0.0
+HQ100,as mapped,20.25,0.0
+HQ100,as mapped,20.5,0.0
+HQ100,as mapped,20.75,0.0
+HQ100,as mapped,21.0,0.0
+HQ100,as mapped,21.25,0.0
+HQ100,as mapped,21.5,0.0
+HQ100,as mapped,21.75,0.0
+HQ100,as mapped,22.0,0.0
+HQ100,as mapped,22.25,0.0
+HQ100,as mapped,22.5,0.0
+HQ100,as mapped,22.75,0.0
+HQ100,as mapped,23.0,0.0
+HQ100,as mapped,23.25,0.0
+HQ100,as mapped,23.5,0.0
+HQ100,as mapped,23.75,0.0
+HQ100,as mapped,24.0,68799.0
+HQ100,as mapped,24.25,68799.0
+HQ100,as mapped,24.5,68799.0
+HQ100,as mapped,24.75,68799.0
+HQ100,as mapped,25.0,68799.0
+HQ100,as mapped,25.25,68799.0
+HQ100,as mapped,25.5,68799.0
+HQ100,as mapped,25.75,68799.0
+HQ100,as mapped,26.0,68799.0
+HQ100,as mapped,26.25,68799.0
+HQ100,as mapped,26.5,68799.0
+HQ100,as mapped,26.75,68799.0
+HQ100,as mapped,27.0,68799.0
+HQ100,as mapped,27.25,68799.0
+HQ100,as mapped,27.5,68799.0
+HQ100,as mapped,27.75,68799.0
+HQ100,as mapped,28.0,68799.0
+HQ100,as mapped,28.25,68799.0
+HQ100,as mapped,28.5,68799.0
+HQ100,as mapped,28.75,68799.0
+HQ100,as mapped,29.0,68799.0
+HQ100,as mapped,29.25,68799.0
+HQ100,as mapped,29.5,68799.0
+HQ100,as mapped,29.75,68799.0
+HQ100,as mapped,30.0,68799.0
+HQ100,as mapped,30.25,68799.0
+HQ100,as mapped,30.5,68799.0
+HQ100,as mapped,30.75,68799.0
+HQ100,as mapped,31.0,68799.0
+HQ100,as mapped,31.25,68799.0
+HQ100,as mapped,31.5,68799.0
+HQ100,as mapped,31.75,68799.0
+HQ100,as mapped,32.0,68799.0
+HQ100,as mapped,32.25,68799.0
+HQ100,as mapped,32.5,68799.0
+HQ100,as mapped,32.75,68799.0
+HQ100,as mapped,33.0,68799.0
+HQ100,as mapped,33.25,68799.0
+HQ100,as mapped,33.5,68799.0
+HQ100,as mapped,33.75,68799.0
+HQ100,as mapped,34.0,68799.0
+HQ100,as mapped,34.25,68799.0
+HQ100,as mapped,34.5,68799.0
+HQ100,as mapped,34.75,68799.0
+HQ100,as mapped,35.0,68799.0
+HQ100,as mapped,35.25,68799.0
+HQ100,as mapped,35.5,68799.0
+HQ100,as mapped,35.75,68799.0
+HQ100,as mapped,36.0,68799.0
+HQ100,as mapped,36.25,68799.0
+HQ100,as mapped,36.5,68799.0
+HQ100,as mapped,36.75,68799.0
+HQ100,as mapped,37.0,68799.0
+HQ100,as mapped,37.25,68799.0
+HQ100,as mapped,37.5,68799.0
+HQ100,as mapped,37.75,68799.0
+HQ100,as mapped,38.0,68799.0
+HQ100,as mapped,38.25,68799.0
+HQ100,as mapped,38.5,68799.0
+HQ100,as mapped,38.75,68799.0
+HQ100,as mapped,39.0,68799.0
+HQ100,as mapped,39.25,68799.0
+HQ100,as mapped,39.5,68799.0
+HQ100,as mapped,39.75,68799.0
+HQ100,as mapped,40.0,68799.0
+HQ100,as mapped,40.25,68799.0
+HQ100,as mapped,40.5,68799.0
+HQ100,as mapped,40.75,68799.0
+HQ100,as mapped,41.0,68799.0
+HQ100,as mapped,41.25,68799.0
+HQ100,as mapped,41.5,68799.0
+HQ100,as mapped,41.75,68799.0
+HQ100,as mapped,42.0,68799.0
+HQ100,as mapped,42.25,68799.0
+HQ100,as mapped,42.5,68799.0
+HQ100,as mapped,42.75,68799.0
+HQ100,as mapped,43.0,68799.0
+HQ100,as mapped,43.25,68799.0
+HQ100,as mapped,43.5,68799.0
+HQ100,as mapped,43.75,68799.0
+HQ100,as mapped,44.0,68799.0
+HQ100,as mapped,44.25,68799.0
+HQ100,as mapped,44.5,68799.0
+HQ100,as mapped,44.75,68799.0
+HQ100,as mapped,45.0,68799.0
+HQ100,as mapped,45.25,68799.0
+HQ100,as mapped,45.5,68799.0
+HQ100,as mapped,45.75,68799.0
+HQ100,as mapped,46.0,68799.0
+HQ100,as mapped,46.25,68799.0
+HQ100,as mapped,46.5,68799.0
+HQ100,as mapped,46.75,68799.0
+HQ100,as mapped,47.0,68799.0
+HQ100,as mapped,47.25,68799.0
+HQ100,as mapped,47.5,68799.0
+HQ100,as mapped,47.75,68799.0
+HQ100,as mapped,48.0,68799.0
+HQ100,as mapped,48.25,68799.0
+HQ100,as mapped,48.5,68799.0
+HQ100,as mapped,48.75,68799.0
+HQ100,as mapped,49.0,68799.0
+HQ100,as mapped,49.25,68799.0
+HQ100,as mapped,49.5,68799.0
+HQ100,as mapped,49.75,68799.0
+HQ100,as mapped,50.0,68799.0
+HQ100,as mapped,50.25,68799.0
+HQ100,as mapped,50.5,68799.0
+HQ100,as mapped,50.75,68799.0
+HQ100,as mapped,51.0,68799.0
+HQ100,as mapped,51.25,68799.0
+HQ100,as mapped,51.5,68799.0
+HQ100,as mapped,51.75,68799.0
+HQ100,as mapped,52.0,68799.0
+HQ100,as mapped,52.25,68799.0
+HQ100,as mapped,52.5,68799.0
+HQ100,as mapped,52.75,68799.0
+HQ100,as mapped,53.0,68799.0
+HQ100,as mapped,53.25,68799.0
+HQ100,as mapped,53.5,68799.0
+HQ100,as mapped,53.75,68799.0
+HQ100,as mapped,54.0,68799.0
+HQ100,as mapped,54.25,68799.0
+HQ100,as mapped,54.5,68799.0
+HQ100,as mapped,54.75,68799.0
+HQ100,as mapped,55.0,68799.0
+HQ100,as mapped,55.25,68799.0
+HQ100,as mapped,55.5,68799.0
+HQ100,as mapped,55.75,68799.0
+HQ100,as mapped,56.0,68799.0
+HQ100,as mapped,56.25,68799.0
+HQ100,as mapped,56.5,68799.0
+HQ100,as mapped,56.75,68799.0
+HQ100,as mapped,57.0,68799.0
+HQ100,as mapped,57.25,68799.0
+HQ100,as mapped,57.5,68799.0
+HQ100,as mapped,57.75,68799.0
+HQ100,as mapped,58.0,68799.0
+HQ100,as mapped,58.25,68799.0
+HQ100,as mapped,58.5,68799.0
+HQ100,as mapped,58.75,68799.0
+HQ100,as mapped,59.0,68799.0
+HQ100,as mapped,59.25,68799.0
+HQ100,as mapped,59.5,68799.0
+HQ100,as mapped,59.75,68799.0
+HQ100,as mapped,60.0,68799.0
+HQ100,as mapped,60.25,68799.0
+HQ100,as mapped,60.5,68799.0
+HQ100,as mapped,60.75,68799.0
+HQ100,as mapped,61.0,68799.0
+HQ100,as mapped,61.25,68799.0
+HQ100,as mapped,61.5,68799.0
+HQ100,as mapped,61.75,68799.0
+HQ100,as mapped,62.0,68799.0
+HQ100,as mapped,62.25,68799.0
+HQ100,as mapped,62.5,68799.0
+HQ100,as mapped,62.75,68799.0
+HQ100,as mapped,63.0,68799.0
+HQ100,as mapped,63.25,68799.0
+HQ100,as mapped,63.5,68799.0
+HQ100,as mapped,63.75,68799.0
+HQ100,as mapped,64.0,68799.0
+HQ100,as mapped,64.25,68799.0
+HQ100,as mapped,64.5,68799.0
+HQ100,as mapped,64.75,68799.0
+HQ100,as mapped,65.0,68799.0
+HQ100,as mapped,65.25,68799.0
+HQ100,as mapped,65.5,68799.0
+HQ100,as mapped,65.75,68799.0
+HQ100,as mapped,66.0,68799.0
+HQ100,as mapped,66.25,68799.0
+HQ100,as mapped,66.5,68799.0
+HQ100,as mapped,66.75,68799.0
+HQ100,as mapped,67.0,68799.0
+HQ100,as mapped,67.25,68799.0
+HQ100,as mapped,67.5,68799.0
+HQ100,as mapped,67.75,68799.0
+HQ100,as mapped,68.0,68799.0
+HQ100,as mapped,68.25,68799.0
+HQ100,as mapped,68.5,68799.0
+HQ100,as mapped,68.75,68799.0
+HQ100,as mapped,69.0,68799.0
+HQ100,as mapped,69.25,68799.0
+HQ100,as mapped,69.5,68799.0
+HQ100,as mapped,69.75,68799.0
+HQ100,as mapped,70.0,68799.0
+HQ100,as mapped,70.25,68799.0
+HQ100,as mapped,70.5,68799.0
+HQ100,as mapped,70.75,68799.0
+HQ100,as mapped,71.0,68799.0
+HQ100,as mapped,71.25,68799.0
+HQ100,as mapped,71.5,68799.0
+HQ100,as mapped,71.75,68799.0
+HQ100,as mapped,72.0,68799.0
+HQ100,waterworks site protected,0.0,0.0
+HQ100,waterworks site protected,0.25,0.0
+HQ100,waterworks site protected,0.5,0.0
+HQ100,waterworks site protected,0.75,0.0
+HQ100,waterworks site protected,1.0,0.0
+HQ100,waterworks site protected,1.25,0.0
+HQ100,waterworks site protected,1.5,0.0
+HQ100,waterworks site protected,1.75,0.0
+HQ100,waterworks site protected,2.0,0.0
+HQ100,waterworks site protected,2.25,0.0
+HQ100,waterworks site protected,2.5,0.0
+HQ100,waterworks site protected,2.75,0.0
+HQ100,waterworks site protected,3.0,0.0
+HQ100,waterworks site protected,3.25,0.0
+HQ100,waterworks site protected,3.5,0.0
+HQ100,waterworks site protected,3.75,0.0
+HQ100,waterworks site protected,4.0,0.0
+HQ100,waterworks site protected,4.25,0.0
+HQ100,waterworks site protected,4.5,0.0
+HQ100,waterworks site protected,4.75,0.0
+HQ100,waterworks site protected,5.0,0.0
+HQ100,waterworks site protected,5.25,0.0
+HQ100,waterworks site protected,5.5,0.0
+HQ100,waterworks site protected,5.75,0.0
+HQ100,waterworks site protected,6.0,0.0
+HQ100,waterworks site protected,6.25,0.0
+HQ100,waterworks site protected,6.5,0.0
+HQ100,waterworks site protected,6.75,0.0
+HQ100,waterworks site protected,7.0,0.0
+HQ100,waterworks site protected,7.25,0.0
+HQ100,waterworks site protected,7.5,0.0
+HQ100,waterworks site protected,7.75,0.0
+HQ100,waterworks site protected,8.0,0.0
+HQ100,waterworks site protected,8.25,0.0
+HQ100,waterworks site protected,8.5,0.0
+HQ100,waterworks site protected,8.75,0.0
+HQ100,waterworks site protected,9.0,0.0
+HQ100,waterworks site protected,9.25,0.0
+HQ100,waterworks site protected,9.5,0.0
+HQ100,waterworks site protected,9.75,0.0
+HQ100,waterworks site protected,10.0,0.0
+HQ100,waterworks site protected,10.25,0.0
+HQ100,waterworks site protected,10.5,0.0
+HQ100,waterworks site protected,10.75,0.0
+HQ100,waterworks site protected,11.0,0.0
+HQ100,waterworks site protected,11.25,0.0
+HQ100,waterworks site protected,11.5,0.0
+HQ100,waterworks site protected,11.75,0.0
+HQ100,waterworks site protected,12.0,0.0
+HQ100,waterworks site protected,12.25,0.0
+HQ100,waterworks site protected,12.5,0.0
+HQ100,waterworks site protected,12.75,0.0
+HQ100,waterworks site protected,13.0,0.0
+HQ100,waterworks site protected,13.25,0.0
+HQ100,waterworks site protected,13.5,0.0
+HQ100,waterworks site protected,13.75,0.0
+HQ100,waterworks site protected,14.0,0.0
+HQ100,waterworks site protected,14.25,0.0
+HQ100,waterworks site protected,14.5,0.0
+HQ100,waterworks site protected,14.75,0.0
+HQ100,waterworks site protected,15.0,0.0
+HQ100,waterworks site protected,15.25,0.0
+HQ100,waterworks site protected,15.5,0.0
+HQ100,waterworks site protected,15.75,0.0
+HQ100,waterworks site protected,16.0,0.0
+HQ100,waterworks site protected,16.25,0.0
+HQ100,waterworks site protected,16.5,0.0
+HQ100,waterworks site protected,16.75,0.0
+HQ100,waterworks site protected,17.0,0.0
+HQ100,waterworks site protected,17.25,0.0
+HQ100,waterworks site protected,17.5,0.0
+HQ100,waterworks site protected,17.75,0.0
+HQ100,waterworks site protected,18.0,0.0
+HQ100,waterworks site protected,18.25,0.0
+HQ100,waterworks site protected,18.5,0.0
+HQ100,waterworks site protected,18.75,0.0
+HQ100,waterworks site protected,19.0,0.0
+HQ100,waterworks site protected,19.25,0.0
+HQ100,waterworks site protected,19.5,0.0
+HQ100,waterworks site protected,19.75,0.0
+HQ100,waterworks site protected,20.0,0.0
+HQ100,waterworks site protected,20.25,0.0
+HQ100,waterworks site protected,20.5,0.0
+HQ100,waterworks site protected,20.75,0.0
+HQ100,waterworks site protected,21.0,0.0
+HQ100,waterworks site protected,21.25,0.0
+HQ100,waterworks site protected,21.5,0.0
+HQ100,waterworks site protected,21.75,0.0
+HQ100,waterworks site protected,22.0,0.0
+HQ100,waterworks site protected,22.25,0.0
+HQ100,waterworks site protected,22.5,0.0
+HQ100,waterworks site protected,22.75,0.0
+HQ100,waterworks site protected,23.0,0.0
+HQ100,waterworks site protected,23.25,0.0
+HQ100,waterworks site protected,23.5,0.0
+HQ100,waterworks site protected,23.75,0.0
+HQ100,waterworks site protected,24.0,68799.0
+HQ100,waterworks site protected,24.25,68799.0
+HQ100,waterworks site protected,24.5,68799.0
+HQ100,waterworks site protected,24.75,68799.0
+HQ100,waterworks site protected,25.0,68799.0
+HQ100,waterworks site protected,25.25,68799.0
+HQ100,waterworks site protected,25.5,68799.0
+HQ100,waterworks site protected,25.75,68799.0
+HQ100,waterworks site protected,26.0,68799.0
+HQ100,waterworks site protected,26.25,68799.0
+HQ100,waterworks site protected,26.5,68799.0
+HQ100,waterworks site protected,26.75,68799.0
+HQ100,waterworks site protected,27.0,68799.0
+HQ100,waterworks site protected,27.25,68799.0
+HQ100,waterworks site protected,27.5,68799.0
+HQ100,waterworks site protected,27.75,68799.0
+HQ100,waterworks site protected,28.0,68799.0
+HQ100,waterworks site protected,28.25,68799.0
+HQ100,waterworks site protected,28.5,68799.0
+HQ100,waterworks site protected,28.75,68799.0
+HQ100,waterworks site protected,29.0,68799.0
+HQ100,waterworks site protected,29.25,68799.0
+HQ100,waterworks site protected,29.5,68799.0
+HQ100,waterworks site protected,29.75,68799.0
+HQ100,waterworks site protected,30.0,68799.0
+HQ100,waterworks site protected,30.25,68799.0
+HQ100,waterworks site protected,30.5,68799.0
+HQ100,waterworks site protected,30.75,68799.0
+HQ100,waterworks site protected,31.0,68799.0
+HQ100,waterworks site protected,31.25,68799.0
+HQ100,waterworks site protected,31.5,68799.0
+HQ100,waterworks site protected,31.75,68799.0
+HQ100,waterworks site protected,32.0,68799.0
+HQ100,waterworks site protected,32.25,68799.0
+HQ100,waterworks site protected,32.5,68799.0
+HQ100,waterworks site protected,32.75,68799.0
+HQ100,waterworks site protected,33.0,68799.0
+HQ100,waterworks site protected,33.25,68799.0
+HQ100,waterworks site protected,33.5,68799.0
+HQ100,waterworks site protected,33.75,68799.0
+HQ100,waterworks site protected,34.0,68799.0
+HQ100,waterworks site protected,34.25,68799.0
+HQ100,waterworks site protected,34.5,68799.0
+HQ100,waterworks site protected,34.75,68799.0
+HQ100,waterworks site protected,35.0,68799.0
+HQ100,waterworks site protected,35.25,68799.0
+HQ100,waterworks site protected,35.5,68799.0
+HQ100,waterworks site protected,35.75,68799.0
+HQ100,waterworks site protected,36.0,68799.0
+HQ100,waterworks site protected,36.25,68799.0
+HQ100,waterworks site protected,36.5,68799.0
+HQ100,waterworks site protected,36.75,68799.0
+HQ100,waterworks site protected,37.0,68799.0
+HQ100,waterworks site protected,37.25,68799.0
+HQ100,waterworks site protected,37.5,68799.0
+HQ100,waterworks site protected,37.75,68799.0
+HQ100,waterworks site protected,38.0,68799.0
+HQ100,waterworks site protected,38.25,68799.0
+HQ100,waterworks site protected,38.5,68799.0
+HQ100,waterworks site protected,38.75,68799.0
+HQ100,waterworks site protected,39.0,68799.0
+HQ100,waterworks site protected,39.25,68799.0
+HQ100,waterworks site protected,39.5,68799.0
+HQ100,waterworks site protected,39.75,68799.0
+HQ100,waterworks site protected,40.0,68799.0
+HQ100,waterworks site protected,40.25,68799.0
+HQ100,waterworks site protected,40.5,68799.0
+HQ100,waterworks site protected,40.75,68799.0
+HQ100,waterworks site protected,41.0,68799.0
+HQ100,waterworks site protected,41.25,68799.0
+HQ100,waterworks site protected,41.5,68799.0
+HQ100,waterworks site protected,41.75,68799.0
+HQ100,waterworks site protected,42.0,68799.0
+HQ100,waterworks site protected,42.25,68799.0
+HQ100,waterworks site protected,42.5,68799.0
+HQ100,waterworks site protected,42.75,68799.0
+HQ100,waterworks site protected,43.0,68799.0
+HQ100,waterworks site protected,43.25,68799.0
+HQ100,waterworks site protected,43.5,68799.0
+HQ100,waterworks site protected,43.75,68799.0
+HQ100,waterworks site protected,44.0,68799.0
+HQ100,waterworks site protected,44.25,68799.0
+HQ100,waterworks site protected,44.5,68799.0
+HQ100,waterworks site protected,44.75,68799.0
+HQ100,waterworks site protected,45.0,68799.0
+HQ100,waterworks site protected,45.25,68799.0
+HQ100,waterworks site protected,45.5,68799.0
+HQ100,waterworks site protected,45.75,68799.0
+HQ100,waterworks site protected,46.0,68799.0
+HQ100,waterworks site protected,46.25,68799.0
+HQ100,waterworks site protected,46.5,68799.0
+HQ100,waterworks site protected,46.75,68799.0
+HQ100,waterworks site protected,47.0,68799.0
+HQ100,waterworks site protected,47.25,68799.0
+HQ100,waterworks site protected,47.5,68799.0
+HQ100,waterworks site protected,47.75,68799.0
+HQ100,waterworks site protected,48.0,68799.0
+HQ100,waterworks site protected,48.25,68799.0
+HQ100,waterworks site protected,48.5,68799.0
+HQ100,waterworks site protected,48.75,68799.0
+HQ100,waterworks site protected,49.0,68799.0
+HQ100,waterworks site protected,49.25,68799.0
+HQ100,waterworks site protected,49.5,68799.0
+HQ100,waterworks site protected,49.75,68799.0
+HQ100,waterworks site protected,50.0,68799.0
+HQ100,waterworks site protected,50.25,68799.0
+HQ100,waterworks site protected,50.5,68799.0
+HQ100,waterworks site protected,50.75,68799.0
+HQ100,waterworks site protected,51.0,68799.0
+HQ100,waterworks site protected,51.25,68799.0
+HQ100,waterworks site protected,51.5,68799.0
+HQ100,waterworks site protected,51.75,68799.0
+HQ100,waterworks site protected,52.0,68799.0
+HQ100,waterworks site protected,52.25,68799.0
+HQ100,waterworks site protected,52.5,68799.0
+HQ100,waterworks site protected,52.75,68799.0
+HQ100,waterworks site protected,53.0,68799.0
+HQ100,waterworks site protected,53.25,68799.0
+HQ100,waterworks site protected,53.5,68799.0
+HQ100,waterworks site protected,53.75,68799.0
+HQ100,waterworks site protected,54.0,68799.0
+HQ100,waterworks site protected,54.25,68799.0
+HQ100,waterworks site protected,54.5,68799.0
+HQ100,waterworks site protected,54.75,68799.0
+HQ100,waterworks site protected,55.0,68799.0
+HQ100,waterworks site protected,55.25,68799.0
+HQ100,waterworks site protected,55.5,68799.0
+HQ100,waterworks site protected,55.75,68799.0
+HQ100,waterworks site protected,56.0,68799.0
+HQ100,waterworks site protected,56.25,68799.0
+HQ100,waterworks site protected,56.5,68799.0
+HQ100,waterworks site protected,56.75,68799.0
+HQ100,waterworks site protected,57.0,68799.0
+HQ100,waterworks site protected,57.25,68799.0
+HQ100,waterworks site protected,57.5,68799.0
+HQ100,waterworks site protected,57.75,68799.0
+HQ100,waterworks site protected,58.0,68799.0
+HQ100,waterworks site protected,58.25,68799.0
+HQ100,waterworks site protected,58.5,68799.0
+HQ100,waterworks site protected,58.75,68799.0
+HQ100,waterworks site protected,59.0,68799.0
+HQ100,waterworks site protected,59.25,68799.0
+HQ100,waterworks site protected,59.5,68799.0
+HQ100,waterworks site protected,59.75,68799.0
+HQ100,waterworks site protected,60.0,68799.0
+HQ100,waterworks site protected,60.25,68799.0
+HQ100,waterworks site protected,60.5,68799.0
+HQ100,waterworks site protected,60.75,68799.0
+HQ100,waterworks site protected,61.0,68799.0
+HQ100,waterworks site protected,61.25,68799.0
+HQ100,waterworks site protected,61.5,68799.0
+HQ100,waterworks site protected,61.75,68799.0
+HQ100,waterworks site protected,62.0,68799.0
+HQ100,waterworks site protected,62.25,68799.0
+HQ100,waterworks site protected,62.5,68799.0
+HQ100,waterworks site protected,62.75,68799.0
+HQ100,waterworks site protected,63.0,68799.0
+HQ100,waterworks site protected,63.25,68799.0
+HQ100,waterworks site protected,63.5,68799.0
+HQ100,waterworks site protected,63.75,68799.0
+HQ100,waterworks site protected,64.0,68799.0
+HQ100,waterworks site protected,64.25,68799.0
+HQ100,waterworks site protected,64.5,68799.0
+HQ100,waterworks site protected,64.75,68799.0
+HQ100,waterworks site protected,65.0,68799.0
+HQ100,waterworks site protected,65.25,68799.0
+HQ100,waterworks site protected,65.5,68799.0
+HQ100,waterworks site protected,65.75,68799.0
+HQ100,waterworks site protected,66.0,68799.0
+HQ100,waterworks site protected,66.25,68799.0
+HQ100,waterworks site protected,66.5,68799.0
+HQ100,waterworks site protected,66.75,68799.0
+HQ100,waterworks site protected,67.0,68799.0
+HQ100,waterworks site protected,67.25,68799.0
+HQ100,waterworks site protected,67.5,68799.0
+HQ100,waterworks site protected,67.75,68799.0
+HQ100,waterworks site protected,68.0,68799.0
+HQ100,waterworks site protected,68.25,68799.0
+HQ100,waterworks site protected,68.5,68799.0
+HQ100,waterworks site protected,68.75,68799.0
+HQ100,waterworks site protected,69.0,68799.0
+HQ100,waterworks site protected,69.25,68799.0
+HQ100,waterworks site protected,69.5,68799.0
+HQ100,waterworks site protected,69.75,68799.0
+HQ100,waterworks site protected,70.0,68799.0
+HQ100,waterworks site protected,70.25,68799.0
+HQ100,waterworks site protected,70.5,68799.0
+HQ100,waterworks site protected,70.75,68799.0
+HQ100,waterworks site protected,71.0,68799.0
+HQ100,waterworks site protected,71.25,68799.0
+HQ100,waterworks site protected,71.5,68799.0
+HQ100,waterworks site protected,71.75,68799.0
+HQ100,waterworks site protected,72.0,68799.0
+HQ100,site and supply station protected,0.0,0.0
+HQ100,site and supply station protected,0.25,0.0
+HQ100,site and supply station protected,0.5,0.0
+HQ100,site and supply station protected,0.75,0.0
+HQ100,site and supply station protected,1.0,0.0
+HQ100,site and supply station protected,1.25,0.0
+HQ100,site and supply station protected,1.5,0.0
+HQ100,site and supply station protected,1.75,0.0
+HQ100,site and supply station protected,2.0,0.0
+HQ100,site and supply station protected,2.25,0.0
+HQ100,site and supply station protected,2.5,0.0
+HQ100,site and supply station protected,2.75,0.0
+HQ100,site and supply station protected,3.0,0.0
+HQ100,site and supply station protected,3.25,0.0
+HQ100,site and supply station protected,3.5,0.0
+HQ100,site and supply station protected,3.75,0.0
+HQ100,site and supply station protected,4.0,0.0
+HQ100,site and supply station protected,4.25,0.0
+HQ100,site and supply station protected,4.5,0.0
+HQ100,site and supply station protected,4.75,0.0
+HQ100,site and supply station protected,5.0,0.0
+HQ100,site and supply station protected,5.25,0.0
+HQ100,site and supply station protected,5.5,0.0
+HQ100,site and supply station protected,5.75,0.0
+HQ100,site and supply station protected,6.0,0.0
+HQ100,site and supply station protected,6.25,0.0
+HQ100,site and supply station protected,6.5,0.0
+HQ100,site and supply station protected,6.75,0.0
+HQ100,site and supply station protected,7.0,0.0
+HQ100,site and supply station protected,7.25,0.0
+HQ100,site and supply station protected,7.5,0.0
+HQ100,site and supply station protected,7.75,0.0
+HQ100,site and supply station protected,8.0,0.0
+HQ100,site and supply station protected,8.25,0.0
+HQ100,site and supply station protected,8.5,0.0
+HQ100,site and supply station protected,8.75,0.0
+HQ100,site and supply station protected,9.0,0.0
+HQ100,site and supply station protected,9.25,0.0
+HQ100,site and supply station protected,9.5,0.0
+HQ100,site and supply station protected,9.75,0.0
+HQ100,site and supply station protected,10.0,0.0
+HQ100,site and supply station protected,10.25,0.0
+HQ100,site and supply station protected,10.5,0.0
+HQ100,site and supply station protected,10.75,0.0
+HQ100,site and supply station protected,11.0,0.0
+HQ100,site and supply station protected,11.25,0.0
+HQ100,site and supply station protected,11.5,0.0
+HQ100,site and supply station protected,11.75,0.0
+HQ100,site and supply station protected,12.0,0.0
+HQ100,site and supply station protected,12.25,0.0
+HQ100,site and supply station protected,12.5,0.0
+HQ100,site and supply station protected,12.75,0.0
+HQ100,site and supply station protected,13.0,0.0
+HQ100,site and supply station protected,13.25,0.0
+HQ100,site and supply station protected,13.5,0.0
+HQ100,site and supply station protected,13.75,0.0
+HQ100,site and supply station protected,14.0,0.0
+HQ100,site and supply station protected,14.25,0.0
+HQ100,site and supply station protected,14.5,0.0
+HQ100,site and supply station protected,14.75,0.0
+HQ100,site and supply station protected,15.0,0.0
+HQ100,site and supply station protected,15.25,0.0
+HQ100,site and supply station protected,15.5,0.0
+HQ100,site and supply station protected,15.75,0.0
+HQ100,site and supply station protected,16.0,0.0
+HQ100,site and supply station protected,16.25,0.0
+HQ100,site and supply station protected,16.5,0.0
+HQ100,site and supply station protected,16.75,0.0
+HQ100,site and supply station protected,17.0,0.0
+HQ100,site and supply station protected,17.25,0.0
+HQ100,site and supply station protected,17.5,0.0
+HQ100,site and supply station protected,17.75,0.0
+HQ100,site and supply station protected,18.0,0.0
+HQ100,site and supply station protected,18.25,0.0
+HQ100,site and supply station protected,18.5,0.0
+HQ100,site and supply station protected,18.75,0.0
+HQ100,site and supply station protected,19.0,0.0
+HQ100,site and supply station protected,19.25,0.0
+HQ100,site and supply station protected,19.5,0.0
+HQ100,site and supply station protected,19.75,0.0
+HQ100,site and supply station protected,20.0,0.0
+HQ100,site and supply station protected,20.25,0.0
+HQ100,site and supply station protected,20.5,0.0
+HQ100,site and supply station protected,20.75,0.0
+HQ100,site and supply station protected,21.0,0.0
+HQ100,site and supply station protected,21.25,0.0
+HQ100,site and supply station protected,21.5,0.0
+HQ100,site and supply station protected,21.75,0.0
+HQ100,site and supply station protected,22.0,0.0
+HQ100,site and supply station protected,22.25,0.0
+HQ100,site and supply station protected,22.5,0.0
+HQ100,site and supply station protected,22.75,0.0
+HQ100,site and supply station protected,23.0,0.0
+HQ100,site and supply station protected,23.25,0.0
+HQ100,site and supply station protected,23.5,0.0
+HQ100,site and supply station protected,23.75,0.0
+HQ100,site and supply station protected,24.0,0.0
+HQ100,site and supply station protected,24.25,0.0
+HQ100,site and supply station protected,24.5,0.0
+HQ100,site and supply station protected,24.75,0.0
+HQ100,site and supply station protected,25.0,0.0
+HQ100,site and supply station protected,25.25,0.0
+HQ100,site and supply station protected,25.5,0.0
+HQ100,site and supply station protected,25.75,0.0
+HQ100,site and supply station protected,26.0,0.0
+HQ100,site and supply station protected,26.25,0.0
+HQ100,site and supply station protected,26.5,0.0
+HQ100,site and supply station protected,26.75,0.0
+HQ100,site and supply station protected,27.0,0.0
+HQ100,site and supply station protected,27.25,0.0
+HQ100,site and supply station protected,27.5,0.0
+HQ100,site and supply station protected,27.75,0.0
+HQ100,site and supply station protected,28.0,0.0
+HQ100,site and supply station protected,28.25,0.0
+HQ100,site and supply station protected,28.5,0.0
+HQ100,site and supply station protected,28.75,0.0
+HQ100,site and supply station protected,29.0,0.0
+HQ100,site and supply station protected,29.25,0.0
+HQ100,site and supply station protected,29.5,0.0
+HQ100,site and supply station protected,29.75,0.0
+HQ100,site and supply station protected,30.0,0.0
+HQ100,site and supply station protected,30.25,0.0
+HQ100,site and supply station protected,30.5,0.0
+HQ100,site and supply station protected,30.75,0.0
+HQ100,site and supply station protected,31.0,0.0
+HQ100,site and supply station protected,31.25,0.0
+HQ100,site and supply station protected,31.5,0.0
+HQ100,site and supply station protected,31.75,0.0
+HQ100,site and supply station protected,32.0,0.0
+HQ100,site and supply station protected,32.25,0.0
+HQ100,site and supply station protected,32.5,0.0
+HQ100,site and supply station protected,32.75,0.0
+HQ100,site and supply station protected,33.0,0.0
+HQ100,site and supply station protected,33.25,0.0
+HQ100,site and supply station protected,33.5,0.0
+HQ100,site and supply station protected,33.75,0.0
+HQ100,site and supply station protected,34.0,0.0
+HQ100,site and supply station protected,34.25,0.0
+HQ100,site and supply station protected,34.5,0.0
+HQ100,site and supply station protected,34.75,0.0
+HQ100,site and supply station protected,35.0,0.0
+HQ100,site and supply station protected,35.25,0.0
+HQ100,site and supply station protected,35.5,0.0
+HQ100,site and supply station protected,35.75,0.0
+HQ100,site and supply station protected,36.0,0.0
+HQ100,site and supply station protected,36.25,0.0
+HQ100,site and supply station protected,36.5,0.0
+HQ100,site and supply station protected,36.75,0.0
+HQ100,site and supply station protected,37.0,0.0
+HQ100,site and supply station protected,37.25,0.0
+HQ100,site and supply station protected,37.5,0.0
+HQ100,site and supply station protected,37.75,0.0
+HQ100,site and supply station protected,38.0,0.0
+HQ100,site and supply station protected,38.25,0.0
+HQ100,site and supply station protected,38.5,0.0
+HQ100,site and supply station protected,38.75,0.0
+HQ100,site and supply station protected,39.0,0.0
+HQ100,site and supply station protected,39.25,0.0
+HQ100,site and supply station protected,39.5,0.0
+HQ100,site and supply station protected,39.75,0.0
+HQ100,site and supply station protected,40.0,0.0
+HQ100,site and supply station protected,40.25,0.0
+HQ100,site and supply station protected,40.5,0.0
+HQ100,site and supply station protected,40.75,0.0
+HQ100,site and supply station protected,41.0,0.0
+HQ100,site and supply station protected,41.25,0.0
+HQ100,site and supply station protected,41.5,0.0
+HQ100,site and supply station protected,41.75,0.0
+HQ100,site and supply station protected,42.0,0.0
+HQ100,site and supply station protected,42.25,0.0
+HQ100,site and supply station protected,42.5,0.0
+HQ100,site and supply station protected,42.75,0.0
+HQ100,site and supply station protected,43.0,0.0
+HQ100,site and supply station protected,43.25,0.0
+HQ100,site and supply station protected,43.5,0.0
+HQ100,site and supply station protected,43.75,0.0
+HQ100,site and supply station protected,44.0,0.0
+HQ100,site and supply station protected,44.25,0.0
+HQ100,site and supply station protected,44.5,0.0
+HQ100,site and supply station protected,44.75,0.0
+HQ100,site and supply station protected,45.0,0.0
+HQ100,site and supply station protected,45.25,0.0
+HQ100,site and supply station protected,45.5,0.0
+HQ100,site and supply station protected,45.75,0.0
+HQ100,site and supply station protected,46.0,0.0
+HQ100,site and supply station protected,46.25,0.0
+HQ100,site and supply station protected,46.5,0.0
+HQ100,site and supply station protected,46.75,0.0
+HQ100,site and supply station protected,47.0,0.0
+HQ100,site and supply station protected,47.25,0.0
+HQ100,site and supply station protected,47.5,0.0
+HQ100,site and supply station protected,47.75,0.0
+HQ100,site and supply station protected,48.0,0.0
+HQ100,site and supply station protected,48.25,0.0
+HQ100,site and supply station protected,48.5,0.0
+HQ100,site and supply station protected,48.75,0.0
+HQ100,site and supply station protected,49.0,0.0
+HQ100,site and supply station protected,49.25,0.0
+HQ100,site and supply station protected,49.5,0.0
+HQ100,site and supply station protected,49.75,0.0
+HQ100,site and supply station protected,50.0,0.0
+HQ100,site and supply station protected,50.25,0.0
+HQ100,site and supply station protected,50.5,0.0
+HQ100,site and supply station protected,50.75,0.0
+HQ100,site and supply station protected,51.0,0.0
+HQ100,site and supply station protected,51.25,0.0
+HQ100,site and supply station protected,51.5,0.0
+HQ100,site and supply station protected,51.75,0.0
+HQ100,site and supply station protected,52.0,0.0
+HQ100,site and supply station protected,52.25,0.0
+HQ100,site and supply station protected,52.5,0.0
+HQ100,site and supply station protected,52.75,0.0
+HQ100,site and supply station protected,53.0,0.0
+HQ100,site and supply station protected,53.25,0.0
+HQ100,site and supply station protected,53.5,0.0
+HQ100,site and supply station protected,53.75,0.0
+HQ100,site and supply station protected,54.0,0.0
+HQ100,site and supply station protected,54.25,0.0
+HQ100,site and supply station protected,54.5,0.0
+HQ100,site and supply station protected,54.75,0.0
+HQ100,site and supply station protected,55.0,0.0
+HQ100,site and supply station protected,55.25,0.0
+HQ100,site and supply station protected,55.5,0.0
+HQ100,site and supply station protected,55.75,0.0
+HQ100,site and supply station protected,56.0,0.0
+HQ100,site and supply station protected,56.25,0.0
+HQ100,site and supply station protected,56.5,0.0
+HQ100,site and supply station protected,56.75,0.0
+HQ100,site and supply station protected,57.0,0.0
+HQ100,site and supply station protected,57.25,0.0
+HQ100,site and supply station protected,57.5,0.0
+HQ100,site and supply station protected,57.75,0.0
+HQ100,site and supply station protected,58.0,0.0
+HQ100,site and supply station protected,58.25,0.0
+HQ100,site and supply station protected,58.5,0.0
+HQ100,site and supply station protected,58.75,0.0
+HQ100,site and supply station protected,59.0,0.0
+HQ100,site and supply station protected,59.25,0.0
+HQ100,site and supply station protected,59.5,0.0
+HQ100,site and supply station protected,59.75,0.0
+HQ100,site and supply station protected,60.0,0.0
+HQ100,site and supply station protected,60.25,0.0
+HQ100,site and supply station protected,60.5,0.0
+HQ100,site and supply station protected,60.75,0.0
+HQ100,site and supply station protected,61.0,0.0
+HQ100,site and supply station protected,61.25,0.0
+HQ100,site and supply station protected,61.5,0.0
+HQ100,site and supply station protected,61.75,0.0
+HQ100,site and supply station protected,62.0,0.0
+HQ100,site and supply station protected,62.25,0.0
+HQ100,site and supply station protected,62.5,0.0
+HQ100,site and supply station protected,62.75,0.0
+HQ100,site and supply station protected,63.0,0.0
+HQ100,site and supply station protected,63.25,0.0
+HQ100,site and supply station protected,63.5,0.0
+HQ100,site and supply station protected,63.75,0.0
+HQ100,site and supply station protected,64.0,0.0
+HQ100,site and supply station protected,64.25,0.0
+HQ100,site and supply station protected,64.5,0.0
+HQ100,site and supply station protected,64.75,0.0
+HQ100,site and supply station protected,65.0,0.0
+HQ100,site and supply station protected,65.25,0.0
+HQ100,site and supply station protected,65.5,0.0
+HQ100,site and supply station protected,65.75,0.0
+HQ100,site and supply station protected,66.0,0.0
+HQ100,site and supply station protected,66.25,0.0
+HQ100,site and supply station protected,66.5,0.0
+HQ100,site and supply station protected,66.75,0.0
+HQ100,site and supply station protected,67.0,0.0
+HQ100,site and supply station protected,67.25,0.0
+HQ100,site and supply station protected,67.5,0.0
+HQ100,site and supply station protected,67.75,0.0
+HQ100,site and supply station protected,68.0,0.0
+HQ100,site and supply station protected,68.25,0.0
+HQ100,site and supply station protected,68.5,0.0
+HQ100,site and supply station protected,68.75,0.0
+HQ100,site and supply station protected,69.0,0.0
+HQ100,site and supply station protected,69.25,0.0
+HQ100,site and supply station protected,69.5,0.0
+HQ100,site and supply station protected,69.75,0.0
+HQ100,site and supply station protected,70.0,0.0
+HQ100,site and supply station protected,70.25,0.0
+HQ100,site and supply station protected,70.5,0.0
+HQ100,site and supply station protected,70.75,0.0
+HQ100,site and supply station protected,71.0,0.0
+HQ100,site and supply station protected,71.25,0.0
+HQ100,site and supply station protected,71.5,0.0
+HQ100,site and supply station protected,71.75,0.0
+HQ100,site and supply station protected,72.0,0.0
+HQ100,site protected + waterworks backup,0.0,0.0
+HQ100,site protected + waterworks backup,0.25,0.0
+HQ100,site protected + waterworks backup,0.5,0.0
+HQ100,site protected + waterworks backup,0.75,0.0
+HQ100,site protected + waterworks backup,1.0,0.0
+HQ100,site protected + waterworks backup,1.25,0.0
+HQ100,site protected + waterworks backup,1.5,0.0
+HQ100,site protected + waterworks backup,1.75,0.0
+HQ100,site protected + waterworks backup,2.0,0.0
+HQ100,site protected + waterworks backup,2.25,0.0
+HQ100,site protected + waterworks backup,2.5,0.0
+HQ100,site protected + waterworks backup,2.75,0.0
+HQ100,site protected + waterworks backup,3.0,0.0
+HQ100,site protected + waterworks backup,3.25,0.0
+HQ100,site protected + waterworks backup,3.5,0.0
+HQ100,site protected + waterworks backup,3.75,0.0
+HQ100,site protected + waterworks backup,4.0,0.0
+HQ100,site protected + waterworks backup,4.25,0.0
+HQ100,site protected + waterworks backup,4.5,0.0
+HQ100,site protected + waterworks backup,4.75,0.0
+HQ100,site protected + waterworks backup,5.0,0.0
+HQ100,site protected + waterworks backup,5.25,0.0
+HQ100,site protected + waterworks backup,5.5,0.0
+HQ100,site protected + waterworks backup,5.75,0.0
+HQ100,site protected + waterworks backup,6.0,0.0
+HQ100,site protected + waterworks backup,6.25,0.0
+HQ100,site protected + waterworks backup,6.5,0.0
+HQ100,site protected + waterworks backup,6.75,0.0
+HQ100,site protected + waterworks backup,7.0,0.0
+HQ100,site protected + waterworks backup,7.25,0.0
+HQ100,site protected + waterworks backup,7.5,0.0
+HQ100,site protected + waterworks backup,7.75,0.0
+HQ100,site protected + waterworks backup,8.0,0.0
+HQ100,site protected + waterworks backup,8.25,0.0
+HQ100,site protected + waterworks backup,8.5,0.0
+HQ100,site protected + waterworks backup,8.75,0.0
+HQ100,site protected + waterworks backup,9.0,0.0
+HQ100,site protected + waterworks backup,9.25,0.0
+HQ100,site protected + waterworks backup,9.5,0.0
+HQ100,site protected + waterworks backup,9.75,0.0
+HQ100,site protected + waterworks backup,10.0,0.0
+HQ100,site protected + waterworks backup,10.25,0.0
+HQ100,site protected + waterworks backup,10.5,0.0
+HQ100,site protected + waterworks backup,10.75,0.0
+HQ100,site protected + waterworks backup,11.0,0.0
+HQ100,site protected + waterworks backup,11.25,0.0
+HQ100,site protected + waterworks backup,11.5,0.0
+HQ100,site protected + waterworks backup,11.75,0.0
+HQ100,site protected + waterworks backup,12.0,0.0
+HQ100,site protected + waterworks backup,12.25,0.0
+HQ100,site protected + waterworks backup,12.5,0.0
+HQ100,site protected + waterworks backup,12.75,0.0
+HQ100,site protected + waterworks backup,13.0,0.0
+HQ100,site protected + waterworks backup,13.25,0.0
+HQ100,site protected + waterworks backup,13.5,0.0
+HQ100,site protected + waterworks backup,13.75,0.0
+HQ100,site protected + waterworks backup,14.0,0.0
+HQ100,site protected + waterworks backup,14.25,0.0
+HQ100,site protected + waterworks backup,14.5,0.0
+HQ100,site protected + waterworks backup,14.75,0.0
+HQ100,site protected + waterworks backup,15.0,0.0
+HQ100,site protected + waterworks backup,15.25,0.0
+HQ100,site protected + waterworks backup,15.5,0.0
+HQ100,site protected + waterworks backup,15.75,0.0
+HQ100,site protected + waterworks backup,16.0,0.0
+HQ100,site protected + waterworks backup,16.25,0.0
+HQ100,site protected + waterworks backup,16.5,0.0
+HQ100,site protected + waterworks backup,16.75,0.0
+HQ100,site protected + waterworks backup,17.0,0.0
+HQ100,site protected + waterworks backup,17.25,0.0
+HQ100,site protected + waterworks backup,17.5,0.0
+HQ100,site protected + waterworks backup,17.75,0.0
+HQ100,site protected + waterworks backup,18.0,0.0
+HQ100,site protected + waterworks backup,18.25,0.0
+HQ100,site protected + waterworks backup,18.5,0.0
+HQ100,site protected + waterworks backup,18.75,0.0
+HQ100,site protected + waterworks backup,19.0,0.0
+HQ100,site protected + waterworks backup,19.25,0.0
+HQ100,site protected + waterworks backup,19.5,0.0
+HQ100,site protected + waterworks backup,19.75,0.0
+HQ100,site protected + waterworks backup,20.0,0.0
+HQ100,site protected + waterworks backup,20.25,0.0
+HQ100,site protected + waterworks backup,20.5,0.0
+HQ100,site protected + waterworks backup,20.75,0.0
+HQ100,site protected + waterworks backup,21.0,0.0
+HQ100,site protected + waterworks backup,21.25,0.0
+HQ100,site protected + waterworks backup,21.5,0.0
+HQ100,site protected + waterworks backup,21.75,0.0
+HQ100,site protected + waterworks backup,22.0,0.0
+HQ100,site protected + waterworks backup,22.25,0.0
+HQ100,site protected + waterworks backup,22.5,0.0
+HQ100,site protected + waterworks backup,22.75,0.0
+HQ100,site protected + waterworks backup,23.0,0.0
+HQ100,site protected + waterworks backup,23.25,0.0
+HQ100,site protected + waterworks backup,23.5,0.0
+HQ100,site protected + waterworks backup,23.75,0.0
+HQ100,site protected + waterworks backup,24.0,0.0
+HQ100,site protected + waterworks backup,24.25,0.0
+HQ100,site protected + waterworks backup,24.5,0.0
+HQ100,site protected + waterworks backup,24.75,0.0
+HQ100,site protected + waterworks backup,25.0,0.0
+HQ100,site protected + waterworks backup,25.25,0.0
+HQ100,site protected + waterworks backup,25.5,0.0
+HQ100,site protected + waterworks backup,25.75,0.0
+HQ100,site protected + waterworks backup,26.0,0.0
+HQ100,site protected + waterworks backup,26.25,0.0
+HQ100,site protected + waterworks backup,26.5,0.0
+HQ100,site protected + waterworks backup,26.75,0.0
+HQ100,site protected + waterworks backup,27.0,0.0
+HQ100,site protected + waterworks backup,27.25,0.0
+HQ100,site protected + waterworks backup,27.5,0.0
+HQ100,site protected + waterworks backup,27.75,0.0
+HQ100,site protected + waterworks backup,28.0,0.0
+HQ100,site protected + waterworks backup,28.25,0.0
+HQ100,site protected + waterworks backup,28.5,0.0
+HQ100,site protected + waterworks backup,28.75,0.0
+HQ100,site protected + waterworks backup,29.0,0.0
+HQ100,site protected + waterworks backup,29.25,0.0
+HQ100,site protected + waterworks backup,29.5,0.0
+HQ100,site protected + waterworks backup,29.75,0.0
+HQ100,site protected + waterworks backup,30.0,0.0
+HQ100,site protected + waterworks backup,30.25,0.0
+HQ100,site protected + waterworks backup,30.5,0.0
+HQ100,site protected + waterworks backup,30.75,0.0
+HQ100,site protected + waterworks backup,31.0,0.0
+HQ100,site protected + waterworks backup,31.25,0.0
+HQ100,site protected + waterworks backup,31.5,0.0
+HQ100,site protected + waterworks backup,31.75,0.0
+HQ100,site protected + waterworks backup,32.0,0.0
+HQ100,site protected + waterworks backup,32.25,0.0
+HQ100,site protected + waterworks backup,32.5,0.0
+HQ100,site protected + waterworks backup,32.75,0.0
+HQ100,site protected + waterworks backup,33.0,0.0
+HQ100,site protected + waterworks backup,33.25,0.0
+HQ100,site protected + waterworks backup,33.5,0.0
+HQ100,site protected + waterworks backup,33.75,0.0
+HQ100,site protected + waterworks backup,34.0,0.0
+HQ100,site protected + waterworks backup,34.25,0.0
+HQ100,site protected + waterworks backup,34.5,0.0
+HQ100,site protected + waterworks backup,34.75,0.0
+HQ100,site protected + waterworks backup,35.0,0.0
+HQ100,site protected + waterworks backup,35.25,0.0
+HQ100,site protected + waterworks backup,35.5,0.0
+HQ100,site protected + waterworks backup,35.75,0.0
+HQ100,site protected + waterworks backup,36.0,0.0
+HQ100,site protected + waterworks backup,36.25,0.0
+HQ100,site protected + waterworks backup,36.5,0.0
+HQ100,site protected + waterworks backup,36.75,0.0
+HQ100,site protected + waterworks backup,37.0,0.0
+HQ100,site protected + waterworks backup,37.25,0.0
+HQ100,site protected + waterworks backup,37.5,0.0
+HQ100,site protected + waterworks backup,37.75,0.0
+HQ100,site protected + waterworks backup,38.0,0.0
+HQ100,site protected + waterworks backup,38.25,0.0
+HQ100,site protected + waterworks backup,38.5,0.0
+HQ100,site protected + waterworks backup,38.75,0.0
+HQ100,site protected + waterworks backup,39.0,0.0
+HQ100,site protected + waterworks backup,39.25,0.0
+HQ100,site protected + waterworks backup,39.5,0.0
+HQ100,site protected + waterworks backup,39.75,0.0
+HQ100,site protected + waterworks backup,40.0,0.0
+HQ100,site protected + waterworks backup,40.25,0.0
+HQ100,site protected + waterworks backup,40.5,0.0
+HQ100,site protected + waterworks backup,40.75,0.0
+HQ100,site protected + waterworks backup,41.0,0.0
+HQ100,site protected + waterworks backup,41.25,0.0
+HQ100,site protected + waterworks backup,41.5,0.0
+HQ100,site protected + waterworks backup,41.75,0.0
+HQ100,site protected + waterworks backup,42.0,0.0
+HQ100,site protected + waterworks backup,42.25,0.0
+HQ100,site protected + waterworks backup,42.5,0.0
+HQ100,site protected + waterworks backup,42.75,0.0
+HQ100,site protected + waterworks backup,43.0,0.0
+HQ100,site protected + waterworks backup,43.25,0.0
+HQ100,site protected + waterworks backup,43.5,0.0
+HQ100,site protected + waterworks backup,43.75,0.0
+HQ100,site protected + waterworks backup,44.0,0.0
+HQ100,site protected + waterworks backup,44.25,0.0
+HQ100,site protected + waterworks backup,44.5,0.0
+HQ100,site protected + waterworks backup,44.75,0.0
+HQ100,site protected + waterworks backup,45.0,0.0
+HQ100,site protected + waterworks backup,45.25,0.0
+HQ100,site protected + waterworks backup,45.5,0.0
+HQ100,site protected + waterworks backup,45.75,0.0
+HQ100,site protected + waterworks backup,46.0,0.0
+HQ100,site protected + waterworks backup,46.25,0.0
+HQ100,site protected + waterworks backup,46.5,0.0
+HQ100,site protected + waterworks backup,46.75,0.0
+HQ100,site protected + waterworks backup,47.0,0.0
+HQ100,site protected + waterworks backup,47.25,0.0
+HQ100,site protected + waterworks backup,47.5,0.0
+HQ100,site protected + waterworks backup,47.75,0.0
+HQ100,site protected + waterworks backup,48.0,0.0
+HQ100,site protected + waterworks backup,48.25,0.0
+HQ100,site protected + waterworks backup,48.5,0.0
+HQ100,site protected + waterworks backup,48.75,0.0
+HQ100,site protected + waterworks backup,49.0,0.0
+HQ100,site protected + waterworks backup,49.25,0.0
+HQ100,site protected + waterworks backup,49.5,0.0
+HQ100,site protected + waterworks backup,49.75,0.0
+HQ100,site protected + waterworks backup,50.0,0.0
+HQ100,site protected + waterworks backup,50.25,0.0
+HQ100,site protected + waterworks backup,50.5,0.0
+HQ100,site protected + waterworks backup,50.75,0.0
+HQ100,site protected + waterworks backup,51.0,0.0
+HQ100,site protected + waterworks backup,51.25,0.0
+HQ100,site protected + waterworks backup,51.5,0.0
+HQ100,site protected + waterworks backup,51.75,0.0
+HQ100,site protected + waterworks backup,52.0,0.0
+HQ100,site protected + waterworks backup,52.25,0.0
+HQ100,site protected + waterworks backup,52.5,0.0
+HQ100,site protected + waterworks backup,52.75,0.0
+HQ100,site protected + waterworks backup,53.0,0.0
+HQ100,site protected + waterworks backup,53.25,0.0
+HQ100,site protected + waterworks backup,53.5,0.0
+HQ100,site protected + waterworks backup,53.75,0.0
+HQ100,site protected + waterworks backup,54.0,0.0
+HQ100,site protected + waterworks backup,54.25,0.0
+HQ100,site protected + waterworks backup,54.5,0.0
+HQ100,site protected + waterworks backup,54.75,0.0
+HQ100,site protected + waterworks backup,55.0,0.0
+HQ100,site protected + waterworks backup,55.25,0.0
+HQ100,site protected + waterworks backup,55.5,0.0
+HQ100,site protected + waterworks backup,55.75,0.0
+HQ100,site protected + waterworks backup,56.0,0.0
+HQ100,site protected + waterworks backup,56.25,0.0
+HQ100,site protected + waterworks backup,56.5,0.0
+HQ100,site protected + waterworks backup,56.75,0.0
+HQ100,site protected + waterworks backup,57.0,0.0
+HQ100,site protected + waterworks backup,57.25,0.0
+HQ100,site protected + waterworks backup,57.5,0.0
+HQ100,site protected + waterworks backup,57.75,0.0
+HQ100,site protected + waterworks backup,58.0,0.0
+HQ100,site protected + waterworks backup,58.25,0.0
+HQ100,site protected + waterworks backup,58.5,0.0
+HQ100,site protected + waterworks backup,58.75,0.0
+HQ100,site protected + waterworks backup,59.0,0.0
+HQ100,site protected + waterworks backup,59.25,0.0
+HQ100,site protected + waterworks backup,59.5,0.0
+HQ100,site protected + waterworks backup,59.75,0.0
+HQ100,site protected + waterworks backup,60.0,0.0
+HQ100,site protected + waterworks backup,60.25,0.0
+HQ100,site protected + waterworks backup,60.5,0.0
+HQ100,site protected + waterworks backup,60.75,0.0
+HQ100,site protected + waterworks backup,61.0,0.0
+HQ100,site protected + waterworks backup,61.25,0.0
+HQ100,site protected + waterworks backup,61.5,0.0
+HQ100,site protected + waterworks backup,61.75,0.0
+HQ100,site protected + waterworks backup,62.0,0.0
+HQ100,site protected + waterworks backup,62.25,0.0
+HQ100,site protected + waterworks backup,62.5,0.0
+HQ100,site protected + waterworks backup,62.75,0.0
+HQ100,site protected + waterworks backup,63.0,0.0
+HQ100,site protected + waterworks backup,63.25,0.0
+HQ100,site protected + waterworks backup,63.5,0.0
+HQ100,site protected + waterworks backup,63.75,0.0
+HQ100,site protected + waterworks backup,64.0,0.0
+HQ100,site protected + waterworks backup,64.25,0.0
+HQ100,site protected + waterworks backup,64.5,0.0
+HQ100,site protected + waterworks backup,64.75,0.0
+HQ100,site protected + waterworks backup,65.0,0.0
+HQ100,site protected + waterworks backup,65.25,0.0
+HQ100,site protected + waterworks backup,65.5,0.0
+HQ100,site protected + waterworks backup,65.75,0.0
+HQ100,site protected + waterworks backup,66.0,0.0
+HQ100,site protected + waterworks backup,66.25,0.0
+HQ100,site protected + waterworks backup,66.5,0.0
+HQ100,site protected + waterworks backup,66.75,0.0
+HQ100,site protected + waterworks backup,67.0,0.0
+HQ100,site protected + waterworks backup,67.25,0.0
+HQ100,site protected + waterworks backup,67.5,0.0
+HQ100,site protected + waterworks backup,67.75,0.0
+HQ100,site protected + waterworks backup,68.0,0.0
+HQ100,site protected + waterworks backup,68.25,0.0
+HQ100,site protected + waterworks backup,68.5,0.0
+HQ100,site protected + waterworks backup,68.75,0.0
+HQ100,site protected + waterworks backup,69.0,0.0
+HQ100,site protected + waterworks backup,69.25,0.0
+HQ100,site protected + waterworks backup,69.5,0.0
+HQ100,site protected + waterworks backup,69.75,0.0
+HQ100,site protected + waterworks backup,70.0,0.0
+HQ100,site protected + waterworks backup,70.25,0.0
+HQ100,site protected + waterworks backup,70.5,0.0
+HQ100,site protected + waterworks backup,70.75,0.0
+HQ100,site protected + waterworks backup,71.0,0.0
+HQ100,site protected + waterworks backup,71.25,0.0
+HQ100,site protected + waterworks backup,71.5,0.0
+HQ100,site protected + waterworks backup,71.75,0.0
+HQ100,site protected + waterworks backup,72.0,0.0
+HQextrem,as mapped,0.0,0.0
+HQextrem,as mapped,0.25,0.0
+HQextrem,as mapped,0.5,0.0
+HQextrem,as mapped,0.75,0.0
+HQextrem,as mapped,1.0,0.0
+HQextrem,as mapped,1.25,0.0
+HQextrem,as mapped,1.5,0.0
+HQextrem,as mapped,1.75,0.0
+HQextrem,as mapped,2.0,0.0
+HQextrem,as mapped,2.25,0.0
+HQextrem,as mapped,2.5,0.0
+HQextrem,as mapped,2.75,0.0
+HQextrem,as mapped,3.0,0.0
+HQextrem,as mapped,3.25,0.0
+HQextrem,as mapped,3.5,0.0
+HQextrem,as mapped,3.75,0.0
+HQextrem,as mapped,4.0,0.0
+HQextrem,as mapped,4.25,0.0
+HQextrem,as mapped,4.5,0.0
+HQextrem,as mapped,4.75,0.0
+HQextrem,as mapped,5.0,0.0
+HQextrem,as mapped,5.25,0.0
+HQextrem,as mapped,5.5,0.0
+HQextrem,as mapped,5.75,0.0
+HQextrem,as mapped,6.0,0.0
+HQextrem,as mapped,6.25,0.0
+HQextrem,as mapped,6.5,0.0
+HQextrem,as mapped,6.75,0.0
+HQextrem,as mapped,7.0,0.0
+HQextrem,as mapped,7.25,0.0
+HQextrem,as mapped,7.5,0.0
+HQextrem,as mapped,7.75,0.0
+HQextrem,as mapped,8.0,0.0
+HQextrem,as mapped,8.25,0.0
+HQextrem,as mapped,8.5,0.0
+HQextrem,as mapped,8.75,0.0
+HQextrem,as mapped,9.0,0.0
+HQextrem,as mapped,9.25,0.0
+HQextrem,as mapped,9.5,0.0
+HQextrem,as mapped,9.75,0.0
+HQextrem,as mapped,10.0,0.0
+HQextrem,as mapped,10.25,0.0
+HQextrem,as mapped,10.5,0.0
+HQextrem,as mapped,10.75,0.0
+HQextrem,as mapped,11.0,0.0
+HQextrem,as mapped,11.25,0.0
+HQextrem,as mapped,11.5,0.0
+HQextrem,as mapped,11.75,0.0
+HQextrem,as mapped,12.0,0.0
+HQextrem,as mapped,12.25,0.0
+HQextrem,as mapped,12.5,0.0
+HQextrem,as mapped,12.75,0.0
+HQextrem,as mapped,13.0,0.0
+HQextrem,as mapped,13.25,0.0
+HQextrem,as mapped,13.5,0.0
+HQextrem,as mapped,13.75,0.0
+HQextrem,as mapped,14.0,0.0
+HQextrem,as mapped,14.25,0.0
+HQextrem,as mapped,14.5,0.0
+HQextrem,as mapped,14.75,0.0
+HQextrem,as mapped,15.0,0.0
+HQextrem,as mapped,15.25,0.0
+HQextrem,as mapped,15.5,0.0
+HQextrem,as mapped,15.75,0.0
+HQextrem,as mapped,16.0,0.0
+HQextrem,as mapped,16.25,0.0
+HQextrem,as mapped,16.5,0.0
+HQextrem,as mapped,16.75,0.0
+HQextrem,as mapped,17.0,0.0
+HQextrem,as mapped,17.25,0.0
+HQextrem,as mapped,17.5,0.0
+HQextrem,as mapped,17.75,0.0
+HQextrem,as mapped,18.0,0.0
+HQextrem,as mapped,18.25,0.0
+HQextrem,as mapped,18.5,0.0
+HQextrem,as mapped,18.75,0.0
+HQextrem,as mapped,19.0,0.0
+HQextrem,as mapped,19.25,0.0
+HQextrem,as mapped,19.5,0.0
+HQextrem,as mapped,19.75,0.0
+HQextrem,as mapped,20.0,0.0
+HQextrem,as mapped,20.25,0.0
+HQextrem,as mapped,20.5,0.0
+HQextrem,as mapped,20.75,0.0
+HQextrem,as mapped,21.0,0.0
+HQextrem,as mapped,21.25,0.0
+HQextrem,as mapped,21.5,0.0
+HQextrem,as mapped,21.75,0.0
+HQextrem,as mapped,22.0,0.0
+HQextrem,as mapped,22.25,0.0
+HQextrem,as mapped,22.5,0.0
+HQextrem,as mapped,22.75,0.0
+HQextrem,as mapped,23.0,0.0
+HQextrem,as mapped,23.25,0.0
+HQextrem,as mapped,23.5,0.0
+HQextrem,as mapped,23.75,0.0
+HQextrem,as mapped,24.0,68799.0
+HQextrem,as mapped,24.25,68799.0
+HQextrem,as mapped,24.5,68799.0
+HQextrem,as mapped,24.75,68799.0
+HQextrem,as mapped,25.0,68799.0
+HQextrem,as mapped,25.25,68799.0
+HQextrem,as mapped,25.5,68799.0
+HQextrem,as mapped,25.75,68799.0
+HQextrem,as mapped,26.0,68799.0
+HQextrem,as mapped,26.25,68799.0
+HQextrem,as mapped,26.5,68799.0
+HQextrem,as mapped,26.75,68799.0
+HQextrem,as mapped,27.0,68799.0
+HQextrem,as mapped,27.25,68799.0
+HQextrem,as mapped,27.5,68799.0
+HQextrem,as mapped,27.75,68799.0
+HQextrem,as mapped,28.0,68799.0
+HQextrem,as mapped,28.25,68799.0
+HQextrem,as mapped,28.5,68799.0
+HQextrem,as mapped,28.75,68799.0
+HQextrem,as mapped,29.0,68799.0
+HQextrem,as mapped,29.25,68799.0
+HQextrem,as mapped,29.5,68799.0
+HQextrem,as mapped,29.75,68799.0
+HQextrem,as mapped,30.0,68799.0
+HQextrem,as mapped,30.25,68799.0
+HQextrem,as mapped,30.5,68799.0
+HQextrem,as mapped,30.75,68799.0
+HQextrem,as mapped,31.0,68799.0
+HQextrem,as mapped,31.25,68799.0
+HQextrem,as mapped,31.5,68799.0
+HQextrem,as mapped,31.75,68799.0
+HQextrem,as mapped,32.0,68799.0
+HQextrem,as mapped,32.25,68799.0
+HQextrem,as mapped,32.5,68799.0
+HQextrem,as mapped,32.75,68799.0
+HQextrem,as mapped,33.0,68799.0
+HQextrem,as mapped,33.25,68799.0
+HQextrem,as mapped,33.5,68799.0
+HQextrem,as mapped,33.75,68799.0
+HQextrem,as mapped,34.0,68799.0
+HQextrem,as mapped,34.25,68799.0
+HQextrem,as mapped,34.5,68799.0
+HQextrem,as mapped,34.75,68799.0
+HQextrem,as mapped,35.0,68799.0
+HQextrem,as mapped,35.25,68799.0
+HQextrem,as mapped,35.5,68799.0
+HQextrem,as mapped,35.75,68799.0
+HQextrem,as mapped,36.0,68799.0
+HQextrem,as mapped,36.25,68799.0
+HQextrem,as mapped,36.5,68799.0
+HQextrem,as mapped,36.75,68799.0
+HQextrem,as mapped,37.0,68799.0
+HQextrem,as mapped,37.25,68799.0
+HQextrem,as mapped,37.5,68799.0
+HQextrem,as mapped,37.75,68799.0
+HQextrem,as mapped,38.0,68799.0
+HQextrem,as mapped,38.25,68799.0
+HQextrem,as mapped,38.5,68799.0
+HQextrem,as mapped,38.75,68799.0
+HQextrem,as mapped,39.0,68799.0
+HQextrem,as mapped,39.25,68799.0
+HQextrem,as mapped,39.5,68799.0
+HQextrem,as mapped,39.75,68799.0
+HQextrem,as mapped,40.0,68799.0
+HQextrem,as mapped,40.25,68799.0
+HQextrem,as mapped,40.5,68799.0
+HQextrem,as mapped,40.75,68799.0
+HQextrem,as mapped,41.0,68799.0
+HQextrem,as mapped,41.25,68799.0
+HQextrem,as mapped,41.5,68799.0
+HQextrem,as mapped,41.75,68799.0
+HQextrem,as mapped,42.0,68799.0
+HQextrem,as mapped,42.25,68799.0
+HQextrem,as mapped,42.5,68799.0
+HQextrem,as mapped,42.75,68799.0
+HQextrem,as mapped,43.0,68799.0
+HQextrem,as mapped,43.25,68799.0
+HQextrem,as mapped,43.5,68799.0
+HQextrem,as mapped,43.75,68799.0
+HQextrem,as mapped,44.0,68799.0
+HQextrem,as mapped,44.25,68799.0
+HQextrem,as mapped,44.5,68799.0
+HQextrem,as mapped,44.75,68799.0
+HQextrem,as mapped,45.0,68799.0
+HQextrem,as mapped,45.25,68799.0
+HQextrem,as mapped,45.5,68799.0
+HQextrem,as mapped,45.75,68799.0
+HQextrem,as mapped,46.0,68799.0
+HQextrem,as mapped,46.25,68799.0
+HQextrem,as mapped,46.5,68799.0
+HQextrem,as mapped,46.75,68799.0
+HQextrem,as mapped,47.0,68799.0
+HQextrem,as mapped,47.25,68799.0
+HQextrem,as mapped,47.5,68799.0
+HQextrem,as mapped,47.75,68799.0
+HQextrem,as mapped,48.0,68799.0
+HQextrem,as mapped,48.25,68799.0
+HQextrem,as mapped,48.5,68799.0
+HQextrem,as mapped,48.75,68799.0
+HQextrem,as mapped,49.0,68799.0
+HQextrem,as mapped,49.25,68799.0
+HQextrem,as mapped,49.5,68799.0
+HQextrem,as mapped,49.75,68799.0
+HQextrem,as mapped,50.0,68799.0
+HQextrem,as mapped,50.25,68799.0
+HQextrem,as mapped,50.5,68799.0
+HQextrem,as mapped,50.75,68799.0
+HQextrem,as mapped,51.0,68799.0
+HQextrem,as mapped,51.25,68799.0
+HQextrem,as mapped,51.5,68799.0
+HQextrem,as mapped,51.75,68799.0
+HQextrem,as mapped,52.0,68799.0
+HQextrem,as mapped,52.25,68799.0
+HQextrem,as mapped,52.5,68799.0
+HQextrem,as mapped,52.75,68799.0
+HQextrem,as mapped,53.0,68799.0
+HQextrem,as mapped,53.25,68799.0
+HQextrem,as mapped,53.5,68799.0
+HQextrem,as mapped,53.75,68799.0
+HQextrem,as mapped,54.0,68799.0
+HQextrem,as mapped,54.25,68799.0
+HQextrem,as mapped,54.5,68799.0
+HQextrem,as mapped,54.75,68799.0
+HQextrem,as mapped,55.0,68799.0
+HQextrem,as mapped,55.25,68799.0
+HQextrem,as mapped,55.5,68799.0
+HQextrem,as mapped,55.75,68799.0
+HQextrem,as mapped,56.0,68799.0
+HQextrem,as mapped,56.25,68799.0
+HQextrem,as mapped,56.5,68799.0
+HQextrem,as mapped,56.75,68799.0
+HQextrem,as mapped,57.0,68799.0
+HQextrem,as mapped,57.25,68799.0
+HQextrem,as mapped,57.5,68799.0
+HQextrem,as mapped,57.75,68799.0
+HQextrem,as mapped,58.0,68799.0
+HQextrem,as mapped,58.25,68799.0
+HQextrem,as mapped,58.5,68799.0
+HQextrem,as mapped,58.75,68799.0
+HQextrem,as mapped,59.0,68799.0
+HQextrem,as mapped,59.25,68799.0
+HQextrem,as mapped,59.5,68799.0
+HQextrem,as mapped,59.75,68799.0
+HQextrem,as mapped,60.0,68799.0
+HQextrem,as mapped,60.25,68799.0
+HQextrem,as mapped,60.5,68799.0
+HQextrem,as mapped,60.75,68799.0
+HQextrem,as mapped,61.0,68799.0
+HQextrem,as mapped,61.25,68799.0
+HQextrem,as mapped,61.5,68799.0
+HQextrem,as mapped,61.75,68799.0
+HQextrem,as mapped,62.0,68799.0
+HQextrem,as mapped,62.25,68799.0
+HQextrem,as mapped,62.5,68799.0
+HQextrem,as mapped,62.75,68799.0
+HQextrem,as mapped,63.0,68799.0
+HQextrem,as mapped,63.25,68799.0
+HQextrem,as mapped,63.5,68799.0
+HQextrem,as mapped,63.75,68799.0
+HQextrem,as mapped,64.0,68799.0
+HQextrem,as mapped,64.25,68799.0
+HQextrem,as mapped,64.5,68799.0
+HQextrem,as mapped,64.75,68799.0
+HQextrem,as mapped,65.0,68799.0
+HQextrem,as mapped,65.25,68799.0
+HQextrem,as mapped,65.5,68799.0
+HQextrem,as mapped,65.75,68799.0
+HQextrem,as mapped,66.0,68799.0
+HQextrem,as mapped,66.25,68799.0
+HQextrem,as mapped,66.5,68799.0
+HQextrem,as mapped,66.75,68799.0
+HQextrem,as mapped,67.0,68799.0
+HQextrem,as mapped,67.25,68799.0
+HQextrem,as mapped,67.5,68799.0
+HQextrem,as mapped,67.75,68799.0
+HQextrem,as mapped,68.0,68799.0
+HQextrem,as mapped,68.25,68799.0
+HQextrem,as mapped,68.5,68799.0
+HQextrem,as mapped,68.75,68799.0
+HQextrem,as mapped,69.0,68799.0
+HQextrem,as mapped,69.25,68799.0
+HQextrem,as mapped,69.5,68799.0
+HQextrem,as mapped,69.75,68799.0
+HQextrem,as mapped,70.0,68799.0
+HQextrem,as mapped,70.25,68799.0
+HQextrem,as mapped,70.5,68799.0
+HQextrem,as mapped,70.75,68799.0
+HQextrem,as mapped,71.0,68799.0
+HQextrem,as mapped,71.25,68799.0
+HQextrem,as mapped,71.5,68799.0
+HQextrem,as mapped,71.75,68799.0
+HQextrem,as mapped,72.0,68799.0
+HQextrem,waterworks site protected,0.0,0.0
+HQextrem,waterworks site protected,0.25,0.0
+HQextrem,waterworks site protected,0.5,0.0
+HQextrem,waterworks site protected,0.75,0.0
+HQextrem,waterworks site protected,1.0,0.0
+HQextrem,waterworks site protected,1.25,0.0
+HQextrem,waterworks site protected,1.5,0.0
+HQextrem,waterworks site protected,1.75,0.0
+HQextrem,waterworks site protected,2.0,0.0
+HQextrem,waterworks site protected,2.25,0.0
+HQextrem,waterworks site protected,2.5,0.0
+HQextrem,waterworks site protected,2.75,0.0
+HQextrem,waterworks site protected,3.0,0.0
+HQextrem,waterworks site protected,3.25,0.0
+HQextrem,waterworks site protected,3.5,0.0
+HQextrem,waterworks site protected,3.75,0.0
+HQextrem,waterworks site protected,4.0,0.0
+HQextrem,waterworks site protected,4.25,0.0
+HQextrem,waterworks site protected,4.5,0.0
+HQextrem,waterworks site protected,4.75,0.0
+HQextrem,waterworks site protected,5.0,0.0
+HQextrem,waterworks site protected,5.25,0.0
+HQextrem,waterworks site protected,5.5,0.0
+HQextrem,waterworks site protected,5.75,0.0
+HQextrem,waterworks site protected,6.0,0.0
+HQextrem,waterworks site protected,6.25,0.0
+HQextrem,waterworks site protected,6.5,0.0
+HQextrem,waterworks site protected,6.75,0.0
+HQextrem,waterworks site protected,7.0,0.0
+HQextrem,waterworks site protected,7.25,0.0
+HQextrem,waterworks site protected,7.5,0.0
+HQextrem,waterworks site protected,7.75,0.0
+HQextrem,waterworks site protected,8.0,0.0
+HQextrem,waterworks site protected,8.25,0.0
+HQextrem,waterworks site protected,8.5,0.0
+HQextrem,waterworks site protected,8.75,0.0
+HQextrem,waterworks site protected,9.0,0.0
+HQextrem,waterworks site protected,9.25,0.0
+HQextrem,waterworks site protected,9.5,0.0
+HQextrem,waterworks site protected,9.75,0.0
+HQextrem,waterworks site protected,10.0,0.0
+HQextrem,waterworks site protected,10.25,0.0
+HQextrem,waterworks site protected,10.5,0.0
+HQextrem,waterworks site protected,10.75,0.0
+HQextrem,waterworks site protected,11.0,0.0
+HQextrem,waterworks site protected,11.25,0.0
+HQextrem,waterworks site protected,11.5,0.0
+HQextrem,waterworks site protected,11.75,0.0
+HQextrem,waterworks site protected,12.0,0.0
+HQextrem,waterworks site protected,12.25,0.0
+HQextrem,waterworks site protected,12.5,0.0
+HQextrem,waterworks site protected,12.75,0.0
+HQextrem,waterworks site protected,13.0,0.0
+HQextrem,waterworks site protected,13.25,0.0
+HQextrem,waterworks site protected,13.5,0.0
+HQextrem,waterworks site protected,13.75,0.0
+HQextrem,waterworks site protected,14.0,0.0
+HQextrem,waterworks site protected,14.25,0.0
+HQextrem,waterworks site protected,14.5,0.0
+HQextrem,waterworks site protected,14.75,0.0
+HQextrem,waterworks site protected,15.0,0.0
+HQextrem,waterworks site protected,15.25,0.0
+HQextrem,waterworks site protected,15.5,0.0
+HQextrem,waterworks site protected,15.75,0.0
+HQextrem,waterworks site protected,16.0,0.0
+HQextrem,waterworks site protected,16.25,0.0
+HQextrem,waterworks site protected,16.5,0.0
+HQextrem,waterworks site protected,16.75,0.0
+HQextrem,waterworks site protected,17.0,0.0
+HQextrem,waterworks site protected,17.25,0.0
+HQextrem,waterworks site protected,17.5,0.0
+HQextrem,waterworks site protected,17.75,0.0
+HQextrem,waterworks site protected,18.0,0.0
+HQextrem,waterworks site protected,18.25,0.0
+HQextrem,waterworks site protected,18.5,0.0
+HQextrem,waterworks site protected,18.75,0.0
+HQextrem,waterworks site protected,19.0,0.0
+HQextrem,waterworks site protected,19.25,0.0
+HQextrem,waterworks site protected,19.5,0.0
+HQextrem,waterworks site protected,19.75,0.0
+HQextrem,waterworks site protected,20.0,0.0
+HQextrem,waterworks site protected,20.25,0.0
+HQextrem,waterworks site protected,20.5,0.0
+HQextrem,waterworks site protected,20.75,0.0
+HQextrem,waterworks site protected,21.0,0.0
+HQextrem,waterworks site protected,21.25,0.0
+HQextrem,waterworks site protected,21.5,0.0
+HQextrem,waterworks site protected,21.75,0.0
+HQextrem,waterworks site protected,22.0,0.0
+HQextrem,waterworks site protected,22.25,0.0
+HQextrem,waterworks site protected,22.5,0.0
+HQextrem,waterworks site protected,22.75,0.0
+HQextrem,waterworks site protected,23.0,0.0
+HQextrem,waterworks site protected,23.25,0.0
+HQextrem,waterworks site protected,23.5,0.0
+HQextrem,waterworks site protected,23.75,0.0
+HQextrem,waterworks site protected,24.0,68799.0
+HQextrem,waterworks site protected,24.25,68799.0
+HQextrem,waterworks site protected,24.5,68799.0
+HQextrem,waterworks site protected,24.75,68799.0
+HQextrem,waterworks site protected,25.0,68799.0
+HQextrem,waterworks site protected,25.25,68799.0
+HQextrem,waterworks site protected,25.5,68799.0
+HQextrem,waterworks site protected,25.75,68799.0
+HQextrem,waterworks site protected,26.0,68799.0
+HQextrem,waterworks site protected,26.25,68799.0
+HQextrem,waterworks site protected,26.5,68799.0
+HQextrem,waterworks site protected,26.75,68799.0
+HQextrem,waterworks site protected,27.0,68799.0
+HQextrem,waterworks site protected,27.25,68799.0
+HQextrem,waterworks site protected,27.5,68799.0
+HQextrem,waterworks site protected,27.75,68799.0
+HQextrem,waterworks site protected,28.0,68799.0
+HQextrem,waterworks site protected,28.25,68799.0
+HQextrem,waterworks site protected,28.5,68799.0
+HQextrem,waterworks site protected,28.75,68799.0
+HQextrem,waterworks site protected,29.0,68799.0
+HQextrem,waterworks site protected,29.25,68799.0
+HQextrem,waterworks site protected,29.5,68799.0
+HQextrem,waterworks site protected,29.75,68799.0
+HQextrem,waterworks site protected,30.0,68799.0
+HQextrem,waterworks site protected,30.25,68799.0
+HQextrem,waterworks site protected,30.5,68799.0
+HQextrem,waterworks site protected,30.75,68799.0
+HQextrem,waterworks site protected,31.0,68799.0
+HQextrem,waterworks site protected,31.25,68799.0
+HQextrem,waterworks site protected,31.5,68799.0
+HQextrem,waterworks site protected,31.75,68799.0
+HQextrem,waterworks site protected,32.0,68799.0
+HQextrem,waterworks site protected,32.25,68799.0
+HQextrem,waterworks site protected,32.5,68799.0
+HQextrem,waterworks site protected,32.75,68799.0
+HQextrem,waterworks site protected,33.0,68799.0
+HQextrem,waterworks site protected,33.25,68799.0
+HQextrem,waterworks site protected,33.5,68799.0
+HQextrem,waterworks site protected,33.75,68799.0
+HQextrem,waterworks site protected,34.0,68799.0
+HQextrem,waterworks site protected,34.25,68799.0
+HQextrem,waterworks site protected,34.5,68799.0
+HQextrem,waterworks site protected,34.75,68799.0
+HQextrem,waterworks site protected,35.0,68799.0
+HQextrem,waterworks site protected,35.25,68799.0
+HQextrem,waterworks site protected,35.5,68799.0
+HQextrem,waterworks site protected,35.75,68799.0
+HQextrem,waterworks site protected,36.0,68799.0
+HQextrem,waterworks site protected,36.25,68799.0
+HQextrem,waterworks site protected,36.5,68799.0
+HQextrem,waterworks site protected,36.75,68799.0
+HQextrem,waterworks site protected,37.0,68799.0
+HQextrem,waterworks site protected,37.25,68799.0
+HQextrem,waterworks site protected,37.5,68799.0
+HQextrem,waterworks site protected,37.75,68799.0
+HQextrem,waterworks site protected,38.0,68799.0
+HQextrem,waterworks site protected,38.25,68799.0
+HQextrem,waterworks site protected,38.5,68799.0
+HQextrem,waterworks site protected,38.75,68799.0
+HQextrem,waterworks site protected,39.0,68799.0
+HQextrem,waterworks site protected,39.25,68799.0
+HQextrem,waterworks site protected,39.5,68799.0
+HQextrem,waterworks site protected,39.75,68799.0
+HQextrem,waterworks site protected,40.0,68799.0
+HQextrem,waterworks site protected,40.25,68799.0
+HQextrem,waterworks site protected,40.5,68799.0
+HQextrem,waterworks site protected,40.75,68799.0
+HQextrem,waterworks site protected,41.0,68799.0
+HQextrem,waterworks site protected,41.25,68799.0
+HQextrem,waterworks site protected,41.5,68799.0
+HQextrem,waterworks site protected,41.75,68799.0
+HQextrem,waterworks site protected,42.0,68799.0
+HQextrem,waterworks site protected,42.25,68799.0
+HQextrem,waterworks site protected,42.5,68799.0
+HQextrem,waterworks site protected,42.75,68799.0
+HQextrem,waterworks site protected,43.0,68799.0
+HQextrem,waterworks site protected,43.25,68799.0
+HQextrem,waterworks site protected,43.5,68799.0
+HQextrem,waterworks site protected,43.75,68799.0
+HQextrem,waterworks site protected,44.0,68799.0
+HQextrem,waterworks site protected,44.25,68799.0
+HQextrem,waterworks site protected,44.5,68799.0
+HQextrem,waterworks site protected,44.75,68799.0
+HQextrem,waterworks site protected,45.0,68799.0
+HQextrem,waterworks site protected,45.25,68799.0
+HQextrem,waterworks site protected,45.5,68799.0
+HQextrem,waterworks site protected,45.75,68799.0
+HQextrem,waterworks site protected,46.0,68799.0
+HQextrem,waterworks site protected,46.25,68799.0
+HQextrem,waterworks site protected,46.5,68799.0
+HQextrem,waterworks site protected,46.75,68799.0
+HQextrem,waterworks site protected,47.0,68799.0
+HQextrem,waterworks site protected,47.25,68799.0
+HQextrem,waterworks site protected,47.5,68799.0
+HQextrem,waterworks site protected,47.75,68799.0
+HQextrem,waterworks site protected,48.0,68799.0
+HQextrem,waterworks site protected,48.25,68799.0
+HQextrem,waterworks site protected,48.5,68799.0
+HQextrem,waterworks site protected,48.75,68799.0
+HQextrem,waterworks site protected,49.0,68799.0
+HQextrem,waterworks site protected,49.25,68799.0
+HQextrem,waterworks site protected,49.5,68799.0
+HQextrem,waterworks site protected,49.75,68799.0
+HQextrem,waterworks site protected,50.0,68799.0
+HQextrem,waterworks site protected,50.25,68799.0
+HQextrem,waterworks site protected,50.5,68799.0
+HQextrem,waterworks site protected,50.75,68799.0
+HQextrem,waterworks site protected,51.0,68799.0
+HQextrem,waterworks site protected,51.25,68799.0
+HQextrem,waterworks site protected,51.5,68799.0
+HQextrem,waterworks site protected,51.75,68799.0
+HQextrem,waterworks site protected,52.0,68799.0
+HQextrem,waterworks site protected,52.25,68799.0
+HQextrem,waterworks site protected,52.5,68799.0
+HQextrem,waterworks site protected,52.75,68799.0
+HQextrem,waterworks site protected,53.0,68799.0
+HQextrem,waterworks site protected,53.25,68799.0
+HQextrem,waterworks site protected,53.5,68799.0
+HQextrem,waterworks site protected,53.75,68799.0
+HQextrem,waterworks site protected,54.0,68799.0
+HQextrem,waterworks site protected,54.25,68799.0
+HQextrem,waterworks site protected,54.5,68799.0
+HQextrem,waterworks site protected,54.75,68799.0
+HQextrem,waterworks site protected,55.0,68799.0
+HQextrem,waterworks site protected,55.25,68799.0
+HQextrem,waterworks site protected,55.5,68799.0
+HQextrem,waterworks site protected,55.75,68799.0
+HQextrem,waterworks site protected,56.0,68799.0
+HQextrem,waterworks site protected,56.25,68799.0
+HQextrem,waterworks site protected,56.5,68799.0
+HQextrem,waterworks site protected,56.75,68799.0
+HQextrem,waterworks site protected,57.0,68799.0
+HQextrem,waterworks site protected,57.25,68799.0
+HQextrem,waterworks site protected,57.5,68799.0
+HQextrem,waterworks site protected,57.75,68799.0
+HQextrem,waterworks site protected,58.0,68799.0
+HQextrem,waterworks site protected,58.25,68799.0
+HQextrem,waterworks site protected,58.5,68799.0
+HQextrem,waterworks site protected,58.75,68799.0
+HQextrem,waterworks site protected,59.0,68799.0
+HQextrem,waterworks site protected,59.25,68799.0
+HQextrem,waterworks site protected,59.5,68799.0
+HQextrem,waterworks site protected,59.75,68799.0
+HQextrem,waterworks site protected,60.0,68799.0
+HQextrem,waterworks site protected,60.25,68799.0
+HQextrem,waterworks site protected,60.5,68799.0
+HQextrem,waterworks site protected,60.75,68799.0
+HQextrem,waterworks site protected,61.0,68799.0
+HQextrem,waterworks site protected,61.25,68799.0
+HQextrem,waterworks site protected,61.5,68799.0
+HQextrem,waterworks site protected,61.75,68799.0
+HQextrem,waterworks site protected,62.0,68799.0
+HQextrem,waterworks site protected,62.25,68799.0
+HQextrem,waterworks site protected,62.5,68799.0
+HQextrem,waterworks site protected,62.75,68799.0
+HQextrem,waterworks site protected,63.0,68799.0
+HQextrem,waterworks site protected,63.25,68799.0
+HQextrem,waterworks site protected,63.5,68799.0
+HQextrem,waterworks site protected,63.75,68799.0
+HQextrem,waterworks site protected,64.0,68799.0
+HQextrem,waterworks site protected,64.25,68799.0
+HQextrem,waterworks site protected,64.5,68799.0
+HQextrem,waterworks site protected,64.75,68799.0
+HQextrem,waterworks site protected,65.0,68799.0
+HQextrem,waterworks site protected,65.25,68799.0
+HQextrem,waterworks site protected,65.5,68799.0
+HQextrem,waterworks site protected,65.75,68799.0
+HQextrem,waterworks site protected,66.0,68799.0
+HQextrem,waterworks site protected,66.25,68799.0
+HQextrem,waterworks site protected,66.5,68799.0
+HQextrem,waterworks site protected,66.75,68799.0
+HQextrem,waterworks site protected,67.0,68799.0
+HQextrem,waterworks site protected,67.25,68799.0
+HQextrem,waterworks site protected,67.5,68799.0
+HQextrem,waterworks site protected,67.75,68799.0
+HQextrem,waterworks site protected,68.0,68799.0
+HQextrem,waterworks site protected,68.25,68799.0
+HQextrem,waterworks site protected,68.5,68799.0
+HQextrem,waterworks site protected,68.75,68799.0
+HQextrem,waterworks site protected,69.0,68799.0
+HQextrem,waterworks site protected,69.25,68799.0
+HQextrem,waterworks site protected,69.5,68799.0
+HQextrem,waterworks site protected,69.75,68799.0
+HQextrem,waterworks site protected,70.0,68799.0
+HQextrem,waterworks site protected,70.25,68799.0
+HQextrem,waterworks site protected,70.5,68799.0
+HQextrem,waterworks site protected,70.75,68799.0
+HQextrem,waterworks site protected,71.0,68799.0
+HQextrem,waterworks site protected,71.25,68799.0
+HQextrem,waterworks site protected,71.5,68799.0
+HQextrem,waterworks site protected,71.75,68799.0
+HQextrem,waterworks site protected,72.0,68799.0
+HQextrem,site and supply station protected,0.0,0.0
+HQextrem,site and supply station protected,0.25,0.0
+HQextrem,site and supply station protected,0.5,0.0
+HQextrem,site and supply station protected,0.75,0.0
+HQextrem,site and supply station protected,1.0,0.0
+HQextrem,site and supply station protected,1.25,0.0
+HQextrem,site and supply station protected,1.5,0.0
+HQextrem,site and supply station protected,1.75,0.0
+HQextrem,site and supply station protected,2.0,0.0
+HQextrem,site and supply station protected,2.25,0.0
+HQextrem,site and supply station protected,2.5,0.0
+HQextrem,site and supply station protected,2.75,0.0
+HQextrem,site and supply station protected,3.0,0.0
+HQextrem,site and supply station protected,3.25,0.0
+HQextrem,site and supply station protected,3.5,0.0
+HQextrem,site and supply station protected,3.75,0.0
+HQextrem,site and supply station protected,4.0,0.0
+HQextrem,site and supply station protected,4.25,0.0
+HQextrem,site and supply station protected,4.5,0.0
+HQextrem,site and supply station protected,4.75,0.0
+HQextrem,site and supply station protected,5.0,0.0
+HQextrem,site and supply station protected,5.25,0.0
+HQextrem,site and supply station protected,5.5,0.0
+HQextrem,site and supply station protected,5.75,0.0
+HQextrem,site and supply station protected,6.0,0.0
+HQextrem,site and supply station protected,6.25,0.0
+HQextrem,site and supply station protected,6.5,0.0
+HQextrem,site and supply station protected,6.75,0.0
+HQextrem,site and supply station protected,7.0,0.0
+HQextrem,site and supply station protected,7.25,0.0
+HQextrem,site and supply station protected,7.5,0.0
+HQextrem,site and supply station protected,7.75,0.0
+HQextrem,site and supply station protected,8.0,0.0
+HQextrem,site and supply station protected,8.25,0.0
+HQextrem,site and supply station protected,8.5,0.0
+HQextrem,site and supply station protected,8.75,0.0
+HQextrem,site and supply station protected,9.0,0.0
+HQextrem,site and supply station protected,9.25,0.0
+HQextrem,site and supply station protected,9.5,0.0
+HQextrem,site and supply station protected,9.75,0.0
+HQextrem,site and supply station protected,10.0,0.0
+HQextrem,site and supply station protected,10.25,0.0
+HQextrem,site and supply station protected,10.5,0.0
+HQextrem,site and supply station protected,10.75,0.0
+HQextrem,site and supply station protected,11.0,0.0
+HQextrem,site and supply station protected,11.25,0.0
+HQextrem,site and supply station protected,11.5,0.0
+HQextrem,site and supply station protected,11.75,0.0
+HQextrem,site and supply station protected,12.0,0.0
+HQextrem,site and supply station protected,12.25,0.0
+HQextrem,site and supply station protected,12.5,0.0
+HQextrem,site and supply station protected,12.75,0.0
+HQextrem,site and supply station protected,13.0,0.0
+HQextrem,site and supply station protected,13.25,0.0
+HQextrem,site and supply station protected,13.5,0.0
+HQextrem,site and supply station protected,13.75,0.0
+HQextrem,site and supply station protected,14.0,0.0
+HQextrem,site and supply station protected,14.25,0.0
+HQextrem,site and supply station protected,14.5,0.0
+HQextrem,site and supply station protected,14.75,0.0
+HQextrem,site and supply station protected,15.0,0.0
+HQextrem,site and supply station protected,15.25,0.0
+HQextrem,site and supply station protected,15.5,0.0
+HQextrem,site and supply station protected,15.75,0.0
+HQextrem,site and supply station protected,16.0,0.0
+HQextrem,site and supply station protected,16.25,0.0
+HQextrem,site and supply station protected,16.5,0.0
+HQextrem,site and supply station protected,16.75,0.0
+HQextrem,site and supply station protected,17.0,0.0
+HQextrem,site and supply station protected,17.25,0.0
+HQextrem,site and supply station protected,17.5,0.0
+HQextrem,site and supply station protected,17.75,0.0
+HQextrem,site and supply station protected,18.0,0.0
+HQextrem,site and supply station protected,18.25,0.0
+HQextrem,site and supply station protected,18.5,0.0
+HQextrem,site and supply station protected,18.75,0.0
+HQextrem,site and supply station protected,19.0,0.0
+HQextrem,site and supply station protected,19.25,0.0
+HQextrem,site and supply station protected,19.5,0.0
+HQextrem,site and supply station protected,19.75,0.0
+HQextrem,site and supply station protected,20.0,0.0
+HQextrem,site and supply station protected,20.25,0.0
+HQextrem,site and supply station protected,20.5,0.0
+HQextrem,site and supply station protected,20.75,0.0
+HQextrem,site and supply station protected,21.0,0.0
+HQextrem,site and supply station protected,21.25,0.0
+HQextrem,site and supply station protected,21.5,0.0
+HQextrem,site and supply station protected,21.75,0.0
+HQextrem,site and supply station protected,22.0,0.0
+HQextrem,site and supply station protected,22.25,0.0
+HQextrem,site and supply station protected,22.5,0.0
+HQextrem,site and supply station protected,22.75,0.0
+HQextrem,site and supply station protected,23.0,0.0
+HQextrem,site and supply station protected,23.25,0.0
+HQextrem,site and supply station protected,23.5,0.0
+HQextrem,site and supply station protected,23.75,0.0
+HQextrem,site and supply station protected,24.0,0.0
+HQextrem,site and supply station protected,24.25,0.0
+HQextrem,site and supply station protected,24.5,0.0
+HQextrem,site and supply station protected,24.75,0.0
+HQextrem,site and supply station protected,25.0,0.0
+HQextrem,site and supply station protected,25.25,0.0
+HQextrem,site and supply station protected,25.5,0.0
+HQextrem,site and supply station protected,25.75,0.0
+HQextrem,site and supply station protected,26.0,0.0
+HQextrem,site and supply station protected,26.25,0.0
+HQextrem,site and supply station protected,26.5,0.0
+HQextrem,site and supply station protected,26.75,0.0
+HQextrem,site and supply station protected,27.0,0.0
+HQextrem,site and supply station protected,27.25,0.0
+HQextrem,site and supply station protected,27.5,0.0
+HQextrem,site and supply station protected,27.75,0.0
+HQextrem,site and supply station protected,28.0,0.0
+HQextrem,site and supply station protected,28.25,0.0
+HQextrem,site and supply station protected,28.5,0.0
+HQextrem,site and supply station protected,28.75,0.0
+HQextrem,site and supply station protected,29.0,0.0
+HQextrem,site and supply station protected,29.25,0.0
+HQextrem,site and supply station protected,29.5,0.0
+HQextrem,site and supply station protected,29.75,0.0
+HQextrem,site and supply station protected,30.0,0.0
+HQextrem,site and supply station protected,30.25,0.0
+HQextrem,site and supply station protected,30.5,0.0
+HQextrem,site and supply station protected,30.75,0.0
+HQextrem,site and supply station protected,31.0,0.0
+HQextrem,site and supply station protected,31.25,0.0
+HQextrem,site and supply station protected,31.5,0.0
+HQextrem,site and supply station protected,31.75,0.0
+HQextrem,site and supply station protected,32.0,0.0
+HQextrem,site and supply station protected,32.25,0.0
+HQextrem,site and supply station protected,32.5,0.0
+HQextrem,site and supply station protected,32.75,0.0
+HQextrem,site and supply station protected,33.0,0.0
+HQextrem,site and supply station protected,33.25,0.0
+HQextrem,site and supply station protected,33.5,0.0
+HQextrem,site and supply station protected,33.75,0.0
+HQextrem,site and supply station protected,34.0,0.0
+HQextrem,site and supply station protected,34.25,0.0
+HQextrem,site and supply station protected,34.5,0.0
+HQextrem,site and supply station protected,34.75,0.0
+HQextrem,site and supply station protected,35.0,0.0
+HQextrem,site and supply station protected,35.25,0.0
+HQextrem,site and supply station protected,35.5,0.0
+HQextrem,site and supply station protected,35.75,0.0
+HQextrem,site and supply station protected,36.0,0.0
+HQextrem,site and supply station protected,36.25,0.0
+HQextrem,site and supply station protected,36.5,0.0
+HQextrem,site and supply station protected,36.75,0.0
+HQextrem,site and supply station protected,37.0,0.0
+HQextrem,site and supply station protected,37.25,0.0
+HQextrem,site and supply station protected,37.5,0.0
+HQextrem,site and supply station protected,37.75,0.0
+HQextrem,site and supply station protected,38.0,0.0
+HQextrem,site and supply station protected,38.25,0.0
+HQextrem,site and supply station protected,38.5,0.0
+HQextrem,site and supply station protected,38.75,0.0
+HQextrem,site and supply station protected,39.0,0.0
+HQextrem,site and supply station protected,39.25,0.0
+HQextrem,site and supply station protected,39.5,0.0
+HQextrem,site and supply station protected,39.75,0.0
+HQextrem,site and supply station protected,40.0,0.0
+HQextrem,site and supply station protected,40.25,0.0
+HQextrem,site and supply station protected,40.5,0.0
+HQextrem,site and supply station protected,40.75,0.0
+HQextrem,site and supply station protected,41.0,0.0
+HQextrem,site and supply station protected,41.25,0.0
+HQextrem,site and supply station protected,41.5,0.0
+HQextrem,site and supply station protected,41.75,0.0
+HQextrem,site and supply station protected,42.0,0.0
+HQextrem,site and supply station protected,42.25,0.0
+HQextrem,site and supply station protected,42.5,0.0
+HQextrem,site and supply station protected,42.75,0.0
+HQextrem,site and supply station protected,43.0,0.0
+HQextrem,site and supply station protected,43.25,0.0
+HQextrem,site and supply station protected,43.5,0.0
+HQextrem,site and supply station protected,43.75,0.0
+HQextrem,site and supply station protected,44.0,0.0
+HQextrem,site and supply station protected,44.25,0.0
+HQextrem,site and supply station protected,44.5,0.0
+HQextrem,site and supply station protected,44.75,0.0
+HQextrem,site and supply station protected,45.0,0.0
+HQextrem,site and supply station protected,45.25,0.0
+HQextrem,site and supply station protected,45.5,0.0
+HQextrem,site and supply station protected,45.75,0.0
+HQextrem,site and supply station protected,46.0,0.0
+HQextrem,site and supply station protected,46.25,0.0
+HQextrem,site and supply station protected,46.5,0.0
+HQextrem,site and supply station protected,46.75,0.0
+HQextrem,site and supply station protected,47.0,0.0
+HQextrem,site and supply station protected,47.25,0.0
+HQextrem,site and supply station protected,47.5,0.0
+HQextrem,site and supply station protected,47.75,0.0
+HQextrem,site and supply station protected,48.0,0.0
+HQextrem,site and supply station protected,48.25,0.0
+HQextrem,site and supply station protected,48.5,0.0
+HQextrem,site and supply station protected,48.75,0.0
+HQextrem,site and supply station protected,49.0,0.0
+HQextrem,site and supply station protected,49.25,0.0
+HQextrem,site and supply station protected,49.5,0.0
+HQextrem,site and supply station protected,49.75,0.0
+HQextrem,site and supply station protected,50.0,0.0
+HQextrem,site and supply station protected,50.25,0.0
+HQextrem,site and supply station protected,50.5,0.0
+HQextrem,site and supply station protected,50.75,0.0
+HQextrem,site and supply station protected,51.0,0.0
+HQextrem,site and supply station protected,51.25,0.0
+HQextrem,site and supply station protected,51.5,0.0
+HQextrem,site and supply station protected,51.75,0.0
+HQextrem,site and supply station protected,52.0,0.0
+HQextrem,site and supply station protected,52.25,0.0
+HQextrem,site and supply station protected,52.5,0.0
+HQextrem,site and supply station protected,52.75,0.0
+HQextrem,site and supply station protected,53.0,0.0
+HQextrem,site and supply station protected,53.25,0.0
+HQextrem,site and supply station protected,53.5,0.0
+HQextrem,site and supply station protected,53.75,0.0
+HQextrem,site and supply station protected,54.0,0.0
+HQextrem,site and supply station protected,54.25,0.0
+HQextrem,site and supply station protected,54.5,0.0
+HQextrem,site and supply station protected,54.75,0.0
+HQextrem,site and supply station protected,55.0,0.0
+HQextrem,site and supply station protected,55.25,0.0
+HQextrem,site and supply station protected,55.5,0.0
+HQextrem,site and supply station protected,55.75,0.0
+HQextrem,site and supply station protected,56.0,0.0
+HQextrem,site and supply station protected,56.25,0.0
+HQextrem,site and supply station protected,56.5,0.0
+HQextrem,site and supply station protected,56.75,0.0
+HQextrem,site and supply station protected,57.0,0.0
+HQextrem,site and supply station protected,57.25,0.0
+HQextrem,site and supply station protected,57.5,0.0
+HQextrem,site and supply station protected,57.75,0.0
+HQextrem,site and supply station protected,58.0,0.0
+HQextrem,site and supply station protected,58.25,0.0
+HQextrem,site and supply station protected,58.5,0.0
+HQextrem,site and supply station protected,58.75,0.0
+HQextrem,site and supply station protected,59.0,0.0
+HQextrem,site and supply station protected,59.25,0.0
+HQextrem,site and supply station protected,59.5,0.0
+HQextrem,site and supply station protected,59.75,0.0
+HQextrem,site and supply station protected,60.0,0.0
+HQextrem,site and supply station protected,60.25,0.0
+HQextrem,site and supply station protected,60.5,0.0
+HQextrem,site and supply station protected,60.75,0.0
+HQextrem,site and supply station protected,61.0,0.0
+HQextrem,site and supply station protected,61.25,0.0
+HQextrem,site and supply station protected,61.5,0.0
+HQextrem,site and supply station protected,61.75,0.0
+HQextrem,site and supply station protected,62.0,0.0
+HQextrem,site and supply station protected,62.25,0.0
+HQextrem,site and supply station protected,62.5,0.0
+HQextrem,site and supply station protected,62.75,0.0
+HQextrem,site and supply station protected,63.0,0.0
+HQextrem,site and supply station protected,63.25,0.0
+HQextrem,site and supply station protected,63.5,0.0
+HQextrem,site and supply station protected,63.75,0.0
+HQextrem,site and supply station protected,64.0,0.0
+HQextrem,site and supply station protected,64.25,0.0
+HQextrem,site and supply station protected,64.5,0.0
+HQextrem,site and supply station protected,64.75,0.0
+HQextrem,site and supply station protected,65.0,0.0
+HQextrem,site and supply station protected,65.25,0.0
+HQextrem,site and supply station protected,65.5,0.0
+HQextrem,site and supply station protected,65.75,0.0
+HQextrem,site and supply station protected,66.0,0.0
+HQextrem,site and supply station protected,66.25,0.0
+HQextrem,site and supply station protected,66.5,0.0
+HQextrem,site and supply station protected,66.75,0.0
+HQextrem,site and supply station protected,67.0,0.0
+HQextrem,site and supply station protected,67.25,0.0
+HQextrem,site and supply station protected,67.5,0.0
+HQextrem,site and supply station protected,67.75,0.0
+HQextrem,site and supply station protected,68.0,0.0
+HQextrem,site and supply station protected,68.25,0.0
+HQextrem,site and supply station protected,68.5,0.0
+HQextrem,site and supply station protected,68.75,0.0
+HQextrem,site and supply station protected,69.0,0.0
+HQextrem,site and supply station protected,69.25,0.0
+HQextrem,site and supply station protected,69.5,0.0
+HQextrem,site and supply station protected,69.75,0.0
+HQextrem,site and supply station protected,70.0,0.0
+HQextrem,site and supply station protected,70.25,0.0
+HQextrem,site and supply station protected,70.5,0.0
+HQextrem,site and supply station protected,70.75,0.0
+HQextrem,site and supply station protected,71.0,0.0
+HQextrem,site and supply station protected,71.25,0.0
+HQextrem,site and supply station protected,71.5,0.0
+HQextrem,site and supply station protected,71.75,0.0
+HQextrem,site and supply station protected,72.0,0.0
+HQextrem,site protected + waterworks backup,0.0,0.0
+HQextrem,site protected + waterworks backup,0.25,0.0
+HQextrem,site protected + waterworks backup,0.5,0.0
+HQextrem,site protected + waterworks backup,0.75,0.0
+HQextrem,site protected + waterworks backup,1.0,0.0
+HQextrem,site protected + waterworks backup,1.25,0.0
+HQextrem,site protected + waterworks backup,1.5,0.0
+HQextrem,site protected + waterworks backup,1.75,0.0
+HQextrem,site protected + waterworks backup,2.0,0.0
+HQextrem,site protected + waterworks backup,2.25,0.0
+HQextrem,site protected + waterworks backup,2.5,0.0
+HQextrem,site protected + waterworks backup,2.75,0.0
+HQextrem,site protected + waterworks backup,3.0,0.0
+HQextrem,site protected + waterworks backup,3.25,0.0
+HQextrem,site protected + waterworks backup,3.5,0.0
+HQextrem,site protected + waterworks backup,3.75,0.0
+HQextrem,site protected + waterworks backup,4.0,0.0
+HQextrem,site protected + waterworks backup,4.25,0.0
+HQextrem,site protected + waterworks backup,4.5,0.0
+HQextrem,site protected + waterworks backup,4.75,0.0
+HQextrem,site protected + waterworks backup,5.0,0.0
+HQextrem,site protected + waterworks backup,5.25,0.0
+HQextrem,site protected + waterworks backup,5.5,0.0
+HQextrem,site protected + waterworks backup,5.75,0.0
+HQextrem,site protected + waterworks backup,6.0,0.0
+HQextrem,site protected + waterworks backup,6.25,0.0
+HQextrem,site protected + waterworks backup,6.5,0.0
+HQextrem,site protected + waterworks backup,6.75,0.0
+HQextrem,site protected + waterworks backup,7.0,0.0
+HQextrem,site protected + waterworks backup,7.25,0.0
+HQextrem,site protected + waterworks backup,7.5,0.0
+HQextrem,site protected + waterworks backup,7.75,0.0
+HQextrem,site protected + waterworks backup,8.0,0.0
+HQextrem,site protected + waterworks backup,8.25,0.0
+HQextrem,site protected + waterworks backup,8.5,0.0
+HQextrem,site protected + waterworks backup,8.75,0.0
+HQextrem,site protected + waterworks backup,9.0,0.0
+HQextrem,site protected + waterworks backup,9.25,0.0
+HQextrem,site protected + waterworks backup,9.5,0.0
+HQextrem,site protected + waterworks backup,9.75,0.0
+HQextrem,site protected + waterworks backup,10.0,0.0
+HQextrem,site protected + waterworks backup,10.25,0.0
+HQextrem,site protected + waterworks backup,10.5,0.0
+HQextrem,site protected + waterworks backup,10.75,0.0
+HQextrem,site protected + waterworks backup,11.0,0.0
+HQextrem,site protected + waterworks backup,11.25,0.0
+HQextrem,site protected + waterworks backup,11.5,0.0
+HQextrem,site protected + waterworks backup,11.75,0.0
+HQextrem,site protected + waterworks backup,12.0,0.0
+HQextrem,site protected + waterworks backup,12.25,0.0
+HQextrem,site protected + waterworks backup,12.5,0.0
+HQextrem,site protected + waterworks backup,12.75,0.0
+HQextrem,site protected + waterworks backup,13.0,0.0
+HQextrem,site protected + waterworks backup,13.25,0.0
+HQextrem,site protected + waterworks backup,13.5,0.0
+HQextrem,site protected + waterworks backup,13.75,0.0
+HQextrem,site protected + waterworks backup,14.0,0.0
+HQextrem,site protected + waterworks backup,14.25,0.0
+HQextrem,site protected + waterworks backup,14.5,0.0
+HQextrem,site protected + waterworks backup,14.75,0.0
+HQextrem,site protected + waterworks backup,15.0,0.0
+HQextrem,site protected + waterworks backup,15.25,0.0
+HQextrem,site protected + waterworks backup,15.5,0.0
+HQextrem,site protected + waterworks backup,15.75,0.0
+HQextrem,site protected + waterworks backup,16.0,0.0
+HQextrem,site protected + waterworks backup,16.25,0.0
+HQextrem,site protected + waterworks backup,16.5,0.0
+HQextrem,site protected + waterworks backup,16.75,0.0
+HQextrem,site protected + waterworks backup,17.0,0.0
+HQextrem,site protected + waterworks backup,17.25,0.0
+HQextrem,site protected + waterworks backup,17.5,0.0
+HQextrem,site protected + waterworks backup,17.75,0.0
+HQextrem,site protected + waterworks backup,18.0,0.0
+HQextrem,site protected + waterworks backup,18.25,0.0
+HQextrem,site protected + waterworks backup,18.5,0.0
+HQextrem,site protected + waterworks backup,18.75,0.0
+HQextrem,site protected + waterworks backup,19.0,0.0
+HQextrem,site protected + waterworks backup,19.25,0.0
+HQextrem,site protected + waterworks backup,19.5,0.0
+HQextrem,site protected + waterworks backup,19.75,0.0
+HQextrem,site protected + waterworks backup,20.0,0.0
+HQextrem,site protected + waterworks backup,20.25,0.0
+HQextrem,site protected + waterworks backup,20.5,0.0
+HQextrem,site protected + waterworks backup,20.75,0.0
+HQextrem,site protected + waterworks backup,21.0,0.0
+HQextrem,site protected + waterworks backup,21.25,0.0
+HQextrem,site protected + waterworks backup,21.5,0.0
+HQextrem,site protected + waterworks backup,21.75,0.0
+HQextrem,site protected + waterworks backup,22.0,0.0
+HQextrem,site protected + waterworks backup,22.25,0.0
+HQextrem,site protected + waterworks backup,22.5,0.0
+HQextrem,site protected + waterworks backup,22.75,0.0
+HQextrem,site protected + waterworks backup,23.0,0.0
+HQextrem,site protected + waterworks backup,23.25,0.0
+HQextrem,site protected + waterworks backup,23.5,0.0
+HQextrem,site protected + waterworks backup,23.75,0.0
+HQextrem,site protected + waterworks backup,24.0,0.0
+HQextrem,site protected + waterworks backup,24.25,0.0
+HQextrem,site protected + waterworks backup,24.5,0.0
+HQextrem,site protected + waterworks backup,24.75,0.0
+HQextrem,site protected + waterworks backup,25.0,0.0
+HQextrem,site protected + waterworks backup,25.25,0.0
+HQextrem,site protected + waterworks backup,25.5,0.0
+HQextrem,site protected + waterworks backup,25.75,0.0
+HQextrem,site protected + waterworks backup,26.0,0.0
+HQextrem,site protected + waterworks backup,26.25,0.0
+HQextrem,site protected + waterworks backup,26.5,0.0
+HQextrem,site protected + waterworks backup,26.75,0.0
+HQextrem,site protected + waterworks backup,27.0,0.0
+HQextrem,site protected + waterworks backup,27.25,0.0
+HQextrem,site protected + waterworks backup,27.5,0.0
+HQextrem,site protected + waterworks backup,27.75,0.0
+HQextrem,site protected + waterworks backup,28.0,0.0
+HQextrem,site protected + waterworks backup,28.25,0.0
+HQextrem,site protected + waterworks backup,28.5,0.0
+HQextrem,site protected + waterworks backup,28.75,0.0
+HQextrem,site protected + waterworks backup,29.0,0.0
+HQextrem,site protected + waterworks backup,29.25,0.0
+HQextrem,site protected + waterworks backup,29.5,0.0
+HQextrem,site protected + waterworks backup,29.75,0.0
+HQextrem,site protected + waterworks backup,30.0,0.0
+HQextrem,site protected + waterworks backup,30.25,0.0
+HQextrem,site protected + waterworks backup,30.5,0.0
+HQextrem,site protected + waterworks backup,30.75,0.0
+HQextrem,site protected + waterworks backup,31.0,0.0
+HQextrem,site protected + waterworks backup,31.25,0.0
+HQextrem,site protected + waterworks backup,31.5,0.0
+HQextrem,site protected + waterworks backup,31.75,0.0
+HQextrem,site protected + waterworks backup,32.0,0.0
+HQextrem,site protected + waterworks backup,32.25,0.0
+HQextrem,site protected + waterworks backup,32.5,0.0
+HQextrem,site protected + waterworks backup,32.75,0.0
+HQextrem,site protected + waterworks backup,33.0,0.0
+HQextrem,site protected + waterworks backup,33.25,0.0
+HQextrem,site protected + waterworks backup,33.5,0.0
+HQextrem,site protected + waterworks backup,33.75,0.0
+HQextrem,site protected + waterworks backup,34.0,0.0
+HQextrem,site protected + waterworks backup,34.25,0.0
+HQextrem,site protected + waterworks backup,34.5,0.0
+HQextrem,site protected + waterworks backup,34.75,0.0
+HQextrem,site protected + waterworks backup,35.0,0.0
+HQextrem,site protected + waterworks backup,35.25,0.0
+HQextrem,site protected + waterworks backup,35.5,0.0
+HQextrem,site protected + waterworks backup,35.75,0.0
+HQextrem,site protected + waterworks backup,36.0,0.0
+HQextrem,site protected + waterworks backup,36.25,0.0
+HQextrem,site protected + waterworks backup,36.5,0.0
+HQextrem,site protected + waterworks backup,36.75,0.0
+HQextrem,site protected + waterworks backup,37.0,0.0
+HQextrem,site protected + waterworks backup,37.25,0.0
+HQextrem,site protected + waterworks backup,37.5,0.0
+HQextrem,site protected + waterworks backup,37.75,0.0
+HQextrem,site protected + waterworks backup,38.0,0.0
+HQextrem,site protected + waterworks backup,38.25,0.0
+HQextrem,site protected + waterworks backup,38.5,0.0
+HQextrem,site protected + waterworks backup,38.75,0.0
+HQextrem,site protected + waterworks backup,39.0,0.0
+HQextrem,site protected + waterworks backup,39.25,0.0
+HQextrem,site protected + waterworks backup,39.5,0.0
+HQextrem,site protected + waterworks backup,39.75,0.0
+HQextrem,site protected + waterworks backup,40.0,0.0
+HQextrem,site protected + waterworks backup,40.25,0.0
+HQextrem,site protected + waterworks backup,40.5,0.0
+HQextrem,site protected + waterworks backup,40.75,0.0
+HQextrem,site protected + waterworks backup,41.0,0.0
+HQextrem,site protected + waterworks backup,41.25,0.0
+HQextrem,site protected + waterworks backup,41.5,0.0
+HQextrem,site protected + waterworks backup,41.75,0.0
+HQextrem,site protected + waterworks backup,42.0,0.0
+HQextrem,site protected + waterworks backup,42.25,0.0
+HQextrem,site protected + waterworks backup,42.5,0.0
+HQextrem,site protected + waterworks backup,42.75,0.0
+HQextrem,site protected + waterworks backup,43.0,0.0
+HQextrem,site protected + waterworks backup,43.25,0.0
+HQextrem,site protected + waterworks backup,43.5,0.0
+HQextrem,site protected + waterworks backup,43.75,0.0
+HQextrem,site protected + waterworks backup,44.0,0.0
+HQextrem,site protected + waterworks backup,44.25,0.0
+HQextrem,site protected + waterworks backup,44.5,0.0
+HQextrem,site protected + waterworks backup,44.75,0.0
+HQextrem,site protected + waterworks backup,45.0,0.0
+HQextrem,site protected + waterworks backup,45.25,0.0
+HQextrem,site protected + waterworks backup,45.5,0.0
+HQextrem,site protected + waterworks backup,45.75,0.0
+HQextrem,site protected + waterworks backup,46.0,0.0
+HQextrem,site protected + waterworks backup,46.25,0.0
+HQextrem,site protected + waterworks backup,46.5,0.0
+HQextrem,site protected + waterworks backup,46.75,0.0
+HQextrem,site protected + waterworks backup,47.0,0.0
+HQextrem,site protected + waterworks backup,47.25,0.0
+HQextrem,site protected + waterworks backup,47.5,0.0
+HQextrem,site protected + waterworks backup,47.75,0.0
+HQextrem,site protected + waterworks backup,48.0,0.0
+HQextrem,site protected + waterworks backup,48.25,0.0
+HQextrem,site protected + waterworks backup,48.5,0.0
+HQextrem,site protected + waterworks backup,48.75,0.0
+HQextrem,site protected + waterworks backup,49.0,0.0
+HQextrem,site protected + waterworks backup,49.25,0.0
+HQextrem,site protected + waterworks backup,49.5,0.0
+HQextrem,site protected + waterworks backup,49.75,0.0
+HQextrem,site protected + waterworks backup,50.0,0.0
+HQextrem,site protected + waterworks backup,50.25,0.0
+HQextrem,site protected + waterworks backup,50.5,0.0
+HQextrem,site protected + waterworks backup,50.75,0.0
+HQextrem,site protected + waterworks backup,51.0,0.0
+HQextrem,site protected + waterworks backup,51.25,0.0
+HQextrem,site protected + waterworks backup,51.5,0.0
+HQextrem,site protected + waterworks backup,51.75,0.0
+HQextrem,site protected + waterworks backup,52.0,0.0
+HQextrem,site protected + waterworks backup,52.25,0.0
+HQextrem,site protected + waterworks backup,52.5,0.0
+HQextrem,site protected + waterworks backup,52.75,0.0
+HQextrem,site protected + waterworks backup,53.0,0.0
+HQextrem,site protected + waterworks backup,53.25,0.0
+HQextrem,site protected + waterworks backup,53.5,0.0
+HQextrem,site protected + waterworks backup,53.75,0.0
+HQextrem,site protected + waterworks backup,54.0,0.0
+HQextrem,site protected + waterworks backup,54.25,0.0
+HQextrem,site protected + waterworks backup,54.5,0.0
+HQextrem,site protected + waterworks backup,54.75,0.0
+HQextrem,site protected + waterworks backup,55.0,0.0
+HQextrem,site protected + waterworks backup,55.25,0.0
+HQextrem,site protected + waterworks backup,55.5,0.0
+HQextrem,site protected + waterworks backup,55.75,0.0
+HQextrem,site protected + waterworks backup,56.0,0.0
+HQextrem,site protected + waterworks backup,56.25,0.0
+HQextrem,site protected + waterworks backup,56.5,0.0
+HQextrem,site protected + waterworks backup,56.75,0.0
+HQextrem,site protected + waterworks backup,57.0,0.0
+HQextrem,site protected + waterworks backup,57.25,0.0
+HQextrem,site protected + waterworks backup,57.5,0.0
+HQextrem,site protected + waterworks backup,57.75,0.0
+HQextrem,site protected + waterworks backup,58.0,0.0
+HQextrem,site protected + waterworks backup,58.25,0.0
+HQextrem,site protected + waterworks backup,58.5,0.0
+HQextrem,site protected + waterworks backup,58.75,0.0
+HQextrem,site protected + waterworks backup,59.0,0.0
+HQextrem,site protected + waterworks backup,59.25,0.0
+HQextrem,site protected + waterworks backup,59.5,0.0
+HQextrem,site protected + waterworks backup,59.75,0.0
+HQextrem,site protected + waterworks backup,60.0,0.0
+HQextrem,site protected + waterworks backup,60.25,0.0
+HQextrem,site protected + waterworks backup,60.5,0.0
+HQextrem,site protected + waterworks backup,60.75,0.0
+HQextrem,site protected + waterworks backup,61.0,0.0
+HQextrem,site protected + waterworks backup,61.25,0.0
+HQextrem,site protected + waterworks backup,61.5,0.0
+HQextrem,site protected + waterworks backup,61.75,0.0
+HQextrem,site protected + waterworks backup,62.0,0.0
+HQextrem,site protected + waterworks backup,62.25,0.0
+HQextrem,site protected + waterworks backup,62.5,0.0
+HQextrem,site protected + waterworks backup,62.75,0.0
+HQextrem,site protected + waterworks backup,63.0,0.0
+HQextrem,site protected + waterworks backup,63.25,0.0
+HQextrem,site protected + waterworks backup,63.5,0.0
+HQextrem,site protected + waterworks backup,63.75,0.0
+HQextrem,site protected + waterworks backup,64.0,0.0
+HQextrem,site protected + waterworks backup,64.25,0.0
+HQextrem,site protected + waterworks backup,64.5,0.0
+HQextrem,site protected + waterworks backup,64.75,0.0
+HQextrem,site protected + waterworks backup,65.0,0.0
+HQextrem,site protected + waterworks backup,65.25,0.0
+HQextrem,site protected + waterworks backup,65.5,0.0
+HQextrem,site protected + waterworks backup,65.75,0.0
+HQextrem,site protected + waterworks backup,66.0,0.0
+HQextrem,site protected + waterworks backup,66.25,0.0
+HQextrem,site protected + waterworks backup,66.5,0.0
+HQextrem,site protected + waterworks backup,66.75,0.0
+HQextrem,site protected + waterworks backup,67.0,0.0
+HQextrem,site protected + waterworks backup,67.25,0.0
+HQextrem,site protected + waterworks backup,67.5,0.0
+HQextrem,site protected + waterworks backup,67.75,0.0
+HQextrem,site protected + waterworks backup,68.0,0.0
+HQextrem,site protected + waterworks backup,68.25,0.0
+HQextrem,site protected + waterworks backup,68.5,0.0
+HQextrem,site protected + waterworks backup,68.75,0.0
+HQextrem,site protected + waterworks backup,69.0,0.0
+HQextrem,site protected + waterworks backup,69.25,0.0
+HQextrem,site protected + waterworks backup,69.5,0.0
+HQextrem,site protected + waterworks backup,69.75,0.0
+HQextrem,site protected + waterworks backup,70.0,0.0
+HQextrem,site protected + waterworks backup,70.25,0.0
+HQextrem,site protected + waterworks backup,70.5,0.0
+HQextrem,site protected + waterworks backup,70.75,0.0
+HQextrem,site protected + waterworks backup,71.0,0.0
+HQextrem,site protected + waterworks backup,71.25,0.0
+HQextrem,site protected + waterworks backup,71.5,0.0
+HQextrem,site protected + waterworks backup,71.75,0.0
+HQextrem,site protected + waterworks backup,72.0,0.0

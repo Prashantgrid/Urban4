@@ -1,5 +1,40 @@
 # Changelog
 
+## Final manuscript update, 2 November 2026
+
+- Integrated the v2.9 model corrections and shared CHP interface from the
+  manuscript's documented development source into the main release.
+- Added the final heat-power, water-power, reliability, flood, extreme-event,
+  and plotting scripts with their retained CSV/JSON reference results.
+- Added an isolated reproduction command for the manuscript sensitivities and
+  a full-case mode that uses the native model exports.
+- Restored the audit writer required by the full build.
+- Added regression checks for the sensitivity tables and reported water-service
+  claims; kept historical native-model verification records separate.
+- Updated the repository overview to the revised layered-city illustration and
+  aligned author metadata with Pant, Tonkoski, and Hamacher.
+
+## v2.9.0, 14 August 2026
+
+- Preserved the complete v2.8.0 equation and demand-model corrections as the
+  numerical baseline for v2.9.0.
+- Separated the municipal population from the water operator's approximately
+  100,000 served inhabitants when evaluating the DVGW W 410 hourly factor.
+- Recorded the exact W 410 value, 2.610228786, and retained the conservative
+  upward-rounded 2.62 multiplier for the native EPANET design-hour check.
+- Enforced the same 2.62 factor in the building ledger, pipe pre-sizing, and
+  EPANET check. This removes a stale 2.7797 pre-sizing state from the earlier
+  local package; the corrected rerun requires 28 repairs, not 20.
+- Made the reference-grounding update idempotent and added regression tests
+  that prevent the two population anchors from being conflated again.
+- Added an explicit shared GKS CHP interface with electrical and thermal ports,
+  one common availability state, and no inferred dispatch or conversion curve.
+- Exported shared-asset contracts at service-resolved and municipality scale;
+  availability-only operation leaves the verified benchmark unchanged.
+- Regenerated all native models, coupled scenarios, audits, figures, and
+  checksums from the retained evidence snapshot.
+- Verified the updated source with 83 passing tests.
+
 ## v2.8.0, 13 August 2026
 
 - Replaced unsupported demand fallbacks with declared, cited demand models.

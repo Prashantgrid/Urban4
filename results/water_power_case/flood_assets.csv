@@ -1,0 +1,22 @@
+asset,sector,role,lon,lat,HQ100,dist_HQ100_m,HQextrem,dist_HQextrem_m
+WZ1,water,waterworks,10.2415843,50.0417157,True,0.0,True,0.0
+WZ2,water,booster station,10.241701,50.0555212,False,628.0,False,626.0
+WZ3,water,booster station,10.2526672,50.0718997,False,1599.0,False,1567.0
+WZ4,water,booster station,10.208253,50.093591,False,92.0,False,92.0
+S1,wastewater,lift station,10.1791475,50.0473748,False,109.0,False,89.0
+S2,wastewater,lift station,10.293855916,50.054532147,False,19.0,False,17.0
+S3,wastewater,lift station,10.203185768,50.006293104,False,761.0,False,195.0
+S4,wastewater,lift station,10.238986777,50.040283528,True,0.0,True,0.0
+S5,wastewater,lift station,10.300722843,50.024858347,False,1098.0,False,1088.0
+S6,wastewater,lift station,10.203877821,50.032785376,False,622.0,False,544.0
+S7,wastewater,lift station,10.264303205,50.027324378,False,1551.0,False,634.0
+S8,wastewater,lift station,10.2900132,50.0437774,False,638.0,False,607.0
+S9,wastewater,lift station,10.214376188,50.011408986,False,885.0,True,0.0
+S10,wastewater,lift station,10.283498676,50.026881621,False,2023.0,False,2009.0
+S11,wastewater,lift station,10.165395579,50.050685686,False,808.0,False,798.0
+S12,wastewater,lift station,10.218242972,50.033135767,False,98.0,True,0.0
+S13,wastewater,lift station,10.255262093,50.038132523,False,211.0,False,72.0
+WWTP,wastewater,treatment plant,10.2115927,50.0257927,False,173.0,True,0.0
+H1,heat,"GKS (CHP, main DH source)",10.22442,50.02996,False,80.0,True,0.0
+H2,heat,Spitzenheizwerk Nord,10.21669,50.0387,False,464.0,False,359.0
+SOURCE,electricity,HV/MV supply point,10.2260119,50.0475064,False,578.0,False,578.0

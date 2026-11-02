@@ -1,0 +1,137 @@
+{
+  "source_archive": "Urban4_IEEE_submission.zip",
+  "core_source_commit": "4943579c03566f543267e0889de53e314f75d7ea",
+  "reference_date": "2026-11-02",
+  "files": [
+    {
+      "path": "results/heat_power_case/base_load_sensitivity.csv",
+      "bytes": 3539,
+      "sha256": "f845943e9ae4bd0914978080949304b1476cf90ea4b426ed040fe6d8c74816db"
+    },
+    {
+      "path": "results/heat_power_case/base_load_sensitivity_by_transformer.csv",
+      "bytes": 245996,
+      "sha256": "e98f2fceb7d75f3f5f92cc0e37d3e7b460f5b96c4117a68ab6cfd8ec826966e8"
+    },
+    {
+      "path": "results/heat_power_case/base_load_sensitivity_summary.json",
+      "bytes": 9814,
+      "sha256": "73a3a04f5d13b516bae6a60146d4b32c8883139de5faf4673447a7e29b70e61c"
+    },
+    {
+      "path": "results/heat_power_case/dh_hydraulic_capability.csv",
+      "bytes": 7733,
+      "sha256": "af0cae1cac49866fba2761709e4c4defd6a6be1502ccb03853e04bd4041b7e25"
+    },
+    {
+      "path": "results/heat_power_case/heat_power_states.csv",
+      "bytes": 45192,
+      "sha256": "410a5c88ff2a145b0130c867ac7a6c6259c5631b327a42225cbda44ab3a311e5"
+    },
+    {
+      "path": "results/heat_power_case/heat_power_summary.json",
+      "bytes": 7450,
+      "sha256": "347c9dcca522f485b2236383cc4d1f36cd3b61a838951a50d2eded95fbcf2cba"
+    },
+    {
+      "path": "results/heat_power_case/heat_power_variant_states.csv",
+      "bytes": 9135,
+      "sha256": "2027131ca4713725dbe343125a3d57aef3b883ca024c6533c33b00e5c5c24270"
+    },
+    {
+      "path": "results/heat_power_case/heat_power_variants.csv",
+      "bytes": 3136,
+      "sha256": "0e8b3894159c41cc115366fd11e304496780ca31f005e3192319d268f34875cb"
+    },
+    {
+      "path": "results/heat_power_case/heat_power_variants_summary.json",
+      "bytes": 11729,
+      "sha256": "7a8314c01ff947be258df9a3d5733d039b45656c25bdcfc44985a8281d17a8b5"
+    },
+    {
+      "path": "results/heat_power_case/transformer_capacity_sensitivity.csv",
+      "bytes": 1547,
+      "sha256": "22139b9786d8680bba85f3d0001e88ba745c0a51a158a1b866f3fdfdfbd3fd03"
+    },
+    {
+      "path": "results/heat_power_case/transformer_design_state.csv",
+      "bytes": 30250,
+      "sha256": "cd644ad04f29bc902eb091b26de10f1050e08faa026be1f48f276b12d45d359f"
+    },
+    {
+      "path": "results/water_power_case/blackout_eps.csv",
+      "bytes": 166229,
+      "sha256": "b6450547187caee2819a3a25775b1ed8d125dbff0a9df639750923dd4be0ea78"
+    },
+    {
+      "path": "results/water_power_case/extreme_events.csv",
+      "bytes": 2513,
+      "sha256": "9aa3b1c9918aa18c1d3f2295d173779b12f21d5deb23186bdedca75dd86706f6"
+    },
+    {
+      "path": "results/water_power_case/extreme_events_cumulative.csv",
+      "bytes": 2416,
+      "sha256": "e7bf12996657418ec60261f19747e9343e6514442fb6131221c5309069a90636"
+    },
+    {
+      "path": "results/water_power_case/extreme_events_summary.json",
+      "bytes": 12507,
+      "sha256": "c6150e337bbd6216b8d0abfbab60b43a86b04e9d7c2300fdb3759244271c9107"
+    },
+    {
+      "path": "results/water_power_case/facility_attachments.csv",
+      "bytes": 1832,
+      "sha256": "fda9e672105b05309a114707054948eeebbad49814ef8079e5dfa3d1fe206b8d"
+    },
+    {
+      "path": "results/water_power_case/flood_assets.csv",
+      "bytes": 1632,
+      "sha256": "4275de9d9c7b2394c87d50587527fb492a78fb9e0a84025dc26362de5b772dd8"
+    },
+    {
+      "path": "results/water_power_case/flood_summary.json",
+      "bytes": 4768,
+      "sha256": "5b4049e18af0577033ef06267820b505a367bd28ae720a9d460161046222358c"
+    },
+    {
+      "path": "results/water_power_case/flood_water_timeseries.csv",
+      "bytes": 102793,
+      "sha256": "7d5b7c500a60a52eb4c28cbe5a56125607988a840fc4b97d84b326444add01b0"
+    },
+    {
+      "path": "results/water_power_case/mv_fault_restoration.csv",
+      "bytes": 386519,
+      "sha256": "2601d69036e0f2c67b1dd63bea41b45e7b2f99fe2e5e913eb3716a92574d15a7"
+    },
+    {
+      "path": "results/water_power_case/mv_line_contingencies.csv",
+      "bytes": 43976,
+      "sha256": "3d531b8cdef13ca1d1ba04245f30d45e80e5ee70ae9ee6a77ca0950a81b2b518"
+    },
+    {
+      "path": "results/water_power_case/mv_line_contingencies_geo.csv",
+      "bytes": 225720,
+      "sha256": "a900d57ce131074d9c5f690fb36136342f89454b6733fcc385cffb45d0814559"
+    },
+    {
+      "path": "results/water_power_case/open_ring_ties.csv",
+      "bytes": 26498,
+      "sha256": "abfe77c969ad111c5fb81367c065f2bb0a1014dc202f5016eaaf81965d287ff9"
+    },
+    {
+      "path": "results/water_power_case/water_power_summary.json",
+      "bytes": 10311,
+      "sha256": "f0d91ac978c19ae2781c025167d6403397d1f5c9a1797bf2405c972eb034dd52"
+    },
+    {
+      "path": "results/water_power_case/water_reliability_summary.json",
+      "bytes": 16497,
+      "sha256": "b774238f27357f570999cacfa2cd515596afe69e0cc0a8f5b05e88f27860ab44"
+    },
+    {
+      "path": "results/water_power_case/water_risk_by_storage.csv",
+      "bytes": 8224,
+      "sha256": "8478c775e3a4ce91419d70aa2df364497d66f2cb49c021c2d1c331bfec7abfff"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+scenario,scenario_name,ratio_mode,ratio_name,renovation_f,base_load_factor,reference_lv_peak_mw,existing_lv_demand_mw,added_heat_pump_mw,overloaded_areas,max_transformer_loading_pct,evaluation
+S1_HP,Heat-pump conversion,cop,COP model,1.0,1.0,41.0,41.0,35.22032482751619,19,914.349378198855,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,1.0,0.8,41.0,32.800000000000004,35.22032482751619,19,899.8548135272916,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,1.0,0.6,41.0,24.599999999999998,35.22032482751619,18,885.3602488557283,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.8,1.0,41.0,41.0,28.17625986201295,19,745.9740672306473,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.8,0.8,41.0,32.800000000000004,28.17625986201295,17,731.4795025590839,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.8,0.6,41.0,24.599999999999998,28.17625986201295,15,716.9849378875206,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.6,1.0,41.0,41.0,21.132194896509713,16,577.5987562624396,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.6,0.8,41.0,32.800000000000004,21.132194896509713,14,563.1041915908762,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,cop,COP model,0.6,0.6,41.0,24.599999999999998,21.132194896509713,14,548.6096269193129,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,1.0,1.0,41.0,41.0,21.874999999999982,17,595.3541348544103,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,1.0,0.8,41.0,32.800000000000004,21.874999999999982,15,580.8595701828469,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,1.0,0.6,41.0,24.599999999999998,21.874999999999982,14,566.3650055112835,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.8,1.0,41.0,41.0,17.499999999999986,14,490.77787255509156,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.8,0.8,41.0,32.800000000000004,17.499999999999986,14,476.2833078835282,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.8,0.6,41.0,24.599999999999998,17.499999999999986,14,461.7887432119648,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.6,1.0,41.0,41.0,13.12499999999999,14,386.2016102557729,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.6,0.8,41.0,32.800000000000004,13.12499999999999,14,371.7070455842095,transformer sum check; existing spatial allocation and ratings fixed
+S1_HP,Heat-pump conversion,measured,Study-based ratio 0.40,0.6,0.6,41.0,24.599999999999998,13.12499999999999,13,357.21248091264613,transformer sum check; existing spatial allocation and ratings fixed
