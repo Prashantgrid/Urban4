@@ -1,0 +1,37 @@
+{
+  "name": "Andermatt cadastral DH routing benchmark",
+  "owner": "Netzgesellschaft Andermatt AG",
+  "crs": "EPSG:2056",
+  "boundary_rule": "axis-aligned bounding box of all operator-owned observed house-transfer points, expanded by 250 m; local inlet fixed at the northern mapped feed crossing",
+  "domain_bounds_2056": [
+    2687839.065,
+    1164941.882,
+    2689105.936,
+    1166365.355
+  ],
+  "osm_bbox_wgs84": [
+    46.62978337952879,
+    8.585683051880299,
+    46.64275470204907,
+    8.602499756165782
+  ],
+  "customers": 85,
+  "source_xy_2056": [
+    2688196.1323313215,
+    1166365.355
+  ],
+  "customer_peak_kw": 50.0,
+  "equivalent_full_load_hours": 1600,
+  "thermal_input_basis": "uniform scenario load; no measured customer heat demands are available",
+  "source_basis": "mapped incoming trunk crossing the northern boundary; supplied as a local distribution inlet to both tools; upstream G\u00f6schenen plant and Bergleitung excluded",
+  "benchmark_scope": "conditional local-distribution route reconstruction with observed transfer and inlet coordinates supplied to both tools",
+  "reference_route_use": "held out from construction except the explicitly supplied inlet and consumer locations",
+  "original_table_xii_case": "85 current cadastral transfer points; not a reproduction of the earlier 50-transfer-station sample",
+  "reference_status_filter": "in_Betrieb",
+  "topology_precision_m": 0.5,
+  "topology_precision_sensitivity_m": [
+    0.25,
+    1.0
+  ],
+  "reference_quality": "mapped active corridors; physical connectivity is inferred from 2D geometry, and the public consumer point layer is not assumed exhaustive"
+}

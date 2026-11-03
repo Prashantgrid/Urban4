@@ -1,0 +1,109 @@
+{
+  "case": {
+    "name": "Andermatt cadastral DH routing benchmark",
+    "owner": "Netzgesellschaft Andermatt AG",
+    "crs": "EPSG:2056",
+    "boundary_rule": "axis-aligned bounding box of all operator-owned observed house-transfer points, expanded by 250 m; local inlet fixed at the northern mapped feed crossing",
+    "domain_bounds_2056": [
+      2687839.065,
+      1164941.882,
+      2689105.936,
+      1166365.355
+    ],
+    "osm_bbox_wgs84": [
+      46.62978337952879,
+      8.585683051880299,
+      46.64275470204907,
+      8.602499756165782
+    ],
+    "customers": 85,
+    "source_xy_2056": [
+      2688196.1323313215,
+      1166365.355
+    ],
+    "customer_peak_kw": 50.0,
+    "equivalent_full_load_hours": 1600,
+    "thermal_input_basis": "uniform scenario load; no measured customer heat demands are available",
+    "source_basis": "mapped incoming trunk crossing the northern boundary; supplied as a local distribution inlet to both tools; upstream Göschenen plant and Bergleitung excluded",
+    "benchmark_scope": "conditional local-distribution route reconstruction with observed transfer and inlet coordinates supplied to both tools",
+    "reference_route_use": "held out from construction except the explicitly supplied inlet and consumer locations",
+    "original_table_xii_case": "85 current cadastral transfer points; not a reproduction of the earlier 50-transfer-station sample",
+    "reference_status_filter": "in_Betrieb",
+    "topology_precision_m": 0.5,
+    "topology_precision_sensitivity_m": [
+      0.25,
+      1.0
+    ],
+    "reference_quality": "mapped active corridors; physical connectivity is inferred from 2D geometry, and the public consumer point layer is not assumed exhaustive"
+  },
+  "urban4": {
+    "selection_policy": "route_aware_prize_collecting_forest",
+    "objective_interpretation": "annual heat prize divided by newly added trench plus service length; non-monetary",
+    "selected_connection_count": 85,
+    "requested_connection_count": 85,
+    "provisional_forest_trench_km": 8.260587258912803,
+    "selected_unscaled_annual_heat_mwh": 6800.0,
+    "territory_quotas": {
+      "0": 85
+    },
+    "configuration": {
+      "demand_exponent": 0.5,
+      "minimum_increment_km": 0.005,
+      "spatial_quota_level": "cell",
+      "selection_rounding": "largest_remainder"
+    },
+    "runtime_s": 0.23935458400046628
+  },
+  "topotherm": {
+    "termination": "optimal",
+    "solver_status": "ok",
+    "runtime_s": 421.956361732,
+    "prepare_s": 0.18425820599986764,
+    "objective_eur_per_year": 889678.0452155021,
+    "lower_bound": 880782.3214299605,
+    "upper_bound": 889678.0452155021,
+    "source_supply_kw": 4402.119742247167,
+    "demand_kw": 4250.0,
+    "customers_connected": 85,
+    "candidate_nodes": 411,
+    "candidate_edges": 551,
+    "selected_edges": 239,
+    "time_limit_s": 600,
+    "mip_relative_gap_target": 0.01,
+    "economics": {
+      "source_price": [
+        [
+          0.08
+        ]
+      ],
+      "source_c_inv": [
+        0.0
+      ],
+      "source_c_irr": [
+        0.08
+      ],
+      "source_lifetime": [
+        20.0
+      ],
+      "source_max_power": [
+        8500.0
+      ],
+      "source_min_power": [
+        0
+      ],
+      "pipes_c_irr": 0.08,
+      "heat_price": 0.0,
+      "pipes_lifetime": 50.0
+    }
+  },
+  "candidate_graph_reduction": "non-terminal leaf pruning and degree-2 contraction; alternate parallel corridors retained",
+  "shared_inputs": [
+    "85 observed transfer points",
+    "local incoming feed",
+    "uniform 50-kW scenario demands",
+    "same OSM road corridors and service attachments"
+  ],
+  "reference_route_leakage": "Only the declared inlet location is read from the reference route; no installed edge guides routing",
+  "reference_sha256": "a80665742e7d1ca822c217bb4b855cf29e6e63f64c743a420a853488d09a6776",
+  "metadata_note": "Boundary wording clarified after execution; numeric bounds, ports, customer set, loads and graphs unchanged."
+}

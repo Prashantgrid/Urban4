@@ -32,6 +32,7 @@ jobs:
           tests/test_review_corrections.py
           tests/test_integrations.py
           tests/test_manuscript_study.py
+          tests/test_andermatt_benchmark.py
 
   reproduce:
     runs-on: ubuntu-latest

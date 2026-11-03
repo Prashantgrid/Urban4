@@ -1,0 +1,22 @@
+{
+  "Urban4": {
+    "generated_to_installed": {
+      "mean_m": 28.0371782436951,
+      "p95_m": 134.6011598523801
+    },
+    "installed_to_generated": {
+      "mean_m": 27.117352341094634,
+      "p95_m": 115.16907807321574
+    }
+  },
+  "Topotherm": {
+    "generated_to_installed": {
+      "mean_m": 15.038653260253543,
+      "p95_m": 61.44532185602036
+    },
+    "installed_to_generated": {
+      "mean_m": 31.234306070937247,
+      "p95_m": 116.0544366734425
+    }
+  }
+}

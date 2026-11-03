@@ -1,0 +1,24 @@
+{
+  "crs": "EPSG:2056",
+  "route_definition": "unique one-way geometric route, including identical service connectors; common window clipping",
+  "table_xii_measures": {
+    "length_per_area": "unique one-way mapped route length / common window area (km/km2)",
+    "length_per_connection": "unique route length / 85 observed transfer points (m/point)",
+    "connection_spacing": "mean nearest-neighbour distance of observed transfer points (m); input control",
+    "building_to_network_distance": "mean minimum distance from every eligible OSM building centroid to route union (m)",
+    "branch_length": "mean branch length between degree-not-equal-to-2 nodes after common 0.5-m geometry quantisation and noding (m)",
+    "terminal_share": "degree-1 nodes / nodes in the degree-2-suppressed inferred route graph"
+  },
+  "connection_locations": "fixed observed inputs; connection spacing is a control",
+  "dependent_measures": "Length per area and length per connection are two normalisations of the same route extent; do not count them as independent evidence",
+  "topology_precision_m": 0.5,
+  "building_filter": "OSM polygons of at least 20 m2 whose centroid is within the fixed window",
+  "distance_sampling_m": 5,
+  "corridor_tolerances_m": [
+    10,
+    25,
+    50
+  ],
+  "calibration": "No installed route length, morphology, overlap, or proximity score is used to select model parameters",
+  "interpretation": "Conditional mapped-route reconstruction; the cadastral transfer-point layer is not assumed to enumerate all actual customers"
+}

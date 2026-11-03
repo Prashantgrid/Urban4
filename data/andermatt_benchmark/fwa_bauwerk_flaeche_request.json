@@ -1,0 +1,19 @@
+{
+  "url": "https://geo.ur.ch/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=leitungen%3Afwa_bauwerk_flaeche&bbox=2686670.140639549%2C1162706.785152642%2C2691173.3816135284%2C1168888.2522614964%2CEPSG%3A2056&srsName=EPSG%3A2056&outputFormat=application%2Fjson&count=10000",
+  "query": {
+    "service": "WFS",
+    "version": "2.0.0",
+    "request": "GetFeature",
+    "typeNames": "leitungen:fwa_bauwerk_flaeche",
+    "bbox": "2686670.140639549,1162706.785152642,2691173.3816135284,1168888.2522614964,EPSG:2056",
+    "srsName": "EPSG:2056",
+    "outputFormat": "application/json",
+    "count": 10000
+  },
+  "bbox_wgs84": [
+    8.57,
+    46.61,
+    8.63,
+    46.665
+  ]
+}

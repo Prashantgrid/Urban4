@@ -1,0 +1,6 @@
+{
+  "endpoint": "https://api.openstreetmap.org/api/0.6/map",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=8.5831830518803%2C46.62728337952879%2C8.604999756165782%2C46.645254702049066",
+  "method": "GET",
+  "snapshot": "retained raw OSM XML and parsed ways"
+}

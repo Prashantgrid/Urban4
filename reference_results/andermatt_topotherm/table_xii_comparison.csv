@@ -1,0 +1,7 @@
+measure,definition,installed,urban4,topotherm,urban4_to_installed,topotherm_to_installed,held_out_geometry_diagnostic,evidence_family
+length_per_area,unique one-way mapped route length / common window area (km/km2),6.023962334593707,5.300762228788637,3.745360008488144,0.879946110942301,0.6217435967319598,True,route_extent
+length_per_connection,unique route length / 85 observed transfer points (m/point),127.80414839588869,112.460763343255,79.46141090092496,0.8799461109423012,0.6217435967319598,True,route_extent
+connection_spacing,mean nearest-neighbour distance of observed transfer points (m); input control,28.680090052079997,28.680090052079997,28.680090052079997,1.0,1.0,False,fixed_input_control
+building_to_network_distance,mean minimum distance from every eligible OSM building centroid to route union (m),28.952205068576173,40.23016133696082,50.6750278789128,1.3895370401553764,1.7502994248239112,True,building_proximity
+branch_length,mean branch length between degree-not-equal-to-2 nodes after common 0.5-m geometry quantisation and noding (m),21.086906450725596,50.85884579171766,37.10801956609423,2.4118685171085215,1.7597659311860487,True,inferred_2d_topology
+terminal_share,degree-1 nodes / nodes in the degree-2-suppressed inferred route graph,0.5009746588693957,0.48863636363636365,0.5028901734104047,0.9753714184648037,1.003823575718045,True,inferred_2d_topology

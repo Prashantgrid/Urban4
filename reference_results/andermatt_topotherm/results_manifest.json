@@ -1,0 +1,102 @@
+{
+  "executed": "2026-11-03",
+  "base_urban4_commit": "4d74b8c37f7270bae862875de736d6ec7a43ee0e",
+  "topotherm_commit": "ec108e94b2e3f823a154afc47531156b1c85539f",
+  "files": [
+    {
+      "path": "Andermatt_DH_Routes_Comparison.pdf",
+      "bytes": 313251,
+      "sha256": "ba82bfff9616e367564714a822be71c3d69ea481add04141cb4fa91e6cb3db8a"
+    },
+    {
+      "path": "Andermatt_DH_Routes_Comparison.png",
+      "bytes": 612126,
+      "sha256": "11b473c1f1b895bcc78a1a55aaca0d7ab455ba51ba24f7363e5418e1218521b9"
+    },
+    {
+      "path": "absolute_metrics.csv",
+      "bytes": 1005,
+      "sha256": "54d069b7377631d9bda05ca510a4c59ce42cbd22266a5a741bf8603f5fdd2ad2"
+    },
+    {
+      "path": "candidate_edge_mapping.csv",
+      "bytes": 68259,
+      "sha256": "81c8b5e4b565ef993752bbf80402df7e6d513c02761b8bdec4176b78cd9b312c"
+    },
+    {
+      "path": "route_distance_errors.json",
+      "bytes": 473,
+      "sha256": "11d0ec63187fafcaf5c49590561bc275e2cad73371cd31404a677bcc8221ac49"
+    },
+    {
+      "path": "routes.gpkg",
+      "bytes": 569344,
+      "sha256": "06ce75e281bcfd926e7d217e5472e6cdd241228eb617479b6bb73db253c1eb15"
+    },
+    {
+      "path": "run_manifest.json",
+      "bytes": 3956,
+      "sha256": "b224823195f74edeb934c0ceb0105f259e95c35be14436fe44c22c98c120924a"
+    },
+    {
+      "path": "scoring_protocol.json",
+      "bytes": 1546,
+      "sha256": "24bd3e9a63fb633676fce66b7c2a89e918322d05c5163eb8da2c3c09c85d81f0"
+    },
+    {
+      "path": "shared_attachments.csv",
+      "bytes": 7322,
+      "sha256": "57547d502a74ac6cf8367032af8a6076b7f8b95445fb47f87c4544b08622fcf7"
+    },
+    {
+      "path": "software_versions.json",
+      "bytes": 221,
+      "sha256": "dc5d73e62e5b39b4835af713204e5c9ff8fde9fb49b504de9bc88b082f03fb57"
+    },
+    {
+      "path": "solution_audit.json",
+      "bytes": 572,
+      "sha256": "3ed4fdbaa72305fe15b90a6715241de0a4a7503607192bbaebc204cbd05eb150"
+    },
+    {
+      "path": "spatial_accuracy.csv",
+      "bytes": 735,
+      "sha256": "788894d6ab18d6af9b807444f9135d57c32edf2962292e73dda6db1f010c523c"
+    },
+    {
+      "path": "table_xii_comparison.csv",
+      "bytes": 1384,
+      "sha256": "721970767aa15f9adef407469096bef3f44a03c9eded0c2f302a65f2afa0fa26"
+    },
+    {
+      "path": "topology_precision_sensitivity.csv",
+      "bytes": 888,
+      "sha256": "7dcef84e6efce272b9491e7ca04f44ca1639f34744b1a05d15fc94aae79eebc9"
+    },
+    {
+      "path": "topotherm_edge_decisions.csv",
+      "bytes": 30217,
+      "sha256": "3f441536f293af7353e64de8d4e1da10844f134238adce84f808f77310bc60dc"
+    },
+    {
+      "path": "topotherm_run.json",
+      "bytes": 833,
+      "sha256": "b442ff14b50353f70a296ddce6f20a752af40666f900e17e5913ca68416c6af2"
+    },
+    {
+      "path": "topotherm_solver.log",
+      "bytes": 14199,
+      "sha256": "9c4154535398d188640a3a04679f2e31e8d5c37313e4542c6c97273ee063f71d"
+    },
+    {
+      "path": "urban4_run.json",
+      "bytes": 597,
+      "sha256": "997ad3fa95edd40d45b5758970b9890e8fec29568992e9426af25c607b4ef2f9"
+    },
+    {
+      "path": "urban4_selection_audit.csv",
+      "bytes": 13095,
+      "sha256": "1c87e470d7a1a1c7b7258d9157ee11601b06e31fbdbcd76101b9b9c24a94eb57"
+    }
+  ]
+}

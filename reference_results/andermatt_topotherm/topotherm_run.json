@@ -1,0 +1,42 @@
+{
+  "termination": "optimal",
+  "solver_status": "ok",
+  "runtime_s": 421.956361732,
+  "prepare_s": 0.18425820599986764,
+  "objective_eur_per_year": 889678.0452155021,
+  "lower_bound": 880782.3214299605,
+  "upper_bound": 889678.0452155021,
+  "source_supply_kw": 4402.119742247167,
+  "demand_kw": 4250.0,
+  "customers_connected": 85,
+  "candidate_nodes": 411,
+  "candidate_edges": 551,
+  "selected_edges": 239,
+  "time_limit_s": 600,
+  "mip_relative_gap_target": 0.01,
+  "economics": {
+    "source_price": [
+      [
+        0.08
+      ]
+    ],
+    "source_c_inv": [
+      0.0
+    ],
+    "source_c_irr": [
+      0.08
+    ],
+    "source_lifetime": [
+      20.0
+    ],
+    "source_max_power": [
+      8500.0
+    ],
+    "source_min_power": [
+      0
+    ],
+    "pipes_c_irr": 0.08,
+    "heat_price": 0.0,
+    "pipes_lifetime": 50.0
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "selection_policy": "route_aware_prize_collecting_forest",
+  "objective_interpretation": "annual heat prize divided by newly added trench plus service length; non-monetary",
+  "selected_connection_count": 85,
+  "requested_connection_count": 85,
+  "provisional_forest_trench_km": 8.260587258912803,
+  "selected_unscaled_annual_heat_mwh": 6800.0,
+  "territory_quotas": {
+    "0": 85
+  },
+  "configuration": {
+    "demand_exponent": 0.5,
+    "minimum_increment_km": 0.005,
+    "spatial_quota_level": "cell",
+    "selection_rounding": "largest_remainder"
+  },
+  "runtime_s": 0.23935458400046628
+}

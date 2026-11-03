@@ -1,0 +1,11 @@
+{
+  "all_observed_customers_connected": 85,
+  "maximum_nodal_balance_residual_kw": 1.885780420707306e-11,
+  "maximum_binary_integrality_error": 5.799139651183751e-12,
+  "minimum_pipe_outflow_kw": -1.1590088888624448e-09,
+  "maximum_pipe_capacity_violation_kw": 4.0014026913946684e-07,
+  "maximum_contraction_distance_error_km": 4.440892098500626e-16,
+  "relative_objective_gap": 0.009998812304497002,
+  "same_candidate_graph_verified": true,
+  "objective_and_regression": "unmodified Topotherm 0.6.0 single-timestep forced-connection defaults; constant revenue omitted"
+}

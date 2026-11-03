@@ -1,0 +1,29 @@
+% Standalone IEEE-compatible replacement table and text.
+% New 85-point case: do not append these values to the former 50-point row.
+\begin{table}[t]
+\caption{Andermatt local DH routing: generated-to-installed ratios on a new 85-transfer-point case. Unity indicates agreement.}
+\label{tab:andermatt_topotherm_accuracy}
+\centering
+\footnotesize
+\begin{tabular}{lrr}
+\hline
+Measure & Urban4 & Topotherm \\
+\hline
+Route length / area & 0.880 & 0.622 \\
+Route length / connection & 0.880 & 0.622 \\
+Connection spacing (fixed input) & 1.000 & 1.000 \\
+Building-to-route distance & 1.390 & 1.750 \\
+Mean branch length & 2.412 & 1.760 \\
+Terminal share & 0.975 & 1.004 \\
+\hline
+\end{tabular}
+
+\vspace{2pt}
+\parbox{\columnwidth}{\scriptsize Both methods receive identical observed connections, inlet, scenario loads and OSM road candidates. The first two measures are normalisations of the same route extent; spacing is an input control. Topology descriptors use a common 0.5-m geometry protocol and degree-2 suppression.}
+\end{table}
+
+We evaluated conditional district-heating route reconstruction in Andermatt against active cadastral routes, using 85 observed transfer points, one local inlet and identical OSM road candidates for Urban4 and Topotherm. Uniform 50-kW scenario loads were imposed at all points. Urban4 and Topotherm generated 9.56 and 6.75~km of routes against 10.86~km mapped in the common window. At a 25-m tolerance, Urban4 covered 68.1\% of installed route length and Topotherm 62.7\%; the reverse fractions were 74.4\% and 86.7\%. Mean generated-to-installed route distances were 28.0 and 15.0~m. Urban4 better reproduced mapped extent and building proximity, whereas Topotherm better localised its more compact network. Topotherm reached a 1\% MIP gap in 422~s. These results quantify a routing tradeoff conditional on supplied connections and scenario loads; they do not validate customer selection, measured heat demand or hydraulic performance.
+
+% Cite the Lisag AG / Geoinformation Kanton Uri "Fernwaerme Leitungen"
+% WFS route dataset (retrieved 2026-11-03), and the official Topotherm
+% software/paper. The SFOE network inventory alone is not a detailed route source.

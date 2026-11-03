@@ -142,7 +142,19 @@ flood exposure, and extreme-event service losses. See the
 
 ## Evidence and data
 
-The retained geospatial snapshots were retrieved from OpenStreetMap through
+### Andermatt installed-route comparison
+
+A separate [Andermatt benchmark](docs/andermatt_topotherm_benchmark.md) runs
+Urban4 and the official pinned Topotherm model against active public cadastral
+DH routes, with the same 85 observed transfer points, local inlet, scenario
+loads and road candidates. It reports all six Table XII measures, bidirectional
+spatial agreement, saved solver evidence and a replay audit. Frozen inputs and
+results are included; see the documentation for the conditional validation
+scope and the distinction from the former 50-point manuscript sample.
+
+### Retained release inputs
+
+The Schweinfurt release snapshots were retrieved from OpenStreetMap through
 the Overpass API on 27 July 2026. They are included so the retained release run does not depend on a changing
 live map. Public utility totals and source references
 are declared in `cases/schweinfurt.json`.

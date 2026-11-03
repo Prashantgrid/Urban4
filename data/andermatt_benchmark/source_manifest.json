@@ -1,0 +1,77 @@
+{
+  "retrieved": "2026-11-03",
+  "provider": "Lisag AG / Geoinformation Kanton Uri",
+  "catalogue": "https://opendata.swiss/de/dataset/fernwarme-leitungen",
+  "wfs": "https://geo.ur.ch/wfs",
+  "layers": [
+    "leitungen:fwa_trasse_linie",
+    "leitungen:fwa_leitungspunkt_einspeisung",
+    "leitungen:fwa_bauwerk_flaeche"
+  ],
+  "provider_resource_licence": "https://opendata.swiss/terms-of-use#terms_open",
+  "cadastral_feature_import_date": "2026-10-30",
+  "osm_provider": "OpenStreetMap contributors (ODbL)",
+  "topotherm_commit": "ec108e94b2e3f823a154afc47531156b1c85539f",
+  "files": [
+    {
+      "path": "case.json",
+      "bytes": 1642,
+      "sha256": "a93f87ed4345f8cd01b1cb7f41d5f3d0faa5906d22500fe0e8d398a4f5193ee9"
+    },
+    {
+      "path": "common_inputs.gpkg",
+      "bytes": 389120,
+      "sha256": "5a99ff166258ac8e5a3516b6d736fa3eff36e79ceac6aff99e6363d0f292aee6"
+    },
+    {
+      "path": "fwa_bauwerk_flaeche.geojson",
+      "bytes": 2314,
+      "sha256": "90e7d9020305e6d7de34383849964a71e0e3e205a9af1c483743ef4446c1f134"
+    },
+    {
+      "path": "fwa_bauwerk_flaeche_request.json",
+      "bytes": 680,
+      "sha256": "63e4199a069603093a04a07fac8bf07d2557170d830a4e0fde25dab0dea76edb"
+    },
+    {
+      "path": "fwa_leitungspunkt_einspeisung.geojson",
+      "bytes": 79081,
+      "sha256": "3126afa0ab8a262711b4ef0abfefa462501cb519bd6daf16ad0efb334a27bffa"
+    },
+    {
+      "path": "fwa_leitungspunkt_einspeisung_request.json",
+      "bytes": 700,
+      "sha256": "442b528833613564a5e99a0dbe661990b5412087002cb3f2ca5a437fb3850ec1"
+    },
+    {
+      "path": "fwa_trasse_linie.geojson",
+      "bytes": 653584,
+      "sha256": "a80665742e7d1ca822c217bb4b855cf29e6e63f64c743a420a853488d09a6776"
+    },
+    {
+      "path": "fwa_trasse_linie_request.json",
+      "bytes": 674,
+      "sha256": "69ed67ef989c280c5423ba85c39086e1321fbfa986c6faab3fb51f4875040856"
+    },
+    {
+      "path": "osm_request.json",
+      "bytes": 270,
+      "sha256": "d863872a8a0123ea65b1b1499339e1c9ff77dc649f9d75ac17fc3be9114d23aa"
+    },
+    {
+      "path": "osm_snapshot.json",
+      "bytes": 545205,
+      "sha256": "7ecadebe7772fcb421eaa6c25e34e338a884093d976893b087e75061666e5d65"
+    },
+    {
+      "path": "osm_snapshot.osm",
+      "bytes": 4111303,
+      "sha256": "9eb1295bba463b33329511e79a86eebb26d9b89bc135f2d1c9b69effd67e02df"
+    },
+    {
+      "path": "sfoe_metadata.json",
+      "bytes": 26906,
+      "sha256": "2cbb33784158d85d44a538e271de0edd765d5cb4d34e12343e0099c2d45fd825"
+    }
+  ]
+}

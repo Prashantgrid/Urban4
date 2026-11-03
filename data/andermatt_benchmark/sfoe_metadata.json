@@ -1,0 +1,623 @@
+{
+  "help": "https://ckan.opendata.swiss/api/3/action/help_show?name=package_show",
+  "success": true,
+  "result": {
+    "accrual_periodicity": "http://publications.europa.eu/resource/authority/frequency/WEEKLY",
+    "author": {
+      "de": "Bundesamt für Energie",
+      "fr": "Office fédéral de l'énergie",
+      "it": "Ufficio federale dell'energia",
+      "en": "Swiss Federal Office of Energy"
+    },
+    "author_email": null,
+    "conforms_to": [],
+    "contact_points": [
+      {
+        "email": "contact@bfe.admin.ch",
+        "name": "Bundesamt für Energie"
+      }
+    ],
+    "coverage": "",
+    "creator_user_id": "0594d621-c92a-4a32-809c-98e281dc7944",
+    "description": {
+      "de": "Unter Thermischen Netzen - auch Fernwärme-, Nahwärme- oder Fernkältenetze - versteht man eine Infrastruktur, welche mehrere Gebäude auf verschiedenen Grundstücken mit thermischer Energie versorgt. Es ist eine leitungsgebundene Wärmeversorgung von Kunden über Wasser oder Dampf. Neben Fernwärmenetzen existieren auch Fernkältenetze – deshalb verwendet man heute den allgemeineren Begriff Thermische Netze. Die Energieversorgung von Thermischen Netzen ist dabei nicht zwangsläufig erneuerbar, aber sie zeichnet sich oft – so zum Beispiel bei Kehrichtverbrennungsanlagen – durch eine geringe Bilanz an CO2-Emissionen aus. So ermöglicht Fernwärme z.B. die Nutzung von Abwärme oder den Einsatz von erneuerbaren Energien und gewinnt deshalb zunehmend an Bedeutung. Fernwärme beschreibt eine leitungsgebundene Wärmeversorgung von Kunden über Wasser oder Dampf mit zentral erzeugter Wärme und deckt einen breiten Leistungsbereich mit Anschlussleistungen von weniger als 100 kW bis zu über 1 GW ab. Eine Wärmeverteilung einzig über eine Verteilergruppe gilt nicht als Fernwärme. Die Geofachdaten «Thermische Netze» dokumentieren den aktuellen Bestand der Fernwärmenetze in der Schweiz. Sämtliche Informationen basieren auf den Auskünften der Anlagenbetreibenden. Die Angaben dienen als Informationsmaterial für die Öffentlichkeit und stellen keine amtliche Auskunft oder rechtsverbindliche Aussage dar.",
+      "fr": "On entend par réseaux thermiques (y compris chauffage de proximité, chauffage et froid à distance) une infrastructure qui approvisionne en énergie thermique plusieurs bâtiments se trouvant sur des parcelles différentes. Les clients sont approvisionnés en chaleur fournie en réseau par le biais de l'eau ou de la vapeur. Outre les réseaux de chauffage à distance, il existe également des réseaux de froid à distance. C'est pourquoi on utilise aujourd'hui l'expression générique «réseaux thermiques». L'approvisionnement en énergie des réseaux thermiques n'est pas nécessairement renouvelable, mais elle se caractérise souvent par un bilan carbone faible, par exemple dans le cas d'usines d'incinération des ordures ménagères. Le chauffage à distance permet notamment d'exploiter les pertes de chaleur ou d'utiliser les énergies renouvelables, raison pour laquelle il gagne en importance. Le chauffage à distance désigne un approvisionnement en chaleur fournie en réseau à des clients par le biais de l'eau ou de la vapeur au moyen de chaleur produite de manière centralisée et couvre une large plage de puissance avec des puissances de raccordement allant de moins de 100 kW à plus de 1 GW. La distribution de chaleur effectuée uniquement par au sein d'un groupe de distribution n'est pas considérée comme de la chaleur à distance. Les géodonnées techniques «Réseaux thermiques» documentent l'état actuel des réseaux de chauffage à distance en Suisse. L'ensemble des informations s'appuient sur les renseignements fournis par les exploitants d'installation. Les indications servent à informer le grand public et ne constituent pas des informations officielles ni des déclarations juridiquement contraignantes.",
+      "it": "Con il termine «reti termiche» (reti di riscaldamento locale, di teleriscaldamento e di teleraffreddamento) si fa riferimento all'infrastruttura che fornisce energia termica a più edifici situati su fondi diversi. Grazie a un sistema di condotte il calore viene trasportato mediante acqua calda o vapore all'utente. Oltre alle reti di teleriscaldamento esistono anche quelle di teleraffreddamento, motivo per cui oggi si usa il termine generico «reti termiche». L'approvvigionamento energetico delle reti termiche non è necessariamente rinnovabile ma spesso si contraddistingue per le sue basse emissioni di CO2, ad esempio nel caso di impianti di incenerimento dei rifiuti. Il teleriscaldamento permette, ad esempio, di sfruttare il calore residuo o di impiegare energie rinnovabili, motivo per cui riveste un'importanza sempre maggiore. Il teleriscaldamento è un sistema di condotte che permette di produrre calore in modo centralizzato, trasportandolo mediante acqua calda o vapore all'utente. Esso copre un ampio range di potenza: il suo allacciamento può spaziare da un valore inferiore a 100kW a uno superiore a 1GW. La distribuzione del calore che avviene esclusivamente mediante un gruppo di distribuzione non è considerata teleriscaldamento. I geodati specifici «reti termiche» documentano lo stato attuale delle reti di teleriscaldamento in Svizzera, basandosi sulle informazioni dei gestori degli impianti. I dati sono da intendersi come materiale informativo per il pubblico; non hanno carattere ufficiale e non sono vincolanti sotto il profilo giuridico.",
+      "en": "Thermal networks – including district heating-, local heating- or district cooling networks – are systems that provide a number of separate buildings with thermal energy. They supply heat to customers through pipelines that carry water or steam. As well as district heating networks there are also district cooling networks – which is why the more general term ‘thermal networks' is now used. The energy supplied by thermal networks does not necessarily come from renewable sources, but these systems are often characterised by their low CO2 emissions, for example when based on heat recovered from waste incineration . District heating is an excellent way of making use of waste heat or renewable energies and is therefore becoming increasingly important. District heating is defined as a system that provides customers with heat that is generated in a central plant and supplied through pipes in the form of hot water or steam; the performance of individual systems varies widely, from less than 100 kW to over 1 GW. The supply of heat to one group of recipients only is not regarded as district heating. The geodata on thermal networks document the district heating networks currently operating in Switzerland, and are based entirely on information provided by the network operators. The data are unofficial, are not legally binding, and are provided simply as information for the public."
+    },
+    "id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+    "identifier": "92b85345-4513-45a8-b64a-d7dbebd648a3@bundesamt-fur-energie-bfe",
+    "isopen": false,
+    "issued": "2020-11-13T00:00:00",
+    "keywords": {
+      "en": [
+        "conservation-and-archiving-planning-aap---confederation",
+        "fsdi-federal-spatial-data-infrastructure"
+      ],
+      "de": [
+        "aufbewahrungs--und-archivierungsplanung-aap---bund",
+        "bgdi-bundesgeodaten-infrastruktur"
+      ],
+      "fr": [
+        "planification-de-la-conservation-et-de-larchivage-aap---confederation",
+        "ifdg-linfrastructure-federale-de-donnees-geographiques"
+      ],
+      "it": [
+        "pianificazione-della-conservazione-e-dellarchiviazione-aap---confederazione",
+        "ifdg-infrastruttura-federale-dei-dati-geografici"
+      ]
+    },
+    "language": [
+      "en",
+      "de",
+      "fr",
+      "it"
+    ],
+    "license_id": null,
+    "license_title": null,
+    "maintainer": "contact@bfe.admin.ch",
+    "maintainer_email": null,
+    "metadata_created": "2019-12-04T22:09:53.648432",
+    "metadata_modified": "2026-11-03T00:19:07.746716",
+    "modified": "2026-04-08T04:25:10.1703433",
+    "name": "thermische-netze-nahwarme-fernwarme-fernkalte",
+    "num_resources": 7,
+    "num_tags": 0,
+    "organization": {
+      "approval_status": "approved",
+      "created": "2016-09-29T10:33:48.579027",
+      "description": {
+        "fr": "L'Office fédéral de l'énergie (OFEN) est le centre de compétences du Département fédéral de l'environnement, des transports, de l'énergie et de la communication (DETEC) pour les questions liées à l'approvisionnement en énergie et à son utilisation.",
+        "de": "Das Bundesamt für Energie (BFE) ist das Kompetenzzentrum für Fragen der Energieversorgung und der Energienutzung im Eidgenössischen Departement für Umwelt, Verkehr, Energie und Kommunikation (UVEK).",
+        "en": "The Swiss Federal Office of Energy (SFOE) is the country's competence centre for issues relating to energy supply and energy use at the Federal Department of the Environment, Transport, Energy and Communications (DETEC).",
+        "it": "L'Ufficio federale dell'energia (UFE) è il centro di competenza in materia di approvvigionamento e di impiego dell'energia in seno al Dipartimento federale dell'ambiente, dei trasporti, dell'energia e delle comunicazioni (DATEC)."
+      },
+      "display_name": {
+        "de": "Bundesamt für Energie BFE",
+        "en": "Swiss Federal Office of Energy SFOE",
+        "fr": "Office fédéral de l'énergie OFEN",
+        "it": "Ufficio federale dell'energia UFE"
+      },
+      "id": "750d3ce4-5e0b-4dc5-8b6a-f049f64eaf50",
+      "image_display_url": "https://ckan.opendata.swiss/uploads/group/logo_suisse.png",
+      "image_url": "https://ckan.opendata.swiss/uploads/group/logo_suisse.png",
+      "is_organization": true,
+      "name": "bundesamt-fur-energie-bfe",
+      "num_followers": 0,
+      "package_count": 149,
+      "political_level": "confederation",
+      "state": "active",
+      "title": {
+        "de": "Bundesamt für Energie BFE",
+        "en": "Swiss Federal Office of Energy SFOE",
+        "fr": "Office fédéral de l'énergie OFEN",
+        "it": "Ufficio federale dell'energia UFE"
+      },
+      "type": "organization",
+      "url": "http://www.bfe.admin.ch",
+      "tags": [],
+      "groups": []
+    },
+    "owner_org": "750d3ce4-5e0b-4dc5-8b6a-f049f64eaf50",
+    "private": false,
+    "publisher": {
+      "name": {
+        "de": "Bundesamt für Energie",
+        "fr": "Office fédéral de l'énergie",
+        "it": "Ufficio federale dell'energia",
+        "en": "Swiss Federal Office of Energy"
+      },
+      "url": "https://www.bfe.admin.ch/geoinformation"
+    },
+    "qualified_relations": [],
+    "relations": [
+      {
+        "label": {
+          "de": "geocat.ch Permalink",
+          "fr": "geocat.ch permalien",
+          "it": "geocat.ch link permanente",
+          "en": "geocat.ch permalink"
+        },
+        "url": "https://www.geocat.ch/datahub/dataset/92b85345-4513-45a8-b64a-d7dbebd648a3"
+      }
+    ],
+    "see_alsos": [],
+    "spatial": "Schweiz",
+    "state": "active",
+    "temporals": [],
+    "title": {
+      "de": "Thermische Netze (Nahwärme, Fernwärme, Fernkälte)",
+      "fr": "Réseaux thermiques (chauffage de proximité, chauffage et froid à distance)",
+      "it": "Reti termiche (riscaldamento locale, teleriscaldamento, teleraffreddamento)",
+      "en": "Thermal networks (local heating, district heating, district cooling)"
+    },
+    "title_for_slug": "thermische-netze-nahwarme-fernwarme-fernkalte",
+    "type": "dataset",
+    "url": "https://www.bfe.admin.ch/thermische-netze",
+    "version": null,
+    "groups": [
+      {
+        "description": {
+          "fr": "",
+          "de": "",
+          "en": "",
+          "it": ""
+        },
+        "display_name": {
+          "de": "Bildung, Kultur und Sport",
+          "en": "Education, culture and sport",
+          "fr": "Éducation, culture et sport",
+          "it": "Istruzione, cultura e sport"
+        },
+        "id": "b36d9b09-dc05-422c-997e-4e81b02afd6f",
+        "image_display_url": "",
+        "name": "educ",
+        "title": {
+          "de": "Bildung, Kultur und Sport",
+          "en": "Education, culture and sport",
+          "fr": "Éducation, culture et sport",
+          "it": "Istruzione, cultura e sport"
+        }
+      },
+      {
+        "description": {
+          "fr": "",
+          "de": "",
+          "en": "",
+          "it": ""
+        },
+        "display_name": {
+          "de": "Energie",
+          "en": "Energy",
+          "fr": "Énergie",
+          "it": "Energia"
+        },
+        "id": "f6a373cb-993f-4a8e-af25-65cdf81e1cab",
+        "image_display_url": "",
+        "name": "ener",
+        "title": {
+          "de": "Energie",
+          "en": "Energy",
+          "fr": "Énergie",
+          "it": "Energia"
+        }
+      },
+      {
+        "description": {
+          "fr": "",
+          "de": "",
+          "en": "",
+          "it": ""
+        },
+        "display_name": {
+          "de": "Umwelt",
+          "en": "Environment",
+          "fr": "Environnement",
+          "it": "Ambiente"
+        },
+        "id": "ab2cc387-d129-4d76-b78d-517326d2a772",
+        "image_display_url": "",
+        "name": "envi",
+        "title": {
+          "de": "Umwelt",
+          "en": "Environment",
+          "fr": "Environnement",
+          "it": "Ambiente"
+        }
+      }
+    ],
+    "resources": [
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2026-06-23T01:25:16.062335",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "Bundesamt für Energie BFE - Detailbeschreibung",
+          "fr": "Office fédéral de l'énergie OFEN - Description détaillée",
+          "it": "Ufficio federale dell'energia UFE - Descrizione dettagliata",
+          "en": "Swiss Federal Office of Energy SFOE - Detail description"
+        },
+        "display_name": {
+          "de": "",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "format": "HTML",
+        "hash": "",
+        "id": "918a381b-08ff-49fb-8397-0624ec1cfc0a",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "text/html",
+        "metadata_modified": "2026-07-29T01:35:45.624656",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 0,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "https://www.bfe.admin.ch/thermische-netze",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2023-03-30T00:22:55.593295",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "WMS-BGDI Dienst, Layer \"Thermische Netze\"",
+          "fr": "Service WMS-IFDG, couche \"Réseaux thermiques\"",
+          "it": "Servizio WMS-IFDG, strato \"Reti termiche\"",
+          "en": "WMS-FSDI service, layer \"Thermal networks\""
+        },
+        "display_name": {
+          "de": "ch.bfe.thermische-netze",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "format": "WMS",
+        "hash": "",
+        "id": "24cc0301-8a08-4784-b97c-52cbfefc4dc3",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "",
+        "metadata_modified": "2026-07-29T01:35:45.624788",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "ch.bfe.thermische-netze",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 1,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "ch.bfe.thermische-netze",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities&lang=de",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2022-06-13T06:23:59.198139",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "Fachportal - map.energie.admin.ch",
+          "fr": "Géoportail thématique - map.energie.admin.ch",
+          "it": "Geoportale tematico - map.energie.admin.ch",
+          "en": "Thematic geoportal - map.energie.admin.ch"
+        },
+        "display_name": {
+          "de": "Map (Preview) Fachportal - map.energie.admin.ch",
+          "fr": "Map (Preview) Géoportail thématique - map.energie.admin.ch",
+          "it": "Map (Preview) Geoportale tematico - map.energie.admin.ch",
+          "en": "Map (Preview) Thematic geoportal - map.energie.admin.ch"
+        },
+        "format": "SERVICE",
+        "hash": "",
+        "id": "9a141837-cddf-4c23-80d1-54f58d3282fe",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "",
+        "metadata_modified": "2026-07-29T01:35:45.624863",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "Map (Preview) Fachportal - map.energie.admin.ch",
+          "fr": "Map (Preview) Géoportail thématique - map.energie.admin.ch",
+          "it": "Map (Preview) Geoportale tematico - map.energie.admin.ch",
+          "en": "Map (Preview) Thematic geoportal - map.energie.admin.ch"
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 2,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "Map (Preview) Fachportal - map.energie.admin.ch",
+          "fr": "Map (Preview) Géoportail thématique - map.energie.admin.ch",
+          "it": "Map (Preview) Geoportale tematico - map.energie.admin.ch",
+          "en": "Map (Preview) Thematic geoportal - map.energie.admin.ch"
+        },
+        "url": "https://map.geo.admin.ch/?topic=energie&lang=de&bgLayer=ch.swisstopo.pixelkarte-grau&catalogNodes=2419,2420,2427,2480,2429,2431,2434,2436,2767,2441,3206,15075&layers=ch.bfe.thermische-netze",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2022-06-13T06:23:59.198148",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "Csv",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "display_name": {
+          "de": "Csv",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "download_url": "https://data.geo.admin.ch/ch.bfe.thermische-netze/csv/2056/ch.bfe.thermische-netze.zip",
+        "format": "CSV",
+        "hash": "",
+        "id": "a8bc6284-4153-4744-b149-e642b7077663",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "text/csv",
+        "metadata_modified": "2026-07-29T01:35:45.624930",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "Csv",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 3,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "Csv",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "https://data.geo.admin.ch/ch.bfe.thermische-netze/csv/2056/ch.bfe.thermische-netze.zip",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2023-02-15T00:25:33.699635",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "Geopackage",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "display_name": {
+          "de": "Geopackage",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "download_url": "https://data.geo.admin.ch/ch.bfe.thermische-netze/thermische-netze/thermische-netze_2056.gpkg",
+        "format": "GPKG",
+        "hash": "",
+        "id": "201c47c3-044a-4c5e-80d6-c073ff151a85",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "",
+        "metadata_modified": "2026-07-29T01:35:45.624996",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "Geopackage",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 4,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "Geopackage",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "https://data.geo.admin.ch/ch.bfe.thermische-netze/thermische-netze/thermische-netze_2056.gpkg",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2025-09-05T01:25:25.385572",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "Interlis",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "display_name": {
+          "de": "Interlis",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "download_url": "http://data.geo.admin.ch/ch.bfe.thermische-netze/xtf/2056/ch.bfe.thermische-netze.zip",
+        "format": "ZIP",
+        "hash": "",
+        "id": "94498093-1aa3-4787-bbe5-5c34be41b1f9",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "application/zip",
+        "metadata_modified": "2026-07-29T01:35:45.625060",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "Interlis",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 5,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "Interlis",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "http://data.geo.admin.ch/ch.bfe.thermische-netze/xtf/2056/ch.bfe.thermische-netze.zip",
+        "url_type": null
+      },
+      {
+        "byte_size": 0,
+        "cache_last_updated": null,
+        "cache_url": null,
+        "created": "2022-06-13T06:23:59.198153",
+        "datastore_active": false,
+        "datastore_contains_all_records_of_source_file": false,
+        "description": {
+          "de": "swisstopo REST API",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "display_name": {
+          "de": "swisstopo REST API",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "format": "API",
+        "hash": "",
+        "id": "1039e3e7-f73c-40ed-8a70-6e3596d58896",
+        "issued": "2020-11-13T00:00:00",
+        "language": [
+          "en",
+          "de",
+          "fr",
+          "it"
+        ],
+        "last_modified": null,
+        "license": "https://opendata.swiss/terms-of-use#terms_by",
+        "media_type": "",
+        "metadata_modified": "2026-07-29T01:35:45.625122",
+        "mimetype": null,
+        "mimetype_inner": null,
+        "modified": "2026-04-08T04:25:10.1703433",
+        "name": {
+          "de": "swisstopo REST API",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "package_id": "ad8df3fc-72f6-4d5e-9a88-110314489949",
+        "position": 6,
+        "resource_type": null,
+        "rights": "https://opendata.swiss/terms-of-use#terms_by",
+        "size": null,
+        "state": "active",
+        "title": {
+          "de": "swisstopo REST API",
+          "fr": "",
+          "it": "",
+          "en": ""
+        },
+        "url": "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bfe.thermische-netze",
+        "url_type": null
+      }
+    ],
+    "tags": [],
+    "relationships_as_subject": [],
+    "relationships_as_object": [],
+    "display_name": {
+      "de": "Thermische Netze (Nahwärme, Fernwärme, Fernkälte)",
+      "fr": "Réseaux thermiques (chauffage de proximité, chauffage et froid à distance)",
+      "it": "Reti termiche (riscaldamento locale, teleriscaldamento, teleraffreddamento)",
+      "en": "Thermal networks (local heating, district heating, district cooling)"
+    }
+  }
+}

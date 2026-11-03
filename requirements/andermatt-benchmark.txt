@@ -1,0 +1,14 @@
+# Reproduces the 2026-11-03 conditional routing benchmark.
+-e .[test,study]
+numpy==2.3.5
+pandas==2.3.3
+networkx==3.7
+shapely==2.2.0
+geopandas==1.2.0
+pyproj==3.8.0
+osmnx==2.1.1
+pyomo==6.10.1
+highspy==1.15.1
+topotherm @ git+https://github.com/jylambert/topotherm.git@ec108e94b2e3f823a154afc47531156b1c85539f
+# Only needed to rebuild the report PDF:
+reportlab==4.4.9

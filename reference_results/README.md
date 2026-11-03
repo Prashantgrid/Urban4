@@ -29,3 +29,10 @@ python run_all.py
 The complete frozen archive can be attached to a tagged archival release. Reference files preserve the original schema keys, including
 older fields named `release_gate_passed`; current documentation describes these
 as engineering acceptance criteria.
+## Andermatt conditional routing benchmark
+
+The `andermatt_topotherm/` subdirectory retains the 3 November 2026 solution,
+route geometry, Table XII comparison, spatial scores, solver log and audit for
+the new 85-transfer-point case. See the [complete experiment
+protocol](../docs/andermatt_topotherm_benchmark.md) before interpreting these
+results. It is distinct from the former 50-point manuscript sample.
