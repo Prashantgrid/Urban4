@@ -1,0 +1,74 @@
+{
+  "case_id": "gyor_hungary_working_baseline_v0.2",
+  "city": "Győr",
+  "country": "Hungary",
+  "crs": "EPSG:32633",
+  "boundary": "OpenStreetMap administrative relation 1440627",
+  "seed": 20261103,
+  "status": "Working synthetic models with passed declared engineering and numerical checks",
+  "public_anchor_candidates": {
+    "water_works": "OSM_R2825807",
+    "wastewater_plant": "OSM_W113554080",
+    "interpretation": "Mapped candidate facilities; location/identity and operational connections require local confirmation."
+  },
+  "demand_assumptions": {
+    "residential_area_per_household_m2": 80,
+    "persons_per_household": 2.2,
+    "residential_electricity_kwh_per_household_year": 3300,
+    "electricity_equivalent_full_load_hours": 2750,
+    "residential_service_base_kw": 14.5,
+    "nonresidential_electricity_kwh_m2_year": {
+      "commercial": 90,
+      "public": 75,
+      "industrial": 35
+    },
+    "nonresidential_service_w_m2": 60,
+    "direct_mv_service_threshold_kw": 250,
+    "residential_water_litre_per_person_day": 120,
+    "nonresidential_water_m3_m2_year": {
+      "commercial": 0.3,
+      "public": 0.5,
+      "industrial": 0.15
+    },
+    "drinking_water_peak_factor": 2.5,
+    "wastewater_sanitary_return_fraction": 1,
+    "heat_kwh_m2_year": {
+      "residential": 100,
+      "commercial": 75,
+      "public": 90,
+      "industrial": 40
+    },
+    "heat_full_load_hours": 1800,
+    "heat_connection_fraction_ceiling": 0.3,
+    "heat_density_threshold_mwh_ha_year": 400,
+    "equivalent_heat_injection_capacity_mw": 30,
+    "maximum_service_distance_m": 150,
+    "wwtp_specific_electricity_kwh_m3": 0.4,
+    "interpretation": "Engineering priors, not measured Győr utility statistics or a locally calibrated demand profile."
+  },
+  "acceptance_screening": {
+    "electricity": {
+      "minimum_voltage_pu": 0.9,
+      "maximum_voltage_pu": 1.1,
+      "maximum_line_loading_percent": 100,
+      "maximum_transformer_loading_percent": 100
+    },
+    "drinking_water": {
+      "minimum_pressure_m": 27.5,
+      "maximum_pressure_m": 70,
+      "maximum_velocity_m_s": 2
+    },
+    "wastewater": {
+      "maximum_absolute_flow_routing_continuity_error_percent": 1,
+      "maximum_nonconverging_steps_percent": 0.1,
+      "maximum_dry_weather_flooding_loss_million_liter": 0.001
+    },
+    "district_heating": {
+      "minimum_differential_pressure_bar": 0.5,
+      "maximum_velocity_m_s": 2,
+      "maximum_annual_heat_loss_fraction": 0.15
+    },
+    "interpretation": "Declared study screening thresholds; local operator criteria should be agreed."
+  },
+  "evidence_and_model_status": "Summary of the separately delivered Győr archive case.json; raw evidence, detailed hydraulic remodel settings, solver files, source citations and checksum manifest remain in the archive."
+}
