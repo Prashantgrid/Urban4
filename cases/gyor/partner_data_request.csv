@@ -1,0 +1,8 @@
+sector,requested_evidence,preferred_format,purpose
+All sectors,Agreed study polygon and utility service extents,GeoPackage/GeoJSON boundary polygons,Confirm municipality versus regional service boundary
+Buildings,"Use class, floor count, households and nonresidential loads",GIS/CSV keyed by address or stable building ID,Replace inferred classes and floor-area priors
+Electricity,"MV/LV stations, feeders, voltage levels, ratings and normal open points",GIS/CIM/pandapower plus representative peak profiles,"Replace synthetic roots, transformer sites and equipment"
+Drinking water,"Révfalu/Szőgye identities, source inlets, pressure zones, boosters and connection split",GIS/EPANET plus inlet-flow/head records,Review the functioning two-inlet pressure-zoned design against local data
+Wastewater,"Treatment boundary, external inflows, combined/separate catchments, pumps and surveyed inverts",GIS/SWMM plus dry/wet-weather flows,Replace generated inverts and add stormwater/external inflow
+District heating,"Actual connected buildings, heat substations, trunk routes, source/mixing stations and temperatures",GIS/pandapipes/CSV with annual and peak heat,Replace selected heat territories and equivalent injection points
+Cross-sector,"Facility feeder attachment, standby generation, storage and pump controls",Single-line diagrams and facility operational records,Replace synthetic attachments and extend the tested coupled snapshot to local operating scenarios
