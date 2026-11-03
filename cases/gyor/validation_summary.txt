@@ -1,0 +1,35 @@
+Győr Urban4 working models v0.2
+3 November 2026
+
+All four sector checks and the coupled design snapshot PASS.
+
+Electricity: AC power flow converged; declared 0.90-1.10 pu voltage
+and <=100% loading screens passed.
+
+Drinking water: two candidate source inlets, 18 pressure zones,
+12 boosters and five PRVs. Normal customer pressure 31.5 to 66.0 m;
+design-hour customer pressure 29.0 to 68.0 m.
+The declared 27.5 to 70 m pressure band is unchanged.
+
+Wastewater: dynamic-wave hydraulic model at street manholes with
+explicit property lifts; exact mapping of all 24,963 building inflows.
+Continuity error -0.588% at 10 s, -0.591% at 5 s and +0.420%
+at twice-average sanitary demand, with no reported flooding.
+Declared continuity limit 1% unchanged.
+
+District heating: the steady-state supply hydraulics, minimum
+differential pressure, velocity and annual heat-loss screens passed.
+Supply/return geometry and route heat-loss diagnostics are retained
+in the full model package.
+
+Coupled design snapshot: 213 powered utility facility interfaces;
+1.793092 MW of facility demand in the AC model. Voltage range
+0.932314 to 1.030000 pu; maximum line loading 83.765971%;
+maximum transformer loading 90.782969%. Converged in 12 iterations.
+All facility drive availability checks passed.
+
+All results concern the declared synthetic design and model
+operating condition. Local field/network validation remains pending.
+
+Complete native files, GeoPackage, evidence snapshots and exact
+run records are contained in the separately provided v0.2 ZIP.
